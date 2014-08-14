@@ -1,0 +1,28 @@
+@import "function";
+
+.button {
+  text-decoration: none;
+  padding: 0.7em;   /* 16/16px */
+  //text-transform: uppercase;
+  text-shadow: -em(2) em(2) 0 rgba(black, 0.2); 
+  font-weight: bold;
+  border-radius: em(5);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+
+
+input:not([type=submit]):not([type=file]){
+    border: em(3) solid #1b967e; 
+    border-radius: em(10);
+    padding: em(10);
+    //background: rgba(255,255,255,0.5);
+    margin: 0 0 em(20) 0;
+}
+
+input[type="submit"]{
+  	-webkit-box-shadow: none; 
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

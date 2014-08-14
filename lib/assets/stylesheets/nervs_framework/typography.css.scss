@@ -1,0 +1,75 @@
+body{
+	/* improve readability */
+	text-rendiring: optimizeLegibility;
+}
+
+body, input, button{
+	/* font smoothing */
+	-webkit-font-smoothing: antialiased;
+	//-webkit-font-smoothing: subpixel-antialiased;
+}
+
+p{
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Base */
+html{
+	font: 100%/1.5 Arial, sans-serif;
+}
+
+/* Headings */
+h1{ font-size: 2em;			/* 2*16 = 32       */ }
+h2{ font-size: 1.5em;		/* 1.5*16 = 24 	   */ }
+h3{ font-size: 1.17em;		/* 1.17*16 = 18.72 */ }
+h4{ font-size: 1em; 		/* 1*16 = 16	   */ }
+h5{ font-size: 0.83em;		/* 0.83*16 = 13.28 */ }
+h6{ font-size: 0.75em;		/* 0.75*16 = 12	   */ }
+
+h1, h2, h3, h4, h5, h6{
+	line-height: 1.5em;
+	font-weight: normal;
+	font-family: 'pt_sans_narrowbold';
+	//font-family: 'roseregular';
+	//font-family: 'seasideresortnfregular';
+}
+
+/* Paragraphs */
+p{
+	line-height: 1.44444;
+	margin: 0 0 1em;
+	/* word breaks */
+	/* Non standart for webkit */
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+}
+
+a, a:hover, a:visited{
+	text-decoration: none;
+}
+/* a[href$=".zip"] { color: tomato; } */
+
+strong  {   font-weight: bold;  }
+em      {   font-style: italic; }
+
+blockquote {
+ font-style: italic; 
+}
+ 
+blockquote:before { 
+	content: "\201C";
+	display: inline-block;
+	padding-right: .4em;
+}
+
+label, th{
+	font-size: 0.875em; /* 14/16 */
+	line-height: 1.44em;
+}
+
+li{
+	line-height: 1.44444;
+}
