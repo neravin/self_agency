@@ -11,7 +11,7 @@ class ActivationClientController < ApplicationController
           @client.update_attribute(:confirmation_token, nil)
           @client.activate!
           sign_in @client
-          redirect_to home_path, success: "Вы зарегистрировались"
+          redirect_to '', success: "Вы зарегистрировались"
         end 
       else
         render file: 'public/404.html', status: :not_found
