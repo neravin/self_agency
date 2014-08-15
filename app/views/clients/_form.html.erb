@@ -1,0 +1,45 @@
+<div class="depot_form">
+
+<%= form_for @client do |f| %>
+  <% if @client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client.errors.count, "error") %>, сведения об этом пользователе не могут быть сохранены:</h2>
+      <ul>
+        <% @client.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <%end %>
+
+  <fieldset>
+  <legend>Введите сведения о пользователе</legend>
+
+  <div class="field">
+    <%= f.label :name, 'Name:' %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, 'Email:' %><br>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, 'Пароль:' %><br>
+    <%= f.password_field :password%>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, 'Подтверждение:' %><br>
+    <%= f.password_field :password_confirmation%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :class => "button middle_green" %>
+  </div>
+
+  </fieldset>
+<% end %>
+
+</div>

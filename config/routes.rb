@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'home/index'
   resources :home, only: [:index]
 
+  resources :client
+
   root to: 'home#index', as: ''
 
   # The priority is based upon order of creation: first created -> highest priority.
