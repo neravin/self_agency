@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   get 'home/index'
   resources :home, only: [:index]
 
+
   resources :client
+
 
   root to: 'home#index', as: ''
 

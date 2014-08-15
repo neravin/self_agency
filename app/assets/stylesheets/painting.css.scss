@@ -1,0 +1,165 @@
+@import "palette";
+
+header{
+  //background: white;
+}
+
+.middle_green{
+  //background: linear-gradient(to top, $middle-green, $light-green);
+  background: $light-green;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0);
+  &:hover{
+    background: $middle-green;
+  };
+}
+.light_green{
+  background: $middle-green;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0);
+  &:hover{
+    background: $light-green;
+  };
+}
+
+.white-middle-green{
+    color: $middle-green;
+    background: white;
+    border: 1px solid $middle-green;
+    &:hover{
+      color: $light-green;
+      border: 1px solid $light-green;
+    };
+}
+
+.container{
+  background: white;
+}
+
+body{
+  background: #f1f4f9;
+  background: white;
+  //background: $light-green-strong;
+  //background-image: url(trianglify-background.png);
+  //background: rgb(126, 215, 205);
+  //background-size: 100%;
+}
+
+#style-6::-webkit-scrollbar-thumb{
+  background-color: $light-green;
+}
+
+#grid-wrap-menu{
+  background: rgba(255, 255, 255, 0.5);
+  background: rgb(255, 255, 255);
+}
+/*.col-half2{
+  overflow: auto;
+  height: 500px;
+  overflow-y: auto !important; /* прокрутка по вертикали */
+/*}*/
+
+p, tr{
+  color: $text-color;
+}
+
+thead tr{
+  color: white;
+  color: $middle-green;
+
+  background-color: #31bc86;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+  //font-size: 0.9em;
+}
+
+tbody tr{
+  transition: all .125s ease-in-out;
+  background: white;
+}
+
+tbody tr:nth-child(2n-1) {
+  background-color: #f5f5f5;
+  transition: all .125s ease-in-out;
+}
+
+label{
+  color: $dark-blue;
+}
+
+h1, h2, h3, h4, h5, h6{
+  //color: $dark-blue;
+}
+
+.link{
+  color: $light-green;
+  &:hover{
+    color: $middle-green;
+  }
+}
+
+.footer{
+  background: $light-green;
+}
+
+.readonly{
+  background: $light-green;
+  color: white;
+}
+
+#projects-menu, #budget-menu{
+  background: $dark-blue;
+  color: $light-blue;
+  h1{
+    color: white;
+  }
+  a, em, span{
+    color: white;
+  }
+  .a-project{
+    color: $light-blue;
+  }
+}
+
+.main-part{
+  h1{
+    color: #007095;
+  }
+}
+
+
+.main-part{
+  h1.name-on-image{
+    color: white;
+  }
+  .name-on-image{
+    background: $dark-blue;
+    background: rgba(0, 112, 149, 0.8);
+  }
+}
+
+h1{
+  color: #8A8A8A;
+}
+
+#menu-horizontal{
+  background: $dark-blue;
+  color: white;
+  a{
+    color: white;
+    &:hover{
+      color: $light-blue;
+    }
+  }
+}
+
+table{
+  a{
+    color: $dark-blue;
+  }
+}
+
+#description-project{
+  color: $middle-green;
+}
