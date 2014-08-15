@@ -549,3 +549,63 @@ div[class*="flower"] > span[class]
   //padding-left: 22px;
   padding: 0 20px;
 }
+
+$form-shell-width: 350px;
+$input-width: 300px;
+.form-shell{
+  position: relative;
+  width: $form-shell-width;
+  background: $blue;
+  margin: 0 auto;
+  text-align: center;
+  form{
+    padding-top: 10px;
+    h2{
+      font-family: 'pt_sans_narrowregular';
+      font-size: 2em;
+      color: white;
+      text-align: left;
+      margin-left: ($form-shell-width - $input-width)/2;
+    }
+    legend{
+      color: white;
+      text-align: left;
+      margin-left: ($form-shell-width - $input-width)/2;
+      margin-bottom: 1em;
+      font-family: 'pt_sansregular';
+    }
+  }
+  input{
+    width: $input-width;
+    border: none;
+    font-size: 1.1em;
+  }
+  input:not([type=submit]):not([type=file]){
+    border: em(3) solid white; 
+    padding: em(10);
+    //background: rgba(255,255,255,0.5);
+    //margin: 0 0 em(20) 0;
+    margin-bottom: 0;
+  }
+  input[type=submit] {
+    margin-bottom: 10px;
+  }
+  #navigation-form {
+    background: $light2-pink;
+    height: 40px;
+    padding-top: 10px;
+    .pseudo{
+      text-align: left;
+      margin-left: ($form-shell-width - $input-width)/2;
+    }
+  }
+  a{
+    color: white;
+    margin-right: 10px;
+    font-family: 'pt_sansregular';
+  }
+}
+
+.plug-2{
+  margin-top: 150px;
+}

@@ -1,18 +1,18 @@
 @import "function";
 
-.button {
+$button-width: 300px;
+
+.button, input {
   text-decoration: none;
   padding: 0.7em;   
   text-shadow: -em(2) em(2) 0 rgba(black, 0.2); 
   font-weight: bold;
-  border-radius: em(5);
   box-shadow: none;
   cursor: pointer;
 }
 
 input:not([type=submit]):not([type=file]){
     border: em(3) solid #1b967e; 
-    border-radius: em(10);
     padding: em(10);
     //background: rgba(255,255,255,0.5);
     margin: 0 0 em(20) 0;
