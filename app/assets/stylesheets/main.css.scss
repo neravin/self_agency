@@ -253,7 +253,7 @@ h1{
   cursor: pointer;
 }
 
-$form-half: 272.5px;
+$form-half: 252.5px;
 
 #start-search{
   span{
@@ -320,7 +320,6 @@ $form-half: 272.5px;
   margin-top: 180px;
   margin-left: 111px;
   position: absolute;
- 
 }
 
 .flower1{
@@ -338,6 +337,10 @@ $form-half: 272.5px;
     color: white;
     z-index: 10;
     background: rgba(123, 33, 22, 0.4);
+    cursor: pointer;
+  }
+  .hover{
+    background: rgba(123, 33, 234, 0.2);
   }
 }
 
@@ -524,19 +527,6 @@ div[class*="flower"] > span[class]
 }*/
 /************Colors*********/
 
-/*#ff0000 #ff6666 #ffe5e5*/
-.c1{
-  background: #ff0000;
-  background: #ffcf7d;
-  /*background: -moz-linear-gradient(-45deg,  #ff0000 0%, #ff6666 72%, #ffe5e5 100%);
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ff0000), color-stop(72%,#ff6666), color-stop(100%,#ffe5e5));
-  background: -webkit-linear-gradient(-45deg,  #ff0000 0%,#ff6666 72%,#ffe5e5 100%);
-  background: -o-linear-gradient(-45deg,  #ff0000 0%,#ff6666 72%,#ffe5e5 100%);
-  background: -ms-linear-gradient(-45deg,  #ff0000 0%,#ff6666 72%,#ffe5e5 100%);
-  background: linear-gradient(135deg,  #ff0000 0%,#ff6666 72%,#ffe5e5 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#ffe5e5',GradientType=1 );
-*/
-}
 
 .proc-25{
   width: 25%;
@@ -557,4 +547,5 @@ div[class*="flower"] > span[class]
   float: left;
   display: block;
   //padding-left: 22px;
+  padding: 0 20px;
 }

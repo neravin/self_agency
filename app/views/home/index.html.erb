@@ -195,3 +195,15 @@
     </div><!--/25-flower-->
   </div>
 </div><!--/flowers-->
+
+<script>
+  $(".head").hover(
+    function() {
+      $( this ).addClass( "hover" );
+      $( this ).parent().find(".pet").addClass("c2");
+    }, function() {
+      $( this ).removeClass( "hover" );
+      $( this ).parent().find(".pet").removeClass("c2");
+    }
+  );
+</script>
