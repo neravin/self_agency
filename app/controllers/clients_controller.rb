@@ -29,14 +29,12 @@ class ClientsController < ApplicationController
   # POST /clients.json
   def create
     @client = Client.new(client_params)
-    @favorite = Favorite.new()
     respond_to do |format|
-      if (@client.save && @favorite.save)
-        @favorite.update_attribute("client_id", @client.id)
+      if @client.save
         @client.generate_confirm!
         ConfirmationNotifier.confirmation_token(@client).deliver
         flash[:success] = "Добро пожаловать в интернет магазин";
-        format.html { redirect_to home_path, notice: "Пользователь #{@client.name} был успешно создан." }
+        format.html { redirect_to '', notice: "Пользователь #{@client.name} был успешно создан." }
         format.json { render :show, status: :created, location: @client }
       else
         format.html { render :new }
@@ -44,8 +42,6 @@ class ClientsController < ApplicationController
       end
     end
   end
-
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

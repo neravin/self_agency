@@ -1,0 +1,5 @@
+Здравствуйте, <%= @client.name %>
+
+Для подтверждения регистрации, вам необходимо перейти по ссылке:
+
+<%= edit_activation_client_url(@client.confirmation_token) %>.

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
   resources :clients
-
+  resources :activation_client, only: [:edit, :update]
 
   root to: 'home#index', as: ''
 

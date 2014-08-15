@@ -14,15 +14,19 @@
 ActiveRecord::Schema.define(version: 20140815093510) do
 
   create_table "clients", force: true do |t|
-    t.string  "name"
-    t.string  "email"
-    t.string  "photo"
-    t.string  "password_digest"
-    t.string  "remember_token"
-    t.string  "password_reset_token"
-    t.integer "state"
-    t.string  "confirmation_token"
-    t.integer "credits"
+    t.string   "name"
+    t.string   "email"
+    t.string   "photo"
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.string   "password_reset_token"
+    t.integer  "state"
+    t.string   "confirmation_token"
+    t.integer  "credits"
+    t.datetime "confirmation_token_sent_at"
+    t.datetime "password_reset_sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

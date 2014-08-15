@@ -1,0 +1,6 @@
+<p>Здравствуйте, <%= @client.name ></p>
+
+<p>Для подтверждения регистрации, вам необходимо перейти по ссылке:</p>
+
+<p><%= link_to edit_activation_client_url(@client.confirmation_token),
+  edit_activation_client_url(@client.confirmation_token) %>.</p> 

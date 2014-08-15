@@ -10,6 +10,10 @@ class CreateClients < ActiveRecord::Migration
       t.integer :state
       t.string :confirmation_token
       t.integer :credits
+      t.datetime :confirmation_token_sent_at
+      t.datetime :password_reset_sent_at
+
+      t.timestamps
     end
   end
 end
