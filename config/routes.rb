@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :home, only: [:index]
 
 
-  resources :client
+  resources :clients
 
 
   root to: 'home#index', as: ''
