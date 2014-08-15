@@ -4,6 +4,7 @@ class Client < ActiveRecord::Base
 
   has_many :orders
   has_one :favorite
+  mount_uploader :photo, ImageUploader
 
   def Client.new_remember_token
     SecureRandom.urlsafe_base64
