@@ -2,21 +2,14 @@
 	<strong>Личный кабинет</strong>
 </p>
 <p>
+  <%= image_tag @client.photo_url(:thumb).to_s %><br>
   <strong>Name:</strong>
   <%= @client.name %>
-  <%= gravatar_for @client %>
   <strong>Email:</strong>
   <%= @client.email %>
-</p>
-<p>
-	<%= link_to 'Мои заказы', client_orders_path(current_client) %>
-</p>
-<p>
-	<%= link_to 'Избранное', favorites_path %>
+
 </p>
 
-<p>
-	<strong>
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
 <%= link_to 'Back', client_path %>

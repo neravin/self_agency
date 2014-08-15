@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
   get 'home/index'
   resources :home, only: [:index]
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
 
   resources :clients
   resources :activation_client, only: [:edit, :update]
+
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/registration', to: 'clients#new' , via: 'get'
 
   root to: 'home#index', as: ''
 
