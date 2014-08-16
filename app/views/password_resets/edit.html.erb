@@ -1,12 +1,23 @@
- <h2>Изменение пароля</h2>
- <%= form_for @client, url: password_reset_path(@client.password_reset_token), html: { method: :patch } do |form| %>
+<div class = "plug-2"></div>
 
-  <%= form.label :password %><br>
-  <%= form.password_field :password %>
-  <br>
-  <%= form.label :password_confirmation %>
-  <%= form.password_field :password_confirmation %>
-  <br>
+<div class = "form-shell">
+<div id = "navigation-form">
+  <div class="pseudo">
+    <%= link_to "Войти", signin_path %>
+    <%= link_to "Регистрация", registration_path %>
+  </div>
+</div>
 
-  <%= submit_tag "Изменить пароль" %>
+ 
+<%= form_for @client, url: password_reset_path(@client.password_reset_token), html: { method: :patch } do |form| %>
+  <h2>Изменение пароля</h2>
+  <div class="field">
+    <%= form.password_field :password, placeholder: "Пароль" %>
+  </div>
+  <div class="field">
+    <%= form.password_field :password_confirmation, placeholder: "Подтверждение" %>
+  </div>
+
+  <%= submit_tag "Изменить пароль", :class => "button middle_green" %>
 <% end %>
+</div><!--/form-shell-->
