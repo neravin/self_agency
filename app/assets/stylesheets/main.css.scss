@@ -670,7 +670,8 @@ div[class*="flower"] > span[class]
   top: 0;
   padding: 20px;
   border-radius: 0 0 10px 10px;
-  opacity: 0;
+  //opacity: 0;
+  display: none;
 }
 
 .opacity1{

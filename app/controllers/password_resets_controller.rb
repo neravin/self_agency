@@ -32,7 +32,8 @@ class PasswordResetsController < ApplicationController
     elsif @client && @client.update_attributes(client_params)
       @client.update_attribute(:password_reset_token, nil)
       sign_in @client
-      redirect_to '', success: "Ваш пароль упешно изменен" 
+      flash[:success] = "Ваш пароль упешно изменен"
+      redirect_to '' 
     else
       flash.now[:notice] = "Токен пароля не найден"
       render action: 'edit'
