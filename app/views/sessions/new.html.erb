@@ -11,6 +11,13 @@
 
 <%= form_for(:session_user, url: sessions_path) do |f| %>
   <h2>Вход на сайт</h2>
+  
+  <div class="error_explanation">
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+  <% end %>
+  </div>
+
   <legend>Введите свои данные</legend>
   <div class="field">
     <%= f.text_field :email, placeholder: "Email" %>

@@ -32,14 +32,14 @@ div {
   //display: table;
 }
 
-#error_explanation {
+#error_explanation, .alert-error {
   //width: 100%;
   padding-bottom: 0;
   margin-bottom: 20px;
   text-align: left;
   margin: 0 ($form-shell-width - $input-width)/2;
   margin-bottom: 20px;
-  color: #f6798a;
+  color: #f6798a !important;
   h2 {
     text-align: left;
     font-weight: bold;
@@ -52,6 +52,10 @@ div {
     font-size: 12px;
     list-style: square;
   }*/
+}
+
+.alert{
+  line-height: 1.4em;
 }
 
 
