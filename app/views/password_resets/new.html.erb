@@ -10,13 +10,15 @@
 
   <%= form_tag password_resets_path do %>
     <h2>Восстановление пароля</h2>
-    <legend></legend>
+    <legend>На вашу электронную почту будет отправленна дальнейшая инструкция.</legend>
 
+    <fieldset>
     <div class="field">
       <%= text_field_tag :email, nil, :placeholder => "Email" %>
     </div>
     <div class="actions">
       <%= submit_tag "Восстановить пароль", :class => "button middle_green" %>
     </div>
+    </fieldset>
   <% end %>
 </div><!--/form-shell-->
