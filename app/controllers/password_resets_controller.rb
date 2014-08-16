@@ -10,7 +10,7 @@ class PasswordResetsController < ApplicationController
       client.update_attribute(:password_reset_sent_at, Time.zone.now)
       Notifier.password_reset(client).deliver
       flash[:success] = "Инструкции по восстановлению пароля отправлены на почту"
-      redirect_to home_path
+      redirect_to ''
     else
       flash.now[:notice] = "Email не найден"
       render action: 'new'
@@ -32,7 +32,7 @@ class PasswordResetsController < ApplicationController
     elsif @client && @client.update_attributes(client_params)
       @client.update_attribute(:password_reset_token, nil)
       sign_in @client
-      redirect_to home_path, success: "Ваш пароль упешно изменен" 
+      redirect_to '', success: "Ваш пароль упешно изменен" 
     else
       flash.now[:notice] = "Токен пароля не найден"
       render action: 'edit'

@@ -1,0 +1,22 @@
+<div class = "plug-2"></div>
+
+<div class = "form-shell">
+  <div id = "navigation-form">
+    <div class="pseudo">
+      <%= link_to "Войти", signin_path %>
+      <%= link_to "Регистрация", registration_path %>
+    </div>
+  </div>
+
+  <%= form_tag password_resets_path do %>
+    <h2>Восстановление пароля</h2>
+    <legend></legend>
+
+    <div class="field">
+      <%= text_field_tag :email, nil, :placeholder => "Email" %>
+    </div>
+    <div class="actions">
+      <%= submit_tag "Восстановить пароль", :class => "button middle_green" %>
+    </div>
+  <% end %>
+</div><!--/form-shell-->

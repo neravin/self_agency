@@ -1,9 +1,19 @@
-<div class="depot_form">
+<div class = "form-shell">
+<div id = "navigation-form">
+  <div class="pseudo">
+    <%= link_to "Войти", signin_path %>
+    <%= link_to "Регистрация", registration_path %>
+  </div>
+</div>
 
 <%= form_for @client, :html => {:multipart => true} do |f| %>
+  <h2><%= h2 %></h2>
   <% if @client.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@client.errors.count, "error") %>, сведения об этом пользователе не могут быть сохранены:</h2>
+      <h2>
+        <%# pluralize(@client.errors.count, "error") %>
+        Cведения об этом пользователе не могут быть сохранены:
+      </h2>
       <ul>
         <% @client.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -16,28 +26,26 @@
   <legend>Введите сведения о пользователе</legend>
 
   <div class="field">
-    <%= f.label :name, 'Name:' %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :placeholder => "ФИО" %>
   </div>
 
   <div class="field">
-    <%= f.label :email, 'Email:' %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :placeholder => "Email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password, 'Пароль:' %><br>
-    <%= f.password_field :password%>
+    <%= f.password_field :password, :placeholder => "Пароль"%>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, 'Подтверждение:' %><br>
-    <%= f.password_field :password_confirmation%>
+    <%= f.password_field :password_confirmation, :placeholder => "Подтверждение" %>
   </div>
 
-  <div class="field">
-    <%= f.file_field :photo %>
-  </div>
+  <!--div class = "field">
+    <div class = "input-file-button" >Загрузить фото<%# f.file_field :photo, class: "input-file", hidefocus: "" %>
+    </div>
+  </div><!--/field-->
+
   <div class="actions">
     <%= f.submit :class => "button middle_green" %>
   </div>
@@ -45,4 +53,4 @@
   </fieldset>
 <% end %>
 
-</div>
+</div><!--/form-shell-->

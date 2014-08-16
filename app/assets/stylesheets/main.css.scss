@@ -1,6 +1,9 @@
 @import "palette";
 @import "function";
 
+$form-shell-width: 350px;
+$input-width: 300px;
+
 #grid-wrap-menu{
   /*padding: 30px;*/
   padding-bottom: em(20);
@@ -22,32 +25,33 @@ div {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+  //padding: 2px;
+  input{
+    border:2px solid $dark-red !important; 
+  }
+  //display: table;
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
+  //width: 100%;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  text-align: left;
+  margin: 0 ($form-shell-width - $input-width)/2;
+  margin-bottom: 20px;
+  color: #f6798a;
   h2 {
     text-align: left;
     font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
+    font-size: 1em;
     margin-bottom: 0px;
-    background-color: #c00;
+    margin-left: 0px;
     color: #fff;
   }
-  ul li {
+  /*ul li {
     font-size: 12px;
     list-style: square;
-  }
+  }*/
 }
 
 
@@ -549,3 +553,103 @@ div[class*="flower"] > span[class]
   //padding-left: 22px;
   padding: 0 20px;
 }
+
+.form-shell{
+  position: relative;
+  width: $form-shell-width;
+  background: $blue;
+  margin: 0 auto;
+  text-align: center;
+  form{
+    padding-top: 10px;
+    h2{
+      font-family: 'pt_sans_narrowregular';
+      font-size: 2em;
+      color: white;
+      text-align: left;
+      margin-left: ($form-shell-width - $input-width)/2;
+    }
+    legend{
+      color: white;
+      text-align: left;
+      margin-left: ($form-shell-width - $input-width)/2;
+      margin-bottom: 1em;
+      font-family: 'pt_sansregular';
+    }
+  }
+  input{
+    width: $input-width;
+    border: none;
+    font-size: 1.1em;
+  }
+  input:not([type=submit]):not([type=file]){
+    border: em(3) solid white; 
+    padding: em(10);
+    //background: rgba(255,255,255,0.5);
+    //margin: 0 0 em(20) 0;
+    margin-bottom: 0;
+  }
+  input[type=submit] {
+    margin-bottom: 10px;
+  }
+  .input-file-button {
+    font-family: 'pt_sans_narrowregular';
+  }
+
+  #navigation-form {
+    background: $light2-pink;
+    height: 40px;
+    padding-top: 10px;
+    .pseudo{
+      text-align: left;
+      margin-left: ($form-shell-width - $input-width)/2;
+    }
+  }
+  .forgot_pass{
+    text-align: left;
+    margin-left: ($form-shell-width - $input-width)/2;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    display: block;
+  }
+  a{
+    color: white;
+    margin-right: 10px;
+    font-family: 'pt_sansregular';
+  }
+
+  .input-file-button {
+    display:block;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    font-family: 'pt_sans_narrowregular';
+    overflow: hidden;
+    position: relative;
+    background: $middle-green;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding: 0.7em;
+    margin-left: ($form-shell-width - $input-width)/2;
+    &:hover{
+      background: $light-green;
+    }
+  }
+  .input-file {
+    height: 40px;
+    overflow: hidden;
+    font-size: 80px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+  }
+}
+
+.plug-2{
+  margin-top: 150px;
+}
+
