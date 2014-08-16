@@ -590,6 +590,10 @@ $input-width: 300px;
   input[type=submit] {
     margin-bottom: 10px;
   }
+  .input-file-button {
+    font-family: 'pt_sans_narrowregular';
+  }
+
   #navigation-form {
     background: $light2-pink;
     height: 40px;
@@ -604,8 +608,39 @@ $input-width: 300px;
     margin-right: 10px;
     font-family: 'pt_sansregular';
   }
+
+  .input-file-button {
+    display:block;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    font-family: 'pt_sans_narrowregular';
+    overflow: hidden;
+    position: relative;
+    background: $middle-green;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding: 0.7em;
+    margin-left: ($form-shell-width - $input-width)/2;
+    &:hover{
+      background: $light-green;
+    }
+  }
+  .input-file {
+    height: 40px;
+    overflow: hidden;
+    font-size: 80px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+  }
 }
 
 .plug-2{
   margin-top: 150px;
 }
+
