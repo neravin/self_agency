@@ -1,6 +1,9 @@
 @import "palette";
 @import "function";
 
+$form-shell-width: 350px;
+$input-width: 300px;
+
 #grid-wrap-menu{
   /*padding: 30px;*/
   padding-bottom: em(20);
@@ -22,32 +25,33 @@ div {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+  //padding: 2px;
+  input{
+    border:2px solid $dark-red !important; 
+  }
+  //display: table;
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
+  //width: 100%;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  text-align: left;
+  margin: 0 ($form-shell-width - $input-width)/2;
+  margin-bottom: 20px;
+  color: #f6798a;
   h2 {
     text-align: left;
     font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
+    font-size: 1em;
     margin-bottom: 0px;
-    background-color: #c00;
+    margin-left: 0px;
     color: #fff;
   }
-  ul li {
+  /*ul li {
     font-size: 12px;
     list-style: square;
-  }
+  }*/
 }
 
 
@@ -550,8 +554,6 @@ div[class*="flower"] > span[class]
   padding: 0 20px;
 }
 
-$form-shell-width: 350px;
-$input-width: 300px;
 .form-shell{
   position: relative;
   width: $form-shell-width;
