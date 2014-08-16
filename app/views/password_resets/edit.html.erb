@@ -1,0 +1,12 @@
+ <h2>Изменение пароля</h2>
+ <%= form_for @client, url: password_reset_path(@client.password_reset_token), html: { method: :patch } do |form| %>
+
+  <%= form.label :password %><br>
+  <%= form.password_field :password %>
+  <br>
+  <%= form.label :password_confirmation %>
+  <%= form.password_field :password_confirmation %>
+  <br>
+
+  <%= submit_tag "Изменить пароль" %>
+<% end %>
