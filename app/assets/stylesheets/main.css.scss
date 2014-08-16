@@ -657,3 +657,22 @@ div[class*="flower"] > span[class]
   margin-top: 150px;
 }
 
+.flash{
+  position: absolute;
+  display: block;
+  color: white;
+  background: $light-yellow;
+  font-family: 'pt_sans_narrowregular';
+  font-size: 1.2em;
+  line-height: 1.4em;
+  width: 250px;
+  right: 30px;
+  top: 0;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  opacity: 0;
+}
+
+.opacity1{
+  opacity: 1;
+}
