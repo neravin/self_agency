@@ -33,7 +33,8 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'bcrypt-ruby'
 gem "carrierwave"
-gem 'rmagick', '2.13.1'
+gem 'mini_magick'
+#gem 'rmagick', '2.13.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

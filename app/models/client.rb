@@ -1,3 +1,4 @@
+require 'file_size_validator'
 class Client < ActiveRecord::Base
   before_save {self.email = email.downcase }
   before_create :create_remember_token
@@ -5,6 +6,12 @@ class Client < ActiveRecord::Base
   has_many :orders
   has_one :favorite
   mount_uploader :photo, ImageUploader
+  validates :photo,
+    #:presence => true,
+    :file_size => {
+      :maximum => 0.5.megabytes.to_i
+    }
+    validates_processing_of  :photo
 
   def Client.new_remember_token
     SecureRandom.urlsafe_base64
