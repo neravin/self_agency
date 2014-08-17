@@ -4,6 +4,7 @@ class Client < ActiveRecord::Base
   before_create :create_remember_token
 
   has_many :advertisements
+  has_many :reviews
   mount_uploader :photo, ImageUploader
   validates :photo,
     #:presence => true,

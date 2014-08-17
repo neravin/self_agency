@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :clients
   resources :activation_client, only: [:edit, :update]
   resources :advertisements
+  resources :reviews, only: [:create]
 
   match '/signin', to: 'sessions#new', via: 'get'
   match '/registration', to: 'clients#new' , via: 'get'
