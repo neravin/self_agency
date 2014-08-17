@@ -113,23 +113,15 @@
   top: 0;
   margin: 0 0 0 -25px;
 }
- 
-.cbp_tmicon-phone:before {
-  content: "\e000";
+
+.cbp_tmicon {
+  img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+  }
 }
- 
-.cbp_tmicon-screen:before {
-  content: "\e001";
-}
- 
-.cbp_tmicon-mail:before {
-  content: "\e002";
-}
- 
-.cbp_tmicon-earth:before {
-  content: "\e003";
-}
- 
+
 /* Example Media Queries */
 @media screen and (max-width: 65.375em) {
   .cbp_tmtimeline > li .cbp_tmtime span:last-child {
