@@ -20,15 +20,20 @@
     </div>
 
     <div class="field">
+      <legend class="label">Описание:</legend>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="field">
       <%= f.text_field :city, :placeholder => "Город" %>
     </div>
 
     <div class="field">
-      <%= f.password_field :address, :placeholder => "Адрес"%>
+      <%= f.text_field :address, :placeholder => "Адрес"%>
     </div>
 
     <div class="field">
-      <%= f.password_field :price, :placeholder => "Цена" %>
+      <%= f.text_field :price, :placeholder => "Цена" %>
     </div>
 
     <div>
