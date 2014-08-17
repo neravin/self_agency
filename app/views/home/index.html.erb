@@ -22,14 +22,23 @@
       <a id = "search-submit" class = "button light_green" >Гость</a>
     </form>
   </div><!--/proc-50-->
-
   <%= render 'flower', link: "<a class = 'head'>Ваша<br/>экономика</a>".html_safe %>
-
 </div><!--/center-part-->
 
 <div id = "flowers">
   <%= render 'flower', link: "<a class = 'head'>Ваша<br/>экономика</a>".html_safe %>
 
+<% if signed_in? %>
+  <% buf = "#{link_to current_client, class: "head" do
+                "Личный кабинет"
+              end}" %>
+  <%= render 'flower', link: buf.html_safe %>
+  
+  <% buf = "#{link_to signout_path, method: "delete", class: "head one-line" do
+                "Выйти"
+              end}" %>
+  <%= render 'flower', link: buf.html_safe %>  
+<% else %>
   <% buf = "#{link_to signin_path, class: "head one-line" do
                 "Войти"
               end}" %>
@@ -39,6 +48,7 @@
                 "Регистрация"
               end}" %>
   <%= render 'flower', link: buf.html_safe %>
+<% end %>
 
   <%= render 'flower', link: "<a class = 'head one-line'>Агенты</a>".html_safe %>
 </div><!--/flowers-->
