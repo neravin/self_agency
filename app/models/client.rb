@@ -3,8 +3,7 @@ class Client < ActiveRecord::Base
   before_save {self.email = email.downcase }
   before_create :create_remember_token
 
-  has_many :orders
-  has_one :favorite
+  has_many :advertisements
   mount_uploader :photo, ImageUploader
   validates :photo,
     #:presence => true,
