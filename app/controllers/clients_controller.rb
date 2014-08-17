@@ -12,6 +12,7 @@ class ClientsController < ApplicationController
   end
 
   def show
+    @advertisement = Advertisement.new
   end
 
   def update
