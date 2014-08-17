@@ -65,6 +65,6 @@ class ClientsController < ApplicationController
 
     def correct_client
       @client = Client.find(params[:id])
-      redirect_to(home_path) unless current_client?(@client)
+      redirect_to('') unless current_client?(@client)
     end
 end

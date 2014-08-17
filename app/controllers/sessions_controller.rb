@@ -17,7 +17,8 @@ class SessionsController < ApplicationController
         render 'new'
       else
         sign_in client
-        redirect_back_or client
+        flash[:success] = "Здравствуйте, #{client.name}. Вы вошли на сайт.";
+        redirect_back_or ''
       end
     else
       # Create an error message and re-render the signin form.
@@ -30,6 +31,6 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to home_path
+    redirect_to ''
   end
 end
