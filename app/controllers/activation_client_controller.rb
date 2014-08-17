@@ -17,7 +17,7 @@ class ActivationClientController < ApplicationController
         render file: 'public/404.html', status: :not_found
       end
     else
-      redirect_to home_path
+      redirect_to ''
     end
   end
 

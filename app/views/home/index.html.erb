@@ -7,199 +7,40 @@
 <div class = "plug"></div>
 
 <div id = "center-part" class="clearfix">
-<div class = "proc-25">
-  <div class="flower1">
-    <div class = "head">
-      Список<br>
-      услуг
-    </div>
-    <span><span class="mid c1"></span></span>
+  <%= render 'flower', link: "<a class = 'head'>Список<br/>услуг</a>".html_safe %>
 
-    <span class="p0"><span class="pet c1"></span></span>
-    <span class="p1"><span class="pet c1"></span></span>
-    <span class="p2"><span class="pet c1"></span></span>
-    <span class="p3"><span class="pet c1"></span></span>
-    <span class="p4"><span class="pet c1"></span></span>
-    <span class="p5"><span class="pet c1"></span></span>
-    <span class="p6"><span class="pet c1"></span></span>
-    <span class="p7"><span class="pet c1"></span></span>
-    <span class="p8"><span class="pet c1"></span></span>
-    
-    <span><span class="hea p0"></span></span>
-    <span><span class="hea p1"></span></span>
-    <span><span class="hea p2"></span></span>
-    <span><span class="hea p3"></span></span>
-    <span><span class="hea p4"></span></span>
-    <span><span class="hea p5"></span></span>
-    <span><span class="hea p6"></span></span>
-    <span><span class="hea p7"></span></span>
-    <span><span class="hea p8"></span></span>
-  </div><!--/25-flower-->
-</div>
+  <div class = "proc-50">
+    <div id = "description-project" class = "clearfix">
+      Всё в сфере услуг, что сделает мою жизнь комфортной
+    </div><!--/description-project-->
 
-<div class = "proc-50">
-  <div id = "description-project" class = "clearfix">
-    Всё в сфере услуг, что сделает мою жизнь комфортной
-  </div><!--/description-project-->
+    <form id = "start-search">
+      <span>
+        <input placeholder = "Я МОГУ" type = "text" name = "i-can" /><input placeholder = "Я ХОЧУ" id = "input-right" type = "text" name = "i-want" />
+      </span>
+      <input id = "search-submit" class = "button middle_green" type = "submit" value = "Найти" />
+      <a id = "search-submit" class = "button light_green" >Гость</a>
+    </form>
+  </div><!--/proc-50-->
 
-  <form id = "start-search">
-    <span>
-      <input placeholder = "Я МОГУ" type = "text" name = "i-can" /><input placeholder = "Я ХОЧУ" id = "input-right" type = "text" name = "i-want" />
-    </span>
-    <input id = "search-submit" class = "button middle_green" type = "submit" value = "Найти" />
-    <a id = "search-submit" class = "button light_green" >Гость</a>
-  </form>
+  <%= render 'flower', link: "<a class = 'head'>Ваша<br/>экономика</a>".html_safe %>
 
-
-</div><!--/proc-50-->
-
-<div class = "proc-25">
-  <div class="flower1">
-    <div class = "head">
-      Ваша Экономика
-    </div>
-    <span><span class="mid c1"></span></span>
-
-    <span class="p0"><span class="pet c1"></span></span>
-    <span class="p1"><span class="pet c1"></span></span>
-    <span class="p2"><span class="pet c1"></span></span>
-    <span class="p3"><span class="pet c1"></span></span>
-    <span class="p4"><span class="pet c1"></span></span>
-    <span class="p5"><span class="pet c1"></span></span>
-    <span class="p6"><span class="pet c1"></span></span>
-    <span class="p7"><span class="pet c1"></span></span>
-    <span class="p8"><span class="pet c1"></span></span>
-    
-    <span><span class="hea p0"></span></span>
-    <span><span class="hea p1"></span></span>
-    <span><span class="hea p2"></span></span>
-    <span><span class="hea p3"></span></span>
-    <span><span class="hea p4"></span></span>
-    <span><span class="hea p5"></span></span>
-    <span><span class="hea p6"></span></span>
-    <span><span class="hea p7"></span></span>
-    <span><span class="hea p8"></span></span>
-  </div><!--/25-flower-->
-</div>
 </div><!--/center-part-->
 
 <div id = "flowers">
-  <div class = "proc-25">
-    <div class="flower1">
-      <div class = "head">
-        Ваша Экономика
-      </div>
-      <span><span class="mid c1"></span></span>
+  <%= render 'flower', link: "<a class = 'head'>Ваша<br/>экономика</a>".html_safe %>
 
-      <span class="p0"><span class="pet c1"></span></span>
-      <span class="p1"><span class="pet c1"></span></span>
-      <span class="p2"><span class="pet c1"></span></span>
-      <span class="p3"><span class="pet c1"></span></span>
-      <span class="p4"><span class="pet c1"></span></span>
-      <span class="p5"><span class="pet c1"></span></span>
-      <span class="p6"><span class="pet c1"></span></span>
-      <span class="p7"><span class="pet c1"></span></span>
-      <span class="p8"><span class="pet c1"></span></span>
-      
-      <span><span class="hea p0"></span></span>
-      <span><span class="hea p1"></span></span>
-      <span><span class="hea p2"></span></span>
-      <span><span class="hea p3"></span></span>
-      <span><span class="hea p4"></span></span>
-      <span><span class="hea p5"></span></span>
-      <span><span class="hea p6"></span></span>
-      <span><span class="hea p7"></span></span>
-      <span><span class="hea p8"></span></span>
-    </div><!--/25-flower-->
-  </div>
+  <% buf = "#{link_to signin_path, class: "head one-line" do
+                "Войти"
+              end}" %>
+  <%= render 'flower', link: buf.html_safe %>
+  
+  <% buf = "#{link_to registration_path, class: "head one-line" do
+                "Регистрация"
+              end}" %>
+  <%= render 'flower', link: buf.html_safe %>
 
-  <div class = "proc-25">
-    <div class="flower1">
-      <div class = "head one-line">
-        Агенты
-      </div>
-      <span><span class="mid c1"></span></span>
-
-      <span class="p0"><span class="pet c1"></span></span>
-      <span class="p1"><span class="pet c1"></span></span>
-      <span class="p2"><span class="pet c1"></span></span>
-      <span class="p3"><span class="pet c1"></span></span>
-      <span class="p4"><span class="pet c1"></span></span>
-      <span class="p5"><span class="pet c1"></span></span>
-      <span class="p6"><span class="pet c1"></span></span>
-      <span class="p7"><span class="pet c1"></span></span>
-      <span class="p8"><span class="pet c1"></span></span>
-      
-      <span><span class="hea p0"></span></span>
-      <span><span class="hea p1"></span></span>
-      <span><span class="hea p2"></span></span>
-      <span><span class="hea p3"></span></span>
-      <span><span class="hea p4"></span></span>
-      <span><span class="hea p5"></span></span>
-      <span><span class="hea p6"></span></span>
-      <span><span class="hea p7"></span></span>
-      <span><span class="hea p8"></span></span>
-    </div><!--/25-flower-->
-  </div>
-
-  <div class = "proc-25">
-    <div class="flower1">
-      <div class = "head">
-        Мой<br>
-        профиль
-      </div>
-      <span><span class="mid c1"></span></span>
-
-      <span class="p0"><span class="pet c1"></span></span>
-      <span class="p1"><span class="pet c1"></span></span>
-      <span class="p2"><span class="pet c1"></span></span>
-      <span class="p3"><span class="pet c1"></span></span>
-      <span class="p4"><span class="pet c1"></span></span>
-      <span class="p5"><span class="pet c1"></span></span>
-      <span class="p6"><span class="pet c1"></span></span>
-      <span class="p7"><span class="pet c1"></span></span>
-      <span class="p8"><span class="pet c1"></span></span>
-      
-      <span><span class="hea p0"></span></span>
-      <span><span class="hea p1"></span></span>
-      <span><span class="hea p2"></span></span>
-      <span><span class="hea p3"></span></span>
-      <span><span class="hea p4"></span></span>
-      <span><span class="hea p5"></span></span>
-      <span><span class="hea p6"></span></span>
-      <span><span class="hea p7"></span></span>
-      <span><span class="hea p8"></span></span>
-    </div><!--/25-flower-->
-  </div>
-
-  <div class = "proc-25">
-    <div class="flower1">
-      <div class = "head one-line">
-        Отзывы
-      </div>
-      <span><span class="mid c1"></span></span>
-
-      <span class="p0"><span class="pet c1"></span></span>
-      <span class="p1"><span class="pet c1"></span></span>
-      <span class="p2"><span class="pet c1"></span></span>
-      <span class="p3"><span class="pet c1"></span></span>
-      <span class="p4"><span class="pet c1"></span></span>
-      <span class="p5"><span class="pet c1"></span></span>
-      <span class="p6"><span class="pet c1"></span></span>
-      <span class="p7"><span class="pet c1"></span></span>
-      <span class="p8"><span class="pet c1"></span></span>
-      
-      <span><span class="hea p0"></span></span>
-      <span><span class="hea p1"></span></span>
-      <span><span class="hea p2"></span></span>
-      <span><span class="hea p3"></span></span>
-      <span><span class="hea p4"></span></span>
-      <span><span class="hea p5"></span></span>
-      <span><span class="hea p6"></span></span>
-      <span><span class="hea p7"></span></span>
-      <span><span class="hea p8"></span></span>
-    </div><!--/25-flower-->
-  </div>
+  <%= render 'flower', link: "<a class = 'head one-line'>Агенты</a>".html_safe %>
 </div><!--/flowers-->
 
 <script>
