@@ -581,12 +581,19 @@ div[class*="flower"] > span[class]
       font-family: 'pt_sansregular';
     }
   }
-  input{
+  .for-time{
+    color: white;
+    font-family: 'pt_sansregular';
+  }
+  .po{
+    margin-left: 7px;
+  }
+  input, textarea{
     width: $input-width;
     border: none;
     font-size: 1.1em;
   }
-  input:not([type=submit]):not([type=file]){
+  input:not([type=submit]):not([type=file]), textarea{
     border: em(3) solid white; 
     padding: em(10);
     //background: rgba(255,255,255,0.5);
@@ -596,10 +603,33 @@ div[class*="flower"] > span[class]
   input[type=submit] {
     margin-bottom: 10px;
   }
+  input[type=time] {
+    width: auto;
+  }
+  textarea{
+    resize: none;
+    height: 100px;
+    font-family: 'pt_sans_narrowregular';
+  }
   .input-file-button {
     font-family: 'pt_sans_narrowregular';
   }
-
+  .start-time, .end-time{
+    //float: left;
+    display: inline;
+    //margin-left: ($form-shell-width - $input-width)/2;
+  }
+  .start-time{
+    float: left;
+    margin-left: ($form-shell-width - $input-width)/2;
+  }
+  .end-time{
+    float: right;
+    margin-right: ($form-shell-width - $input-width)/2;
+  }
+  .label{
+    margin-bottom: 0;
+  }
   #navigation-form {
     background: $light2-pink;
     height: 40px;
