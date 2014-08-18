@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817083323) do
+ActiveRecord::Schema.define(version: 20140818065902) do
 
   create_table "advertisements", force: true do |t|
     t.string  "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140817083323) do
     t.time    "start_hour"
     t.time    "end_hour"
     t.text    "description"
+    t.integer "state"
   end
 
   add_index "advertisements", ["client_id"], name: "index_advertisements_on_client_id"
