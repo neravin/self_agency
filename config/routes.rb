@@ -7,11 +7,16 @@ Rails.application.routes.draw do
 
   resources :clients
   resources :activation_client, only: [:edit, :update]
-  resources :advertisements
+  resources :advertisements do
+    collection do
+      patch 'perform_ad'
+    end
+  end
 
   match '/signin', to: 'sessions#new', via: 'get'
   match '/registration', to: 'clients#new' , via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
+  match '/perform_ad' => 'advertisements#perform_ad', via: 'get'
 
   root to: 'home#index', as: ''
 

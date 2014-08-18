@@ -16,6 +16,23 @@ class AdvertisementsController < ApplicationController
 
   end
 
+  def perform_ad
+    if p = Advertisement.find_by_id(params['id'])
+      if (p.state == 0)
+        p.update_attribute("state", 1)
+        render text: "Объявление забронировано. Ожидайте звонок от заказчика"
+        #redirect_back_or ''
+      else
+        render text: "Объявление не доступно для бронирования"
+        #redirect_back_or ''
+      end
+      #flash[:success] = "Заказ забронирован. Ожидайте звонок от заказчика.#{params[:id]}" 
+      #redirect_to ''
+    else
+      render text: "Такого объявления не существует"
+    end
+  end
+
 private
   def set_advertisement
     @advertisement = Advertisement.find(params[:id])

@@ -7,8 +7,9 @@
       <h2><%= ad.name %></h2>
       <p><%= ad.description %></p>
       <span class = "price"><%= ad.price %> у.е. </span>
-      <% if !ad.state %>
-        <span class = "button light-yellow open">Выполнить</span>
+      <% if ad.state == 0 %>
+        <span class = "button light-yellow open perform-ad"
+          data-ad_id="<%= ad.id %>">Выполнить</span>
       <% elsif ad.state == 1 %>
         <span class = "button not-button white-green">Занят</span>
       <% elsif ad.state == 2 %>
