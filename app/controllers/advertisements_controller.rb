@@ -5,15 +5,31 @@ class AdvertisementsController < ApplicationController
     @advertisements = Advertisement.all
 	end
 
-  def create
-    @advertisement = Advertisement.new(advertisement_params)
-    if @advertisement.save
-      current_client.advertisements << @advertisement
-      redirect_to current_client
-    else
-      redirect_to current_client
-    end
+  def new
+    @advertisement = Advertisement.new
+  end
 
+  def create
+    #begin
+    #@advertisement = Advertisement.new(advertisement_params)
+    #if @advertisement.save
+    #  current_client.advertisements << @advertisement
+    #  redirect_to current_client
+    #else
+    #  render json: @advertisement.errors, status: :unprocessable_entity
+    #end
+    @advertisement = Advertisement.new(advertisement_params)
+    respond_to do |format|
+      if @advertisement.save
+        current_client.advertisements << @advertisement
+        flash[:success] = "Объявление добавлено";
+        format.html { redirect_to current_client }
+        format.json { render :show, status: :created, location: @advertisement }
+      else
+        format.html { render :new }
+        format.json { render json: @advertisement.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def perform_ad

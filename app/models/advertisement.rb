@@ -1,4 +1,14 @@
 class Advertisement < ActiveRecord::Base
+  validate :start_hour, :happened_at_is_valid_datetime
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :city, presence: true
+  validates :address, presence: true
+  validates :date, presence: true
+  def happened_at_is_valid_datetime
+    errors.add('Время начала', ' не должно превышать время конца') if (start_hour > end_hour)
+  end
+
   States = {
     :open => 0,
     :reserved => 1,
