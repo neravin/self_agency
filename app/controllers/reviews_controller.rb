@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
 
 	def create
 		@review = Review.new(review_params)
-		@otpravitel = Client.find(params[:id_otp])
+		@otpravitel = Client.find_by_id(params[:id_otp])
 		if @review.save
 			@review.update_attribute("author_id",current_client.id)
 			@otpravitel.reviews << @review

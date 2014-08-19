@@ -1,4 +1,7 @@
 class Advertisement < ActiveRecord::Base
+
+  validates :name, :city, :address, :date, :start_hour, :end_hour, :description, presence: true 
+  
   States = {
     :open => 0,
     :reserved => 1,
