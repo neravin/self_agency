@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       patch 'perform_ad'
     end
   end
+  resources :workers
+  resources :reviews, only: [:create]
 
   match '/signin', to: 'sessions#new', via: 'get'
   match '/registration', to: 'clients#new' , via: 'get'
