@@ -7,8 +7,8 @@
   <%= @client.name %>
   <strong>Email:</strong>
   <%= @client.email %>
-
 </p>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', client_path %>
+<% if current_client.id == @client.id %>
+  <%= link_to 'Edit', edit_client_path(@client) %>
+<% end %>
