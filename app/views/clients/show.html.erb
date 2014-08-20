@@ -1,9 +1,13 @@
 <p align="center">
-	<strong>Личный кабинет</strong>
+	<strong></strong>
 </p>
 
 <div id = "user-info" class="clearfix" >
-  <div class="pseudo clearfix">
+<% if current_client.id == @client.id %>
+  <div class="pseudo clearfix var1">
+<% else %>
+  <div class="pseudo clearfix var2">
+<% end %>
     <div class = "foto">
       <%= image_tag("valera.jpg") %>
     </div><!--/foto-->
@@ -53,3 +57,19 @@
    <span class = "author">Эдгар</span>
   </div><!--/review-text-->
 </div><!--/reviews-->
+
+<div id = "i-want-column">
+  <h2>Мои текущие объявления</h2>
+
+  <% @client.advertisements.each do |ad| %>
+    <div class="post">
+      <h2><%= ad.name %></h2>
+      <p><%= ad.description %></p>
+      <span class = "price"><%= ad.price %> у.е. </span>
+    </div>
+  <% end %>
+</div>
+
+<div id = "i-can-column">
+  <h2>Мои текущие услуги</h2>
+</div>

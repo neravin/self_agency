@@ -716,8 +716,25 @@ div[class*="flower"] > span[class]
   width: 49%;
   //float: left;
   //border-radius: 5px;
-  height: 200;
+  height: 200px;
+  margin-bottom: 20px;
   float: left;
+  .var1{
+    .foto{
+      border-radius: 5px 0 0 0;
+    }
+    .user-description{
+      border-radius: 0 5px 0 0;
+    }
+  }
+  .var2{
+    .foto{
+      border-radius: 5px 0 0 5px;
+    }
+    .user-description{
+      border-radius: 0 5px 5px 0;
+    }
+  }
   .foto{
     width: 30%;
     height: 100%;
@@ -726,7 +743,6 @@ div[class*="flower"] > span[class]
     content: ".";
     height: 160px;
     background: rgb(65, 106, 166);
-    border-radius: 5px 0 0 0;
     text-align: center;
     img{
       display: block;
@@ -741,7 +757,6 @@ div[class*="flower"] > span[class]
     float: right;
     height: 160px;
     background: rgb(103, 149, 192);
-    border-radius: 0 5px 0 0;
     .pseudo{
       margin: 10px;
       margin-left: 20px;
@@ -838,5 +853,41 @@ div[class*="flower"] > span[class]
       font-family: 'pt_sansitalic';
     }
     padding-bottom: 30px;
+  }
+}
+
+#i-want-column{
+  display: block;
+  float: left;
+  width: 49%;
+  .post{
+    background: #1b967e;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 2em;
+    p{
+      color: white;
+      margin-top: 10px;
+    }
+    h2{
+      color: white;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    }
+  }
+  .price{
+    color: $light2-yellow;
+  }
+  h2{
+    color: $light-green;
+  }
+}
+
+#i-can-column{
+  display: block;
+  float: right;
+  width: 49%;
+  h2{
+    color: $light-green;
   }
 }
