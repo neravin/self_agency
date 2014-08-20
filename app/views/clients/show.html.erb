@@ -26,12 +26,17 @@
   </div><!--/user-description-->
 </div><!--/user-info-->
 
-<p>
-  <strong>Name:</strong>
-  <%= @client.name %>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
+<div id = "reviews">
+  <div class = "title">
+    <h2>Отзывы</h2>
+  </div><!--/title-->
+  <div class = "review-text">
+   <p>Посчастливилось работать с Ксенией - остались только положительные эмоции. Грамотный, профессиональный подход к делу и чёткое следование всем требованиям технического задания. Обязательно буду обращаться ещё!</p>
+   <span class = "author">Эдгар</span>
+  </div><!--/review-text-->
+</div><!--/reviews-->
+
+<div class = "plug-2"></div>
 <%= form_for @review do |f| %>
 	<div class="field">
     	<%= f.text_field :name, :placeholder => "Заголовок отзыва" %>

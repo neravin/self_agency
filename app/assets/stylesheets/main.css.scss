@@ -344,7 +344,9 @@ $form-half: 252.5px;
     padding-top: 25px;
     color: white;
     z-index: 10;
+
     background: rgba(123, 33, 22, 0.4);
+    //background: rgba(235, 164, 42, 0.7);
     cursor: pointer;
   }
   .hover{
@@ -711,11 +713,12 @@ div[class*="flower"] > span[class]
 
 #user-info{
   position: relative;
-  width: 45%;
+  width: 49%;
   //float: left;
   border-radius: 5px;
   height: 160px;
   background: white;
+  float: left;
   .foto{
     width: 30%;
     height: 100%;
@@ -723,7 +726,7 @@ div[class*="flower"] > span[class]
     display: block;
     content: ".";
     height: 160px;
-    background: $light-grey;
+    background: rgb(65, 106, 166);
     border-radius: 5px 0 0 5px;
     text-align: center;
     img{
@@ -736,9 +739,10 @@ div[class*="flower"] > span[class]
   }
   .user-description{
     width: 70%;
-    height: 100%;
     float: right;
     height: 160px;
+    background: rgb(103, 149, 192);
+    border-radius: 0 5px 5px 0;
     .pseudo{
       margin: 10px;
       margin-left: 20px;
@@ -746,6 +750,7 @@ div[class*="flower"] > span[class]
     h2{
       color: $middle-green;
       margin-top: 20px;
+      color: $light-yellow;
     }
     p{
       margin-bottom: 0.3em;
@@ -754,10 +759,46 @@ div[class*="flower"] > span[class]
         display: block;
         float: left;
         font-weight: normal;
+        color: white;
       }
       em{
         color: rgb(163, 171, 185);
+        color: white;
       }
     }
+  }
+}
+
+#reviews{
+  float: right;
+  //height: 200px;
+  width: 49%;
+  border-radius: 5px;
+  .title{
+    height: 50px;
+    padding: 0 50px;
+    padding-top: 10px;
+    h2{
+      color: $light-green-strong;
+    }
+    background: rgb(65, 106, 166);
+    border-radius: 5px 5px 0 0;
+  }
+  .review-text{
+    p{
+      color: white;
+      margin-bottom: 0.5em;
+    }
+    background: rgb(103, 149, 192);
+    padding: 20px 50px;
+    //height: 150px;
+    border-radius: 0 0 5px 5px;
+    .author{
+      color: $light2-yellow;
+      display: block;
+      float: right;
+      font-family: 'pt_sansitalic';
+    }
+    padding-bottom: 30px;
   }
 }
