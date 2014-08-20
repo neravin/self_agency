@@ -1,0 +1,33 @@
+<div class = "form-shell">
+  <%= form_for @worker do |f| %>
+    <fieldset>
+    <h2>Создание объявления</h2>
+
+    <div class="field">
+      <%= f.text_field :name, :placeholder => "Название объявления" %>
+    </div>
+
+    <div class="field">
+      <legend class="label">Описание:</legend>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :city, :placeholder => "Город" %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :address, :placeholder => "Адрес"%>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :price, :placeholder => "Цена" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit :class => "button middle_green", :value => "Добавить" %>
+    </div>
+
+    </fieldset>
+  <% end %>
+</div>

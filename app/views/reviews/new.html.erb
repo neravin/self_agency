@@ -1,0 +1,15 @@
+<%= form_for @review do |f| %>
+  <div class="field">
+      <%= f.text_field :name, :placeholder => "Заголовок отзыва" %>
+    </div>
+    <div class="field">
+      <%= f.text_area :description, :placeholder => "Описание", rows: 20%>
+    </div>
+    <div class="field">
+      <input name="id_otp" value="<%= @client.id %>">
+    </div>
+    <div class="actions">
+      <%= f.submit :class => "button middle_green"%>
+    </div>
+  
+<% end %>

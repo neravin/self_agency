@@ -13,9 +13,9 @@ class ClientsController < ApplicationController
   end
 
   def show
-    @review = Review.new
+    #@review = Review.new
     @advertisement = Advertisement.new
-    @worker = Worker.new
+    #@worker = Worker.new
   end
 
   def update
