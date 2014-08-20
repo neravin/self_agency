@@ -54,7 +54,7 @@ gem 'will_paginate'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'font-awesome-sass'
+gem 'font-awesome-rails', '4.0.3.0'
 gem 'capistrano'
 
 group :production do

@@ -3,27 +3,39 @@
 </p>
 
 <div id = "user-info" class="clearfix" >
-  <div class = "foto">
-    <%= image_tag("valera.jpg") %>
-  </div><!--/foto-->
+  <div class="pseudo clearfix">
+    <div class = "foto">
+      <%= image_tag("valera.jpg") %>
+    </div><!--/foto-->
 
-  <div class = "user-description">
-  <div class = "pseudo">
-    <h2><%= @client.name %></h2>
-    <p>
-      <strong>Телефон:</strong>
-      <em>89053570010</em>
-    </p>
-    <p>
-      <strong>Почта:</strong>
-      <em>wetcorsair@gmail.com</em>
-    </p>
-    <p>
-      <strong>Баллы:</strong>
-      <em>1000</em>
-    </p>
+    <div class = "user-description">
+    <div class = "pseudo">
+      <h2><%= @client.name %></h2>
+      <p>
+        <strong>Телефон:</strong>
+        <em>89053570010</em>
+      </p>
+      <p>
+        <strong>Почта:</strong>
+        <em>wetcorsair@gmail.com</em>
+      </p>
+      <p>
+        <strong>Баллы:</strong>
+        <em>1000</em>
+      </p>
+    </div><!--/pseudo-->
+    </div><!--/user-description-->
   </div><!--/pseudo-->
-  </div><!--/user-description-->
+
+  <div id = "user-menu" class="clearfix">
+    <div class="personal-link">
+      <a><i class="fa fa-pencil"></i></a>
+    </div><!--/personal-link-->
+    <div class="add-ad">
+      <a><i class="fa fa-plus"></i> Я хочу</a>
+      <a><i class="fa fa-plus"></i> Я могу</a>
+    </div>
+  </div><!--/user-menu-->
 </div><!--/user-info-->
 
 <div id = "reviews">
@@ -35,6 +47,7 @@
    <span class = "author">Эдгар</span>
   </div><!--/review-text-->
 </div><!--/reviews-->
+
 
 <div class = "plug-2"></div>
 <%= form_for @review do |f| %>

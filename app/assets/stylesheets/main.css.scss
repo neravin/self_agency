@@ -715,9 +715,8 @@ div[class*="flower"] > span[class]
   position: relative;
   width: 49%;
   //float: left;
-  border-radius: 5px;
-  height: 160px;
-  background: white;
+  //border-radius: 5px;
+  height: 200;
   float: left;
   .foto{
     width: 30%;
@@ -727,7 +726,7 @@ div[class*="flower"] > span[class]
     content: ".";
     height: 160px;
     background: rgb(65, 106, 166);
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 0;
     text-align: center;
     img{
       display: block;
@@ -742,7 +741,7 @@ div[class*="flower"] > span[class]
     float: right;
     height: 160px;
     background: rgb(103, 149, 192);
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 0 0;
     .pseudo{
       margin: 10px;
       margin-left: 20px;
@@ -764,6 +763,43 @@ div[class*="flower"] > span[class]
       em{
         color: rgb(163, 171, 185);
         color: white;
+      }
+    }
+  }
+  #user-menu{
+    height: 40px;
+    width: 100%;
+    background: $blue;
+    border-radius: 0 0 5px 5px;
+    display: block;
+    a{
+      color: white;
+      line-height: 40px;
+      width: 40px;
+      text-align: center;
+      display: block;
+      float: left;
+      background: $light-yellow;
+      cursor: pointer;
+    }
+    .personal-link{
+      width: 30%;
+      float: left;
+      a{
+        &:first-child{
+          border-radius: 0 0 0 5px;
+        }
+      }
+    }
+    .add-ad{
+      width: 70%;
+      float: right;
+      a{
+        width: 49.5%;
+        &:last-child{
+          float: right;
+          border-radius: 0 0 5px 0;
+        } 
       }
     }
   }
