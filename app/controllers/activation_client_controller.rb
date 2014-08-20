@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class ActivationClientController < ApplicationController
   skip_before_action :authorize
 

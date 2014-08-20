@@ -707,3 +707,57 @@ div[class*="flower"] > span[class]
 .opacity1{
   opacity: 1;
 }
+
+
+#user-info{
+  position: relative;
+  width: 45%;
+  //float: left;
+  border-radius: 5px;
+  height: 160px;
+  background: white;
+  .foto{
+    width: 30%;
+    height: 100%;
+    float: left;
+    display: block;
+    content: ".";
+    height: 160px;
+    background: $light-grey;
+    border-radius: 5px 0 0 5px;
+    text-align: center;
+    img{
+      display: block;
+      width: 100px;
+      height: 100px;
+      margin: 30px auto;
+      border-radius: 100px;
+    }
+  }
+  .user-description{
+    width: 70%;
+    height: 100%;
+    float: right;
+    height: 160px;
+    .pseudo{
+      margin: 10px;
+      margin-left: 20px;
+    }
+    h2{
+      color: $middle-green;
+      margin-top: 20px;
+    }
+    p{
+      margin-bottom: 0.3em;
+      strong{
+        width: 100px;
+        display: block;
+        float: left;
+        font-weight: normal;
+      }
+      em{
+        color: rgb(163, 171, 185);
+      }
+    }
+  }
+}

@@ -1,8 +1,32 @@
 <p align="center">
 	<strong>Личный кабинет</strong>
 </p>
-<p>
 
+<div id = "user-info" class="clearfix" >
+  <div class = "foto">
+    <%= image_tag("valera.jpg") %>
+  </div><!--/foto-->
+
+  <div class = "user-description">
+  <div class = "pseudo">
+    <h2><%= @client.name %></h2>
+    <p>
+      <strong>Телефон:</strong>
+      <em>89053570010</em>
+    </p>
+    <p>
+      <strong>Почта:</strong>
+      <em>wetcorsair@gmail.com</em>
+    </p>
+    <p>
+      <strong>Баллы:</strong>
+      <em>1000</em>
+    </p>
+  </div><!--/pseudo-->
+  </div><!--/user-description-->
+</div><!--/user-info-->
+
+<p>
   <strong>Name:</strong>
   <%= @client.name %>
   <strong>Email:</strong>
