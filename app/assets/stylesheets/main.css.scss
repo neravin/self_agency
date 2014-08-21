@@ -861,6 +861,7 @@ div[class*="flower"] > span[class]
   float: left;
   width: 49%;
   .post{
+    position: relative;
     background: #1b967e;
     color: white;
     border-radius: 5px;
@@ -890,4 +891,15 @@ div[class*="flower"] > span[class]
   .post{
     background: #5cbca9;
   }
+}
+
+.edit-advertisement{
+  color: white;
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  &:hover{
+    color: $light2-yellow;
+  }
+  //top: 0;
 }

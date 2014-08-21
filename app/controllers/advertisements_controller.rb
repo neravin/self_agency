@@ -1,6 +1,7 @@
 class AdvertisementsController < ApplicationController
 	before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
-	
+	before_action :correct_advertisement, only: [:edit, :update]
+
   def index
     @advertisements = Advertisement.order("name").page(params[:page]).per_page(3)
 	end
@@ -10,24 +11,31 @@ class AdvertisementsController < ApplicationController
   end
 
   def create
-    #begin
-    #@advertisement = Advertisement.new(advertisement_params)
-    #if @advertisement.save
-    #  current_client.advertisements << @advertisement
-    #  redirect_to current_client
-    #else
-    #  render json: @advertisement.errors, status: :unprocessable_entity
-    #end
     @advertisement = Advertisement.new(advertisement_params)
     respond_to do |format|
       if @advertisement.save
         current_client.advertisements << @advertisement
         flash[:success] = "Объявление добавлено";
         format.html { redirect_to current_client }
-        format.json { render :show, status: :created, location: @advertisement }
+        #format.json { render :show, status: :created, location: @advertisement }
       else
         format.html { render :new }
-        format.json { render json: @advertisement.errors, status: :unprocessable_entity }
+        #format.json { render json: @advertisement.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @advertisement.update(advertisement_params)
+        format.html { redirect_to current_client, notice: 'Объявление успешно обновлено' }
+        #format.json { render :show, status: :ok, location: @advertisement }
+      else
+        format.html { render :edit }
+        #format.json { render json: @advertisement.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,4 +66,11 @@ private
     params.require(:advertisement).permit(:name, :description, :price, :city, :address, :date, :start_hour, :end_hour)
   end
 
+  def correct_advertisement
+    if current_client
+      redirect_to('') unless current_client.advertisements.find_by_id(params[:id])
+    else
+      redirect_to('')
+    end
+  end
 end

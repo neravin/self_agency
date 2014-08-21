@@ -65,9 +65,14 @@
 
   <% @client.advertisements.each do |ad| %>
     <div class="post">
+    <% if current_client.id == @client.id %>
+      <%= link_to(edit_advertisement_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+    <% end %>
       <h2><%= ad.name %></h2>
       <p><%= ad.description %></p>
-      <span class = "price"><%= ad.price %> у.е. </span>
+      <span class = "price"><%= ad.price %> у.е.</span>
     </div>
   <% end %>
 </div>
@@ -78,7 +83,7 @@
     <div class="post">
       <h2><%= ad.name %></h2>
       <p><%= ad.description %></p>
-      <span class = "price"><%= ad.price %> у.е. </span>
+      <span class = "price"><%= ad.price %> у.е.</span>
     </div>
   <% end %>
 </div>
