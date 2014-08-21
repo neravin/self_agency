@@ -12,13 +12,18 @@ Rails.application.routes.draw do
       patch 'perform_ad'
     end
   end
-  resources :workers
+  resources :workers do
+    collection do
+      patch 'worker_ad'
+    end
+  end
   resources :reviews, only: [:create]
 
   match '/signin', to: 'sessions#new', via: 'get'
   match '/registration', to: 'clients#new' , via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/perform_ad' => 'advertisements#perform_ad', via: 'get'
+  match '/worker_ad' => 'workers#worker_ad', via: 'get'
 
   root to: 'home#index', as: ''
 

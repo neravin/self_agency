@@ -1,22 +1,17 @@
 <ul class="cbp_tmtimeline">
 
-<% @advertisements.each do |ad| %>
+<% @workers.each do |ad| %>
   <li>
-    <time class="cbp_tmtime"><span><%= ad.date.strftime("%d/%m/%Y") %></span> <span><%= ad.start_hour.strftime("%H:%M") %></span></time>
     <div class="cbp_tmicon cbp_tmicon-phone"><%= image_tag("valera.jpg") %></div>
     <div class="cbp_tmlabel">
       <h2><%= ad.name %></h2>
       <p><%= ad.description %></p>
       <span class = "price"><%= ad.price %> у.е. </span>
       <% if ad.state == 0 %>
-        <span class = "button light-yellow open perform-ad"
-          data-ad_id="<%= ad.id %>">Выполнить</span>
+        <span class = "button light-yellow open worker-ad"
+          data-ad_id="<%= ad.id %>">Заказать</span>
       <% elsif ad.state == 1 %>
         <span class = "button not-button white-green">Занят</span>
-      <% elsif ad.state == 2 %>
-        <span class = "button not-button white-green">Выполнен</span>
-      <% elsif ad.state == 3 %>
-        <span class = "button not-button white-green">Отменен</span>
       <% end %>
     </div>
   </li>

@@ -3,7 +3,7 @@ class WorkersController < ApplicationController
 	before_action :correct_worker, only: [:edit, :update]
 
 	def index
-		@workers = Worker.all
+		@workers = Worker.order("name").page(params[:page]).per_page(3)
 	end
 
 	def new
@@ -37,6 +37,23 @@ class WorkersController < ApplicationController
         format.html { render :edit }
         #format.json { render json: @worker.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+	def worker_ad
+		if p = Worker.find_by_id(params['id'])
+      if (p.state == 0)
+        p.update_attribute("state", 1)
+        render text: "Услуга забронирована. Ожидайте звонок от работника"
+        #redirect_back_or ''
+      else
+        render text: "Услуга не доступна для бронирования"
+        #redirect_back_or ''
+      end
+      #flash[:success] = "Заказ забронирован. Ожидайте звонок от заказчика.#{params[:id]}" 
+      #redirect_to ''
+    else
+      render text: "Такой услуги не существует"
     end
   end
 
