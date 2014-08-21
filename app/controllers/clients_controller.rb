@@ -1,4 +1,5 @@
 class ClientsController < ApplicationController
+  skip_before_action :authorize
   before_action :signed_in_client, only: [:show, :edit, :update]
   before_action :correct_client,   only: [:edit, :update]
   before_action :set_client, only: [:show, :edit, :update, :destroy]

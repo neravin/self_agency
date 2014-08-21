@@ -2,7 +2,7 @@
 <div class = "form-shell">
   <%= form_for @worker do |f| %>
     <fieldset>
-    <h2>Создание услуги</h2>
+    <h2><%= h2 %></h2>
 
     <% if @worker.errors.any? %>
       <div id="error_explanation">
@@ -40,7 +40,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit :class => "button middle_green", :value => "Добавить" %>
+      <%= f.submit :class => "button middle_green", :value => submit_name %>
     </div>
 
     </fieldset>

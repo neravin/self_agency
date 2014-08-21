@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-
+	skip_before_action :authorize
 	def create
 		@review = Review.new(review_params)
 		@otpravitel = Client.find_by_id(params[:id_otp])

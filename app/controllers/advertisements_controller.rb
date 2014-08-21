@@ -1,4 +1,5 @@
 class AdvertisementsController < ApplicationController
+  skip_before_action :authorize
 	before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
 	before_action :correct_advertisement, only: [:edit, :update]
 

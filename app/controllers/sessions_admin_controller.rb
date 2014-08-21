@@ -8,7 +8,7 @@ class SessionsAdminController < ApplicationController
   	admin = Admin.find_by(name: params[:name])
   		if admin and admin.authenticate(params[:password])
   			session[:admin_id] = admin.id
-  			redirect_to admin_routes_url
+  			redirect_to admin_routes_index_path
   		else
   			redirect_to login_url, alert: "Неверная комбинация имени и пароля"
   		end

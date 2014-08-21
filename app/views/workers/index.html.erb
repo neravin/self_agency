@@ -1,0 +1,23 @@
+<ul class="cbp_tmtimeline worker-style">
+
+<% @workers.each do |ad| %>
+  <li>
+    <div class="cbp_tmicon cbp_tmicon-phone"><%= image_tag("valera.jpg") %></div>
+    <div class="cbp_tmlabel">
+      <h2><%= ad.name %></h2>
+      <p><%= ad.description %></p>
+      <span class = "price"><%= ad.price %> у.е. </span>
+      <% if ad.state == 0 %>
+        <span class = "button light-yellow open worker-ad"
+          data-ad_id="<%= ad.id %>">Заказать</span>
+      <% elsif ad.state == 1 %>
+        <span class = "button not-button white-green">Занят</span>
+      <% end %>
+    </div>
+  </li>
+<% end %>
+</ul>
+
+<div class="digg_pagination">    
+  <%= will_paginate @advertisement%>
+</div>
