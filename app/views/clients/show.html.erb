@@ -61,7 +61,7 @@
 </div><!--/reviews-->
 
 <div id = "i-want-column">
-  <h2>Мои текущие объявления</h2>
+  <h2>Текущие объявления</h2>
 
   <% @client.advertisements.each do |ad| %>
     <div class="post">
@@ -78,9 +78,14 @@
 </div>
 
 <div id = "i-can-column">
-  <h2>Мои текущие услуги</h2>
+  <h2>Текущие услуги</h2>
   <% @client.workers.each do |ad| %>
     <div class="post">
+    <% if current_client.id == @client.id %>
+      <%= link_to(edit_worker_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+    <% end %>
       <h2><%= ad.name %></h2>
       <p><%= ad.description %></p>
       <span class = "price"><%= ad.price %> у.е.</span>

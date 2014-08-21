@@ -888,8 +888,11 @@ div[class*="flower"] > span[class]
   display: block;
   float: right;
   width: 49%;
+  h2{
+    color: $blue-new;
+  }
   .post{
-    background: #5cbca9;
+    background: $blue-new;
   }
 }
 
