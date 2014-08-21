@@ -1,7 +1,22 @@
+<div class="plug-2"></div>
 <div class = "form-shell">
   <%= form_for @worker do |f| %>
     <fieldset>
-    <h2>Создание объявления</h2>
+    <h2>Создание услуги</h2>
+
+    <% if @worker.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%# pluralize(@worker.errors.count, "error") %>
+          Ваша услуга не может быть добавлена:
+        </h2>
+        <ul>
+          <% @worker.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <div class="field">
       <%= f.text_field :name, :placeholder => "Название объявления" %>

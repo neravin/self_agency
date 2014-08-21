@@ -856,7 +856,7 @@ div[class*="flower"] > span[class]
   }
 }
 
-#i-want-column{
+#i-want-column, #i-can-column{
   display: block;
   float: left;
   width: 49%;
@@ -887,7 +887,7 @@ div[class*="flower"] > span[class]
   display: block;
   float: right;
   width: 49%;
-  h2{
-    color: $light-green;
+  .post{
+    background: #5cbca9;
   }
 }

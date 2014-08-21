@@ -17,7 +17,7 @@
       <h2><%= @client.name %></h2>
       <p>
         <strong>Телефон:</strong>
-        <em>89053570010</em>
+        <em>79215563210</em>
       </p>
       <p>
         <strong>Почта:</strong>
@@ -42,7 +42,9 @@
       <%= link_to(new_advertisement_path) do %>
         <i class="fa fa-plus"></i> Я хочу
       <% end %>
-      <a><i class="fa fa-plus"></i> Я могу</a>
+      <%= link_to(new_worker_path) do %>
+        <i class="fa fa-plus"></i> Я могу
+      <% end %>
     </div>
   </div><!--/user-menu-->
 <% end %>
@@ -72,4 +74,11 @@
 
 <div id = "i-can-column">
   <h2>Мои текущие услуги</h2>
+  <% @client.workers.each do |ad| %>
+    <div class="post">
+      <h2><%= ad.name %></h2>
+      <p><%= ad.description %></p>
+      <span class = "price"><%= ad.price %> у.е. </span>
+    </div>
+  <% end %>
 </div>

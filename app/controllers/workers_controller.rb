@@ -4,14 +4,23 @@ class WorkersController < ApplicationController
 		@workers = Worker.all
 	end
 
+	def new
+		@worker = Worker.new
+	end
+
 	def create
 		@worker = Worker.new(worker_params)
-		if @worker.save
-			current_client.workers << @worker
-			redirect_to current_client
-		else
-			redirect_to current_client
-		end
+		respond_to do |format|
+			if @worker.save
+	      current_client.workers << @worker
+	      #flash[:success] = "Объявление добавлено";
+	      format.html { redirect_to current_client }
+	      format.json { render :show, status: :created, location: @worker }
+	    else
+	      format.html { render :new }
+	      format.json { render json: @worker.errors, status: :unprocessable_entity }
+	    end
+  	end
 	end
 
 	private

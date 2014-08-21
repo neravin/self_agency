@@ -1,4 +1,3 @@
 class Worker < ActiveRecord::Base
-	validates :name, :city, :address, :description, presence: true
-
+	validates :name, :city, :address, :price, presence: true
 end
