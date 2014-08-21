@@ -163,7 +163,7 @@ table{
 }
 
 #description-project{
-  color: $middle-green;
+  color: white;
 }
 
 body{
@@ -171,8 +171,8 @@ body{
 }
 
 .c1{
-  background: #ffcf7d;
-  //background: white;
+  //background: #ffcf7d;
+  background: white;
 }
 
 .c2{
@@ -186,4 +186,18 @@ body{
 .white-green{
   color: $light-green;
   background: white;
+}
+
+.green_background{
+  background: $light-green;
+}
+
+.middle_yellow{
+  background: $yellow;
+  color: white;
+}
+
+.light_yellow{
+  background: $light-yellow;
+  color: white;
 }

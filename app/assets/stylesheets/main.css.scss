@@ -275,7 +275,7 @@ $form-half: 252.5px;
   }
   span {
     display: inline-block;
-    border: 2px solid $middle-green;
+    border: 2px solid $light-yellow;
     overflow: hidden;
     margin-bottom: -2px;
   }
@@ -288,7 +288,7 @@ $form-half: 252.5px;
     text-align: center; 
   }
   #input-right{
-    border-left: 2px solid $middle-green;
+    border-left: 2px solid $light-yellow;
     border-radius: 0;
   }
   #search-submit{
@@ -346,6 +346,7 @@ $form-half: 252.5px;
     z-index: 10;
 
     background: rgba(123, 33, 22, 0.4);
+    background: rgba(235, 164, 42, 0.7);
     //background: rgba(235, 164, 42, 0.7);
     cursor: pointer;
   }
