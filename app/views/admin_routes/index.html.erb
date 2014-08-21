@@ -1,0 +1,17 @@
+<h1>Добро пожаловать</h1>
+Сейчас <%= Time.now %>
+
+<%= form_for @service do |service| %>
+	<div class="field">
+    	<%= service.label :name %><br>
+    	<%= service.text_field :name%>
+  </div>
+  <div class="actions">
+    	<%= service.submit 'Добавить услугу' %>
+  </div>
+<% end %>
+
+ <%= button_to 'Logout', logout_path, method: :delete %>
+
+
+

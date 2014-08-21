@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821092628) do
+ActiveRecord::Schema.define(version: 20140821130935) do
+
+  create_table "admins", force: true do |t|
+    t.string "name"
+    t.string "password_digest"
+  end
 
   create_table "advertisements", force: true do |t|
     t.string  "name"
@@ -24,9 +29,11 @@ ActiveRecord::Schema.define(version: 20140821092628) do
     t.time    "end_hour"
     t.text    "description"
     t.integer "state"
+    t.integer "service_id"
   end
 
   add_index "advertisements", ["client_id"], name: "index_advertisements_on_client_id"
+  add_index "advertisements", ["service_id"], name: "index_advertisements_on_service_id"
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -53,6 +60,10 @@ ActiveRecord::Schema.define(version: 20140821092628) do
 
   add_index "reviews", ["client_id"], name: "index_reviews_on_client_id"
 
+  create_table "services", force: true do |t|
+    t.string "name"
+  end
+
   create_table "workers", force: true do |t|
     t.string  "name"
     t.integer "price"
@@ -61,8 +72,10 @@ ActiveRecord::Schema.define(version: 20140821092628) do
     t.text    "description"
     t.integer "client_id"
     t.integer "state"
+    t.integer "service_id"
   end
 
   add_index "workers", ["client_id"], name: "index_workers_on_client_id"
+  add_index "workers", ["service_id"], name: "index_workers_on_service_id"
 
 end

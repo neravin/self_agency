@@ -1,5 +1,6 @@
 class WorkersController < ApplicationController
-	before_action :set_worker, only: [:show, :edit, :update, :destroy]
+	skip_before_action :authorize
+  before_action :set_worker, only: [:show, :edit, :update, :destroy]
 	before_action :correct_worker, only: [:edit, :update]
 
 	def index

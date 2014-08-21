@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  get 'admin' => 'admin_routes#index'
+  controller :sessions_admin do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  get 'admin_routes/index'
+
+  get 'sessions_admin/new'
+
+  get 'sessions_admin/create'
+
+  get 'sessions_admin/destroy'
+
   get 'home/index'
   resources :home, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
@@ -12,11 +27,15 @@ Rails.application.routes.draw do
       patch 'perform_ad'
     end
   end
+
+  resources :admins
+  resources :services
   resources :workers do
     collection do
       patch 'worker_ad'
     end
   end
+  
   resources :reviews, only: [:create]
 
   match '/signin', to: 'sessions#new', via: 'get'
