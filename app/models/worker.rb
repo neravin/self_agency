@@ -1,4 +1,5 @@
 class Worker < ActiveRecord::Base
+  belongs_to :service
 	validates :name, :city, :address, :price, presence: true
 
   States = {

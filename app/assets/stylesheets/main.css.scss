@@ -635,6 +635,15 @@ div[class*="flower"] > span[class]
   margin-top: 20px;
   text-align: center;
   border-radius: 5px;
+  span.cs-placeholder{
+    color: $green;
+    //width: 300px;
+  }
+  div.cs-skin-border {
+    width: 300px;
+    background: $light2-yellow;
+  }
+
   form{
     padding-top: 10px;
     h2{
@@ -647,6 +656,7 @@ div[class*="flower"] > span[class]
     }
     legend{
       color: white;
+      color: $light-green;
       text-align: left;
       margin-left: ($form-shell-width - $input-width)/2;
       margin-bottom: 1em;
@@ -655,6 +665,7 @@ div[class*="flower"] > span[class]
   }
   .for-time{
     color: white;
+    color: $light-green;
     font-family: 'pt_sansregular';
   }
   .po{
@@ -669,6 +680,7 @@ div[class*="flower"] > span[class]
   }
   input:not([type=submit]):not([type=file]), textarea{
     border: em(3) solid white; 
+    border: none;
     padding: em(10);
     //background: rgba(255,255,255,0.5);
     //margin: 0 0 em(20) 0;

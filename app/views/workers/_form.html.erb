@@ -19,9 +19,10 @@
     <% end %>
 
     <div class="field">
-      <%= f.text_field :name, :placeholder => "Название объявления" %>
+    <%= collection_select(:worker, :service_id, Service.all, :id, :name, 
+      {:prompt => "Тип объявления"}, {:class => "cs-select cs-skin-border"}) %>
     </div>
-
+    
     <div class="field">
       <legend class="label">Описание:</legend>
       <%= f.text_area :description %>
@@ -46,3 +47,11 @@
     </fieldset>
   <% end %>
 </div>
+
+<script>
+  (function() {
+    [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+</script>

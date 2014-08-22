@@ -64,7 +64,13 @@ private
 	end
 	
 	def worker_params
-		params.require(:worker).permit(:name, :description, :price, :city, :address)
+		params.require(:worker).permit(
+      :name, 
+      :description, 
+      :price, 
+      :city, 
+      :address,
+      :service_id)
 	end
 
 	def correct_worker
