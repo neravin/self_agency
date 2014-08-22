@@ -36,7 +36,9 @@ gem 'therubyracer'
 gem 'bcrypt-ruby'
 gem "carrierwave"
 
-gem 'mini_magick'
+
+
+gem "rmagick"
 
 gem 'russian', '~> 0.6.0'
 
