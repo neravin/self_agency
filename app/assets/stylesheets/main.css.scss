@@ -616,15 +616,17 @@ div[class*="flower"] > span[class]
 .form-shell{
   position: relative;
   width: $form-shell-width;
-  background: $blue;
+  background: white;
   margin: 0 auto;
+  margin-top: 20px;
   text-align: center;
+  border-radius: 5px;
   form{
     padding-top: 10px;
     h2{
       font-family: 'pt_sans_narrowregular';
       font-size: 2em;
-      color: white;
+      color: $light-red;
       text-align: left;
       margin-left: ($form-shell-width - $input-width)/2;
     }
@@ -644,9 +646,11 @@ div[class*="flower"] > span[class]
     margin-left: 7px;
   }
   input, textarea{
+    color: #524e4f;
     width: $input-width;
     border: none;
     font-size: 1.1em;
+    background: $light2-yellow;
   }
   input:not([type=submit]):not([type=file]), textarea{
     border: em(3) solid white; 
@@ -657,6 +661,8 @@ div[class*="flower"] > span[class]
   }
   input[type=submit] {
     margin-bottom: 10px;
+    background: $light-red;
+    color: white;
   }
   input[type=time] {
     width: auto;
