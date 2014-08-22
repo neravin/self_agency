@@ -4,6 +4,35 @@
 $form-shell-width: 350px;
 $input-width: 300px;
 
+#grid-main{
+  //padding: 25px;
+  //padding-bottom: 45px;
+}
+
+body.frame{
+  margin: 0 25px;
+  &:before, &:after{
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 25px;
+    background: #fff;
+    z-index: 1001;
+  }
+  &:after{
+    top: auto;
+    bottom: 0;
+  }
+  #grid-main{
+    background: $new-light-yellow;
+  }
+  .container{
+    padding: 25px 0;
+  }
+}
+
 #grid-wrap-menu{
   /*padding: 30px;*/
   padding-bottom: em(20);
@@ -272,6 +301,7 @@ $form-half: 252.5px;
   }
   span, input {
     margin: 0;
+    color: white;
   }
   span {
     display: inline-block;
@@ -287,9 +317,31 @@ $form-half: 252.5px;
     font-size: 1.4em;
     text-align: center; 
   }
+  select{
+    border: none;
+    border-radius: 0;
+    //width: $form-half;
+    width: $form-half - 2;
+    font-size: 1.4em;
+    text-align: center; 
+    margin: 0;
+    background: white;
+    color: $gray;
+    font-family: 'pt_sans_narrowregular';
+    text-transform: uppercase;
+    padding: 0.7em;
+    option{
+      font-size: 0.5em;
+      font-family: 'Lato', Calibri, Arial, sans-serif;
+    }
+  }
   #input-right{
     border-left: 2px solid $light-yellow;
     border-radius: 0;
+  }
+  .select-left{
+    float: left;
+    border-right: 2px solid $light-yellow;
   }
   #search-submit{
     width: 100%;
@@ -319,7 +371,7 @@ $form-half: 252.5px;
 
 .plug{
   width: 100%;
-  height: 250px;
+  height: 200px;
 }
 
 .flower1 {
@@ -743,7 +795,7 @@ div[class*="flower"] > span[class]
     display: block;
     content: ".";
     height: 160px;
-    background: rgb(65, 106, 166);
+    background: $light-red;
     text-align: center;
     img{
       display: block;
@@ -757,7 +809,7 @@ div[class*="flower"] > span[class]
     width: 70%;
     float: right;
     height: 160px;
-    background: rgb(103, 149, 192);
+    background: white;
     .pseudo{
       margin: 10px;
       margin-left: 20px;
@@ -765,7 +817,7 @@ div[class*="flower"] > span[class]
     h2{
       color: $middle-green;
       margin-top: 20px;
-      color: $light-yellow;
+      color: $light-red;
     }
     p{
       margin-bottom: 0.3em;
@@ -774,11 +826,11 @@ div[class*="flower"] > span[class]
         display: block;
         float: left;
         font-weight: normal;
-        color: white;
+        color: $gray;
       }
       em{
         color: rgb(163, 171, 185);
-        color: white;
+        color: $gray;
       }
     }
   }
@@ -863,25 +915,28 @@ div[class*="flower"] > span[class]
   width: 49%;
   .post{
     position: relative;
-    background: #1b967e;
+    background: $green;
+    background: white;
     color: white;
     border-radius: 5px;
     margin-bottom: 15px;
     padding: 2em;
     p{
       color: white;
+      color: $gray;
       margin-top: 10px;
     }
     h2{
       color: white;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      color: $green;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
   }
   .price{
-    color: $light2-yellow;
+    color: $yellow;
   }
   h2{
-    color: $light-green;
+    color: $green;
   }
 }
 
@@ -890,15 +945,19 @@ div[class*="flower"] > span[class]
   float: right;
   width: 49%;
   h2{
-    color: $blue-new;
+    color: $orange;
   }
   .post{
-    background: $blue-new;
+    background: $orange;
+    background: white;
+    h2{
+      color: $orange;
+    }
   }
 }
 
 .edit-advertisement{
-  color: white;
+  color: $yellow;
   position: absolute;
   right: 30px;
   top: 40px;

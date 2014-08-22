@@ -176,11 +176,16 @@ body{
 }
 
 .c2{
-  background: $light-pink;
+  background: $light-red;
 }
 
 .light-yellow{
-  background: $light-yellow;
+  border: 1px dashed $light-yellow;
+  color: $light-red;
+  &:hover{
+    background: white;
+    border: 1px dashed $light-red;
+  }
 }
 
 .white-green{
@@ -194,10 +199,9 @@ body{
 
 .middle_yellow{
   background: $yellow;
-  color: white;
 }
 
-.light_yellow{
+.light_yellow-button{
   background: $light-yellow;
   color: white;
 }

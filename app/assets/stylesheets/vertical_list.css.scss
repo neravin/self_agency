@@ -15,12 +15,18 @@
   bottom: 0;
   width: 10px;
   background: rgb(104, 190, 180);
+  background: white;
   left: 20%;
   margin-left: -10px;
 }
-
+.worker-style{
+  h2{
+    color: $light-red;
+  }
+}
 .worker-style:before {
   background: #afdcf8;
+  background: white;
 }
  
 .cbp_tmtimeline > li {
@@ -55,14 +61,16 @@
 }
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmtime span:last-child {
-  color: $light-green-strong;
+  color: $light-green;
 }
  
 /* Right content */
 .cbp_tmtimeline > li .cbp_tmlabel {
   margin: 0 0 15px 25%;
   background: $light-green;
+  background: white;
   color: #fff;
+  color: $green;
   padding: 2em;
   font-size: 1.2em;
   font-weight: 300;
@@ -73,19 +81,22 @@
 
 .worker-style > li .cbp_tmlabel {
   background: $blue-new;
+  background: white;
 }
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
   background: $light-green-strong;
+  background: white; 
 }
 
 .worker-style > li:nth-child(odd) .cbp_tmlabel {
   background: $light-blue-new;
+  background: white;
 }
 
 .cbp_tmtimeline > li .cbp_tmlabel h2 { 
   margin-top: 0px;
-  border-bottom: 1px solid rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
  
 /* The triangle */
@@ -97,17 +108,18 @@
   width: 0;
   position: absolute;
   pointer-events: none;
-  border-right-color: $light-green;
+  border-right-color: white;
   border-width: 10px;
   top: 10px;
 }
 
 .worker-style > li .cbp_tmlabel:after {
-  border-right-color: $blue-new;
+  border-right-color: white;
+
 }
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
-  border-right-color: $light-green-strong;
+  border-right-color: white;
 }
  
 /* The icons */
@@ -126,8 +138,10 @@
   position: absolute;
   color: #fff;
   background: #46a4da;
+  background: white;
   border-radius: 50%;
   box-shadow: 0 0 0 8px rgb(104, 190, 180);
+  box-shadow: 0 0 0 8px white;
   text-align: center;
   left: 20%;
   top: 0;
@@ -135,11 +149,11 @@
 }
 
 .worker-style > li:nth-child(odd) .cbp_tmlabel:after {
-  border-right-color: $light-blue-new;
+  border-right-color: white;
 }
 
 .worker-style > li .cbp_tmicon {
-  box-shadow: 0 0 0 8px #afdcf8;
+  box-shadow: 0 0 0 8px white;
 }
 
 .cbp_tmicon {
@@ -203,19 +217,18 @@
 .cbp_tmlabel{
   p{
     color: white;
+    color: $gray;
     padding-top: 15px;
   }
   .price{
-    color: $light2-yellow;
+    color: $yellow;
   }
   span.button{
     float: right;
     border-radius: 10px;
   }
   span.open{
-    &:hover{
-      background: $yellow;
-    }
+
   }
   .not-button{
     cursor: default;
