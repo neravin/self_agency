@@ -40,6 +40,9 @@
   <div class="field">
     <%= f.password_field :password_confirmation, :placeholder => "Подтверждение" %>
   </div>
+   <div class="field">
+    <%= f.file_field :photo%>
+  </div>
 
    <div class="actions">
     <%= f.submit :class => "button middle_green", :value => submit_name %>
