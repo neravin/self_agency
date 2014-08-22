@@ -23,6 +23,9 @@
 <% end %>
 </ul>
 
-<div class="digg_pagination">    
-  <%= will_paginate @advertisement%>
+<div class="flickr_pagination">
+  <div class="page_info">
+  </div>
+  <%= will_paginate @advertisement, :container => false, 
+    :previous_label => '<', :next_label => '>' %>
 </div>

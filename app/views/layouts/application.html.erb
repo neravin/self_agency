@@ -6,11 +6,19 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
+<% if @green_background %>
+<body class="green_background">
+<% else %>
+<body class = "frame">
+<% end %>
 
+<% if @green_background %>
+<section id = "grid-main" class="green_background">
+<% else %>
 <section id = "grid-main">
-  <div class = "container">
+<% end %>
+  <div class = "container clearfix">
     <%= yield %>
   </div><!--/container-->
 </div><!--/grid-main-->

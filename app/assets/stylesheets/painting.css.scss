@@ -163,7 +163,7 @@ table{
 }
 
 #description-project{
-  color: $middle-green;
+  color: white;
 }
 
 body{
@@ -171,19 +171,37 @@ body{
 }
 
 .c1{
-  background: #ffcf7d;
-  //background: white;
+  //background: #ffcf7d;
+  background: white;
 }
 
 .c2{
-  background: $light-pink;
+  background: $light-red;
 }
 
 .light-yellow{
-  background: $light-yellow;
+  border: 1px dashed $light-yellow;
+  color: $light-red;
+  &:hover{
+    background: white;
+    border: 1px dashed $light-red;
+  }
 }
 
 .white-green{
   color: $light-green;
   background: white;
+}
+
+.green_background{
+  background: $light-green;
+}
+
+.middle_yellow{
+  background: $yellow;
+}
+
+.light_yellow-button{
+  background: $light-yellow;
+  color: white;
 }

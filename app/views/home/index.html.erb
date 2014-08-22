@@ -16,10 +16,13 @@
 
     <form id = "start-search">
       <span>
-        <input placeholder = "Я МОГУ" type = "text" name = "i-can" /><input placeholder = "Я ХОЧУ" id = "input-right" type = "text" name = "i-want" />
+        <%= collection_select(:worker, :service_id, Service.all, :id, :name, 
+          {:prompt => "Я хочу"}, {:class => "select-left"}) %>
+        <%= collection_select(:worker, :service_id, Service.all, :id, :name, {:prompt => "Я могу"}, {:class => "input-right"}) %>
+        <!--input placeholder = "Я МОГУ" type = "text" name = "i-can" /><input placeholder = "Я ХОЧУ" id = "input-right" type = "text" name = "i-want" /-->
       </span>
-      <input id = "search-submit" class = "button middle_green" type = "submit" value = "Найти" />
-      <a id = "search-submit" class = "button light_green" >Гость</a>
+      <input id = "search-submit" class = "button middle_yellow" type = "submit" value = "Найти" />
+      <a id = "search-submit" class = "button light_yellow-button" >Гость</a>
     </form>
   </div><!--/proc-50-->
   <%= render 'flower', link: "<a class = 'head'>Ваша<br/>экономика</a>".html_safe %>
