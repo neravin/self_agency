@@ -16,9 +16,9 @@
         </ul>
       </div>
     <% end %>
-
     <div class="field">
-      <%= f.text_field :name, :placeholder => "Название объявления" %>
+      <%= collection_select(:advertisement, :service_id, Service.all, :id, :name, 
+        {:prompt => "Тип объявления"}, {:class => "cs-select cs-skin-border"}) %>
     </div>
 
     <div class="field">
@@ -60,3 +60,11 @@
     </fieldset>
   <% end %>
 </div>
+
+<script>
+  (function() {
+    [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+</script>

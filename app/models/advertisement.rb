@@ -1,10 +1,12 @@
 class Advertisement < ActiveRecord::Base
+  belongs_to :service
+
   validate :start_hour, :happened_at_is_valid_datetime
-  validates :name, presence: true
   validates :description, presence: true
   validates :city, presence: true
   validates :address, presence: true
   validates :date, presence: true
+
   def happened_at_is_valid_datetime
     errors.add('Время начала', ' не должно превышать время конца') if (start_hour > end_hour)
   end

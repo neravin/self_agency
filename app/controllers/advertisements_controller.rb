@@ -64,7 +64,15 @@ private
   end
 
   def advertisement_params
-    params.require(:advertisement).permit(:name, :description, :price, :city, :address, :date, :start_hour, :end_hour)
+    params.require(:advertisement).permit(
+      :description, 
+      :price, 
+      :city, 
+      :address, 
+      :date, 
+      :start_hour, 
+      :end_hour,
+      :service_id)
   end
 
   def correct_advertisement
