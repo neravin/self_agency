@@ -298,16 +298,30 @@ $form-half: 252.5px;
     width: $form-half * 2;
     display: block;
     margin: 0px;
+    background: white;
+    border: none;
+  }
+  .cs-placeholder{
+    width: $form-half;
+  }
+  .cs-options{
+    span{
+      width: $form-half;
+      &:hover{
+        background: $light-green-strong;
+      }
+    }
   }
   span, input {
     margin: 0;
+  }
+  input {
     color: white;
   }
   span {
-    display: inline-block;
-    border: 2px solid $light-yellow;
+    //border: 2px solid $light-yellow;
     overflow: hidden;
-    margin-bottom: -2px;
+    margin-bottom: -3px;
   }
   a, input {
     border: none;
@@ -317,7 +331,7 @@ $form-half: 252.5px;
     font-size: 1.4em;
     text-align: center; 
   }
-  select{
+  /*select{
     border: none;
     border-radius: 0;
     //width: $form-half;
@@ -334,7 +348,7 @@ $form-half: 252.5px;
       font-size: 0.5em;
       font-family: 'Lato', Calibri, Arial, sans-serif;
     }
-  }
+  }*/
   #input-right{
     border-left: 2px solid $light-yellow;
     border-radius: 0;
@@ -627,6 +641,7 @@ div[class*="flower"] > span[class]
       font-family: 'pt_sans_narrowregular';
       font-size: 2em;
       color: $light-red;
+      color: $light-green;
       text-align: left;
       margin-left: ($form-shell-width - $input-width)/2;
     }
@@ -661,8 +676,11 @@ div[class*="flower"] > span[class]
   }
   input[type=submit] {
     margin-bottom: 10px;
-    background: $light-red;
+    background: $light-green;
     color: white;
+    &:hover{
+      background: $green;
+    }
   }
   input[type=time] {
     width: auto;
