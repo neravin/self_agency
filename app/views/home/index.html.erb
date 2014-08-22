@@ -15,14 +15,15 @@
     </div><!--/description-project-->
 
     <form id = "start-search">
-      <span>
-        <%= collection_select(:worker, :service_id, Service.all, :id, :name, 
-          {:prompt => "Я хочу"}, {:class => "select-left"}) %>
-        <%= collection_select(:worker, :service_id, Service.all, :id, :name, {:prompt => "Я могу"}, {:class => "input-right"}) %>
-        <!--input placeholder = "Я МОГУ" type = "text" name = "i-can" /><input placeholder = "Я ХОЧУ" id = "input-right" type = "text" name = "i-want" /-->
-      </span>
-      <input id = "search-submit" class = "button middle_yellow" type = "submit" value = "Найти" />
-      <a id = "search-submit" class = "button light_yellow-button" >Гость</a>
+      <!--input placeholder = "Я МОГУ" type = "text" name = "i-can" /><input placeholder = "Я ХОЧУ" id = "input-right" type = "text" name = "i-want" /-->
+    <div>
+      <%= collection_select(:worker, :service_id, Service.all, :id, :name, 
+        {:prompt => "Я хочу"}, {:class => "cs-select cs-skin-border"}) %>
+      <%= collection_select(:worker, :service_id, Service.all, :id, :name, 
+        {:prompt => "Я могу"}, {:class => "cs-select cs-skin-border"}) %>
+    </div>
+      <div><input id = "search-submit" class = "button middle_yellow" type = "submit" value = "Найти" /></div>
+      <div><a id = "search-submit" class = "button light_yellow-button" >Гость</a></div>
     </form>
   </div><!--/proc-50-->
   <%= render 'flower', link: "<a class = 'head'>Ваша<br/>экономика</a>".html_safe %>
@@ -75,4 +76,12 @@
       flash.delay( 5000 ).slideUp( 1000 );
     }
   }
+</script>
+
+<script>
+  (function() {
+    [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
 </script>
