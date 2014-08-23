@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Worker < ActiveRecord::Base
   belongs_to :service
 	validates :city, :address, :price, :service_id, presence: true

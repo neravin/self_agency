@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Service < ActiveRecord::Base
   has_many :advertisements
   has_many :workers

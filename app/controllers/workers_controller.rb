@@ -1,3 +1,4 @@
+# encoding: utf-8
 class WorkersController < ApplicationController
 	skip_before_action :authorize
   before_action :set_worker, only: [:show, :edit, :update, :destroy]

@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'file_size_validator'
 class Client < ActiveRecord::Base
   before_save {self.email = email.downcase }

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ClientsController < ApplicationController
   skip_before_action :authorize
   before_action :signed_in_client, only: [:show, :edit, :update]

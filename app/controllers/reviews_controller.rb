@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ReviewsController < ApplicationController
 	skip_before_action :authorize
 	def create
