@@ -2,13 +2,17 @@
 Сейчас <%= Time.now %><br>
 
 <% @service.each do |s| %>
-  <%= s.name %> <%= link_to("редакт", edit_service_path(s)) %><br />
+  <%= s.name %>
+  <%= link_to(edit_service_path(s)) do %>
+    <i class="fa fa-pencil"></i>
+  <% end %>
+  <%= link_to(s, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+    <i class="fa fa-trash-o"></i>
+  <% end %><br />
 <% end %>
 
 <%= link_to 'Добавить новую услугу', new_service_path %>
-
-
- <%= button_to 'Logout', logout_path, method: :delete %>
+<%= button_to 'Logout', logout_path, method: :delete %>
 
 
 
