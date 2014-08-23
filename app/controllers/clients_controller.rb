@@ -30,7 +30,7 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create
-    @client = Client.new(client_params)
+    @client = Client.new(client_params) 
     respond_to do |format|
       if @client.save
         @client.generate_confirm!
