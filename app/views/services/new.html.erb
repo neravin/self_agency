@@ -1,11 +1,2 @@
 <h1> Здесь вы можете добавить новую услугу </h1>
-
-<%= form_for @service do |service| %>
-	<div class="field">
-    	<%= service.label :name %><br>
-    	<%= service.text_field :name%>
-  </div>
-  <div class="actions">
-    	<%= service.submit 'Добавить услугу' %>
-  </div>
-<% end %>
+<%= render 'form' %>
