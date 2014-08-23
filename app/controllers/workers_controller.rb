@@ -4,7 +4,19 @@ class WorkersController < ApplicationController
 	before_action :correct_worker, only: [:edit, :update]
 
 	def index
-		@workers = Worker.order("name").page(params[:page]).per_page(3)
+    service_id = params[:service_id]
+    if service_id
+		  @workers = Worker.
+        where("service_id == ?", service_id).
+        order("name").
+        page(params[:page]).
+        per_page(3)
+    else
+      @workers = Worker.
+        order("name").
+        page(params[:page]).
+        per_page(3)
+    end
 	end
 
 	def new

@@ -4,7 +4,39 @@ class AdvertisementsController < ApplicationController
 	before_action :correct_advertisement, only: [:edit, :update]
 
   def index
-    @advertisements = Advertisement.order("name").page(params[:page]).per_page(3)
+    ad_service_id = params[:advertisement]
+    worker_service_id = params[:worker]
+
+    if worker_service_id
+      if worker_service_id[:service_id] != ''
+        worker_service_id = worker_service_id[:service_id]
+        redirect_to :controller => 'workers', :action => 'index', :service_id => worker_service_id
+      end
+    end
+
+    if ad_service_id
+      if ad_service_id[:service_id] != ''
+      ad_service_id = ad_service_id[:service_id]
+      @advertisements = Advertisement.
+        where("service_id == ?", ad_service_id).
+        order("date DESC").
+        order("start_hour DESC").
+        page(params[:page]).
+        per_page(3)
+      else
+        @advertisements = Advertisement.
+          order("date DESC").
+          order("start_hour DESC").
+          page(params[:page]).
+          per_page(3)
+      end
+    else
+      @advertisements = Advertisement.
+        order("date DESC").
+        order("start_hour DESC").
+        page(params[:page]).
+        per_page(3)
+    end
 	end
 
   def new

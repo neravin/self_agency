@@ -5,7 +5,6 @@
 </div>
 
 <div class = "plug"></div>
-
 <div id = "center-part" class="clearfix">
   <%= render 'flower', link: "<a class = 'head'>Список<br/>услуг</a>".html_safe %>
 
@@ -14,17 +13,17 @@
       Всё в сфере услуг, что сделает мою жизнь комфортной
     </div><!--/description-project-->
 
-    <form id = "start-search">
+    <%= form_tag("/advertisements", method: "get", id: "start-search" ) do %>
       <!--input placeholder = "Я МОГУ" type = "text" name = "i-can" /><input placeholder = "Я ХОЧУ" id = "input-right" type = "text" name = "i-want" /-->
     <div>
-      <%= collection_select(:worker, :service_id, Service.all, :id, :name, 
+      <%= collection_select(:advertisement, :service_id, Service.all, :id, :name, 
         {:prompt => "Я хочу"}, {:class => "cs-select cs-skin-border"}) %>
       <%= collection_select(:worker, :service_id, Service.all, :id, :name, 
         {:prompt => "Я могу"}, {:class => "cs-select cs-skin-border"}) %>
     </div>
       <div><input id = "search-submit" class = "button middle_yellow" type = "submit" value = "Найти" /></div>
       <div><a id = "search-submit" class = "button light_yellow-button" >Гость</a></div>
-    </form>
+    <% end %>
   </div><!--/proc-50-->
   <%= render 'flower', link: "<a class = 'head'>Ваша<br/>экономика</a>".html_safe %>
 </div><!--/center-part-->

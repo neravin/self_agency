@@ -30,6 +30,7 @@ body.frame{
   }
   .container{
     padding: 25px 0;
+    padding-bottom: 50px;
   }
 }
 
@@ -55,8 +56,8 @@ div {
 
 .field_with_errors {
   //padding: 2px;
-  input{
-    border:2px solid $dark-red !important; 
+  input, .cs-placeholder{
+    border:2px solid $red !important; 
   }
   //display: table;
 }
@@ -68,14 +69,14 @@ div {
   text-align: left;
   margin: 0 ($form-shell-width - $input-width)/2;
   margin-bottom: 20px;
-  color: #f6798a !important;
+  color: $red !important;
   h2 {
     text-align: left;
     font-weight: bold;
     font-size: 1em;
     margin-bottom: 0px;
     margin-left: 0px;
-    color: #fff;
+    color: $light-green;
   }
   /*ul li {
     font-size: 12px;
@@ -1001,4 +1002,13 @@ div[class*="flower"] > span[class]
     color: $light2-yellow;
   }
   //top: 0;
+}
+
+#notice {
+  color: #000 !important;
+  border: 1px solid $light-red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
 }
