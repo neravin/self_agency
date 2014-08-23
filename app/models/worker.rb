@@ -1,6 +1,6 @@
 class Worker < ActiveRecord::Base
   belongs_to :service
-	validates :name, :city, :address, :price, presence: true
+	validates :city, :address, :price, :service_id, presence: true
 
   States = {
     :open => 0,

@@ -3,6 +3,7 @@
 
 $form-shell-width: 350px;
 $input-width: 300px;
+$form-half: 252.5px;
 
 #grid-main{
   //padding: 25px;
@@ -30,6 +31,7 @@ body.frame{
   }
   .container{
     padding: 25px 0;
+    padding-bottom: 50px;
   }
 }
 
@@ -55,8 +57,8 @@ div {
 
 .field_with_errors {
   //padding: 2px;
-  input{
-    border:2px solid $dark-red !important; 
+  input, .cs-placeholder{
+    border:2px solid $red !important; 
   }
   //display: table;
 }
@@ -68,14 +70,14 @@ div {
   text-align: left;
   margin: 0 ($form-shell-width - $input-width)/2;
   margin-bottom: 20px;
-  color: #f6798a !important;
+  color: $red !important;
   h2 {
     text-align: left;
     font-weight: bold;
     font-size: 1em;
     margin-bottom: 0px;
     margin-left: 0px;
-    color: #fff;
+    color: $light-green;
   }
   /*ul li {
     font-size: 12px;
@@ -289,8 +291,6 @@ h1{
 .link{
   cursor: pointer;
 }
-
-$form-half: 252.5px;
 
 #start-search{
   span{
@@ -1001,4 +1001,54 @@ div[class*="flower"] > span[class]
     color: $light2-yellow;
   }
   //top: 0;
+}
+
+#notice {
+  color: #000 !important;
+  border: 1px solid $light-red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+
+$a_foto: 110px;
+.service-day{
+  height: 130px;
+  width: $form-half * 2;
+  margin: 20px auto 80px auto;
+  position: relative;
+  background: white;
+  border-radius: 5px;
+  .foto{
+    width: 130px;
+    height: 130px;
+    float: left;
+    position: relative;
+    img{
+      width: $a_foto;
+      height: $a_foto;
+      display: block;
+      margin: 10px auto;
+      border-radius: 150px;
+    }
+  }
+  .description{
+    height: 130px;
+    overflow: auto;
+    padding: 10px;
+    h2{
+      color: $green;
+    }
+    p{
+      font-size: 0.8em;
+    }
+    .ad{
+      color: $light-red;
+      font-family: 'pt_sans_narrowregular';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
 }
