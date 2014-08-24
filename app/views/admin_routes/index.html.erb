@@ -1,6 +1,8 @@
 <h1>Добро пожаловать</h1>
 Сейчас <%= Time.now %><br>
 
+<h2>Категории</h2>
+
 <% @category.each do |c| %>
 	<%= c.name %>
   	<%= link_to(edit_category_path(c)) do %>
@@ -11,6 +13,7 @@
   	<% end %><br />
 <% end %>
 
+<h2>Услуги</h2>
 <% @service.each do |s| %>
   <%= s.name %>
   <%= link_to(edit_service_path(s)) do %>
@@ -19,8 +22,10 @@
   <%= link_to(s, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
     <i class="fa fa-trash-o"></i>
   <% end %><br />
-<% end %>
+<% end %></br>
 
-<%= link_to 'Добавить новую услугу', new_service_path %>
+
+<%= link_to 'Добавить новую услугу', new_service_path %><br>
+<%= link_to 'Добавить новую категорию', new_category_path %>
 
 <%= button_to 'Logout', logout_path, method: :delete %>

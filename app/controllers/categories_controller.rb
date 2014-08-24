@@ -10,9 +10,10 @@ class CategoriesController < ApplicationController
 	def new
 		@category = Category.new
 	end
-
+	
 	def edit	
 	end
+	
 
 	def create
 		@category = Category.new(category_params)
@@ -31,6 +32,7 @@ class CategoriesController < ApplicationController
   			format.html { redirect_to admin_routes_index_path }
   		else
   			format.html { render :edit }
+
   		end
   	end
 	end
@@ -48,7 +50,8 @@ private
 	end
 
 	def category_params
-		params.require(:category).permit(:name)
+		params.require(:category).permit(:name, :photo)
 	end
+
 
 end
