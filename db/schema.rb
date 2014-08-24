@@ -37,6 +37,10 @@ ActiveRecord::Schema.define(version: 20140823142201) do
   add_index "advertisements", ["client_id"], name: "index_advertisements_on_client_id"
   add_index "advertisements", ["service_id"], name: "index_advertisements_on_service_id"
 
+  create_table "categories", force: true do |t|
+    t.string "name"
+  end
+
   create_table "clients", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -69,8 +73,11 @@ ActiveRecord::Schema.define(version: 20140823142201) do
   add_index "reviews", ["client_id"], name: "index_reviews_on_client_id"
 
   create_table "services", force: true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "category_id"
   end
+
+  add_index "services", ["category_id"], name: "index_services_on_category_id"
 
   create_table "workers", force: true do |t|
     t.string  "name"

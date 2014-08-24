@@ -3,9 +3,11 @@ class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 	def new
 		@service = Service.new
+		@category = Category.new
 	end
 
 	def edit
+		@category = Category.all
 	end
 
 	def create

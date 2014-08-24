@@ -1,3 +1,5 @@
+<%= collection_select(:service, :category_id, Category.all, :id, :name, prompt: true) %>
+
 <%= form_for @service do |service| %>
   <div class="field">
       <%= service.label :name %><br>
