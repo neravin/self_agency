@@ -1,0 +1,18 @@
+<div id = "flowers" class="with-margin">
+  <% @categories.each do |cat| %>
+    <% buf = "<a class = 'head one-line'>#{cat.name}</a>" %>
+    <%= render 'home/flower', link: buf.html_safe %>
+  <% end %>
+</div>
+
+<script>
+  $(".head").hover(
+    function() {
+      //$( this ).addClass( "hover" );
+      $( this ).parent().find(".pet").addClass("c2");
+    }, function() {
+      //$( this ).removeClass( "hover" );
+      $( this ).parent().find(".pet").removeClass("c2");
+    }
+  );
+</script>

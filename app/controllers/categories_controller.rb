@@ -1,6 +1,11 @@
 # encoding: utf-8
 class CategoriesController < ApplicationController
 	before_action :set_category, only: [:show, :edit, :update, :destroy]
+	skip_before_action :authorize, only: [:index]
+
+	def index
+		@categories = Category.all
+	end
 
 	def new
 		@category = Category.new
