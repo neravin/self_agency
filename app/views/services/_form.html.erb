@@ -1,6 +1,18 @@
-<%= collection_select(:service, :category_id, Category.all, :id, :name, prompt: true) %>
-
 <%= form_for @service do |service| %>
+  <% if @service.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%# pluralize(@service.errors.count, "error") %>
+        Cведения об этом пользователе не могут быть сохранены:
+      </h2>
+      <ul>
+        <% @service.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= collection_select(:service, :category_id, Category.all, :id, :name, prompt: true) %>
   <div class="field">
       <%= service.label :name %><br>
       <%= service.text_field :name%>

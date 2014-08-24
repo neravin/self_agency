@@ -20,6 +20,7 @@ class ServicesController < ApplicationController
 			end
 		end
 	end
+
 	def update
 		respond_to do |format|
   		if @service.update(service_params)
@@ -44,6 +45,8 @@ private
   end
 
 	def service_params
-		params.require(:service).permit(:name)
+		params.require(:service).permit(
+      :name,
+      :category_id)
 	end
 end

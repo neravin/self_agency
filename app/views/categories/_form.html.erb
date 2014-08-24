@@ -1,9 +1,12 @@
-<%= form_for @category do |category| %>
-	<div class="field">
+<%= form_for @category, :html => {:multipart => true} do |category| %>
+  <div class="field">
     	<%= category.label :name %><br>
     	<%= category.text_field :name%>
+  </div>
+  <div class="field">
+  	<%= category.file_field :photo %>
   </div>
   <div class="actions">
     	<%= category.submit 'Добавить категорию' %>
   </div>
-<% end %>
+ <% end %>

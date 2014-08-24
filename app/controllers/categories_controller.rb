@@ -1,6 +1,7 @@
 # encoding: utf-8
 class CategoriesController < ApplicationController
-	 before_action :set_category, only: [:show, :edit, :update, :destroy]
+	before_action :set_category, only: [:show, :edit, :update, :destroy]
+	
 	def new
 		@category = Category.new
 	end
@@ -8,11 +9,12 @@ class CategoriesController < ApplicationController
 	def edit	
 	end
 	
+
 	def create
 		@category = Category.new(category_params)
 		respond_to do |format|
 			if @category.save
-				format.html { redirect_to new_service_url, notice: 'Категория успешно созданна' }
+				format.html { redirect_to admin_routes_index_url, notice: 'Категория успешно созданна' }
 			else
 				format.html { render :new }
 			end
@@ -25,15 +27,26 @@ class CategoriesController < ApplicationController
   			format.html { redirect_to admin_routes_index_path }
   		else
   			format.html { render :edit }
+
   		end
   	end
 	end
 
-	private
-		 def set_category
-    		@category = Category.find(params[:id])
-  		end
-		def category_params
-    		params.require(:category).permit(:name)
-  		end
+	def destroy
+		@category.destroy
+		respond_to do |format|
+			format.html { redirect_to admin_routes_index_url }
+		end
+	end
+
+private
+	def set_category
+		@category = Category.find(params[:id])
+	end
+
+	def category_params
+		params.require(:category).permit(:name, :photo)
+	end
+
+
 end
