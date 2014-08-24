@@ -64,7 +64,7 @@
   <h2>Текущие объявления</h2>
 
   <% @client.advertisements.each do |ad| %>
-    <div class="post">
+    <div class="post" data-ad="<%= ad.id %>">
     <% if current_client.id == @client.id %>
       <%= link_to(edit_advertisement_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
         <i class="fa fa-pencil"></i>
@@ -72,7 +72,19 @@
     <% end %>
       <h2><%= ad.service.name %></h2>
       <p><%= ad.description %></p>
-      <span class = "price"><%= ad.price %> у.е.</span>
+      <span class = "price"><%= ad.price %> у.е.</span><br>
+
+      <% if ad.worker_id %>
+        <% if worker = Client.find_by_id(ad.worker_id) %>
+          <div class="worker">
+            <%= link_to "Исполнитель - #{worker.name}", worker,
+              :class => "button light-yellow" %>
+            <span class = "cancel-worker button light-yellow">
+              Отменить исполнителя
+            </span>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 </div>

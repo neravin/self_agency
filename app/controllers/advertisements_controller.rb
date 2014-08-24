@@ -76,7 +76,8 @@ class AdvertisementsController < ApplicationController
 
   def perform_ad
     if p = Advertisement.find_by_id(params['id'])
-      if (p.state == 0)
+      if (p.state == 0) && (current_client)
+        p.update_attribute("worker_id", current_client.id)
         p.update_attribute("state", 1)
         render text: "Объявление забронировано. Ожидайте звонок от заказчика"
         #redirect_back_or ''
@@ -86,6 +87,20 @@ class AdvertisementsController < ApplicationController
       end
       #flash[:success] = "Заказ забронирован. Ожидайте звонок от заказчика.#{params[:id]}" 
       #redirect_to ''
+    else
+      render text: "Такого объявления не существует"
+    end
+  end
+
+  def worker_cancel
+    if ad = Advertisement.find_by_id(params['ad'])
+      if (ad.state == 1) && (ad.client_id == current_client.id)
+        ad.update_attribute("worker_id", nil)
+        ad.update_attribute("state", 0)
+        render text: "Исполнитель отменен"
+      else
+        render text: "Нельзя отменить"
+      end
     else
       render text: "Такого объявления не существует"
     end
