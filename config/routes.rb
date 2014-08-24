@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :clients
+  resources :offer_services
   resources :activation_client, only: [:edit, :update]
   resources :advertisements do
     collection do
