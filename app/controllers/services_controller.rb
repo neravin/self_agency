@@ -3,6 +3,7 @@ class ServicesController < ApplicationController
 
 	def new
 		@service = Service.new
+		@category = Category.new
 	end
 
 	def edit

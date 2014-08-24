@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   resources :admins
   resources :services
+  resources :categories
   resources :workers do
     collection do
       patch 'worker_ad'
