@@ -1,13 +1,3 @@
-<%= form_for @category do |category| %>
-	<div class="field">
-    	<%= category.label :name %><br>
-    	<%= category.text_field :name%>
-  </div>
-  <div class="actions">
-    	<%= category.submit 'Добавить категорию' %>
-  </div>
-  <% end %>
-
 <%= collection_select(:service, :category_id, Category.all, :id, :name, prompt: true) %>
 
 <%= form_for @service do |service| %>

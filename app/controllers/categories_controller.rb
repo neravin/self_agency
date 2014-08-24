@@ -1,6 +1,8 @@
 # encoding: utf-8
 class CategoriesController < ApplicationController
 
+	def edit	
+	end
 	def create
 		@category = Category.new(category_params)
 		respond_to do |format|

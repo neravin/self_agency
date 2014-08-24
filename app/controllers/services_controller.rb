@@ -7,6 +7,7 @@ class ServicesController < ApplicationController
 	end
 
 	def edit
+		@category = Category.all
 	end
 
 	def create
