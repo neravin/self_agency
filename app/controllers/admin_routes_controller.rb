@@ -2,7 +2,6 @@
 class AdminRoutesController < ApplicationController
   
   def index
-  	@service = Service.new
-  	@service_id = Service.all
+    @service = Service.all
   end
 end

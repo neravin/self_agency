@@ -7,25 +7,21 @@ Rails.application.routes.draw do
   end
 
   get 'admin_routes/index'
-
   get 'sessions_admin/new'
-
   get 'sessions_admin/create'
-
   get 'sessions_admin/destroy'
-
   get 'home/index'
+
   resources :home, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets, only: [:new, :create, :edit, :update]
-
-
   resources :clients
   resources :offer_services
   resources :activation_client, only: [:edit, :update]
   resources :advertisements do
     collection do
       patch 'perform_ad'
+      patch 'worker_cancel'
     end
   end
 
@@ -45,6 +41,7 @@ Rails.application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/perform_ad' => 'advertisements#perform_ad', via: 'get'
   match '/worker_ad' => 'workers#worker_ad', via: 'get'
+  match '/worker_cancel' => 'advertisements#worker_cancel', via: 'get'
 
   root to: 'home#index', as: ''
 

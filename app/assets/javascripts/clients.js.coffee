@@ -1,20 +1,19 @@
 $(document).on "page:change", ->
-  $(".worker-ad").click -> 
-    id_ad = $(this).attr('data-ad_id')
+  $(".cancel-worker").click -> 
+    id_ad = $(this).parent().parent().attr('data-ad')
     current_el = $(this)
-    $.ajax({
+
+    if confirm("Вы уверены?") 
+      $.ajax({
       type: "POST"
-      url: "/worker_ad?id=" + id_ad
+      url: "/worker_cancel?ad=" + id_ad
       data: { _method: 'get' }
       success: (result) ->
         parent = current_el.parent()
-        current_el.remove()
-        
-        span = $ "<span>"
-        span.addClass "button not-button white-green"
-        span.html("Занят")
-        parent.append span
 
+        if result == 'Исполнитель отменен'
+          parent.remove()
+        
         div = $ "<div>"
         div.addClass "flash"
         div.html(result)
@@ -22,4 +21,6 @@ $(document).on "page:change", ->
         div.addClass("opacity1")
         div.slideDown(1000)
         div.delay( 5000 ).slideUp( 1000 )
-    })
+      })
+    
+    

@@ -1,4 +1,4 @@
-$ ->
+$(document).on "page:change", ->
   $(".perform-ad").click -> 
     id_ad = $(this).attr('data-ad_id')
     current_el = $(this)
@@ -8,12 +8,13 @@ $ ->
       data: { _method: 'get' }
       success: (result) ->
         parent = current_el.parent()
-        current_el.remove()
-        
-        span = $ "<span>"
-        span.addClass "button not-button white-green"
-        span.html("Занят")
-        parent.append span
+
+        if result == 'Объявление забронировано. Ожидайте звонок от заказчика'
+          current_el.remove()
+          span = $ "<span>"
+          span.addClass "button not-button white-green"
+          span.html("Занят")
+          parent.append span
 
         div = $ "<div>"
         div.addClass "flash"

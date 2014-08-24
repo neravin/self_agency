@@ -1,6 +1,6 @@
 # encoding: utf-8
 class ServicesController < ApplicationController
-
+  before_action :set_service, only: [:show, :edit, :update, :destroy]
 	def new
 		@service = Service.new
 		@category = Category.new
@@ -21,12 +21,12 @@ class ServicesController < ApplicationController
 	end
 	def update
 		respond_to do |format|
-      		if @service.update(service_params)
-      			format.html { redirect_to @service }
-      		else
-      			format.html { render :edit }
-      		end
-      	end
+  		if @service.update(service_params)
+  			format.html { redirect_to admin_routes_index_path }
+  		else
+  			format.html { render :edit }
+  		end
+  	end
 	end
 
 	def destroy
@@ -37,8 +37,12 @@ class ServicesController < ApplicationController
 
 	end
 
-	private
-		def service_params
-    		params.require(:service).permit(:name)
-  		end
+private
+  def set_service
+    @service = Service.find(params[:id])
+  end
+
+	def service_params
+		params.require(:service).permit(:name)
+	end
 end
