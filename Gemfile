@@ -36,8 +36,6 @@ gem 'therubyracer'
 gem 'bcrypt-ruby'
 gem "carrierwave"
 
-
-
 gem "rmagick"
 
 gem 'russian', '~> 0.6.0'
@@ -62,3 +60,5 @@ gem 'capistrano'
 group :production do
   gem 'pg', '0.15.1'
 end
+
+gem 'unicode', '0.4.4.1'

@@ -38,6 +38,36 @@ class AdvertisementsController < ApplicationController
         page(params[:page]).
         per_page(3)
     end
+
+    if params["i-want"] 
+      if !params["i-want"].empty?
+        redirect_to :controller => 'workers', :action => 'index', :i_want => params["i-want"]
+        return
+      end
+    end
+    if params["i-can"]
+      if !params["i-can"].empty?
+        i_can = params["i-can"].downcase
+        service_ids = []
+
+        Service.all.each do |service|
+          if service.name.downcase.index(i_can)
+            service_ids.push(service.id)
+          end
+        end
+        if !service_ids.empty?
+          @advertisements = Advertisement.
+            where(:service_id => service_ids).
+            page(params[:page]).
+            per_page(3)
+        else 
+          flash[:error] = "Поиск не дал результатов"
+          redirect_to ''
+          return
+        end
+      end
+    end
+
 	end
 
   def new

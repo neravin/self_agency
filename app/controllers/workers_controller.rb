@@ -18,6 +18,29 @@ class WorkersController < ApplicationController
         page(params[:page]).
         per_page(3)
     end
+
+    if params["i_want"]
+      if !params["i_want"].empty?
+        i_want = params["i_want"].downcase
+        service_ids = []
+
+        Service.all.each do |service|
+          if service.name.downcase.index(i_want)
+            service_ids.push(service.id)
+          end
+        end
+        if !service_ids.empty?
+          @workers = Worker.
+            where(:service_id => service_ids).
+            page(params[:page]).
+            per_page(3)
+        else 
+          flash[:error] = "Поиск не дал результатов"
+          redirect_to ''
+          return
+        end
+      end
+    end
 	end
 
 	def new

@@ -317,9 +317,10 @@ h1{
   }
   input {
     color: white;
+    color: $green;
   }
   span {
-    //border: 2px solid $light-yellow;
+    border: 2px solid $light-yellow;
     overflow: hidden;
     margin-bottom: -3px;
   }
@@ -359,6 +360,7 @@ h1{
   }
   #search-submit{
     width: 100%;
+    color: white;
   }
   a{
     display: block;
