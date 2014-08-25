@@ -2,7 +2,7 @@
 class Service < ActiveRecord::Base
   has_many :advertisements
   has_many :workers
-  has_many :categories
+  belongs_to :category
 
 	validates :name, presence: true
 end

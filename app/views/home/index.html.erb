@@ -16,7 +16,7 @@
 </div><!--/service-day-->
 
 <div id = "center-part" class="clearfix">
-  <% buf = "#{link_to categories_path, class: "head" do
+  <% buf = "#{link_to categories_path + '?type=1', class: "head" do
                   "Список<br/>услуг".html_safe
                 end}" %>
   <%= render 'flower', link: buf.html_safe %>
@@ -38,7 +38,11 @@
       <div><a id = "search-submit" class = "button light_yellow-button" >Гость</a></div>
     <% end %>
   </div><!--/proc-50-->
-  <%= render 'flower', link: "<a class = 'head'>Ваша<br/>экономика</a>".html_safe %>
+
+  <% buf = "#{link_to categories_path + '?type=2', class: "head one-line" do
+                  "Селферы"
+                end}" %>
+  <%= render 'flower', link: buf.html_safe %>
 </div><!--/center-part-->
 
 <div id = "flowers">

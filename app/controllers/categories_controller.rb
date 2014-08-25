@@ -4,7 +4,13 @@ class CategoriesController < ApplicationController
 	skip_before_action :authorize, only: [:index]
 
 	def index
-		@categories = Category.all
+		@type = params[:type]
+		if @type == "1" || @type == "2"
+			@categories = Category.all
+			@green_background = true
+		else
+			redirect_to ''
+		end
 	end
 
 	def new
@@ -32,7 +38,6 @@ class CategoriesController < ApplicationController
   			format.html { redirect_to admin_routes_index_path }
   		else
   			format.html { render :edit }
-
   		end
   	end
 	end
