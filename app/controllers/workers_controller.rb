@@ -18,7 +18,7 @@ class WorkersController < ApplicationController
         page(params[:page]).
         per_page(3)
     end
-
+    
     if params["i_want"]
       if !params["i_want"].empty?
         i_want = params["i_want"].downcase
