@@ -27,7 +27,7 @@ body.frame{
     bottom: 0;
   }
   #grid-main{
-    background: $new-light-yellow;
+    //background: $new-light-yellow;
   }
   .container{
     padding: 25px 0;
@@ -415,7 +415,13 @@ h1{
     margin-bottom: 300px;
   }
 }
-
+.category-flower{
+  .flower1{
+    .head{
+      background: rgba(235, 164, 42, 0.7);
+    }
+  }
+}
 .flower1{
   position: relative;
   .head{
@@ -433,6 +439,8 @@ h1{
 
     background: rgba(123, 33, 22, 0.4);
     background: rgba(235, 164, 42, 0.7);
+    background: rgba(235, 164, 42, 1);
+    //background: rgba(195, 128, 14, 0.7);
     //background: rgba(235, 164, 42, 0.7);
     cursor: pointer;
   }
@@ -974,20 +982,23 @@ div[class*="flower"] > span[class]
   width: 49%;
   .post{
     position: relative;
-    background: $green;
-    background: white;
+    background: $light-green;
+    //var2
+    //background: white;
     color: white;
     border-radius: 5px;
     margin-bottom: 15px;
     padding: 2em;
     p{
       color: white;
-      color: $gray;
+      //var 2
+      //color: $gray;
       margin-top: 10px;
     }
     h2{
       color: white;
-      color: $green;
+      //var2
+      //color: $green;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
     .worker{
@@ -996,9 +1007,10 @@ div[class*="flower"] > span[class]
   }
   .price{
     color: $yellow;
+    color: $light2-yellow;
   }
   h2{
-    color: $green;
+    color: $light-green;
   }
 }
 
@@ -1008,23 +1020,30 @@ div[class*="flower"] > span[class]
   width: 49%;
   h2{
     color: $orange;
+    color: $light-green-strong;
   }
   .post{
     background: $orange;
-    background: white;
+    background: $light-green-strong;
+    //var2
+    //background: white;
     h2{
-      color: $orange;
+      color: white;
+      //var2
+      //color: $orange;
     }
   }
 }
 
 .edit-advertisement{
   color: $yellow;
+  color: $light2-yellow;
   position: absolute;
   right: 30px;
   top: 40px;
   &:hover{
     color: $light2-yellow;
+    color: $yellow;
   }
   //top: 0;
 }
