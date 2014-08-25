@@ -15,20 +15,21 @@
   bottom: 0;
   width: 10px;
   background: rgb(104, 190, 180);
-  background: white;
+  //background: white;
   left: 20%;
   margin-left: -10px;
 }
-.worker-style{
+/*.worker-style{
   h2{
     color: $light-red;
     color: $orange;
+    color: white;
   }
 }
 .worker-style:before {
   background: #afdcf8;
   background: white;
-}
+}*/
  
 .cbp_tmtimeline > li {
   position: relative;
@@ -57,9 +58,9 @@
   color: $light-green;
 }
 
-.worker-style > li .cbp_tmtime span:last-child { 
+/*.worker-style > li .cbp_tmtime span:last-child { 
   color: $blue-new;
-}
+}*/
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmtime span:last-child {
   color: $light-green;
@@ -69,9 +70,9 @@
 .cbp_tmtimeline > li .cbp_tmlabel {
   margin: 0 0 15px 25%;
   background: $light-green;
-  background: white;
+  //background: white;
   color: #fff;
-  color: $green;
+  //color: $green;
   padding: 2em;
   font-size: 1.2em;
   font-weight: 300;
@@ -80,20 +81,20 @@
   border-radius: 5px;
 }
 
-.worker-style > li .cbp_tmlabel {
+/*.worker-style > li .cbp_tmlabel {
   background: $blue-new;
   background: white;
-}
+}*/
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
   background: $light-green-strong;
-  background: white; 
+  //background: white; 
 }
 
-.worker-style > li:nth-child(odd) .cbp_tmlabel {
+/*.worker-style > li:nth-child(odd) .cbp_tmlabel {
   background: $light-blue-new;
   background: white;
-}
+}*/
 
 .cbp_tmtimeline > li .cbp_tmlabel h2 { 
   margin-top: 0px;
@@ -110,17 +111,19 @@
   position: absolute;
   pointer-events: none;
   border-right-color: white;
+  border-right-color: $light-green;
   border-width: 10px;
   top: 10px;
 }
 
-.worker-style > li .cbp_tmlabel:after {
+/*.worker-style > li .cbp_tmlabel:after {
   border-right-color: white;
-
-}
+  border-right-color: $light-green;
+}*/
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
   border-right-color: white;
+  border-right-color: $light-green-strong;
 }
  
 /* The icons */
@@ -139,23 +142,25 @@
   position: absolute;
   color: #fff;
   background: #46a4da;
-  background: white;
+  //background: white;
   border-radius: 50%;
   box-shadow: 0 0 0 8px rgb(104, 190, 180);
-  box-shadow: 0 0 0 8px white;
+  //box-shadow: 0 0 0 8px white;
   text-align: center;
   left: 20%;
   top: 0;
   margin: 0 0 0 -25px;
 }
 
-.worker-style > li:nth-child(odd) .cbp_tmlabel:after {
+/*.worker-style > li:nth-child(odd) .cbp_tmlabel:after {
   border-right-color: white;
-}
+  border-right-color: rgb(104, 190, 180);
+}*/
 
-.worker-style > li .cbp_tmicon {
+/*.worker-style > li .cbp_tmicon {
   box-shadow: 0 0 0 8px white;
-}
+  box-shadow: 0 0 0 8px rgb(104, 190, 180);
+}*/
 
 .cbp_tmicon {
   img{
@@ -218,11 +223,11 @@
 .cbp_tmlabel{
   p{
     color: white;
-    color: $gray;
+    //color: $gray;
     padding-top: 15px;
   }
   .price{
-    color: $yellow;
+    color: $light-yellow;
   }
   span.button{
     float: right;

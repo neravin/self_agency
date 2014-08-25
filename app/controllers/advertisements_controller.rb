@@ -4,6 +4,7 @@ class AdvertisementsController < ApplicationController
 	before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
 	before_action :correct_advertisement, only: [:edit, :update]
 
+
   def index
     ad_service_id = params[:advertisement]
     worker_service_id = params[:worker]
@@ -39,6 +40,14 @@ class AdvertisementsController < ApplicationController
         per_page(3)
     end
 
+
+    if params["i-want"] && params["i-can"]
+      if params["i-want"].empty? && params["i-can"].empty?
+        flash[:error] = "Поиск не дал результатов"
+        redirect_to ''
+        return
+      end
+    end
     if params["i-want"] 
       if !params["i-want"].empty?
         redirect_to :controller => 'workers', :action => 'index', :i_want => params["i-want"]

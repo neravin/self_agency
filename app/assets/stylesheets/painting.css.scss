@@ -179,12 +179,21 @@ body{
   background: $light-red;
 }
 
-.light-yellow{
+/*.light-yellow{
   border: 1px dashed $light-yellow;
   color: $light-red;
   &:hover{
     background: white;
     border: 1px dashed $light-red;
+  }
+}*/
+
+.light-yellow{
+  color: $light-yellow;
+  background: white;
+  border-radius: 5px;
+  &:hover{
+    color: $yellow;
   }
 }
 
@@ -195,6 +204,7 @@ body{
 
 .green_background{
   background: $light-green;
+  background:  #7cfc00;
 }
 
 .middle_yellow{
