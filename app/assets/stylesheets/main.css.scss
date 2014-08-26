@@ -819,11 +819,15 @@ div[class*="flower"] > span[class]
   line-height: 1.4em;
   width: 250px;
   right: 30px;
-  top: -20px;
+  top: 0px;
   padding: 20px;
   border-radius: 0 0 10px 10px;
   //opacity: 0;
   display: none;
+}
+
+.flash-margin{
+  top: -20px;
 }
 
 .opacity1{
@@ -1110,7 +1114,7 @@ $a_foto: 110px;
   opacity: .80;
   filter: alpha(opacity=80);
 }
-#list-awesome {
+.list-awesome {
   position: fixed;
   width: 200px;
   //height: 340px;
