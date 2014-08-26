@@ -13,7 +13,7 @@
     <%= render 'home/flower', link: buf.html_safe %>
     
     <% if !cat.services.empty? %>
-      <div id = "list-awesome", style = "display: none;">
+      <div class = "list-awesome", style = "display: none;">
       <% if @type == "1" %>
         <% cat.services.order("name").each do |service|%>
           <%= link_to service.name, advertisements_path + "?utf8=✓&advertisement%5Bservice_id%5D=#{service.id}" %>
