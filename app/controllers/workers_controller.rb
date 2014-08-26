@@ -21,11 +21,11 @@ class WorkersController < ApplicationController
     
     if params["i_want"]
       if !params["i_want"].empty?
-        i_want = params["i_want"].downcase
+        i_want = Unicode::downcase(params["i_want"])
         service_ids = []
 
         Service.all.each do |service|
-          if service.name.downcase.index(i_want)
+          if Unicode::downcase(service.name).index(i_want)
             service_ids.push(service.id)
           end
         end
