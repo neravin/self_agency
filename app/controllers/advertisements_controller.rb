@@ -56,11 +56,11 @@ class AdvertisementsController < ApplicationController
     end
     if params["i-can"]
       if !params["i-can"].empty?
-        i_can = params["i-can"].downcase
+        i_can = Unicode::downcase(params["i-can"])
         service_ids = []
 
         Service.all.each do |service|
-          if service.name.downcase.index(i_can)
+          if Unicode::downcase(service.name).index(i_can)
             service_ids.push(service.id)
           end
         end

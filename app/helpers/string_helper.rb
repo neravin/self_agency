@@ -1,6 +1,6 @@
 module StringHelper
   #coding utf-8
-  require "unicode"
+  require 'unicode'
   class String
      def downcase
        Unicode::downcase(self)
