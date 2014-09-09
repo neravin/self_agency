@@ -7,11 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 
-<% if @green_background %>
-<body class="green_background">
-<% else %>
 <body class = "frame">
-<% end %>
+
+<%= render 'layouts/header' %>
 
 <% if @green_background %>
 <section id = "grid-main" class="green_background">

@@ -1135,3 +1135,18 @@ $a_foto: 110px;
     }
   }
 }
+
+header{
+  margin-top: 50px;
+  #logo{
+    color: $middle-green;
+    font-family: 'modekaregular';
+    font-size: 3.5em;
+    text-transform: uppercase;
+  }
+  #logo-description{
+    font-family: 'pt_sansitalic';
+    color: #aaa;
+    color: $light-yellow;
+  }
+}

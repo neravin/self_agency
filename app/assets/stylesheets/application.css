@@ -30,6 +30,18 @@
  }
 
 @font-face {
+    font-family: 'modekaregular';
+    src: url('modeka-webfont.eot');
+    src: url('modeka-webfont.eot?#iefix') format('embedded-opentype'),
+         url('modeka-webfont.svg') format('svg'),
+         url('modeka-webfont.woff') format('woff'),
+         url('modeka-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
     font-family: 'alex_brushregular';
     src: url('alexbrush-regular-webfont.eot');
     src: url('alexbrush-regular-webfont.eot?#iefix') format('embedded-opentype'),

@@ -4,76 +4,24 @@
   <% end %>
 </div>
 
-<div class = "service-day clearfix">
-  <div class = "foto">
-    <%= image_tag("valera.jpg") %>
-  </div><!--/foto-->
-  <div class = "description">
-    <span class = "ad">Услуга дня!</span>
-    <h2>Твой Сэлфер</h2>
-    <p>Алина Арбенина уникальный сэлфер, ее дизайн домашнего интерьера поражает простотой и функциональностью решения.</p>
-  </div><!--/-->
-</div><!--/service-day-->
-
-<div id = "center-part" class="clearfix">
-  <% buf = "#{link_to categories_path + '?type=1', class: "head" do
-                  "Список<br/>услуг".html_safe
-                end}" %>
-  <%= render 'flower', link: buf.html_safe %>
-
-  <div class = "proc-50">
-    <div id = "description-project" class = "clearfix">
-      Всё в сфере услуг, что сделает мою жизнь комфортной
-    </div><!--/description-project-->
-
-    <%= form_tag("/advertisements", method: "get", id: "start-search" ) do %>
-    <span>
-      <input placeholder = "Я МОГУ" type = "text" name = "i-can" /><input placeholder = "Я ХОЧУ" id = "input-right" type = "text" name = "i-want" />
-    </span>
-    <!--div>
-      <%# collection_select(:advertisement, :service_id, Service.all, :id, :name, 
-        {:prompt => "Я хочу"}, {:class => "cs-select cs-skin-border"}) %>
-      <%# collection_select(:worker, :service_id, Service.all, :id, :name, 
-        {:prompt => "Я могу"}, {:class => "cs-select cs-skin-border"}) %>
-    </div-->
-      <div><input id = "search-submit" class = "button middle_yellow" type = "submit" value = "Найти" /></div>
-      <div><a id = "search-submit" class = "button light_yellow-button" >Гость</a></div>
-    <% end %>
-  </div><!--/proc-50-->
-
-  <% buf = "#{link_to categories_path + '?type=2', class: "head one-line" do
-                  "Селферы"
-                end}" %>
-  <%= render 'flower', link: buf.html_safe %>
-</div><!--/center-part-->
-
-<div id = "flowers">
-  <%= render 'flower', link: "<a class = 'head'>Ваша<br/>экономика</a>".html_safe %>
-
-<% if signed_in? %>
-  <% buf = "#{link_to current_client, class: "head" do
-                "Личный кабинет"
-              end}" %>
-  <%= render 'flower', link: buf.html_safe %>
-  
-  <% buf = "#{link_to signout_path, method: "delete", class: "head one-line" do
-                "Выйти"
-              end}" %>
-  <%= render 'flower', link: buf.html_safe %>  
-<% else %>
-  <% buf = "#{link_to signin_path, class: "head one-line" do
-                "Войти"
-              end}" %>
-  <%= render 'flower', link: buf.html_safe %>
-  
-  <% buf = "#{link_to registration_path, class: "head one-line" do
-                "Регистрация"
-              end}" %>
-  <%= render 'flower', link: buf.html_safe %>
-<% end %>
-
-  <%= render 'flower', link: "<a class = 'head one-line'>Агенты</a>".html_safe %>
-</div><!--/flowers-->
+<div class="tabs tabs-style-linemove">
+  <nav>
+    <ul>
+      <li class="tab-current"><a href="#section-linemove-1" class="icon icon-home"><span>Home</span></a></li>
+      <li class=""><a href="#section-linemove-2" class="icon icon-box"><span>Archive</span></a></li>
+      <li class=""><a href="#section-linemove-3" class="icon icon-display"><span>Analytics</span></a></li>
+      <li class=""><a href="#section-linemove-4" class="icon icon-upload"><span>Upload</span></a></li>
+      <li class=""><a href="#section-linemove-5" class="icon icon-tools"><span>Settings</span></a></li>
+    </ul>
+  </nav>
+  <div class="content-wrap">
+    <section id="section-linemove-1" class="content-current"><p>1</p></section>
+    <section id="section-linemove-2" class=""><p>2</p></section>
+    <section id="section-linemove-3" class=""><p>3</p></section>
+    <section id="section-linemove-4" class=""><p>4</p></section>
+    <section id="section-linemove-5" class=""><p>5</p></section>
+  </div><!-- /content -->
+</div>
 
 <script>
   $(".head").hover(
