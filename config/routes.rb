@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :clients
   resources :offer_services
+  resources :admin_routes
   resources :activation_client, only: [:edit, :update]
   resources :advertisements do
     collection do

@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Advertisement < ActiveRecord::Base
   belongs_to :service
+  has_many :queue
 
   validate :start_hour, :happened_at_is_valid_datetime
   validates :description, presence: true

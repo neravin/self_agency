@@ -45,6 +45,13 @@ class ClientsController < ApplicationController
     end
   end
 
+  def destroy
+    @client.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_routes_index_url }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
