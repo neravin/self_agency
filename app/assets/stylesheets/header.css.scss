@@ -14,28 +14,28 @@ header{
     color: #aaa;
     color: $light-yellow;
   }
-  .horiz-right-menu{
-    font-size: 1.2em;
-    font-family: 'pt_sans_narrowregular';
+}
 
-    li{
-      float: right;
-      line-height: 1.2em;
-      padding: 0.5em 1em;
-      position: relative;
-      margin-top: 18px;
-      a{
-        color: $light-green-strong;
-        text-transform: uppercase;
-        span{
-          margin-left: 10px;
-        }
+.horiz-right-menu{
+  font-size: 1.2em;
+  font-family: 'pt_sans_narrowregular';
+
+  li{
+    float: right;
+    line-height: 1.2em;
+    padding: 0.5em 1em;
+    position: relative;
+    margin-top: 18px;
+    a{
+      color: $light-green-strong;
+      text-transform: uppercase;
+      span{
+        margin-left: 10px;
       }
-      
     }
-    nav{
+  }
+  nav{
 
-    }
   }
 }
 
@@ -52,3 +52,24 @@ header{
   -webkit-transform: translate3d(0,150%,0);
   transform: translate3d(0,150%,0);
 }
+
+.poloska{
+  h2{
+    float: left;
+    margin-top: 20px;
+    color: $blue;
+    text-transform: uppercase;
+  }
+  .horiz-right-menu{
+    li{
+      a{
+        color: $blue;
+      }
+    }
+  }
+  .tab-current  a::after {
+    background: $blue;
+    top: -15px;
+  }
+}
+

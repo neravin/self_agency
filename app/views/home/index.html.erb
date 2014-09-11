@@ -4,7 +4,7 @@
   <% end %>
 </div>
 
-<div class = "information">
+<div class = "information clearfix">
   <div class="girl">
     <%= image_tag("girl.jpg") %>
   </div>
@@ -28,6 +28,41 @@
     </div><!--/thesis-->
   </div><!--/theses-->
 </div>
+
+<div class="poloska clearfix">
+  <h2>Категории</h2>
+  <div class="horiz-right-menu">
+    <nav>
+      <ul>
+        <li class=""><a href="#section-linemove-1"><i class="fa fa-sign-in"></i><span>Заказы</span></a></li>
+        <li class="tab-current"><a href="#section-linemove-5"><i class="fa fa-home"></i><span>Работники</span></a></li>
+      </ul>
+    </nav>
+  </div><!--/horiz-right-menu-->
+</div>
+
+<div class = "categories">
+  <div class = "category">
+    <a href="">
+    <%= image_tag("remont-icon.png") %>
+    </a>
+  </div><!--/category-->
+  <div class = "category">
+    <a href="">
+    <%= image_tag("electric-icon.png") %>
+    </a>
+  </div><!--/category-->
+  <div class = "category">
+    <a href="">
+    <%= image_tag("stroy-icon.png") %>
+    </a>
+  </div><!--/category-->
+  <div class = "category">
+    <a href="">
+    <%= image_tag("santech-icon.png") %>
+    </a>
+  </div><!--/category-->
+</div><!--/categories-->
 
 <script>
   $(".head").hover(

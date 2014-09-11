@@ -1137,13 +1137,21 @@ $a_foto: 110px;
 }
 
 .information{
-  margin-top: 50px;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  padding: 20px;
+  padding-bottom: 0px;
+  border-radius: 10px;
+  background: $middle-blue;
+  //background: #007095;
+
   .girl{
     width: 30%;
     float: left;
     position: relative;
     img{
       width: 100%;
+      margin-bottom: -2px;
     }
   }
   .theses{
@@ -1154,10 +1162,32 @@ $a_foto: 110px;
       margin-bottom: 40px;
       font-family: 'pt_sansregular';
       color: $gray;
+      color: white;
       line-height: 1.2em;
       font-size: 1.5em;
       text-align: right;
       margin-right: 15px;
+      &:last-child{
+        margin-bottom: 0px;
+      }
     }
   }
 }
+
+.categories{
+  position: relative;
+  .category{
+    width: 25%;
+    position: relative;
+    float: left;
+    a{
+      display: block;
+      margin: 20px 60px;
+      position: relative;
+      img{
+        width: 100%;
+      }
+    }
+  }
+}
+
