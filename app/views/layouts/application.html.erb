@@ -11,16 +11,10 @@
 
 <%= render 'layouts/header' %>
 
-<% if @green_background %>
-<section id = "grid-main" class="green_background">
-<% else %>
 <section id = "grid-main">
-<% end %>
   <div class = "container clearfix">
     <%= yield %>
   </div><!--/container-->
-</div><!--/grid-main-->
-
 </section><!--/grid-wrap-->
 
 

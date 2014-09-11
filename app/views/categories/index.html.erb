@@ -1,33 +1,60 @@
-<div id = "flowers" class="with-margin">
-  <% @categories.each do |cat| %>
+<!--div id = "flowers" class="with-margin">
+  <%# @categories.each do |cat| %>
   <div class = "category-flower">
-    <% if cat.photo_url != nil %>
-      <% buf = "<div class = 'pseudo' style = 'background: url(#{cat.photo_url(:thumb).to_s}); background-size: cover;'>
+    <%# if cat.photo_url != nil %>
+      <%# buf = "<div class = 'pseudo' style = 'background: url(#{cat.photo_url(:thumb).to_s}); background-size: cover;'>
                 </div>
                 <div class = 'head one-line green-color'>
                   #{cat.name}
                 </div>" %>
-    <% else %>
-      <% buf = "<div class = 'head one-line'>#{cat.name}</div>" %>
-    <% end %>
-    <%= render 'home/flower', link: buf.html_safe %>
+    <%# else %>
+      <%# buf = "<div class = 'head one-line'>#{cat.name}</div>" %>
+    <%# end %>
+    <%#= render 'home/flower', link: buf.html_safe %>
     
-    <% if !cat.services.empty? %>
+    <%# if !cat.services.empty? %>
       <div class = "list-awesome", style = "display: none;">
-      <% if @type == "1" %>
-        <% cat.services.order("name").each do |service|%>
-          <%= link_to service.name, advertisements_path + "?utf8=✓&advertisement%5Bservice_id%5D=#{service.id}" %>
-        <% end %>
-      <% elsif @type == "2" %>
-        <% cat.services.order("name").each do |service|%>
-          <%= link_to service.name, workers_path + "?service_id=#{service.id}" %>
-        <% end %>
-      <% end %>
+      <%# if @type == "1" %>
+        <%# cat.services.order("name").each do |service|%>
+          <%#= link_to service.name, advertisements_path + "?utf8=✓&advertisement%5Bservice_id%5D=#{service.id}" %>
+        <%# end %>
+      <%# elsif @type == "2" %>
+        <%# cat.services.order("name").each do |service|%>
+          <%#= link_to service.name, workers_path + "?service_id=#{service.id}" %>
+        <%# end %>
+      <%# end %>
       </div>
-    <% end %>
-    </div><!--/category-flower-->
-  <% end %>
-</div>
+    <%# end %>
+    </div>
+  <%# end %>
+</div-->
+
+<div class = "categories">
+  <div class = "category">
+    <a href="">
+    <%= image_tag("remont-icon.png") %>
+    </a>
+    <div class="name-category">Ремонт</div>
+  </div><!--/category-->
+  <div class = "category">
+    <a href="">
+    <%= image_tag("electric-icon.png") %>
+    </a>
+    <div class="name-category">Электричество</div>
+  </div><!--/category-->
+  <div class = "category">
+    <a href="">
+    <%= image_tag("stroy-icon.png") %>
+    </a>
+    <div class="name-category">Строительство</div>
+  </div><!--/category-->
+  <div class = "category">
+    <a href="">
+    <%= image_tag("santech-icon.png") %>
+    </a>
+    <div class="name-category">Сантехника</div>
+  </div><!--/category-->
+</div><!--/categories-->
 
 <div id="fade" class="black-overlay" style="display: none;"></div>
 

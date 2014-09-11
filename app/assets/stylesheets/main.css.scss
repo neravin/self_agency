@@ -12,7 +12,7 @@ $form-half: 252.5px;
 
 body.frame{
   margin: 0 25px;
-  &:before, &:after{
+  /*&:before, &:after{
     content: '';
     position: fixed;
     left: 0;
@@ -25,7 +25,7 @@ body.frame{
   &:after{
     top: auto;
     bottom: 0;
-  }
+  }*/
   #grid-main{
     //background: $new-light-yellow;
   }
@@ -1180,6 +1180,12 @@ $a_foto: 110px;
     width: 25%;
     position: relative;
     float: left;
+    .name-category{
+      text-align: center;
+      font-family: 'pt_sansregular';
+      color: $gray;
+      padding-right: 10px;
+    }
     a{
       display: block;
       margin: 20px 60px;
