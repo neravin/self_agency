@@ -24,8 +24,20 @@
   <% end %><br />
 <% end %></br>
 
+<h2> Пользователи </h2>
+<% @client.each do |client| %>
+  <%= client.name %>
+  <%= link_to(edit_client_path(client)) do %>
+    <i class="fa fa-pencil"></i>
+  <% end %>
+  <%= link_to(client, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+    <i class="fa fa-trash-o"></i>
+  <% end %><br />
+<% end %></br>
+
 
 <%= link_to 'Добавить новую услугу', new_service_path %><br>
 <%= link_to 'Добавить новую категорию', new_category_path %>
+
 
 <%= button_to 'Logout', logout_path, method: :delete %>
