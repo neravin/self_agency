@@ -14,9 +14,12 @@
 <section id = "grid-main">
   <div class = "container clearfix">
     <%= yield %>
+    <div id="fade" class="black-overlay" style="display: none;"></div>
+    <%= render 'layouts/signin' %>
+    <%= render 'layouts/signup' %>
+    <%= render 'layouts/passreset' %>
   </div><!--/container-->
 </section><!--/grid-wrap-->
-
 
 </body>
 </html>

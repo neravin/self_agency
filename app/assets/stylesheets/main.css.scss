@@ -659,11 +659,17 @@ div[class*="flower"] > span[class]
 }
 
 .form-shell{
-  position: relative;
+  z-index: 500;
+  display: none;
+  position: fixed;
+  top: 50%;
+  margin-top: -252px;
+  left: 50%;
+  margin-left: -$form-shell-width/2;
   width: $form-shell-width;
   background: white;
-  margin: 0 auto;
-  margin-top: 20px;
+  /*margin: 0 auto;
+  margin-top: 20px;*/
   text-align: center;
   border-radius: 5px;
   span.cs-placeholder{
@@ -756,6 +762,12 @@ div[class*="flower"] > span[class]
     background: $light2-pink;
     height: 40px;
     padding-top: 10px;
+    .links{
+      color: white;
+      font-family: 'pt_sansregular';
+      margin-right: 10px;
+      cursor: pointer;
+    }
     .pseudo{
       text-align: left;
       margin-left: ($form-shell-width - $input-width)/2;
@@ -767,6 +779,16 @@ div[class*="flower"] > span[class]
     padding-bottom: 20px;
     padding-top: 10px;
     display: block;
+    a{
+      color: $light2-pink;
+    }
+    font-family: 'pt_sansregular';
+    color: $light-pink;
+    span{
+      color: $light2-pink;
+      margin: 0 10px;
+      cursor: pointer;
+    }
   }
   a{
     color: white;
