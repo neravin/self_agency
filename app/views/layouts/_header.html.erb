@@ -5,14 +5,24 @@
         <ul>
           <li class=""><a href="#section-linemove-1"><i class="fa fa-sign-in"></i><span>войти</span></a></li>
           <li class=""><a href="#section-linemove-2"><i class="fa fa-space-shuttle"></i><span>о нас</span></a></li>
-          <li class=""><a href="#section-linemove-3"><i class="fa fa-search"></i><span>Заказы</span></a></li>
-          <li class=""><a href="#section-linemove-4"><i class="fa fa-bus"></i><span>Работники</span></a></li>
-          <li class="tab-current"><a href="#section-linemove-5"><i class="fa fa-home"></i><span>главная</span></a></li>
+          <li class=<% if @tab_current == 3 %>"tab-current"<% end %>>
+            <%= link_to({:controller => "categories", :type => 2}) do %>
+              <%= "<i class='fa fa-search'></i><span>Заказы</span>".html_safe %>
+            <% end %>
+          </li>
+          <li class=<% if @tab_current == 2 %>"tab-current"<% end %>>
+            <%= link_to  controller: "categories", type: 1 do %>
+              <%= "<i class='fa fa-bus'></i><span>Работники</span>".html_safe %>
+            <% end %>
+          </li>
+          <li class=<% if @tab_current == 1 %>"tab-current"<% end %>>
+            <a href="/"><i class="fa fa-home"></i><span>главная</span></a>
+          </li>
         </ul>
       </nav>
     </div><!--/horiz-right-menu-->
 
-    <%= link_to "Xylocopa", "#", id: "logo" %>
+    <%= link_to "Xylocopa", "/", id: "logo" %>
     <div id = "logo-description">лучший ремонтный фриланс</div>
   </div><!--/grid-wrap-->
 </header>

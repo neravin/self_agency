@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   before_filter :set_cache_buster
 
   def index
-
+    @tab_current = 1
   end
 
   def set_cache_buster
