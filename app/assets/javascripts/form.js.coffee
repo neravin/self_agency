@@ -24,7 +24,10 @@ $(document).on "page:change", ->
   $("#new_client").on("ajax:success", (e, data, status, xhr) ->
     $("#new_client").append xhr.responseText
   ).on "ajax:error", (e, xhr, status, error) ->
-    $("#new_client").append "<p>ERROR</p>"
     errors = xhr.responseJSON.error
     for message of errors
-      $('#error_explanation').append '<p>' + errors[message] + '</p>'
+      switch message
+        when "name" then $('#signup-name').append '<div class = "error-form"><p>' + errors[message] + '</p></div>'
+        when "email" then $('#signup-email').append '<div class = "error-form"><p>' + errors[message] + '</p></div>'
+        when "password" then $('#signup-password').append '<div class = "error-form"><p>' + errors[message] + '</p></div>'
+        when "password_confirmation" then $('#signup-password-conf').append '<div class = "error-form"><p>' + errors[message] + '</p></div>'

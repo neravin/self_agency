@@ -41,7 +41,7 @@ class ClientsController < ApplicationController
       else
         #format.html { render :new }
         #format.json { render json: @client.errors, status: :unprocessable_entity }
-        format.json { render :json => { :error => @client.errors.full_messages }, :status => 422 }
+        format.json { render :json => { :error => @client.errors.messages }, :status => 422 }
       end
     end
   end

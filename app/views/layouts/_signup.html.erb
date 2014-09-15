@@ -15,19 +15,19 @@
   <legend>Введите сведения о пользователе</legend>
   <div id="error_explanation">
   </div>
-  <div class="field">
+  <div id = "signup-name" class="field">
     <%= f.text_field :name, :placeholder => "ФИО" %>
   </div>
 
-  <div class="field">
+  <div id = "signup-email" class="field">
     <%= f.text_field :email, :placeholder => "Email" %>
   </div>
 
-  <div class="field">
+  <div id = "signup-password" class="field">
     <%= f.password_field :password, :placeholder => "Пароль"%>
   </div>
 
-  <div class="field">
+  <div id = "signup-password-conf" class="field">
     <%= f.password_field :password_confirmation, :placeholder => "Подтверждение" %>
   </div>
   <div class="field">

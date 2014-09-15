@@ -713,7 +713,7 @@ div[class*="flower"] > span[class]
     width: $input-width;
     border: none;
     font-size: 1.1em;
-    background: $light2-yellow;
+    background: $new-light-yellow;
   }
   input:not([type=submit]):not([type=file]), textarea{
     border: em(3) solid white; 
@@ -1219,3 +1219,21 @@ $a_foto: 110px;
   }
 }
 
+.field{
+  position: relative;
+  .error-form{
+    position: absolute;
+    top: 0;
+    right: -380px;
+    width: 370px;
+    text-align: left;
+    height: 41px;
+    display: table;
+    p{
+      display: table-cell; 
+      vertical-align: middle;
+      line-height: 1em;
+      color: $red;
+    }
+  }
+}
