@@ -39,8 +39,9 @@ class ClientsController < ApplicationController
         format.html { redirect_to '', notice: "Пожалуйста, #{@client.name}, зайдите на почту и подтвердите её." }
         format.json { render :show, status: :created, location: @client }
       else
-        format.html { render :new }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
+        #format.html { render :new }
+        #format.json { render json: @client.errors, status: :unprocessable_entity }
+        format.json { render :json => { :error => @client.errors.full_messages }, :status => 422 }
       end
     end
   end

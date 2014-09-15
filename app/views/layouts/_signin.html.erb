@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<%= form_for(:session_user, url: sessions_path) do |f| %>
+<%= form_for(:session_user, url: sessions_path, remote: true) do |f| %>
   <h2>Вход на сайт</h2>
 
   <div class="error_explanation">
