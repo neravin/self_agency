@@ -1218,22 +1218,3 @@ $a_foto: 110px;
     }
   }
 }
-
-.field{
-  position: relative;
-  .error-form{
-    position: absolute;
-    top: 0;
-    right: -380px;
-    width: 370px;
-    text-align: left;
-    height: 41px;
-    display: table;
-    p{
-      display: table-cell; 
-      vertical-align: middle;
-      line-height: 1em;
-      color: $red;
-    }
-  }
-}

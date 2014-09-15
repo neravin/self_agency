@@ -27,7 +27,11 @@ $(document).on "page:change", ->
     errors = xhr.responseJSON.error
     for message of errors
       switch message
-        when "name" then $('#signup-name').append '<div class = "error-form"><p>' + errors[message] + '</p></div>'
-        when "email" then $('#signup-email').append '<div class = "error-form"><p>' + errors[message] + '</p></div>'
-        when "password" then $('#signup-password').append '<div class = "error-form"><p>' + errors[message] + '</p></div>'
-        when "password_confirmation" then $('#signup-password-conf').append '<div class = "error-form"><p>' + errors[message] + '</p></div>'
+        when "name" then                    add_error(errors[message], "#client_name", "#signup-name")
+        when "email" then                   add_error(errors[message], "#client_email", "#signup-email")
+        when "password" then                add_error(errors[message], "#client_password", "#signup-password")
+        when "password_confirmation" then   add_error(errors[message], "#client_password_confirmation", "#signup-password-conf")
+
+add_error = (message, id_input, id_text_error) ->
+  $(id_text_error).append '<div class = "error-form"><p>' + message + '</p></div>'
+  $(id_input).addClass("error-input")
