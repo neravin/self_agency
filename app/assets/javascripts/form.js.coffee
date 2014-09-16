@@ -26,6 +26,7 @@ $(document).on "page:change", ->
     #$("#new_client").append xhr.responseText
     $("#signup-form").hide()
     $("#success-message").fadeIn()
+    clear_value_input("#signup-form")
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     errors = xhr.responseJSON.error
@@ -42,7 +43,6 @@ $(document).on "page:change", ->
     error_message.fadeOut ->
       error_message.remove()
 
-
 add_error = (message, id_input, id_text_error) ->
   $(id_text_error).append '<div class = "error-form"><p>' + message + '</p></div>'
   $(id_input).addClass("error-input")
@@ -52,3 +52,6 @@ clear_errors = () ->
   if num_errors > 0
     $('.error-form').remove()
     $('.error-input').removeClass('.error-input')
+
+clear_value_input = (id_form) ->
+  $(id_form).find("input").not(':input[type=button], :input[type=submit], :input[type=reset]').val('')
