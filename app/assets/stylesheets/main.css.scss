@@ -63,28 +63,6 @@ div {
   //display: table;
 }
 
-#error_explanation, .alert-error {
-  //width: 100%;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  text-align: left;
-  margin: 0 ($form-shell-width - $input-width)/2;
-  margin-bottom: 20px;
-  color: $red !important;
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    font-size: 1em;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    color: $light-green;
-  }
-  /*ul li {
-    font-size: 12px;
-    list-style: square;
-  }*/
-}
-
 .alert{
   line-height: 1.4em;
 }

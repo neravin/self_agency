@@ -6,17 +6,15 @@
   </div>
 </div>
 
-<%= form_for(:session_user, url: sessions_path, remote: true) do |f| %>
+<%= form_for(:session_user, url: sessions_path, remote: true, html: { id: "new_session" }) do |f| %>
   <h2>Вход на сайт</h2>
 
-  <div class="error_explanation">
-  <% flash.each do |key, value| %>
-    <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-  <% end %>
-  </div>
-
   <legend>Введите свои данные</legend>
-  <div class="field">
+
+  <div class="error_explanation">
+  </div>
+  
+  <div id = "session-name" class="field">
     <%= f.text_field :email, placeholder: "Email" %>
   </div>
 
