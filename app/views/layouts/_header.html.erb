@@ -3,7 +3,12 @@
     <div class="horiz-right-menu">
       <nav>
         <ul>
-          <li class=""><a href="#section-linemove-1" id = "signin-button"><i class="fa fa-sign-in"></i><span>войти</span></a></li>
+          <% if signed_in? %>
+            <li><%= link_to "", signout_path, method: "delete", class: "fa fa-sign-out" %></li>
+            <li><%= link_to "", current_client, class: "fa fa-user" %></li>
+          <% else %>
+            <li class=""><a href="#section-linemove-1" id = "signin-button"><i class="fa fa-sign-in"></i><span>войти</span></a></li>
+          <% end %>
           <li class=""><a href="#section-linemove-2"><i class="fa fa-space-shuttle"></i><span>о нас</span></a></li>
           <li class=<% if @tab_current == 3 %>"tab-current"<% end %>>
             <%= link_to({:controller => "categories", :type => 2}) do %>

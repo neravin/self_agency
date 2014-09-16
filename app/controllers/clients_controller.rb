@@ -72,7 +72,7 @@ class ClientsController < ApplicationController
     def signed_in_client
       unless signed_in?
         store_location
-        redirect_to signin_path, notice: "Please sign in." unless signed_in?
+        redirect_to '/', notice: "Please sign in." unless signed_in?
       end
     end
 
