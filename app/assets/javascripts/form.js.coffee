@@ -7,6 +7,7 @@ $(document).on "page:change", ->
     $("#signin-form").hide()
     $("#signup-form").hide()
     $("#passreset-form").hide()
+    $("#success-message").hide()
     $(this).hide()
 
   $(".signin-link").click ->
@@ -22,7 +23,9 @@ $(document).on "page:change", ->
     $("#passreset-form").show()
 
   $("#new_client").on("ajax:success", (e, data, status, xhr) ->
-    $("#new_client").append xhr.responseText
+    #$("#new_client").append xhr.responseText
+    $("#signup-form").hide()
+    $("#success-message").fadeIn()
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     errors = xhr.responseJSON.error

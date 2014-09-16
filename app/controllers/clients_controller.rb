@@ -35,9 +35,12 @@ class ClientsController < ApplicationController
       if @client.save
         @client.generate_confirm!
         ConfirmationNotifier.confirmation_token(@client).deliver
-        flash[:success] = "Вам было отправлено письмо на почту.";
+        #flash[:success] = "Вам было отправлено письмо на почту.";
         format.html { redirect_to '', notice: "Пожалуйста, #{@client.name}, зайдите на почту и подтвердите её." }
-        format.json { render :show, status: :created, location: @client }
+        format.js { render :nothing => true }
+        format.json { render json: @client, status: :created, location: @client }
+        #message = { "message": "Письмо с дальнейшими инструкциями отправлено на почту." }
+        #format.json { render :json => message }
       else
         #format.html { render :new }
         #format.json { render json: @client.errors, status: :unprocessable_entity }
