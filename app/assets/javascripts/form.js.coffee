@@ -51,6 +51,16 @@ $(document).on "page:change", ->
     for message of errors
       add_error_vers_vertical(errors[message], "#new_session")
 
+  $("#new_password").on("ajax:success", (e, data, status, xhr) ->
+    $("#passreset-form").hide()
+    $("#fade").hide()
+  ).on "ajax:error", (e, xhr, status, error) ->
+    clear_vertical_errors("#new_password")
+    errors = xhr.responseJSON.error
+    #alert errors
+    for message of errors
+      add_error_vers_vertical(errors[message], "#new_password")
+
   $("#new_client").on "click", "input.error-input", ->
     $(this).removeClass("error-input")
     error_message = $(this).next()

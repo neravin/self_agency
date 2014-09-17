@@ -1,20 +1,28 @@
 # encoding: utf-8
 class PasswordResetsController < ApplicationController
+
+  respond_to :html, :json
+
   skip_before_action :authorize
   def new 
   end
 
   def create
-    client = Client.find_by(email: params[:email])
-    if client
-      client.generate_password_reset_token!
-      client.update_attribute(:password_reset_sent_at, Time.zone.now)
-      Notifier.password_reset(client).deliver
-      flash[:success] = "Инструкции по восстановлению пароля отправлены на почту"
-      redirect_to ''
-    else
-      flash.now[:notice] = "Email не найден"
-      render action: 'new'
+    @client = Client.find_by(email: params[:email])
+    respond_to do |format|
+      if @client
+        @client.generate_password_reset_token!
+        @client.update_attribute(:password_reset_sent_at, Time.zone.now)
+        Notifier.password_reset(@client).deliver
+        format.html { render :text => "Пароль отправлен на почту", :status => :ok }
+        #flash[:success] = "Инструкции по восстановлению пароля отправлены на почту"
+        #redirect_to ''
+      else
+        #flash.now[:notice] = "Email не найден"
+        #render action: 'new'
+        #format.html { render 'new'}
+        format.json { render :json => { :error => { :no_email => 'Email не найден' } }, :status => 422  }
+      end
     end
   end
 

@@ -6,10 +6,13 @@
     </div>
   </div>
 
-  <%= form_tag password_resets_path do %>
+  <%= form_tag password_resets_path, :id => "new_password", remote: true do %>
     <h2>Восстановление пароля</h2>
     <legend>На вашу электронную почту будет отправленна дальнейшая инструкция.</legend>
 
+    <div class="error_explanation">
+    </div>
+    
     <fieldset>
     <div class="field">
       <%= text_field_tag :email, nil, :placeholder => "Email" %>
