@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
             sign_in client
             #flash[:success] = "Здравствуйте, #{client.name}. Вы вошли на сайт."
             #redirect_back_or ''
-            format.html { render :text => "Здравствуйте, #{client.name}.", :status => :ok }
+            format.html { render :text => "#{client.id}", :status => :ok }
             #format.json { render :json => "we good!", :status => :ok}
           end
         else

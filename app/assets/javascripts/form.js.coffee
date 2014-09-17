@@ -38,10 +38,12 @@ $(document).on "page:change", ->
         when "password_confirmation" then   add_error(errors[message], "#client_password_confirmation", "#signup-password-conf")
 
   $("#new_session").on("ajax:success", (e, data, status, xhr) ->
-    alert xhr.responseText
-    messages = data.responseJSON.notice
-    for message of messages
-      add_error_vers_vertical(errors[message], "#new_session")
+    #alert xhr.responseText
+    $("#signin-form").hide()
+    $("#fade").hide()
+    $("#signin-menu").remove()
+    $("#menu-ul").prepend "<li><a class='fa fa-user' href='/clients/#{xhr.responseText}'></a></li>"
+    $("#menu-ul").prepend '<li><a class="fa fa-sign-out" data-method="delete" href="/signout" rel="nofollow"></a></li>'
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_vertical_errors("#new_session")
     errors = xhr.responseJSON.error
