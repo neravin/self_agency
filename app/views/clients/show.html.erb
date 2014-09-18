@@ -9,7 +9,8 @@
   <div class="pseudo clearfix var2">
 <% end %>
     <div class = "foto">
-      <%= image_tag @client.photo_url(:thumb).to_s %>
+      <%# image_tag @client.photo_url(:thumb).to_s %>
+      <img src = "/assets/valera.jpg" />
     </div><!--/foto-->
 
     <div class = "user-description">
@@ -32,21 +33,49 @@
   </div><!--/pseudo-->
 
 <% if current_client.id == @client.id %>
-  <div id = "user-menu" class="clearfix">
+  <div id = "user-menu-horizontal">
     <div class="personal-link">
-      <%= link_to(edit_client_path(@client)) do %>
+      <%= link_to(edit_client_path(@client), class: "a-personal") do %>
         <i class="fa fa-pencil"></i>
       <% end %>
     </div><!--/personal-link-->
-    <div class="add-ad">
-      <%= link_to(new_advertisement_path) do %>
-        <i class="fa fa-plus"></i> Я хочу
+    <div class="personal-link">
+      <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+        <i class="fa fa-pencil"></i>
       <% end %>
-      <%= link_to(new_worker_path) do %>
-        <i class="fa fa-plus"></i> Я могу
+    </div><!--/personal-link-->
+    <div class="personal-link">
+      <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+        <i class="fa fa-pencil"></i>
       <% end %>
+    </div><!--/personal-link-->
+    <div class="personal-link">
+      <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+    </div><!--/personal-link-->
+    <div class="personal-link">
+      <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+    </div><!--/personal-link-->
+  </div><!--/user-menu-horizontal-->
+
+  <!--div id = "user-menu" class="clearfix">
+    <div class="personal-link">
+      <%# link_to(edit_client_path(@client)) do %>
+        <i class="fa fa-pencil"></i>
+      <%# end %>
     </div>
-  </div><!--/user-menu-->
+    <div class="add-ad">
+      <%# link_to(new_advertisement_path) do %>
+        <i class="fa fa-plus"></i> Я хочу
+      <%# end %>
+      <%# link_to(new_worker_path) do %>
+        <i class="fa fa-plus"></i> Я могу
+      <%# end %>
+    </div>
+  </div--><!--/user-menu-->
 <% end %>
 </div><!--/user-info-->
 

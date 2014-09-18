@@ -671,10 +671,12 @@ div[class*="flower"] > span[class]
   width: 49%;
   //float: left;
   //border-radius: 5px;
-  height: 200px;
+  height: 197px;
   margin-bottom: 20px;
   float: left;
-  .var1{
+  background: $new-light-yellow;
+  border-radius: 5px 5px 5px 5px;
+  /*.var1{
     .foto{
       border-radius: 5px 0 0 0;
     }
@@ -689,7 +691,7 @@ div[class*="flower"] > span[class]
     .user-description{
       border-radius: 0 5px 5px 0;
     }
-  }
+  }*/
   .foto{
     width: 30%;
     height: 100%;
@@ -697,7 +699,7 @@ div[class*="flower"] > span[class]
     display: block;
     content: ".";
     height: 160px;
-    background: $light-red;
+    //background: $light-red;
     text-align: center;
     img{
       display: block;
@@ -710,16 +712,18 @@ div[class*="flower"] > span[class]
   .user-description{
     width: 70%;
     float: right;
-    height: 160px;
-    background: white;
+    height: 197px;
+    //background: white;
     .pseudo{
       margin: 10px;
       margin-left: 20px;
     }
     h2{
       color: $middle-green;
+      //color: $blue;
+      //color: #fbbd54;
       margin-top: 20px;
-      color: $light-red;
+      //color: $light-red;
     }
     p{
       margin-bottom: 0.3em;
@@ -729,6 +733,7 @@ div[class*="flower"] > span[class]
         float: left;
         font-weight: normal;
         color: $gray;
+        color: $orange;
       }
       em{
         color: rgb(163, 171, 185);
@@ -736,10 +741,41 @@ div[class*="flower"] > span[class]
       }
     }
   }
-  #user-menu{
+  #user-menu-horizontal{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    .personal-link{
+      $a: 40px;
+      width: $a;
+      height: $a;
+      text-align: center;
+      border: 1px dashed $orange;
+      margin-bottom: -1px;
+      &:first-child{
+        border-radius: 0 5px 0 0;
+      }
+      &:last-child{
+        border-radius: 0 0 5px 0;
+      }
+      a{
+        width: $a;
+        height: $a;
+        display: block;
+        line-height: $a;
+        color: $orange;
+
+      }
+    }
+    .border-none{
+      border: none;
+    }
+  }
+  /*#user-menu{
     height: 40px;
     width: 100%;
     background: $blue;
+    background: #4eb6b6;
     border-radius: 0 0 5px 5px;
     display: block;
     margin-bottom: 20px;
@@ -774,6 +810,7 @@ div[class*="flower"] > span[class]
       }
     }
   }
+  */
 }
 
 #reviews{
