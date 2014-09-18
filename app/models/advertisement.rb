@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Advertisement < ActiveRecord::Base
   belongs_to :service
-  has_and_belongs_to_many :clients
+  
 
   validate :start_hour, :happened_at_is_valid_datetime
   validates :description, presence: true
