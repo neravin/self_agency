@@ -7,12 +7,12 @@
     <div class="cbp_tmlabel">
       <h2><%= ad.service.name %></h2>
       <p><%= ad.description %></p>
-      <span class = "price"><%= ad.price %> у.е. </span>
+      <span class = "price"><%= ad.price %> <i class="fa fa-rub" style = "font-size: 0.9em;"></i></span>
       <% if ad.state == 0 %>
-        <span class = "button light-yellow open perform-ad"
+        <span class = "button open perform-ad"
           data-ad_id="<%= ad.id %>">Выполнить</span>
       <% elsif ad.state == 1 %>
-        <span class = "button not-button white-green">Занят</span>
+        <span class = "button not-button">Занят</span>
       <% elsif ad.state == 2 %>
         <span class = "button not-button white-green">Выполнен</span>
       <% elsif ad.state == 3 %>

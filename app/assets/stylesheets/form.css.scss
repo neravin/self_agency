@@ -169,6 +169,7 @@ input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
     background: $light2-pink;
     height: 40px;
     padding-top: 10px;
+    border-radius: 5px 5px 0 0;
     .links{
       color: white;
       font-family: 'pt_sansregular';
