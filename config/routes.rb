@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :clients
   resources :offer_services
   resources :admin_routes
+  resources :queues
   resources :activation_client, only: [:edit, :update]
   resources :advertisements do
     collection do

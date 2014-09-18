@@ -7,7 +7,9 @@ class Client < ActiveRecord::Base
   has_many :advertisements
   has_many :reviews
   has_many :workers
-  has_and_belongs_to_many :advertisements
+
+  has_and_belongs_to_many :queues
+
   mount_uploader :photo, ImageUploader
   validates :photo,
     #:presence => true,
