@@ -85,11 +85,12 @@ class AdvertisementsController < ApplicationController
 
   def create
     @advertisement = Advertisement.new(advertisement_params)
-    @queue = Queue.new()
+    @fantom = Fantom.new()
     respond_to do |format|
-      if (@advertisement.save && @queue.save)
+      if (@advertisement.save && @fantom.save)
+        @fantom.update_attribute("advertisement_id", @advertisement.id)
         current_client.advertisements << @advertisement
-        @queue.advertisement << @advertisement
+        @fantom.advertisement << @advertisement
         flash[:success] = "Объявление добавлено";
         format.html { redirect_to current_client }
         #format.json { render :show, status: :created, location: @advertisement }

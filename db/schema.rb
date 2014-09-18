@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912134505) do
+ActiveRecord::Schema.define(version: 20140918102551) do
 
   create_table "admins", force: true do |t|
     t.string "name"
@@ -66,24 +66,24 @@ ActiveRecord::Schema.define(version: 20140912134505) do
     t.string   "phone"
   end
 
-  create_table "clients_queues", id: false, force: true do |t|
-    t.integer "queue_id",  null: false
+  create_table "clients_fantoms", id: false, force: true do |t|
+    t.integer "fantom_id", null: false
     t.integer "client_id", null: false
   end
 
-  add_index "clients_queues", ["client_id"], name: "index_clients_queues_on_client_id"
-  add_index "clients_queues", ["queue_id"], name: "index_clients_queues_on_queue_id"
+  add_index "clients_fantoms", ["client_id"], name: "index_clients_fantoms_on_client_id"
+  add_index "clients_fantoms", ["fantom_id"], name: "index_clients_fantoms_on_fantom_id"
+
+  create_table "fantoms", force: true do |t|
+    t.integer "advertisement_id"
+  end
+
+  add_index "fantoms", ["advertisement_id"], name: "index_fantoms_on_advertisement_id"
 
   create_table "offer_services", force: true do |t|
     t.string "name"
     t.text   "description"
   end
-
-  create_table "queues", force: true do |t|
-    t.integer "advertisement_id"
-  end
-
-  add_index "queues", ["advertisement_id"], name: "index_queues_on_advertisement_id"
 
   create_table "reviews", force: true do |t|
     t.string  "name"

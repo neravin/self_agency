@@ -1,5 +1,5 @@
 # encoding: utf-8
-class QueuesController < ApplicationController
+class FantomsController < ApplicationController
 
 
 private 
