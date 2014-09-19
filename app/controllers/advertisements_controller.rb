@@ -90,7 +90,6 @@ class AdvertisementsController < ApplicationController
       if (@advertisement.save && @fantom.save)
         @fantom.update_attribute("advertisement_id", @advertisement.id)
         current_client.advertisements << @advertisement
-        @fantom.advertisement << @advertisement
         flash[:success] = "Объявление добавлено";
         format.html { redirect_to current_client }
         #format.json { render :show, status: :created, location: @advertisement }
