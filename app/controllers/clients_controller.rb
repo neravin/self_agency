@@ -56,6 +56,13 @@ class ClientsController < ApplicationController
     end
   end
 
+  def select_category
+    respond_to do |format|
+      select_services = Service.where("category_id = #{params[:id]}") 
+      format.json { render :json => select_services }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client

@@ -9,12 +9,12 @@
     <div class = "one-column">
       <div class="field">
         <%= collection_select(:category, :category_id, Category.all, :id, :name, 
-          {:prompt => "Категория"}, {:class => "cs-select2 cs-skin-border"}) %>
+          {:prompt => "Категория"}, {:class => "category-select cs-select2 cs-skin-border"}) %>
       </div>
 
       <div class="field">
         <%= collection_select(:advertisement, :service_id, Service.all, :id, :name, 
-          {:prompt => "Тип объявления"}, {:class => "cs-select cs-skin-border"}) %>
+          {:prompt => "Тип объявления"}, {:class => "services-select cs-select cs-skin-border"}) %>
       </div>
 
       <div class="field">

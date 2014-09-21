@@ -74,9 +74,23 @@ $(document).on "page:change", ->
     $("#new_advertisement").parent().css "margin-top", "#{-h/2}px"
     $("#new_advertisement").parent().show()
 
-
-
-
+  $(".category-select").children(".cs-options").children().children().click ->
+    id = $(this).attr("data-value")
+    if $.isNumeric(id)
+      id = parseInt(id)
+      $.ajax({
+        type: "POST"
+        url: "/select_category"
+        data: { id: id },
+        success: (result) ->
+          $("#advertisement_service_id").children().remove()
+          $(".services-select").find("li").remove()
+          # ul <li data-option="" data-value=""><span>Тип объявления</span></li>
+          # <option value="25">Капитальный ремонт</option>
+          for i in [0...result.length]
+            $("#advertisement_service_id").children().append "<option value='#{result[i]["id"]}'>#{result[i]["name"]}</option>"
+            $(".services-select").find("ul").append "<li data-option='' data-value='#{result[i]["id"]}'><span>#{result[i]["name"]}</span></li>"
+      })
 
 add_error = (message, id_input, id_text_error) ->
   $(id_text_error).append '<div class = "error-form"><p>' + message + '</p></div>'
