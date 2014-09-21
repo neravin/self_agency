@@ -156,6 +156,7 @@ input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
   }
   .start-time{
     float: left;
+    padding-left: 50px;
     margin-left: ($form-shell-width - $input-width)/2;
   }
   .end-time{
@@ -232,6 +233,28 @@ input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
     opacity: 0;
     filter: alpha(opacity=0);
     cursor: pointer;
+  }
+}
+
+.fat-style{
+  left: 50%;
+  margin-left: -$form-shell-width - 12.5px;
+  width: 2*$form-shell-width - 25px;
+  background: white;
+  .one-column, .two-column{
+    width: 50%;
+  }
+  .one-column{
+    float: left;
+    .field{
+      margin-right: -12.5px;
+    }
+  }
+  .two-column{
+    float: right;
+    .field{
+      margin-left: -12.5px;
+    }
   }
 }
 
