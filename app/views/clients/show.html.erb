@@ -77,9 +77,9 @@
 
 <div id = "i-want-column">
   <h2>Текущие объявления</h2>
-  <%= link_to(new_advertisement_path, id: "client-add-advertisements", class: "add-button") do %>
+  <span id = "client-add-advertisements", class = "add-button">
     <i class="fa fa-plus"></i> Добавить новое объявление
-  <% end %>
+  </span>
 
   <% @client.advertisements.each do |ad| %>
     <div class="post" data-ad="<%= ad.id %>">
@@ -109,9 +109,9 @@
 
 <div id = "i-can-column">
   <h2>Текущие услуги</h2>
-  <%= link_to(new_worker_path, id: "client-add-services", class: "add-button") do %>
+  <span id = "client-add-services", class = "add-button">
     <i class="fa fa-plus"></i> Добавить новую услугу
-  <% end %>
+  </span>
 
   <% @client.workers.each do |ad| %>
     <div class="post">
@@ -126,3 +126,5 @@
     </div>
   <% end %>
 </div>
+
+<%= render 'new_advertisement' %>

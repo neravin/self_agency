@@ -8,6 +8,7 @@ $(document).on "page:change", ->
     $("#signup-form").hide()
     $("#passreset-form").hide()
     $("#success-message").hide()
+    $("#new_advertisement").parent().hide()
     $(this).hide()
 
   $(".signin-link").click ->
@@ -66,6 +67,16 @@ $(document).on "page:change", ->
     error_message = $(this).next()
     error_message.fadeOut ->
       error_message.remove()
+
+  $("#client-add-advertisements").click ->
+    $("#fade").show()
+    h = $("#new_advertisement").parent().height()
+    $("#new_advertisement").parent().css "margin-top", "#{-h/2}px"
+    $("#new_advertisement").parent().show()
+
+
+
+
 
 add_error = (message, id_input, id_text_error) ->
   $(id_text_error).append '<div class = "error-form"><p>' + message + '</p></div>'

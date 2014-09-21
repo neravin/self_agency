@@ -25,7 +25,7 @@ input.error-input::-moz-placeholder { /* Mozilla Firefox 19+ */
   opacity:  1;
 }
 input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
-  color:    white
+  color:    white;
 }
 
 .field{
@@ -101,7 +101,7 @@ input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
   }
   div.cs-skin-border {
     width: 300px;
-    background: $light2-yellow;
+    background: $new-light-yellow;
   }
 
   form{

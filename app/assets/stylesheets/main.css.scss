@@ -1091,7 +1091,7 @@ $a_foto: 110px;
   }
 }
 
-a.add-button{
+span.add-button{
   display: block;
   color: $orange;
   border: 1px dashed $orange;
@@ -1099,6 +1099,7 @@ a.add-button{
   text-align: center;
   margin: 0 0 20px 0;
   border-radius: 5px;
+  cursor: pointer;
   &:hover{
     border: 1px dashed rgba(255, 255, 255, 0);
   }
