@@ -87,10 +87,20 @@ $(document).on "page:change", ->
           $(".services-select").find("li").remove()
           # ul <li data-option="" data-value=""><span>Тип объявления</span></li>
           # <option value="25">Капитальный ремонт</option>
+          $(".services-select").find("ul").append '<li data-option="" data-value=""><span>Тип объявления</span></li>'
+          $("#advertisement_service_id").append  '<option value="">Тип объявления</option>'
           for i in [0...result.length]
-            $("#advertisement_service_id").children().append "<option value='#{result[i]["id"]}'>#{result[i]["name"]}</option>"
+            $("#advertisement_service_id").append "<option value='#{result[i]["id"]}'>#{result[i]["name"]}</option>"
             $(".services-select").find("ul").append "<li data-option='' data-value='#{result[i]["id"]}'><span>#{result[i]["name"]}</span></li>"
+          $(".services-select").children(".cs-placeholder").text("Тип объявления")
       })
+
+  $(".services-select").find("ul").on "click", "li", ->
+    $(this).parent().children().removeClass("cs-selected")
+    $(this).addClass("cs-selected")
+    $(".services-select").removeClass("cs-active")
+    $(".services-select").children(".cs-placeholder").text($(this).children().text())
+
 
 add_error = (message, id_input, id_text_error) ->
   $(id_text_error).append '<div class = "error-form"><p>' + message + '</p></div>'
