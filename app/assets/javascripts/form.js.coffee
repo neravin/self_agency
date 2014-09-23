@@ -66,13 +66,41 @@ $(document).on "page:change", ->
     alert "lupe win"
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
+    clear_vertical_errors("#new_advertisement")
     errors = xhr.responseJSON.error
-    for message of errors
-      if errors[message][0] == 'не может быть пустым'
 
-      else
-        1
-        #alert errors[message]
+    different_errors = []
+    flag_repeat = false
+    for message of errors
+      for i in [0...errors[message].length]
+        if different_errors.length > 0
+          flag_repeat = false
+          for j in [0...different_errors.length]
+            if different_errors[j] == errors[message][i]
+              flag_repeat = true
+              break
+          if !flag_repeat
+            different_errors.push errors[message][i]
+        else
+          different_errors.push errors[message][i]
+
+    #for i in [0...different_errors.length]
+    #  alert different_errors[i]
+
+    # rename messages errors
+    for i in [0...different_errors.length]
+      if different_errors[i] == 'не может быть пустым'
+        different_errors[i] = 'Заполните обязательные поля'
+      if different_errors[i] == 'не является числом'
+        different_errors[i] = 'Цена имеет неверный формат'
+
+    # output errors in DOM
+    for i in [0...different_errors.length]
+      add_error_vers_vertical(different_errors[i], "#new_advertisement")
+
+    h = $("#new_advertisement").parent().height()
+    $("#new_advertisement").parent().css "margin-top", "#{-h/2}px"
+
     for message of errors
       switch message
         when "description" then     add_error_without_message("#advertisement_description")
