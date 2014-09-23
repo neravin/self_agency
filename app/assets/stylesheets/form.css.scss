@@ -13,6 +13,14 @@ $form-half: 252.5px;
   
 }
 
+.error-input{
+  background: $light2-red !important;
+  color: white !important;
+  .cs-placeholder{
+    color: white !important;
+  }
+}
+
 input.error-input::-webkit-input-placeholder { /* WebKit browsers */
   color:    white;
 }

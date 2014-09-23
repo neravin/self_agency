@@ -62,11 +62,40 @@ $(document).on "page:change", ->
     for message of errors
       add_error_vers_vertical(errors[message], "#new_password")
 
+  $("#new_advertisement").on("ajax:success", (e, data, status, xhr) ->
+    alert "lupe win"
+  ).on "ajax:error", (e, xhr, status, error) ->
+    clear_errors()
+    errors = xhr.responseJSON.error
+    for message of errors
+      if errors[message][0] == 'не может быть пустым'
+
+      else
+        1
+        #alert errors[message]
+    for message of errors
+      switch message
+        when "description" then     add_error_without_message("#advertisement_description")
+        when "city" then            add_error_without_message("#advertisement_city")
+        when "address" then         add_error_without_message("#advertisement_address")
+        when "date" then            add_error_without_message("#advertisement_date")
+        when "price" then           add_error_without_message("#advertisement_price")
+        when "service_id" then      add_error_without_message(".services-select")
+
   $("#new_client").on "click", "input.error-input", ->
     $(this).removeClass("error-input")
     error_message = $(this).next()
     error_message.fadeOut ->
       error_message.remove()
+
+  $(".two-column").on "click", "input.error-input", ->
+    $(this).removeClass("error-input")
+
+  $(".one-column").on "click", "textarea.error-input", ->
+    $(this).removeClass("error-input")
+
+  $(".one-column").on "click", ".services-select", ->
+    $(this).removeClass("error-input")
 
   $("#client-add-advertisements").click ->
     $("#fade").show()
@@ -104,6 +133,9 @@ $(document).on "page:change", ->
 
 add_error = (message, id_input, id_text_error) ->
   $(id_text_error).append '<div class = "error-form"><p>' + message + '</p></div>'
+  $(id_input).addClass("error-input")
+
+add_error_without_message = (id_input) ->
   $(id_input).addClass("error-input")
 
 add_error_vers_vertical = (message, id_form) ->

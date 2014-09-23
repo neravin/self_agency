@@ -1,6 +1,6 @@
 <div class = "form-shell fat-style">
   <%# form_for @advertisement do |f| %>
-  <%= form_for(:advertisement, url: advertisement_path, remote: true, html: { id: "new_advertisement" }) do |f| %>
+  <%= form_for(:advertisement, :url => { :controller => "advertisements", :action => "create" }, remote: true, html: { id: "new_advertisement" }) do |f| %>
   <fieldset>
     <h2>Новый тендер</h2>
       <div id="error_explanation">
@@ -17,7 +17,7 @@
           {:prompt => "Тип объявления"}, {:class => "services-select cs-select cs-skin-border"}) %>
       </div>
 
-      <div class="field">
+      <div id = "ad-description" class="field">
         <legend class="label">Описание:</legend>
         <%= f.text_area :description %>
       </div>
@@ -53,7 +53,7 @@
         <%= f.date_field :date %>
       </div>
 
-      <div class="actions">
+      <div class="field actions">
         <%= f.submit :class => "button middle_green", :value => "Добавить" %>
       </div>
     </div><!--/two-column-->

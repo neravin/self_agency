@@ -85,17 +85,18 @@ class AdvertisementsController < ApplicationController
 
   def create
     @advertisement = Advertisement.new(advertisement_params)
-    @fantom = Fantom.new()
+    #@fantom = Fantom.new()
     respond_to do |format|
-      if (@advertisement.save && @fantom.save)
-        @fantom.update_attribute("advertisement_id", @advertisement.id)
-        current_client.advertisements << @advertisement
-        flash[:success] = "Объявление добавлено";
-        format.html { redirect_to current_client }
+      if (@advertisement.save)
+      #if (@advertisement.save && @fantom.save)
+        #@fantom.update_attribute("advertisement_id", @advertisement.id)
+        #current_client.advertisements << @advertisement
+        #flash[:success] = "Объявление добавлено";
+        #format.html { redirect_to current_client }
         #format.json { render :show, status: :created, location: @advertisement }
       else
-        format.html { render :new }
-        #format.json { render json: @advertisement.errors, status: :unprocessable_entity }
+        #format.html { render :new }
+        format.json { render :json => { :error => @advertisement.errors.messages }, :status => 500 }
       end
     end
   end

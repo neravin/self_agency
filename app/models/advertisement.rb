@@ -2,17 +2,18 @@
 class Advertisement < ActiveRecord::Base
   belongs_to :service
   
-
-  validate :start_hour, :happened_at_is_valid_datetime
   validates :description, presence: true
   validates :city, presence: true
   validates :address, presence: true
   validates :date, presence: true
   validates :service_id, presence: true
+  validates :price, presence: true
+  validates :price, numericality: {greater_than_or_equal_to: 10}
+  #validate :start_hour, :happened_at_is_valid_datetime
 
-  def happened_at_is_valid_datetime
-    errors.add('Время начала', ' не должно превышать время конца') if (start_hour > end_hour)
-  end
+  #def happened_at_is_valid_datetime
+  #  errors.add('Время начала', ' не должно превышать время конца') if (start_hour > end_hour)
+  #end
 
   States = {
     :open => 0,
