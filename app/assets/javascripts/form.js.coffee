@@ -129,7 +129,8 @@ $(document).on "page:change", ->
     $(this).addClass("cs-selected")
     $(".services-select").removeClass("cs-active")
     $(".services-select").children(".cs-placeholder").text($(this).children().text())
-
+    id = $(this).attr "data-value"
+    $(".services-select").val(id)
 
 add_error = (message, id_input, id_text_error) ->
   $(id_text_error).append '<div class = "error-form"><p>' + message + '</p></div>'
