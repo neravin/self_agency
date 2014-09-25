@@ -1,4 +1,4 @@
-<div class = "form-shell fat-style">
+<div id = "new-ad-form" class = "form-shell fat-style">
   <%# form_for @advertisement do |f| %>
   <%= form_for(:advertisement, :url => { :controller => "advertisements", :action => "create" }, remote: true, html: { id: "new_advertisement" }) do |f| %>
   <fieldset>
@@ -38,17 +38,21 @@
         <%= f.text_field :price, :placeholder => "Цена" %>
       </div>
 
-      <div class="field">
+      <!--div class="field">
         <div class="clearfix">
           <div class="field start-time">
             <span class = "for-time">Время: c </span>
-            <%= f.time_field :start_hour %>
+            <%# f.time_field :start_hour %>
             <span class = "for-time po">  по </span>
           </div>
           <div class="field end-time">
-            <%= f.time_field :end_hour %>
+            <%# f.time_field :end_hour %>
           </div>
         </div>
+      </div-->
+
+      <div class="field">
+        <%= f.text_field :duration, :placeholder => "Срок выполнения" %>
       </div>
 
       <div class="field">

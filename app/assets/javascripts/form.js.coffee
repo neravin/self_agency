@@ -23,6 +23,7 @@ $(document).on "page:change", ->
     $(this).parent().parent().hide()
     $("#passreset-form").show()
 
+
   $("#new_client").on("ajax:success", (e, data, status, xhr) ->
     #$("#new_client").append xhr.responseText
     $("#signup-form").hide()
@@ -38,6 +39,7 @@ $(document).on "page:change", ->
         when "password" then                add_error(errors[message], "#client_password", "#signup-password")
         when "password_confirmation" then   add_error(errors[message], "#client_password_confirmation", "#signup-password-conf")
 
+
   $("#new_session").on("ajax:success", (e, data, status, xhr) ->
     #alert xhr.responseText
     $("#signin-form").hide()
@@ -52,6 +54,7 @@ $(document).on "page:change", ->
     for message of errors
       add_error_vers_vertical(errors[message], "#new_session")
 
+
   $("#new_password").on("ajax:success", (e, data, status, xhr) ->
     $("#passreset-form").hide()
     $("#fade").hide()
@@ -62,8 +65,11 @@ $(document).on "page:change", ->
     for message of errors
       add_error_vers_vertical(errors[message], "#new_password")
 
+
   $("#new_advertisement").on("ajax:success", (e, data, status, xhr) ->
-    alert "lupe win"
+    $("#new-ad-form").hide()
+    $("#fade").hide()
+    clear_value_input("#new-ad-form")
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     clear_vertical_errors("#new_advertisement")
@@ -109,6 +115,7 @@ $(document).on "page:change", ->
         when "date" then            add_error_without_message("#advertisement_date")
         when "price" then           add_error_without_message("#advertisement_price")
         when "service_id" then      add_error_without_message(".services-select")
+        when "duration" then        add_error_without_message("#advertisement_duration")
 
   $("#new_client").on "click", "input.error-input", ->
     $(this).removeClass("error-input")
@@ -186,3 +193,4 @@ clear_vertical_errors = (id_form) ->
 
 clear_value_input = (id_form) ->
   $(id_form).find("input").not(':input[type=button], :input[type=submit], :input[type=reset]').val('')
+  $(id_form).find("textarea").val('')

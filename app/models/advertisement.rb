@@ -9,6 +9,8 @@ class Advertisement < ActiveRecord::Base
   validates :service_id, presence: true
   validates :price, presence: true
   validates :price, numericality: {greater_than_or_equal_to: 10}
+  validates :duration, presence: true
+  validates :duration, numericality: {greater_than_or_equal_to: 1}
   #validate :start_hour, :happened_at_is_valid_datetime
 
   #def happened_at_is_valid_datetime

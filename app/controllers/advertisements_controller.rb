@@ -88,14 +88,13 @@ class AdvertisementsController < ApplicationController
     #@fantom = Fantom.new()
     respond_to do |format|
       if (@advertisement.save)
-      #if (@advertisement.save && @fantom.save)
-        #@fantom.update_attribute("advertisement_id", @advertisement.id)
-        #current_client.advertisements << @advertisement
-        #flash[:success] = "Объявление добавлено";
-        #format.html { redirect_to current_client }
-        #format.json { render :show, status: :created, location: @advertisement }
+        @fantom = Fantom.new()
+        if (@fantom.save)
+          @fantom.update_attribute("advertisement_id", @advertisement.id)
+          current_client.advertisements << @advertisement
+          format.json { render json: @advertisement, status: :created, location: @advertisement }
+        end
       else
-        #format.html { render :new }
         format.json { render :json => { :error => @advertisement.errors.messages }, :status => 500 }
       end
     end
@@ -160,8 +159,7 @@ private
       :city, 
       :address, 
       :date, 
-      :start_hour, 
-      :end_hour,
+      :duration,
       :service_id)
   end
 
