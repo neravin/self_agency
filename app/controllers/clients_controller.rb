@@ -10,6 +10,11 @@ class ClientsController < ApplicationController
     @client = Client.new
   end
 
+  def index
+    @search = Client.search(params[:q])
+    @client = @search.result
+  end
+
   def edit
   end
 

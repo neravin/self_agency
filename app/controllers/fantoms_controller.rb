@@ -4,10 +4,10 @@ class FantomsController < ApplicationController
 
 private 
 
-	def set_queue
-		@queue = Queue.find(params[:id])
+	def set_fantom
+		@fantom = Fantom.find(params[:id])
 	end
-	def queue_params
-		params.require(:queue).permit(:id, :advertisement_id)
+	def fantom_params
+		params.require(:fantom).permit(:id, :advertisement_id)
 	end
 end

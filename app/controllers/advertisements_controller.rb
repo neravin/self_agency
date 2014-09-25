@@ -6,6 +6,8 @@ class AdvertisementsController < ApplicationController
 
 
   def index
+    @search = Advertisement.search(params[:q])
+    @advertisements = @search.result
     ad_service_id = params[:advertisement]
     worker_service_id = params[:worker]
 
@@ -76,6 +78,7 @@ class AdvertisementsController < ApplicationController
         end
       end
     end
+    
 
 	end
 
@@ -90,7 +93,6 @@ class AdvertisementsController < ApplicationController
       if (@advertisement.save && @fantom.save)
         @fantom.update_attribute("advertisement_id", @advertisement.id)
         current_client.advertisements << @advertisement
-        @fantom.advertisement << @advertisement
         flash[:success] = "Объявление добавлено";
         format.html { redirect_to current_client }
         #format.json { render :show, status: :created, location: @advertisement }
@@ -113,6 +115,13 @@ class AdvertisementsController < ApplicationController
         format.html { render :edit }
         #format.json { render json: @advertisement.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+      @advertisement.destroy
+      respond_to do |format|
+      format.html { redirect_to advertisements_path }
     end
   end
 

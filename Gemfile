@@ -62,3 +62,4 @@ group :production do
 end
 
 gem 'unicode', '0.4.4.1'
+gem 'ransack'

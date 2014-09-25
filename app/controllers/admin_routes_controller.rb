@@ -3,8 +3,10 @@ class AdminRoutesController < ApplicationController
  # before_action :set_clien, only: [:show]
   def index
     @service = Service.all
-    @category = Category.all
+    #@category = Category.all
     @client = Client.all
+    @search = Category.search(params[:q])
+    @category = @search.result
   end
 
   def edit

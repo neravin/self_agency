@@ -1,0 +1,21 @@
+<h2> Пользователи </h2>
+<%= search_form_for @search do |g| %>
+  <div class="field">
+    <%= g.label :name_cont, "Name contains" %>
+    <%= g.text_field :name_cont %>
+  </div>
+  <div class="actions"><%= g.submit "Search" %></div>
+<% end %>
+<table>
+<% @client.each do |client| %>
+  <tr>
+    <td><%= client.name %></td>
+    <td><%= link_to(edit_client_path(client)) do %>
+      <i class="fa fa-pencil"></i>
+    <% end %></td>
+    <td><%= link_to(client, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+      <i class="fa fa-trash-o"></i>
+    <% end %><td>
+  </tr>
+<% end %></br>
+</table>
