@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925085823) do
+ActiveRecord::Schema.define(version: 20140925101110) do
 
   create_table "admins", force: true do |t|
     t.string "name"
@@ -19,19 +19,21 @@ ActiveRecord::Schema.define(version: 20140925085823) do
   end
 
   create_table "advertisements", force: true do |t|
-    t.string  "name"
-    t.integer "price"
-    t.string  "city"
-    t.string  "address"
-    t.integer "client_id"
-    t.date    "date"
-    t.time    "start_hour"
-    t.time    "end_hour"
-    t.text    "description"
-    t.integer "state"
-    t.integer "service_id"
-    t.integer "worker_id"
-    t.integer "duration"
+    t.string   "name"
+    t.integer  "price"
+    t.string   "city"
+    t.string   "address"
+    t.integer  "client_id"
+    t.date     "date"
+    t.time     "start_hour"
+    t.time     "end_hour"
+    t.text     "description"
+    t.integer  "state"
+    t.integer  "service_id"
+    t.integer  "worker_id"
+    t.integer  "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "advertisements", ["client_id"], name: "index_advertisements_on_client_id"
@@ -103,14 +105,16 @@ ActiveRecord::Schema.define(version: 20140925085823) do
   add_index "services", ["category_id"], name: "index_services_on_category_id"
 
   create_table "workers", force: true do |t|
-    t.string  "name"
-    t.integer "price"
-    t.string  "city"
-    t.string  "address"
-    t.text    "description"
-    t.integer "client_id"
-    t.integer "state"
-    t.integer "service_id"
+    t.string   "name"
+    t.integer  "price"
+    t.string   "city"
+    t.string   "address"
+    t.text     "description"
+    t.integer  "client_id"
+    t.integer  "state"
+    t.integer  "service_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "workers", ["client_id"], name: "index_workers_on_client_id"

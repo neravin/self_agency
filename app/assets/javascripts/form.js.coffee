@@ -70,6 +70,18 @@ $(document).on "page:change", ->
     $("#new-ad-form").hide()
     $("#fade").hide()
     clear_value_input("#new-ad-form")
+    advertisement = xhr.responseJSON
+    #alert xhr.responseText
+    $("#ad-posts").prepend " 
+      <div class='post' data-ad='#{advertisement.id}'>
+        <a class='edit-advertisement' href='/advertisements/#{advertisement.id}/edit' title='Изменить'>
+          <i class='fa fa-pencil'></i>
+        </a>      
+        <h2>#{advertisement.service.name}</h2>
+        <p>#{advertisement.description}</p>
+        <span class='price'>#{advertisement.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
+      </div>"
+
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     clear_vertical_errors("#new_advertisement")
