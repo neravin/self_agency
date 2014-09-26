@@ -1,8 +1,10 @@
-<div class = "form-shell">
+<div id = "new-worker-form" class = "form-shell fat-style">
   <%= form_for(:worker, :url => { :controller => "workers", :action => "create" }, remote: true, html: { id: "new_worker" }) do |f| %>
     <fieldset>
     <h2>Новая услуга</h2>
 
+    <div class="error_explanation">
+    </div>
 
     <div class = "one-column">
       <div class="field">
@@ -34,7 +36,7 @@
         <%= f.text_field :price, :placeholder => "Цена" %>
       </div>
 
-      <div class="actions">
+      <div class="field actions">
         <%= f.submit :class => "button middle_green", :value => "Добавить" %>
       </div>
     </div><!--/two-column-->

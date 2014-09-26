@@ -67,6 +67,39 @@ $(document).on "page:change", ->
       add_error_vers_vertical(errors[message], "#new_password")
 
 
+  $("#new_worker").on("ajax:success", (e, data, status, xhr) -> 
+    $("#new-worker-form").hide()
+    $("#fade").hide()
+    clear_value_input("new-worker-form")
+    worker = xhr.responseJSON
+    $("#ad-posts").prepend " 
+      <div class='post' data-ad='#{worker.id}'>
+        <a class='edit-worker' href='/workers/#{worker.id}/edit' title='Изменить'>
+          <i class='fa fa-pencil'></i>
+        </a>      
+        <h2>#{worker.service.name}</h2>
+        <p>#{worker.description}</p>
+        <span class='price'>#{worker.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
+      </div>"
+  ).on "ajax:error", (e, xhr, status, error) ->
+    clear_errors()
+    clear_vertical_errors("#new_worker")
+    errors = xhr.responseJSON.error
+    different_errors = get_different_errors(errors)
+    output_dif_errors("#new_worker", different_errors)
+
+    # change height form
+    h = $("#new_worker").parent().height()
+    $("#new_worker").parent().css "margin-top", "#{-h/2}px"
+
+    for message of errors
+      switch message
+        when "description" then     add_error_without_message("#worker_description")
+        when "city" then            add_error_without_message("#worker_city")
+        when "address" then         add_error_without_message("#worker_address")
+        when "price" then           add_error_without_message("#worker_price")
+        when "service_id" then      add_error_without_message("#new_worker .services-select")
+
   $("#new_advertisement").on("ajax:success", (e, data, status, xhr) ->
     $("#new-ad-form").hide()
     $("#fade").hide()
@@ -82,41 +115,16 @@ $(document).on "page:change", ->
         <p>#{advertisement.description}</p>
         <span class='price'>#{advertisement.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
       </div>"
-
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     clear_vertical_errors("#new_advertisement")
     errors = xhr.responseJSON.error
-
-    different_errors = []
-    flag_repeat = false
-    for message of errors
-      for i in [0...errors[message].length]
-        if different_errors.length > 0
-          flag_repeat = false
-          for j in [0...different_errors.length]
-            if different_errors[j] == errors[message][i]
-              flag_repeat = true
-              break
-          if !flag_repeat
-            different_errors.push errors[message][i]
-        else
-          different_errors.push errors[message][i]
-
+    different_errors = get_different_errors(errors)
+    output_dif_errors("#new_advertisement", different_errors)
     #for i in [0...different_errors.length]
     #  alert different_errors[i]
 
-    # rename messages errors
-    for i in [0...different_errors.length]
-      if different_errors[i] == 'не может быть пустым'
-        different_errors[i] = 'Заполните обязательные поля'
-      if different_errors[i] == 'не является числом'
-        different_errors[i] = 'Цена имеет неверный формат'
-
-    # output errors in DOM
-    for i in [0...different_errors.length]
-      add_error_vers_vertical(different_errors[i], "#new_advertisement")
-
+    # change height form
     h = $("#new_advertisement").parent().height()
     $("#new_advertisement").parent().css "margin-top", "#{-h/2}px"
 
@@ -127,7 +135,7 @@ $(document).on "page:change", ->
         when "address" then         add_error_without_message("#advertisement_address")
         when "date" then            add_error_without_message("#advertisement_date")
         when "price" then           add_error_without_message("#advertisement_price")
-        when "service_id" then      add_error_without_message(".services-select")
+        when "service_id" then      add_error_without_message("#new_advertisement .services-select")
         when "duration" then        add_error_without_message("#advertisement_duration")
 
   $("#new_client").on "click", "input.error-input", ->
@@ -189,6 +197,33 @@ select_category_ajax = (form_id) ->
     id = $(this).attr "data-value"
     $("#{form_id} .services-select").val(id)
 
+get_different_errors = (errors) ->
+  different_errors = []
+  flag_repeat = false
+  for message of errors
+    for i in [0...errors[message].length]
+      if different_errors.length > 0
+        flag_repeat = false
+        for j in [0...different_errors.length]
+          if different_errors[j] == errors[message][i]
+            flag_repeat = true
+            break
+        if !flag_repeat
+          different_errors.push errors[message][i]
+      else
+        different_errors.push errors[message][i]
+  return different_errors
+
+output_dif_errors = (form_id, different_errors) ->
+  # rename messages errors
+  for i in [0...different_errors.length]
+    if different_errors[i] == 'не может быть пустым'
+      different_errors[i] = 'Заполните обязательные поля'
+    if different_errors[i] == 'не является числом'
+      different_errors[i] = 'Цена имеет неверный формат'
+  # output errors in DOM
+  for i in [0...different_errors.length]
+    add_error_vers_vertical(different_errors[i], form_id)
 
 add_error = (message, id_input, id_text_error) ->
   $(id_text_error).append '<div class = "error-form"><p>' + message + '</p></div>'

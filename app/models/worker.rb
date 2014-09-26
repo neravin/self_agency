@@ -2,6 +2,7 @@
 class Worker < ActiveRecord::Base
   belongs_to :service
 	validates :city, :address, :price, :service_id, presence: true
+  validates :price, numericality: {greater_than_or_equal_to: 10}
 
   States = {
     :open => 0,

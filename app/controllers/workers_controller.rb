@@ -53,11 +53,11 @@ class WorkersController < ApplicationController
 			if @worker.save
 	      current_client.workers << @worker
 	      #flash[:success] = "Объявление добавлено";
-	      format.html { redirect_to current_client }
-	      format.json { render :show, status: :created, location: @worker }
+	      #format.html { redirect_to current_client }
+	      #format.json { render :show, status: :created, location: @worker }
+        format.json { render json: @worker.to_json(:include => { :service => { :only => :name } } ), status: :created, location: @worker }
 	    else
-	      format.html { render :new }
-	      format.json { render json: @worker.errors, status: :unprocessable_entity }
+        format.json { render :json => { :error => @worker.errors.messages }, :status => 500 }
 	    end
   	end
 	end
