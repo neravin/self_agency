@@ -6,6 +6,11 @@ class ServicesController < ApplicationController
 		@category = Category.new
 	end
 
+	def index
+		@search = Service.search(params[:q])
+    	@service = @search.result
+	end
+
 	def edit
 		
 	end

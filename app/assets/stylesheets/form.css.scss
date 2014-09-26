@@ -1,0 +1,303 @@
+@import "palette";
+@import "function";
+
+$form-shell-width: 350px;
+$input-width: 300px;
+$form-half: 252.5px;
+
+.form-shell input:not([type=submit]):not([type=file]).error-input, .form-shell textarea.error-input{
+  /*border-color: $red;
+  border-radius: 5px;
+  border: 0.1em solid $red;*/
+  background: $light2-red;
+  
+}
+
+.error-input{
+  background: $light2-red !important;
+  color: white !important;
+  .cs-placeholder{
+    color: white !important;
+  }
+}
+
+input.error-input::-webkit-input-placeholder { /* WebKit browsers */
+  color:    white;
+}
+input.error-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    white;
+  opacity:  1;
+}
+input.error-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    white;
+  opacity:  1;
+}
+input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color:    white;
+}
+
+.field{
+  position: relative;
+  .error-form{
+    position: absolute;
+    top: 0;
+    right: -370px;
+    width: 370px;
+    padding-left: 15px;
+    text-align: left;
+    height: 41px;
+    display: table;
+    background: $light-red;
+    border-right: 3px solid white;
+    p{
+      display: table-cell; 
+      vertical-align: middle;
+      line-height: 1em;
+      color: white;
+      font-family: 'pt_sansregular'
+    }
+    &:after{
+      $a: 10px;
+      content:'';
+      position: absolute;
+      width: 0; 
+      height: 0; 
+      left: -$a;
+      top: (42px - 2*$a)/2;
+      border-top: $a solid transparent;
+      border-bottom: $a solid transparent; 
+      border-right:$a solid $light-red; 
+    }
+  }
+}
+
+.form-shell{
+  z-index: 500;
+  display: none;
+  position: fixed;
+  top: 50%;
+  margin-top: -252px;
+  left: 50%;
+  margin-left: -$form-shell-width/2;
+  width: $form-shell-width;
+  background: white;
+  /*margin: 0 auto;
+  margin-top: 20px;*/
+  text-align: center;
+  border-radius: 5px;
+
+  h2{
+    font-family: 'pt_sans_narrowregular';
+    font-size: 2em;
+    color: $light-red;
+    color: $light-green;
+    text-align: left;
+    margin-left: ($form-shell-width - $input-width)/2;
+  }
+  legend{
+    color: white;
+    color: $light-green;
+    text-align: left;
+    margin-left: ($form-shell-width - $input-width)/2;
+    margin-bottom: 1em;
+    font-family: 'pt_sansregular';
+  }
+
+  span.cs-placeholder{
+    color: $green;
+    //width: 300px;
+  }
+  div.cs-skin-border {
+    width: 300px;
+    background: $new-light-yellow;
+  }
+
+  form{
+    padding-top: 10px;
+  }
+  .for-time{
+    color: white;
+    color: $light-green;
+    font-family: 'pt_sansregular';
+  }
+  .po{
+    margin-left: 7px;
+  }
+  input, textarea{
+    color: #524e4f;
+    width: $input-width;
+    border: none;
+    font-size: 1.1em;
+    background: $new-light-yellow;
+  }
+  input:not([type=submit]):not([type=file]), textarea{
+    border: em(3) solid white; 
+    border: none;
+    padding: em(10);
+    //background: rgba(255,255,255,0.5);
+    //margin: 0 0 em(20) 0;
+    margin-bottom: 0;
+  }
+  input[type=submit] {
+    margin-bottom: 10px;
+    background: $light-green;
+    color: white;
+    &:hover{
+      background: $green;
+    }
+  }
+  input[type=time] {
+    width: auto;
+  }
+  textarea{
+    resize: none;
+    height: 100px;
+    font-family: 'pt_sans_narrowregular';
+  }
+  .input-file-button {
+    font-family: 'pt_sans_narrowregular';
+  }
+  .start-time, .end-time{
+    //float: left;
+    display: inline;
+    //margin-left: ($form-shell-width - $input-width)/2;
+  }
+  .start-time{
+    float: left;
+    padding-left: 50px;
+    margin-left: ($form-shell-width - $input-width)/2;
+  }
+  .end-time{
+    float: right;
+    margin-right: ($form-shell-width - $input-width)/2;
+  }
+  .label{
+    margin-bottom: 0;
+  }
+  #navigation-form {
+    background: $light2-pink;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 5px 5px 0 0;
+    .links{
+      color: white;
+      font-family: 'pt_sansregular';
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .pseudo{
+      text-align: left;
+      margin-left: ($form-shell-width - $input-width)/2;
+    }
+  }
+  .forgot_pass{
+    text-align: left;
+    margin-left: ($form-shell-width - $input-width)/2;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    display: block;
+    a{
+      color: $light2-pink;
+    }
+    font-family: 'pt_sansregular';
+    color: $light-pink;
+    span{
+      color: $light2-pink;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+  }
+  a{
+    color: white;
+    margin-right: 10px;
+    font-family: 'pt_sansregular';
+  }
+
+  .input-file-button {
+    display:block;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    font-family: 'pt_sans_narrowregular';
+    overflow: hidden;
+    position: relative;
+    background: $middle-green;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding: 0.7em;
+    margin-left: ($form-shell-width - $input-width)/2;
+    &:hover{
+      background: $light-green;
+    }
+  }
+  .input-file {
+    height: 40px;
+    overflow: hidden;
+    font-size: 80px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+  }
+}
+
+.fat-style{
+  left: 50%;
+  margin-left: -$form-shell-width - 12.5px;
+  width: 2*$form-shell-width - 25px;
+  background: white;
+  .one-column, .two-column{
+    width: 50%;
+  }
+  .one-column{
+    float: left;
+    .field{
+      margin-right: -12.5px;
+    }
+  }
+  .two-column{
+    float: right;
+    .field{
+      margin-left: -12.5px;
+    }
+  }
+}
+
+.error_explanation, .alert-error {
+  //width: 100%;
+  display: none;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  text-align: left;
+  margin: 0 ($form-shell-width - $input-width)/2;
+  margin: 0 25px;
+  margin-bottom: 20px;
+
+  /*h2 {
+    text-align: left;
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    color: $light-green;
+  }*/
+  /*ul li {
+    font-size: 12px;
+    list-style: square;
+  }*/
+}
+
+.error_explanation{
+  p{
+    line-height: 1.2em;
+    color: $light-red;
+    font-family: 'pt_sansregular';
+  }
+}
+
+#fade{
+  cursor: pointer;
+}

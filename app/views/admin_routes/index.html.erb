@@ -1,64 +1,10 @@
 <h1>Добро пожаловать</h1>
-Сейчас <%= Time.now %><br>
+Сейчас <%= Time.now %><br><br>
 
-<%= link_to 'Управление пользователями', clients_path %><br>
-<%= link_to 'Управление категориями', categories_path %><br>
-
-<h2>Категории</h2>
-<%= search_form_for @search do |g| %>
-  <div class="field">
-    <%= g.label :name_cont, "Name contains" %>
-    <%= g.text_field :name_cont %>
-  </div>
-  <div class="actions"><%= g.submit "Search" %></div>
-<% end %>
-
-<table>
-<% @category.each do |c| %>
-  <tr>
-	 <td><%= c.name %></td>
-   <td><%= link_to(edit_category_path(c)) do %>
-    	<i class="fa fa-pencil"></i>
-  	<% end %></td>
-  	<td><%= link_to(c, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-    	<i class="fa fa-trash-o"></i>
-  	<% end %><br /></td>
-  </tr>
-<% end %>
-</table>
-
-<h2>Услуги</h2>
-<table>
-  <% @service.each do |s| %>
-    <tr>
-      <td><%= s.name %></td>
-      <td><%= link_to(edit_service_path(s)) do %>
-            <i class="fa fa-pencil"></i>
-          <% end %> </td>
-      <td><%= link_to(s, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-            <i class="fa fa-trash-o"></i>
-          <% end %><br /></td>
-    </tr>
-<% end %></br>
-</table>
-
-<h2> Пользователи </h2>
-<table>
-<% @client.each do |client| %>
-  <tr>
-    <td><%= client.name %></td>
-    <td><%= link_to(edit_client_path(client)) do %>
-      <i class="fa fa-pencil"></i>
-    <% end %></td>
-    <td><%= link_to(client, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-      <i class="fa fa-trash-o"></i>
-    <% end %><td>
-  </tr>
-<% end %></br>
-</table>
-
-<%= link_to 'Добавить новую услугу', new_service_path %><br>
-<%= link_to 'Добавить новую категорию', new_category_path %>
-
+<%= link_to 'Управление пользователями', clients_path %><br><br>
+<%= link_to  controller: "categories", type: 1 do %>
+  <%= "<i class='fa fa-bus'></i><span>Управление категориями</span>".html_safe %>
+<% end %><br><br>
+<%= link_to 'Управление услугами', services_path %><br><br>
 
 <%= button_to 'Logout', logout_path, method: :delete %>

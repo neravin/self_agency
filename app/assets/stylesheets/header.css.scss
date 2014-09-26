@@ -1,0 +1,90 @@
+@import "palette";
+@import "function";
+
+header{
+  margin-top: 50px;
+  #logo{
+    color: $middle-green;
+    font-family: 'modekaregular';
+    font-size: 3.5em;
+    text-transform: uppercase;
+  }
+  #logo-description{
+    font-family: 'pt_sansitalic';
+    color: #aaa;
+    color: $light-yellow;
+  }
+}
+
+.horiz-right-menu{
+  font-size: 1.2em;
+  font-family: 'pt_sans_narrowregular';
+
+  li{
+    float: right;
+    line-height: 1.2em;
+    padding: 0.5em 1em;
+    position: relative;
+    margin-top: 18px;
+    a{
+      color: $light-green;
+      text-transform: uppercase;
+      span{
+        margin-left: 10px;
+      }
+      &:hover{
+        color: $gray;
+      }
+    }
+  }
+  li.tab-current{
+    a{
+      color: $gray;
+      &:hover{
+        color: $gray;
+      }
+    }
+  }
+  nav{
+
+  }
+}
+
+.tab-current  a::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #2CC185;
+  background: $light-green;
+  content: '';
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-transform: translate3d(0,150%,0);
+  transform: translate3d(0,150%,0);
+}
+
+.poloska{
+  h2{
+    float: left;
+    margin-top: 20px;
+    color: $blue;
+    text-transform: uppercase;
+  }
+  .horiz-right-menu{
+    li{
+      a{
+        color: $blue;
+        &:hover{
+          color: $gray;
+        }
+      }
+    }
+  }
+  .tab-current  a::after {
+    background: $blue;
+    top: -15px;
+  }
+}
+

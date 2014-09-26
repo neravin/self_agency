@@ -1,0 +1,33 @@
+<header>
+  <div class="grid-wrap">
+    <div class="horiz-right-menu">
+      <nav>
+        <ul id = "menu-ul">
+          <% if signed_in? %>
+            <li><%= link_to "", signout_path, method: "delete", class: "fa fa-sign-out" %></li>
+            <li><%= link_to "", current_client, class: "fa fa-user" %></li>
+          <% else %>
+            <li id="signin-menu"><a href="#section-linemove-1" id = "signin-button"><i class="fa fa-sign-in"></i><span>войти</span></a></li>
+          <% end %>
+          <li class=""><a href="#section-linemove-2"><i class="fa fa-space-shuttle"></i><span>о нас</span></a></li>
+          <li class=<% if @tab_current == 3 %>"tab-current"<% end %>>
+            <%= link_to({:controller => "categories", :type => 2}) do %>
+              <%= "<i class='fa fa-search'></i><span>Заказы</span>".html_safe %>
+            <% end %>
+          </li>
+          <li class=<% if @tab_current == 2 %>"tab-current"<% end %>>
+            <%= link_to  controller: "categories", type: 1 do %>
+              <%= "<i class='fa fa-bus'></i><span>Работники</span>".html_safe %>
+            <% end %>
+          </li>
+          <li class=<% if @tab_current == 1 %>"tab-current"<% end %>>
+            <a href="/"><i class="fa fa-home"></i><span>главная</span></a>
+          </li>
+        </ul>
+      </nav>
+    </div><!--/horiz-right-menu-->
+
+    <%= link_to "Xylocopa", "/", id: "logo" %>
+    <div id = "logo-description">лучший ремонтный фриланс</div>
+  </div><!--/grid-wrap-->
+</header>

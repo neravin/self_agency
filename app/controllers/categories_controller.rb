@@ -5,12 +5,21 @@ class CategoriesController < ApplicationController
 
 	def index
 		@type = params[:type]
+
 		if @type == "1" || @type == "2"
-			@categories = Category.all
-			@green_background = true
+			@search = Category.search(params[:q])
+            @category = @search.result
 		else
 			redirect_to ''
 		end
+		
+		if @type == "1" 
+			@tab_current = 2
+		elsif @type == "2"
+			@tab_current = 3
+		end
+		@search = Category.search(params[:q])
+    	@category = @search.result
 	end
 
 	def new

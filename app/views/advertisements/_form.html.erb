@@ -1,4 +1,4 @@
-<div class = "form-shell">
+<div class = "form-shell", style = "display: block;">
   <%= form_for @advertisement do |f| %>
 
   <fieldset>
@@ -38,7 +38,7 @@
       <%= f.text_field :price, :placeholder => "Цена" %>
     </div>
 
-    <div>
+    <div class="clearfix">
       <div class="field start-time">
         <span class = "for-time">Время: c </span>
         <%= f.time_field :start_hour %>

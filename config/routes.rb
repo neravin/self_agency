@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   resources :home, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :clients
+  resources :clients do
+    collection do
+      post 'select_category'
+    end
+  end
   resources :offer_services
   resources :admin_routes
   resources :queues
@@ -42,6 +46,7 @@ Rails.application.routes.draw do
   match '/registration', to: 'clients#new' , via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/perform_ad' => 'advertisements#perform_ad', via: 'get'
+  match '/select_category' => 'clients#select_category', via: 'post'
   match '/worker_ad' => 'workers#worker_ad', via: 'get'
   match '/worker_cancel' => 'advertisements#worker_cancel', via: 'get'
 

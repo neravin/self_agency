@@ -40,12 +40,16 @@ class ClientsController < ApplicationController
       if @client.save
         @client.generate_confirm!
         ConfirmationNotifier.confirmation_token(@client).deliver
-        flash[:success] = "Вам было отправлено письмо на почту.";
+        #flash[:success] = "Вам было отправлено письмо на почту.";
         format.html { redirect_to '', notice: "Пожалуйста, #{@client.name}, зайдите на почту и подтвердите её." }
-        format.json { render :show, status: :created, location: @client }
+        format.js { render :nothing => true }
+        format.json { render json: @client, status: :created, location: @client }
+        #message = { "message": "Письмо с дальнейшими инструкциями отправлено на почту." }
+        #format.json { render :json => message }
       else
-        format.html { render :new }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
+        #format.html { render :new }
+        #format.json { render json: @client.errors, status: :unprocessable_entity }
+        format.json { render :json => { :error => @client.errors.messages }, :status => 500 }
       end
     end
   end
@@ -54,6 +58,13 @@ class ClientsController < ApplicationController
     @client.destroy
     respond_to do |format|
       format.html { redirect_to admin_routes_index_url }
+    end
+  end
+
+  def select_category
+    respond_to do |format|
+      select_services = Service.where("category_id = #{params[:id]}") 
+      format.json { render :json => select_services }
     end
   end
 
@@ -73,7 +84,7 @@ class ClientsController < ApplicationController
     def signed_in_client
       unless signed_in?
         store_location
-        redirect_to signin_path, notice: "Please sign in." unless signed_in?
+        redirect_to '/', notice: "Please sign in." unless signed_in?
       end
     end
 

@@ -12,7 +12,7 @@ $form-half: 252.5px;
 
 body.frame{
   margin: 0 25px;
-  &:before, &:after{
+  /*&:before, &:after{
     content: '';
     position: fixed;
     left: 0;
@@ -25,7 +25,7 @@ body.frame{
   &:after{
     top: auto;
     bottom: 0;
-  }
+  }*/
   #grid-main{
     //background: $new-light-yellow;
   }
@@ -61,28 +61,6 @@ div {
     border:2px solid $red !important; 
   }
   //display: table;
-}
-
-#error_explanation, .alert-error {
-  //width: 100%;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  text-align: left;
-  margin: 0 ($form-shell-width - $input-width)/2;
-  margin-bottom: 20px;
-  color: $red !important;
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    font-size: 1em;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    color: $light-green;
-  }
-  /*ul li {
-    font-size: 12px;
-    list-style: square;
-  }*/
 }
 
 .alert{
@@ -658,153 +636,6 @@ div[class*="flower"] > span[class]
   padding: 0 20px;
 }
 
-.form-shell{
-  position: relative;
-  width: $form-shell-width;
-  background: white;
-  margin: 0 auto;
-  margin-top: 20px;
-  text-align: center;
-  border-radius: 5px;
-  span.cs-placeholder{
-    color: $green;
-    //width: 300px;
-  }
-  div.cs-skin-border {
-    width: 300px;
-    background: $light2-yellow;
-  }
-
-  form{
-    padding-top: 10px;
-    h2{
-      font-family: 'pt_sans_narrowregular';
-      font-size: 2em;
-      color: $light-red;
-      color: $light-green;
-      text-align: left;
-      margin-left: ($form-shell-width - $input-width)/2;
-    }
-    legend{
-      color: white;
-      color: $light-green;
-      text-align: left;
-      margin-left: ($form-shell-width - $input-width)/2;
-      margin-bottom: 1em;
-      font-family: 'pt_sansregular';
-    }
-  }
-  .for-time{
-    color: white;
-    color: $light-green;
-    font-family: 'pt_sansregular';
-  }
-  .po{
-    margin-left: 7px;
-  }
-  input, textarea{
-    color: #524e4f;
-    width: $input-width;
-    border: none;
-    font-size: 1.1em;
-    background: $light2-yellow;
-  }
-  input:not([type=submit]):not([type=file]), textarea{
-    border: em(3) solid white; 
-    border: none;
-    padding: em(10);
-    //background: rgba(255,255,255,0.5);
-    //margin: 0 0 em(20) 0;
-    margin-bottom: 0;
-  }
-  input[type=submit] {
-    margin-bottom: 10px;
-    background: $light-green;
-    color: white;
-    &:hover{
-      background: $green;
-    }
-  }
-  input[type=time] {
-    width: auto;
-  }
-  textarea{
-    resize: none;
-    height: 100px;
-    font-family: 'pt_sans_narrowregular';
-  }
-  .input-file-button {
-    font-family: 'pt_sans_narrowregular';
-  }
-  .start-time, .end-time{
-    //float: left;
-    display: inline;
-    //margin-left: ($form-shell-width - $input-width)/2;
-  }
-  .start-time{
-    float: left;
-    margin-left: ($form-shell-width - $input-width)/2;
-  }
-  .end-time{
-    float: right;
-    margin-right: ($form-shell-width - $input-width)/2;
-  }
-  .label{
-    margin-bottom: 0;
-  }
-  #navigation-form {
-    background: $light2-pink;
-    height: 40px;
-    padding-top: 10px;
-    .pseudo{
-      text-align: left;
-      margin-left: ($form-shell-width - $input-width)/2;
-    }
-  }
-  .forgot_pass{
-    text-align: left;
-    margin-left: ($form-shell-width - $input-width)/2;
-    padding-bottom: 20px;
-    padding-top: 10px;
-    display: block;
-  }
-  a{
-    color: white;
-    margin-right: 10px;
-    font-family: 'pt_sansregular';
-  }
-
-  .input-file-button {
-    display:block;
-    width: 300px;
-    height: 40px;
-    text-align: center;
-    color: #fff;
-    font-family: 'pt_sans_narrowregular';
-    overflow: hidden;
-    position: relative;
-    background: $middle-green;
-    font-size: 1.1em;
-    text-transform: uppercase;
-    padding: 0.7em;
-    margin-left: ($form-shell-width - $input-width)/2;
-    &:hover{
-      background: $light-green;
-    }
-  }
-  .input-file {
-    height: 40px;
-    overflow: hidden;
-    font-size: 80px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    cursor: pointer;
-  }
-}
-
 .plug-2{
   margin-top: 150px;
 }
@@ -840,10 +671,12 @@ div[class*="flower"] > span[class]
   width: 49%;
   //float: left;
   //border-radius: 5px;
-  height: 200px;
+  height: 197px;
   margin-bottom: 20px;
   float: left;
-  .var1{
+  background: $new-light-yellow;
+  border-radius: 5px 5px 5px 5px;
+  /*.var1{
     .foto{
       border-radius: 5px 0 0 0;
     }
@@ -858,7 +691,7 @@ div[class*="flower"] > span[class]
     .user-description{
       border-radius: 0 5px 5px 0;
     }
-  }
+  }*/
   .foto{
     width: 30%;
     height: 100%;
@@ -866,7 +699,7 @@ div[class*="flower"] > span[class]
     display: block;
     content: ".";
     height: 160px;
-    background: $light-red;
+    //background: $light-red;
     text-align: center;
     img{
       display: block;
@@ -879,16 +712,18 @@ div[class*="flower"] > span[class]
   .user-description{
     width: 70%;
     float: right;
-    height: 160px;
-    background: white;
+    height: 197px;
+    //background: white;
     .pseudo{
       margin: 10px;
       margin-left: 20px;
     }
     h2{
       color: $middle-green;
+      //color: $blue;
+      //color: #fbbd54;
       margin-top: 20px;
-      color: $light-red;
+      //color: $light-red;
     }
     p{
       margin-bottom: 0.3em;
@@ -898,6 +733,7 @@ div[class*="flower"] > span[class]
         float: left;
         font-weight: normal;
         color: $gray;
+        color: $orange;
       }
       em{
         color: rgb(163, 171, 185);
@@ -905,10 +741,41 @@ div[class*="flower"] > span[class]
       }
     }
   }
-  #user-menu{
+  #user-menu-horizontal{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    .personal-link{
+      $a: 40px;
+      width: $a;
+      height: $a;
+      text-align: center;
+      border: 1px dashed $orange;
+      margin-bottom: -1px;
+      &:first-child{
+        border-radius: 0 5px 0 0;
+      }
+      &:last-child{
+        border-radius: 0 0 5px 0;
+      }
+      a{
+        width: $a;
+        height: $a;
+        display: block;
+        line-height: $a;
+        color: $orange;
+
+      }
+    }
+    .border-none{
+      border: none;
+    }
+  }
+  /*#user-menu{
     height: 40px;
     width: 100%;
     background: $blue;
+    background: #4eb6b6;
     border-radius: 0 0 5px 5px;
     display: block;
     margin-bottom: 20px;
@@ -943,6 +810,7 @@ div[class*="flower"] > span[class]
       }
     }
   }
+  */
 }
 
 #reviews{
@@ -1108,11 +976,12 @@ $a_foto: 110px;
   left: 0%;
   width: 100%;
   height: 100%;
-  background-color: white;
+  //background-color: white;
+  background: black;
   z-index: 101;
-  -moz-opacity: 0.8;
-  opacity: .80;
-  filter: alpha(opacity=80);
+  -moz-opacity: 0.6;
+  opacity: .60;
+  filter: alpha(opacity=60);
 }
 .list-awesome {
   position: fixed;
@@ -1133,5 +1002,105 @@ $a_foto: 110px;
     &:hover{
       background: $green;
     }
+  }
+}
+
+.information{
+  margin-top: 35px;
+  margin-bottom: 35px;
+  padding: 20px;
+  padding-bottom: 0px;
+  border-radius: 10px;
+  background: $middle-blue;
+  //background: #007095;
+
+  .girl{
+    width: 30%;
+    float: left;
+    position: relative;
+    img{
+      width: 100%;
+      margin-bottom: -2px;
+    }
+  }
+  .theses{
+    width: 70%;
+    float: right;
+    .thesis{
+      margin: 0 40px;
+      margin-bottom: 40px;
+      font-family: 'pt_sansregular';
+      color: $gray;
+      color: white;
+      line-height: 1.2em;
+      font-size: 1.5em;
+      text-align: right;
+      margin-right: 15px;
+      &:last-child{
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+.categories{
+  position: relative;
+  .category{
+    width: 25%;
+    position: relative;
+    float: left;
+    .name-category{
+      text-align: center;
+      font-family: 'pt_sansregular';
+      color: $gray;
+      padding-right: 10px;
+    }
+    a{
+      display: block;
+      margin: 20px 60px;
+      position: relative;
+      img{
+        width: 100%;
+      }
+    }
+  }
+}
+
+.not-button{
+  background: none;
+  color: white;
+  border: 1px dashed white;
+  padding: 0.7em;
+  width: 140px;
+  text-align: center;
+
+  font-size: 0.85em;
+}
+
+.open{
+  font-size: 0.85em;
+  background: none;
+  padding: 0.7em;
+  width: 140px;
+  text-align: center;
+  border: 1px dashed $new-light-yellow;
+  color: $new-light-yellow;
+  &:hover{
+    border: 1px dashed rgba(255, 255, 255, 0);
+    color: white;
+  }
+}
+
+span.add-button{
+  display: block;
+  color: $orange;
+  border: 1px dashed $orange;
+  padding: 1em;
+  text-align: center;
+  margin: 0 0 20px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover{
+    border: 1px dashed rgba(255, 255, 255, 0);
   }
 }

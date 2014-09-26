@@ -1,0 +1,22 @@
+<h2> Услуги </h2>
+<%= search_form_for @search do |g| %>
+  <div class="field">
+    <%= g.label :name_cont, "Name contains" %>
+    <%= g.text_field :name_cont %>
+  </div>
+  <div class="actions"><%= g.submit "Search" %></div>
+<% end %>
+<%= link_to 'Добавить новую услугу', new_service_path %><br>
+<table>
+  <% @service.each do |s| %>
+    <tr>
+      <td><%= s.name %></td>
+      <td><%= link_to(edit_service_path(s)) do %>
+            <i class="fa fa-pencil"></i>
+          <% end %> </td>
+      <td><%= link_to(s, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+            <i class="fa fa-trash-o"></i>
+          <% end %><br /></td>
+    </tr>
+<% end %></br>
+</table>

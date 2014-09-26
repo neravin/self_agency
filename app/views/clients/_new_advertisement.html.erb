@@ -1,0 +1,83 @@
+<div id = "new-ad-form" class = "form-shell fat-style">
+  <%# form_for @advertisement do |f| %>
+  <%= form_for(:advertisement, :url => { :controller => "advertisements", :action => "create" }, remote: true, html: { id: "new_advertisement" }) do |f| %>
+  <fieldset>
+    <h2>Новый тендер</h2>
+      <div id="error_explanation">
+    </div>
+    
+    <div class="error_explanation">
+    </div>
+    <div class = "one-column">
+      <div class="field">
+        <%= collection_select(:category, :category_id, Category.all, :id, :name, 
+          {:prompt => "Категория"}, {:class => "category-select cs-select2 cs-skin-border"}) %>
+      </div>
+
+      <div class="field">
+        <%= collection_select(:advertisement, :service_id, Service.all, :id, :name, 
+          {:prompt => "Тип объявления"}, {:class => "services-select cs-select cs-skin-border"}) %>
+      </div>
+
+      <div id = "ad-description" class="field">
+        <legend class="label">Описание:</legend>
+        <%= f.text_area :description %>
+      </div>
+    </div><!--/one-column-->
+
+    <div class="two-column">
+      <div class="field">
+        <%= f.text_field :city, :placeholder => "Город" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :address, :placeholder => "Адрес"%>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :price, :placeholder => "Цена" %>
+      </div>
+
+      <!--div class="field">
+        <div class="clearfix">
+          <div class="field start-time">
+            <span class = "for-time">Время: c </span>
+            <%# f.time_field :start_hour %>
+            <span class = "for-time po">  по </span>
+          </div>
+          <div class="field end-time">
+            <%# f.time_field :end_hour %>
+          </div>
+        </div>
+      </div-->
+
+      <div class="field">
+        <%= f.text_field :duration, :placeholder => "Срок выполнения" %>
+      </div>
+
+      <div class="field">
+        <%= f.date_field :date %>
+      </div>
+
+      <div class="field actions">
+        <%= f.submit :class => "button middle_green", :value => "Добавить" %>
+      </div>
+    </div><!--/two-column-->
+
+  </fieldset>
+  <% end %>
+</div>
+
+<script>
+  (function() {
+    [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+
+  (function() {
+    [].slice.call( document.querySelectorAll( 'select.cs-select2' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+</script>

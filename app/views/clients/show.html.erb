@@ -2,66 +2,84 @@
 	<strong></strong>
 </p>
 
-<div id = "user-info" class="clearfix" >
-<% if current_client.id == @client.id %>
-  <div class="pseudo clearfix var1">
-<% else %>
-  <div class="pseudo clearfix var2">
-<% end %>
-    <div class = "foto">
-      <%= image_tag @client.photo_url(:thumb).to_s %>
-    </div><!--/foto-->
+<div class="clearfix">
+  <div id = "user-info" class="clearfix" >
+  <% if current_client.id == @client.id %>
+    <div class="pseudo clearfix var1">
+  <% else %>
+    <div class="pseudo clearfix var2">
+  <% end %>
+      <div class = "foto">
+        <%= image_tag @client.photo_url(:thumb).to_s %>
+        
+      </div><!--/foto-->
 
-    <div class = "user-description">
-    <div class = "pseudo">
-      <h2><%= @client.name %></h2>
-      <p>
-        <strong>Телефон:</strong>
-        <em><%= @client.phone %></em><br>
-      </p>
-      <p>
-        <strong>Почта:</strong>
-        <em><%= @client.email %></em>
-      </p>
-      <p>
-        <strong>Баллы:</strong>
-        <em>1000</em>
-      </p>
+      <div class = "user-description">
+      <div class = "pseudo">
+        <h2><%= @client.name %></h2>
+        <p>
+          <strong>Телефон:</strong>
+          <em><%= @client.phone %></em><br>
+        </p>
+        <p>
+          <strong>Почта:</strong>
+          <em><%= @client.email %></em>
+        </p>
+        <p>
+          <strong>Баллы:</strong>
+          <em>1000</em>
+        </p>
+      </div><!--/pseudo-->
+      </div><!--/user-description-->
     </div><!--/pseudo-->
-    </div><!--/user-description-->
-  </div><!--/pseudo-->
 
-<% if current_client.id == @client.id %>
-  <div id = "user-menu" class="clearfix">
-    <div class="personal-link">
-      <%= link_to(edit_client_path(@client)) do %>
-        <i class="fa fa-pencil"></i>
-      <% end %>
-    </div><!--/personal-link-->
-    <div class="add-ad">
-      <%= link_to(new_advertisement_path) do %>
-        <i class="fa fa-plus"></i> Я хочу
-      <% end %>
-      <%= link_to(new_worker_path) do %>
-        <i class="fa fa-plus"></i> Я могу
-      <% end %>
-    </div>
-  </div><!--/user-menu-->
-<% end %>
-</div><!--/user-info-->
+  <% if current_client.id == @client.id %>
+    <div id = "user-menu-horizontal">
+      <div class="personal-link">
+        <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+          <i class="fa fa-pencil"></i>
+        <% end %>
+      </div><!--/personal-link-->
+      <div class="personal-link">
+        <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+          <i class="fa fa-pencil"></i>
+        <% end %>
+      </div><!--/personal-link-->
+      <div class="personal-link">
+        <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+          <i class="fa fa-pencil"></i>
+        <% end %>
+      </div><!--/personal-link-->
+      <div class="personal-link">
+        <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+          <i class="fa fa-pencil"></i>
+        <% end %>
+      </div><!--/personal-link-->
+      <div class="personal-link">
+        <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+          <i class="fa fa-pencil"></i>
+        <% end %>
+      </div><!--/personal-link-->
+    </div><!--/user-menu-horizontal-->
+  <% end %>
+  </div><!--/user-info-->
 
-<div id = "reviews">
-  <div class = "title">
-    <h2>Отзывы</h2>
-  </div><!--/title-->
-  <div class = "review-text">
-   <p>Посчастливилось работать с Ксенией - остались только положительные эмоции. Грамотный, профессиональный подход к делу и чёткое следование всем требованиям технического задания. Обязательно буду обращаться ещё!</p>
-   <span class = "author">Эдгар</span>
-  </div><!--/review-text-->
-</div><!--/reviews-->
+  <div id = "reviews">
+    <div class = "title">
+      <h2>Отзывы</h2>
+    </div><!--/title-->
+    <div class = "review-text">
+     <p>Посчастливилось работать с Ксенией - остались только положительные эмоции. Грамотный, профессиональный подход к делу и чёткое следование всем требованиям технического задания. Обязательно буду обращаться ещё!</p>
+     <span class = "author">Эдгар</span>
+    </div><!--/review-text-->
+  </div><!--/reviews-->
+</div><!--/clearfix-->
 
 <div id = "i-want-column">
   <h2>Текущие объявления</h2>
+  <span id = "client-add-advertisements", class = "add-button">
+    <i class="fa fa-plus"></i> Добавить новое объявление
+  </span>
 
   <% @client.advertisements.each do |ad| %>
     <div class="post" data-ad="<%= ad.id %>">
@@ -91,6 +109,10 @@
 
 <div id = "i-can-column">
   <h2>Текущие услуги</h2>
+  <span id = "client-add-services", class = "add-button">
+    <i class="fa fa-plus"></i> Добавить новую услугу
+  </span>
+
   <% @client.workers.each do |ad| %>
     <div class="post">
     <% if current_client.id == @client.id %>
@@ -104,3 +126,5 @@
     </div>
   <% end %>
 </div>
+
+<%= render 'new_advertisement' %>

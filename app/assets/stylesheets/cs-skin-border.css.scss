@@ -64,8 +64,8 @@ div.cs-skin-border {
 
 .cs-skin-border ul span {
   padding: 1em 2em;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  //-webkit-backface-visibility: hidden;
+  //backface-visibility: hidden;
 }
 
 .cs-skin-border .cs-options li span:hover,

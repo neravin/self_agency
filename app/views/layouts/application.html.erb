@@ -7,24 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 
-<% if @green_background %>
-<body class="green_background">
-<% else %>
 <body class = "frame">
-<% end %>
 
-<% if @green_background %>
-<section id = "grid-main" class="green_background">
-<% else %>
+<%= render 'layouts/header' %>
+
 <section id = "grid-main">
-<% end %>
   <div class = "container clearfix">
     <%= yield %>
+    <div id="fade" class="black-overlay" style="display: none;"></div>
+    <%= render 'layouts/signin' %>
+    <%= render 'layouts/signup' %>
+    <%= render 'layouts/passreset' %>
+    <%= render 'layouts/success' %>
   </div><!--/container-->
-</div><!--/grid-main-->
-
 </section><!--/grid-wrap-->
-
 
 </body>
 </html>

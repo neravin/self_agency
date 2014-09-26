@@ -88,6 +88,7 @@
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
   background: $light-green-strong;
+  background: lighten($light-green, 5%);
   //background: white; 
 }
 
@@ -123,7 +124,7 @@
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
   border-right-color: white;
-  border-right-color: $light-green-strong;
+  border-right-color: lighten($light-green, 5%);
 }
  
 /* The icons */
@@ -209,7 +210,7 @@
 
   .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
     border-right-color: transparent;
-    border-bottom-color: $light-green-strong;
+    border-bottom-color: lighten($light-green, 5%);
   }
 
   .cbp_tmtimeline > li .cbp_tmicon {
@@ -227,7 +228,7 @@
     padding-top: 15px;
   }
   .price{
-    color: $light-yellow;
+    color: $new-light-yellow;
   }
   span.button{
     float: right;
@@ -270,7 +271,7 @@
   text-decoration: none; 
 }
 .flickr_pagination a:hover, .flickr_pagination a:focus {
-    background: $light-green-strong;
+    background: lighten($light-green, 5%);
     color: white; 
   }
 .flickr_pagination .page_info {
