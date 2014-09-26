@@ -9,6 +9,7 @@ $(document).on "page:change", ->
     $("#passreset-form").hide()
     $("#success-message").hide()
     $("#new_advertisement").parent().hide()
+    $("#new_worker").parent().hide()
     $(this).hide()
 
   $(".signin-link").click ->
@@ -150,7 +151,17 @@ $(document).on "page:change", ->
     $("#new_advertisement").parent().css "margin-top", "#{-h/2}px"
     $("#new_advertisement").parent().show()
 
-  $(".category-select").children(".cs-options").children().children().click ->
+  select_category_ajax("#new_advertisement")
+  select_category_ajax("#new_worker")
+
+  $("#client-add-workers").click -> 
+    $("#fade").show()
+    h = $("#new_worker").parent().height()
+    $('#new_worker').parent().css "margin-top", "#{-h/2}px"
+    $("#new_worker").parent().show()
+
+select_category_ajax = (form_id) ->
+  $("#{form_id} .category-select").children(".cs-options").children().children().click ->
     id = $(this).attr("data-value")
     if $.isNumeric(id)
       id = parseInt(id)
@@ -160,24 +171,24 @@ $(document).on "page:change", ->
         data: { id: id },
         success: (result) ->
           $("#advertisement_service_id").children().remove()
-          $(".services-select").find("li").remove()
+          $("#{form_id} .services-select").find("li").remove()
           # ul <li data-option="" data-value=""><span>Тип объявления</span></li>
           # <option value="25">Капитальный ремонт</option>
-          $(".services-select").find("ul").append '<li data-option="" data-value=""><span>Тип объявления</span></li>'
+          $("#{form_id} .services-select").find("ul").append '<li data-option="" data-value=""><span>Тип объявления</span></li>'
           $("#advertisement_service_id").append  '<option value="">Тип объявления</option>'
           for i in [0...result.length]
             $("#advertisement_service_id").append "<option value='#{result[i]["id"]}'>#{result[i]["name"]}</option>"
-            $(".services-select").find("ul").append "<li data-option='' data-value='#{result[i]["id"]}'><span>#{result[i]["name"]}</span></li>"
-          $(".services-select").children(".cs-placeholder").text("Тип объявления")
+            $("#{form_id} .services-select").find("ul").append "<li data-option='' data-value='#{result[i]["id"]}'><span>#{result[i]["name"]}</span></li>"
+          $("#{form_id} .services-select").children(".cs-placeholder").text("Тип объявления")
       })
-
-  $(".services-select").find("ul").on "click", "li", ->
+  $("#{form_id} .services-select").find("ul").on "click", "li", ->
     $(this).parent().children().removeClass("cs-selected")
     $(this).addClass("cs-selected")
-    $(".services-select").removeClass("cs-active")
-    $(".services-select").children(".cs-placeholder").text($(this).children().text())
+    $("#{form_id} .services-select").removeClass("cs-active")
+    $("#{form_id} .services-select").children(".cs-placeholder").text($(this).children().text())
     id = $(this).attr "data-value"
-    $(".services-select").val(id)
+    $("#{form_id} .services-select").val(id)
+
 
 add_error = (message, id_input, id_text_error) ->
   $(id_text_error).append '<div class = "error-form"><p>' + message + '</p></div>'
