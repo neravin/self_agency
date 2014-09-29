@@ -136,11 +136,12 @@ $(document).on "page:change", ->
             #{advertisement.address}
           </div>
           <div>
-            #{advertisement.date}
+            #{convert_date(advertisement.date)}
           </div>
         </div><!--/contact-->
 
         <span class='price'>#{advertisement.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
+        <br>
       </div>"
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
@@ -310,3 +311,8 @@ output_in_form = (id_form) ->
   $(id_form).attr("action", "/advertisements/#{objAdvertisement.id}/edit")
   $(id_form).find("#advertisement_description").val("#{objAdvertisement.description}")
   $(id_form).find("#advertisement_price").val("#{objAdvertisement.price}")
+
+# convert yyyy-mm-dd to dd/mm/yyyy  
+convert_date = (yyyy_mm_dd) ->
+  dateSplit = yyyy_mm_dd.split('-')
+  currentDate = dateSplit[2] + '/' + dateSplit[1] + '/' +dateSplit[0]
