@@ -92,7 +92,8 @@ class AdvertisementsController < ApplicationController
         if (@fantom.save)
           @fantom.update_attribute("advertisement_id", @advertisement.id)
           current_client.advertisements << @advertisement
-          format.json { render json: @advertisement.to_json(:include => { :service => { :only => :name } } ), status: :created, location: @advertisement }
+          #format.json { render json: @advertisement.to_json(:include => { :service => { :only => :name } } ), status: :created, location: @advertisement }
+          format.json { render json: @advertisement.to_json(:include => { :service => { :only => [:id, :name], :include => { :category => { :only => [:id, :name]  } } } } ), status: :created, location: @advertisement }
         end
       else
         format.json { render :json => { :error => @advertisement.errors.messages }, :status => 500 }

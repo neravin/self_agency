@@ -111,9 +111,35 @@ $(document).on "page:change", ->
       <div class='post' data-ad='#{advertisement.id}'>
         <a class='edit-advertisement' href='/advertisements/#{advertisement.id}/edit' title='Изменить'>
           <i class='fa fa-pencil'></i>
-        </a>      
-        <h2>#{advertisement.service.name}</h2>
+        </a>
+        <h2>
+          <span class = 'category' data-cat = '#{advertisement.service.category.id}'>
+            #{advertisement.service.category.name}</span>:
+          <span class = 'service' data-service = '#{advertisement.service.id}'>
+            #{advertisement.service.name}
+          </span>
+        </h2>
+
         <p>#{advertisement.description}</p>
+
+        <div class = 'duration'>
+          <span>#{advertisement.duration}</span><br/>дней
+        </div>
+
+        <div class='contact clearfix'> 
+          <div>
+            <span class = 'label'>Город:</span>
+            #{advertisement.city}
+          </div>
+          <div>
+            <span class = 'label'>Адрес:</span>
+            #{advertisement.address}
+          </div>
+          <div>
+            #{advertisement.date}
+          </div>
+        </div><!--/contact-->
+
         <span class='price'>#{advertisement.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
       </div>"
   ).on "ajax:error", (e, xhr, status, error) ->
