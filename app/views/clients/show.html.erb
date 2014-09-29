@@ -92,9 +92,34 @@
         <!--i class="fa fa-pencil"></i-->
       <%# end %>
     <% end %>
-      <h2><%= ad.service.name %></h2>
+      <h2>
+        <span class = "category" data-cat = "<%= ad.service.category.id %>">
+          <%= ad.service.category.name %></span>:
+        <span class = "service" data-service = "<%= ad.service.id %>">
+          <%= ad.service.name %>
+        </span>
+      </h2>
       <p><%= ad.description %></p>
-      <span class = "price"><%= ad.price %> у.е.</span><br>
+
+      <div class = "duration">
+        <span><%= ad.duration %></span>
+        дней
+      </div>
+
+      <div class="contact clearfix"> 
+        <div>
+          <span class = "label">Город:</span>
+          <%= ad.city %>
+        </div>
+        <div>
+          <span class = "label">Адрес:</span>
+          <%= ad.address %>
+        </div>
+        <div>
+          <%= ad.date.strftime("%d/%m/%Y") %>
+        </div>
+      </div><!--/contact-->
+      <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span><br>
 
       <% if ad.worker_id %>
         <% if worker = Client.find_by_id(ad.worker_id) %>
@@ -126,9 +151,15 @@
           <i class="fa fa-pencil"></i>
         <% end %>
       <% end %>
-        <h2><%= ad.service.name %></h2>
+        <h2>
+          <span class = "category" data-cat = "<%= ad.service.category.id %>">
+            <%= ad.service.category.name %></span>:
+          <span class = "service" data-service = "<%= ad.service.id %>">
+            <%= ad.service.name %>
+          </span>
+        </h2>
         <p><%= ad.description %></p>
-        <span class = "price"><%= ad.price %> у.е.</span>
+        <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
       </div>
     <% end %>
   </div><!--/worker-posts-->

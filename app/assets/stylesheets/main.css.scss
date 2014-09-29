@@ -876,10 +876,34 @@ div[class*="flower"] > span[class]
     .worker{
       margin-top: 20px;
     }
+    .contact{
+      //float: right;
+      margin-bottom: 20px;
+      line-height: 1.2em;
+      font-size: 0.8em;
+    }
+    .duration{
+      $a: 4.5em;
+      width: $a;
+      height: $a;
+      position: absolute;
+      bottom: 32px;
+      right: 32px;
+      text-align: center;
+      font-size: 0.8em;
+      border-radius: $a;
+      border: 1px dashed white;
+      padding-top: em(7);
+      span{
+        font-size: 2em;
+        //line-height: $a/2;
+      }
+    }
   }
   .price{
     color: $yellow;
     color: $light2-yellow;
+    float: left;
   }
   h2{
     color: $light-green;
