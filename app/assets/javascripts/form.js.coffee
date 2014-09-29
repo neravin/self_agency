@@ -72,9 +72,9 @@ $(document).on "page:change", ->
     $("#fade").hide()
     clear_value_input("new-worker-form")
     worker = xhr.responseJSON
-    $("#ad-posts").prepend " 
+    $("#worker-posts").prepend " 
       <div class='post' data-ad='#{worker.id}'>
-        <a class='edit-worker' href='/workers/#{worker.id}/edit' title='Изменить'>
+        <a class='edit-advertisement' href='/workers/#{worker.id}/edit' title='Изменить'>
           <i class='fa fa-pencil'></i>
         </a>      
         <h2>#{worker.service.name}</h2>
