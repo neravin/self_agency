@@ -913,6 +913,7 @@ div[class*="flower"] > span[class]
   position: absolute;
   right: 30px;
   top: 40px;
+  cursor: pointer;
   &:hover{
     color: $light2-yellow;
     color: $yellow;

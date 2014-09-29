@@ -9,6 +9,7 @@ $(document).on "page:change", ->
     $("#passreset-form").hide()
     $("#success-message").hide()
     $("#new_advertisement").parent().hide()
+    $("#edit_advertisement").parent().hide()
     $("#new_worker").parent().hide()
     $(this).hide()
 
@@ -159,8 +160,17 @@ $(document).on "page:change", ->
     $("#new_advertisement").parent().css "margin-top", "#{-h/2}px"
     $("#new_advertisement").parent().show()
 
+  $(".edit-ad-link").click ->
+    $("#fade").show()
+    h = $("#edit_advertisement").parent().height()
+    $("#edit_advertisement").parent().css "margin-top", "#{-h/2}px"
+    parse_ad($(this).parent())
+    output_in_form("#edit_advertisement")
+    $("#edit_advertisement").parent().show()
+
   select_category_ajax("#new_advertisement")
   select_category_ajax("#new_worker")
+  select_category_ajax("#edit_advertisement")
 
   $("#client-add-workers").click -> 
     $("#fade").show()
@@ -252,3 +262,25 @@ clear_vertical_errors = (id_form) ->
 clear_value_input = (id_form) ->
   $(id_form).find("input").not(':input[type=button], :input[type=submit], :input[type=reset]').val('')
   $(id_form).find("textarea").val('')
+
+parse_ad = (element) ->
+  objAdvertisement.id = element.attr("data-ad")
+  objAdvertisement.category_id = element.children("h2").text()
+  objAdvertisement.description = element.children("p").text()
+  objAdvertisement.price = parseInt(element.children("span").text())
+
+objAdvertisement = 
+  id: 1
+  category_id: 1
+  service_id: 1
+  description: ""
+  price: 100
+  city: "Санкт-Петербург"
+  address: "" 
+  date: "" 
+  duration: 10
+
+output_in_form = (id_form) ->
+  $(id_form).attr("action", "/advertisements/#{objAdvertisement.id}/edit")
+  $(id_form).find("#advertisement_description").val("#{objAdvertisement.description}")
+  $(id_form).find("#advertisement_price").val("#{objAdvertisement.price}")
