@@ -109,9 +109,9 @@ $(document).on "page:change", ->
     #alert xhr.responseText
     $("#ad-posts").prepend " 
       <div class='post' data-ad='#{advertisement.id}'>
-        <a class='edit-advertisement' href='/advertisements/#{advertisement.id}/edit' title='Изменить'>
+        <span  class = 'edit-ad-link edit-advertisement'>
           <i class='fa fa-pencil'></i>
-        </a>
+        </span>
         <h2>
           <span class = 'category' data-cat = '#{advertisement.service.category.id}'>
             #{advertisement.service.category.name}</span>:
@@ -123,20 +123,20 @@ $(document).on "page:change", ->
         <p>#{advertisement.description}</p>
 
         <div class = 'duration'>
-          <span>#{advertisement.duration}</span><br/>дней
+          <span class = 'duration-ad' >#{advertisement.duration}</span><br/>дней
         </div>
 
         <div class='contact clearfix'> 
           <div>
             <span class = 'label'>Город:</span>
-            #{advertisement.city}
+            <span class = 'city'>#{advertisement.city}</span>
           </div>
           <div>
             <span class = 'label'>Адрес:</span>
-            #{advertisement.address}
+            <span class = 'address'>#{advertisement.address}</span>
           </div>
-          <div>
-            #{convert_date(advertisement.date)}
+          <div class = 'date'>
+            #{convert_date_rus(advertisement.date)}
           </div>
         </div><!--/contact-->
 
@@ -165,6 +165,15 @@ $(document).on "page:change", ->
         when "price" then           add_error_without_message("#advertisement_price")
         when "service_id" then      add_error_without_message("#new_advertisement .services-select")
         when "duration" then        add_error_without_message("#advertisement_duration")
+
+
+  $("#ad-posts").on "click", ".edit-ad-link", ->
+    $("#fade").show()
+    h = $("#edit_advertisement").parent().height()
+    $("#edit_advertisement").parent().css "margin-top", "#{-h/2}px"
+    parse_ad($(this).parent())
+    output_in_form("#edit_advertisement")
+    $("#edit_advertisement").parent().show()
 
   $("#new_client").on "click", "input.error-input", ->
     $(this).removeClass("error-input")
@@ -295,6 +304,9 @@ parse_ad = (element) ->
   objAdvertisement.category_id = element.children("h2").text()
   objAdvertisement.description = element.children("p").text()
   objAdvertisement.price = parseInt(element.children("span").text())
+  objAdvertisement.city = element.find(".city").text()
+  objAdvertisement.address = element.find(".address").text()
+  objAdvertisement.duration = element.find(".duration-ad").text()
 
 objAdvertisement = 
   id: 1
@@ -311,8 +323,11 @@ output_in_form = (id_form) ->
   $(id_form).attr("action", "/advertisements/#{objAdvertisement.id}/edit")
   $(id_form).find("#advertisement_description").val("#{objAdvertisement.description}")
   $(id_form).find("#advertisement_price").val("#{objAdvertisement.price}")
+  $(id_form).find("#advertisement_city").val("#{objAdvertisement.city}")
+  $(id_form).find("#advertisement_address").val("#{objAdvertisement.address}")
+  $(id_form).find("#advertisement_duration").val("#{objAdvertisement.duration}")
 
 # convert yyyy-mm-dd to dd/mm/yyyy  
-convert_date = (yyyy_mm_dd) ->
+convert_date_rus = (yyyy_mm_dd) ->
   dateSplit = yyyy_mm_dd.split('-')
   currentDate = dateSplit[2] + '/' + dateSplit[1] + '/' +dateSplit[0]

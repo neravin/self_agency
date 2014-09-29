@@ -102,19 +102,19 @@
       <p><%= ad.description %></p>
 
       <div class = "duration">
-        <span><%= ad.duration %></span><br/>дней
+        <span class = "duration-ad"><%= ad.duration %></span><br/>дней
       </div>
 
       <div class="contact clearfix"> 
         <div>
           <span class = "label">Город:</span>
-          <%= ad.city %>
+          <span class = "city"><%= ad.city %></span>
         </div>
         <div>
           <span class = "label">Адрес:</span>
-          <%= ad.address %>
+          <span class = 'address'><%= ad.address %></span>
         </div>
-        <div>
+        <div class="date">
           <%= ad.date.strftime("%d/%m/%Y") %>
         </div>
       </div><!--/contact-->
