@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Advertisement < ActiveRecord::Base
   belongs_to :service
+  belongs_to :client
   
   validates :description, presence: true
   validates :city, presence: true

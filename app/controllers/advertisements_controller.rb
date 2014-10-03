@@ -10,6 +10,7 @@ class AdvertisementsController < ApplicationController
     @advertisements = @search.result
     ad_service_id = params[:advertisement]
     worker_service_id = params[:worker]
+    @client = Client.all
 
     if worker_service_id
       if worker_service_id[:service_id] != ''
@@ -172,7 +173,8 @@ private
       :address, 
       :date, 
       :duration,
-      :service_id)
+      :service_id,
+      :client_id)
   end
 
 

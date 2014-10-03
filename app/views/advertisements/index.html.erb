@@ -11,10 +11,13 @@
 <%= @service_ids %>
 
 
+
 <% @advertisements.each do |ad| %>
+
   <li>
-    <time class="cbp_tmtime"><span><%= ad.date.strftime("%d/%m/%Y") %></span> <span><%= ad.start_hour.strftime("%H:%M") %></span></time>
-    <div class="cbp_tmicon cbp_tmicon-phone"><%= image_tag("valera.jpg") %></div>
+    <%= link_to(client_path(ad.client.id)) do %>
+    <div class="cbp_tmicon cbp_tmicon-phone"><%= image_tag ad.client.photo_url(:thumb).to_s %></div>
+    <% end %>
     <div class="cbp_tmlabel">
       <h2><%= ad.service.name %></h2>
       <p><%= ad.description %></p>

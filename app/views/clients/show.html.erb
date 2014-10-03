@@ -25,10 +25,7 @@
           <strong>Почта:</strong>
           <em><%= @client.email %></em>
         </p>
-        <p>
-          <strong>Баллы:</strong>
-          <em>1000</em>
-        </p>
+    
       </div><!--/pseudo-->
       </div><!--/user-description-->
     </div><!--/pseudo-->
@@ -75,12 +72,14 @@
   </div><!--/reviews-->
 </div><!--/clearfix-->
 
+
 <div id = "i-want-column">
   <h2>Текущие объявления</h2>
+  <% if current_client.id == @client.id %>
   <span id = "client-add-advertisements", class = "add-button">
     <i class="fa fa-plus"></i> Добавить новое объявление
   </span>
-
+<% end %>
   <% @client.advertisements.each do |ad| %>
     <div class="post" data-ad="<%= ad.id %>">
     <% if current_client.id == @client.id %>
@@ -109,9 +108,11 @@
 
 <div id = "i-can-column">
   <h2>Текущие услуги</h2>
-  <span id = "client-add-services", class = "add-button">
-    <i class="fa fa-plus"></i> Добавить новую услугу
-  </span>
+  <% if current_client.id == @client.id %>
+    <span id = "client-add-services", class = "add-button">
+      <i class="fa fa-plus"></i> Добавить новую услугу
+    </span>
+  <% end %>
 
   <% @client.workers.each do |ad| %>
     <div class="post">
