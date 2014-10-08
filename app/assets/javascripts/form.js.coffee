@@ -203,7 +203,7 @@ $(document).on "page:change", ->
     parse_ad($(this).parent())
     output_in_form("#edit_advertisement")
     $("#edit_advertisement").parent().show()
-
+    
   select_category_ajax("#new_advertisement")
   select_category_ajax("#new_worker")
   select_category_ajax("#edit_advertisement")
@@ -301,16 +301,21 @@ clear_value_input = (id_form) ->
 
 parse_ad = (element) ->
   objAdvertisement.id = element.attr("data-ad")
-  objAdvertisement.category_id = element.children("h2").text()
+  objAdvertisement.category_name = element.children("h2").children(".category").text()
+  objAdvertisement.service_name = element.children("h2").children(".service").text()
   objAdvertisement.description = element.children("p").text()
   objAdvertisement.price = parseInt(element.children("span").text())
   objAdvertisement.city = element.find(".city").text()
   objAdvertisement.address = element.find(".address").text()
   objAdvertisement.duration = element.find(".duration-ad").text()
+  objAdvertisement.category_id = element.find(".category").attr("data-cat")
+  objAdvertisement.service_id = element.find(".service").attr("data-service")
 
 objAdvertisement = 
   id: 1
+  category_name: ""
   category_id: 1
+  service_name: ""
   service_id: 1
   description: ""
   price: 100
@@ -326,6 +331,13 @@ output_in_form = (id_form) ->
   $(id_form).find("#advertisement_city").val("#{objAdvertisement.city}")
   $(id_form).find("#advertisement_address").val("#{objAdvertisement.address}")
   $(id_form).find("#advertisement_duration").val("#{objAdvertisement.duration}")
+  $(id_form).find(".category-select").children(".cs-placeholder").text("#{objAdvertisement.category_name}")
+  $(id_form).find(".services-select").children(".cs-placeholder").text("#{objAdvertisement.service_name}")
+  # select category and service in change_form
+  $("#{id_form} .category-select li[data-value='#{objAdvertisement.category_id}']").addClass("cs-selected")
+  $("#{id_form} .category-select").val(objAdvertisement.category_id)
+  $("#{id_form} .services-select li[data-value='#{objAdvertisement.service_id}'] ").addClass("cs-selected")
+  $("#{id_form} .services-select").val(objAdvertisement.service_id)
 
 # convert yyyy-mm-dd to dd/mm/yyyy  
 convert_date_rus = (yyyy_mm_dd) ->

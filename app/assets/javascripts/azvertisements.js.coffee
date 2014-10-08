@@ -12,7 +12,7 @@ $(document).on "page:change", ->
         if result == 'Объявление забронировано. Ожидайте звонок от заказчика'
           current_el.remove()
           span = $ "<span>"
-          span.addClass "button not-button white-green"
+          span.addClass "button not-button"
           span.html("Занят")
           parent.append span
 

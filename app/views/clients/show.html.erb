@@ -75,6 +75,11 @@
   </div><!--/reviews-->
 </div><!--/clearfix-->
 
+<%# javascript_tag do %>
+  #window.categories_json = '<%# raw Category.all.to_json( :only => [:id, :name] ) %>';
+  #window.services_json = '<%# raw Service.all.to_json( :only => [:id, :name] ) %>';
+<%# end %>
+
 <div id = "i-want-column">
   <h2>Текущие объявления</h2>
   <span id = "client-add-advertisements", class = "add-button">
