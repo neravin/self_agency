@@ -71,14 +71,14 @@ $(document).on "page:change", ->
   $("#new_worker").on("ajax:success", (e, data, status, xhr) -> 
     $("#new-worker-form").hide()
     $("#fade").hide()
-    clear_value_input("new-worker-form")
+    clear_value_input("#new-worker-form")
     worker = xhr.responseJSON
     $("#worker-posts").prepend " 
       <div class='post' data-ad='#{worker.id}'>
         <a class='edit-advertisement' href='/workers/#{worker.id}/edit' title='Изменить'>
           <i class='fa fa-pencil'></i>
         </a>      
-        <h2>#{worker.service.name}</h2>
+        <h2>#{worker.service.category.name}: #{worker.service.name}</h2>
         <p>#{worker.description}</p>
         <span class='price'>#{worker.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
       </div>"
