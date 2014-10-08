@@ -95,10 +95,10 @@ $(document).on "page:change", ->
 
     for message of errors
       switch message
-        when "description" then     add_error_without_message("#worker_description")
-        when "city" then            add_error_without_message("#worker_city")
-        when "address" then         add_error_without_message("#worker_address")
-        when "price" then           add_error_without_message("#worker_price")
+        when "description" then     add_error_without_message("#new_worker #worker_description")
+        when "city" then            add_error_without_message("#new_worker #worker_city")
+        when "address" then         add_error_without_message("#new_worker #worker_address")
+        when "price" then           add_error_without_message("#new_worker #worker_price")
         when "service_id" then      add_error_without_message("#new_worker .services-select")
 
   $("#new_advertisement").on("ajax:success", (e, data, status, xhr) ->
@@ -158,14 +158,38 @@ $(document).on "page:change", ->
 
     for message of errors
       switch message
-        when "description" then     add_error_without_message("#advertisement_description")
-        when "city" then            add_error_without_message("#advertisement_city")
-        when "address" then         add_error_without_message("#advertisement_address")
-        when "date" then            add_error_without_message("#advertisement_date")
-        when "price" then           add_error_without_message("#advertisement_price")
+        when "description" then     add_error_without_message("#new_advertisement #advertisement_description")
+        when "city" then            add_error_without_message("#new_advertisement #advertisement_city")
+        when "address" then         add_error_without_message("#new_advertisement #advertisement_address")
+        when "date" then            add_error_without_message("#new_advertisement #advertisement_date")
+        when "price" then           add_error_without_message("#new_advertisement #advertisement_price")
         when "service_id" then      add_error_without_message("#new_advertisement .services-select")
-        when "duration" then        add_error_without_message("#advertisement_duration")
+        when "duration" then        add_error_without_message("#new_advertisement #advertisement_duration")
 
+  $("#edit_advertisement").on("ajax:success", (e, data, status, xhr) ->
+    alert xhr.responseText
+  ).on "ajax:error", (e, xhr, status, error) ->
+    clear_errors()
+    clear_vertical_errors("#edit_advertisement")
+    errors = xhr.responseJSON.error
+    different_errors = get_different_errors(errors)
+    output_dif_errors("#edit_advertisement", different_errors)
+    #for i in [0...different_errors.length]
+    #  alert different_errors[i]
+
+    # change height form
+    h = $("#edit_advertisement").parent().height()
+    $("#edit_advertisement").parent().css "margin-top", "#{-h/2}px"
+
+    for message of errors
+      switch message
+        when "description" then     add_error_without_message("#edit_advertisement #advertisement_description")
+        when "city" then            add_error_without_message("#edit_advertisement #advertisement_city")
+        when "address" then         add_error_without_message("#edit_advertisement #advertisement_address")
+        when "date" then            add_error_without_message("#edit_advertisement #advertisement_date")
+        when "price" then           add_error_without_message("#edit_advertisement #advertisement_price")
+        when "service_id" then      add_error_without_message("#edit_advertisement .services-select")
+        when "duration" then        add_error_without_message("#edit_advertisement #advertisement_duration")
 
   $("#ad-posts").on "click", ".edit-ad-link", ->
     $("#fade").show()
@@ -202,7 +226,11 @@ $(document).on "page:change", ->
     $("#edit_advertisement").parent().css "margin-top", "#{-h/2}px"
     parse_ad($(this).parent())
     output_in_form("#edit_advertisement")
+    # clear errors
+    clear_errors()
+    clear_vertical_errors("#edit_advertisement")
     $("#edit_advertisement").parent().show()
+
     
   select_category_ajax("#new_advertisement")
   select_category_ajax("#new_worker")
@@ -310,6 +338,7 @@ parse_ad = (element) ->
   objAdvertisement.duration = element.find(".duration-ad").text()
   objAdvertisement.category_id = element.find(".category").attr("data-cat")
   objAdvertisement.service_id = element.find(".service").attr("data-service")
+  objAdvertisement.date = convert_date_to_rails(element.find(".date").text())
 
 objAdvertisement = 
   id: 1
@@ -325,7 +354,7 @@ objAdvertisement =
   duration: 10
 
 output_in_form = (id_form) ->
-  $(id_form).attr("action", "/advertisements/#{objAdvertisement.id}/edit")
+  $(id_form).attr("action", "/advertisements/#{objAdvertisement.id}")
   $(id_form).find("#advertisement_description").val("#{objAdvertisement.description}")
   $(id_form).find("#advertisement_price").val("#{objAdvertisement.price}")
   $(id_form).find("#advertisement_city").val("#{objAdvertisement.city}")
@@ -333,6 +362,7 @@ output_in_form = (id_form) ->
   $(id_form).find("#advertisement_duration").val("#{objAdvertisement.duration}")
   $(id_form).find(".category-select").children(".cs-placeholder").text("#{objAdvertisement.category_name}")
   $(id_form).find(".services-select").children(".cs-placeholder").text("#{objAdvertisement.service_name}")
+  $(id_form).find("#advertisement_date").val("#{objAdvertisement.date}")
   # select category and service in change_form
   $("#{id_form} .category-select li[data-value='#{objAdvertisement.category_id}']").addClass("cs-selected")
   $("#{id_form} .category-select").val(objAdvertisement.category_id)
@@ -342,4 +372,8 @@ output_in_form = (id_form) ->
 # convert yyyy-mm-dd to dd/mm/yyyy  
 convert_date_rus = (yyyy_mm_dd) ->
   dateSplit = yyyy_mm_dd.split('-')
-  currentDate = dateSplit[2] + '/' + dateSplit[1] + '/' +dateSplit[0]
+  currentDate = dateSplit[2] + '/' + dateSplit[1] + '/' + dateSplit[0]
+
+convert_date_to_rails = (dd_mm_yyyy) ->
+  dateSplit =dd_mm_yyyy.split('/')
+  currentDate = dateSplit[2] + '-' + dateSplit[1] + '-' + dateSplit[0]

@@ -4,7 +4,6 @@ class AdvertisementsController < ApplicationController
 	before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
 	before_action :correct_advertisement, only: [:edit, :update]
 
-
   def index
     ad_service_id = params[:advertisement]
     worker_service_id = params[:worker]
@@ -107,10 +106,10 @@ class AdvertisementsController < ApplicationController
   def update
     respond_to do |format|
       if @advertisement.update(advertisement_params)
-        format.html { redirect_to current_client, notice: 'Объявление успешно обновлено' }
+        #format.html { redirect_to current_client, notice: 'Объявление успешно обновлено' }
         #format.json { render :show, status: :ok, location: @advertisement }
       else
-        format.html { render :edit }
+        format.json { render :json => { :error => @advertisement.errors.messages }, :status => 500 }
         #format.json { render json: @advertisement.errors, status: :unprocessable_entity }
       end
     end

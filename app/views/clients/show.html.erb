@@ -76,8 +76,8 @@
 </div><!--/clearfix-->
 
 <%# javascript_tag do %>
-  #window.categories_json = '<%# raw Category.all.to_json( :only => [:id, :name] ) %>';
-  #window.services_json = '<%# raw Service.all.to_json( :only => [:id, :name] ) %>';
+  <!--window.categories_json = '<%# raw Category.all.to_json( :only => [:id, :name] ) %>';
+  #window.services_json = '<%# raw Service.all.to_json( :only => [:id, :name] ) %>';-->
 <%# end %>
 
 <div id = "i-want-column">
@@ -119,9 +119,7 @@
           <span class = "label">Адрес:</span>
           <span class = 'address'><%= ad.address %></span>
         </div>
-        <div class="date">
-          <%= ad.date.strftime("%d/%m/%Y") %>
-        </div>
+        <div class="date"><%= ad.date.strftime("%d/%m/%Y") %></div>
       </div><!--/contact-->
       <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span><br>
 
