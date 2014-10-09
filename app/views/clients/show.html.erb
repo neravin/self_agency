@@ -79,17 +79,51 @@
   <span id = "client-add-advertisements", class = "add-button">
     <i class="fa fa-plus"></i> Добавить новое объявление
   </span>
+
 <% end %>
-  <% @client.advertisements.each do |ad| %>
+  
+
+  <div id = "ad-posts">
+  <% @client.advertisements.order('created_at DESC').each do |ad| %>
     <div class="post" data-ad="<%= ad.id %>">
     <% if current_client.id == @client.id %>
-      <%= link_to(edit_advertisement_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
+      <span  class = "edit-ad-link edit-advertisement">
         <i class="fa fa-pencil"></i>
+      </span>
+      <%# link_to(edit_advertisement_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
+        <!--i class="fa fa-pencil"></i-->
+      <%# end %>
+        <%= link_to(ad, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+          <i class="fa fa-trash-o"></i>
+        <% end %>
       <% end %>
-    <% end %>
-      <h2><%= ad.service.name %></h2>
+      <h2>
+        <span class = "category" data-cat = "<%= ad.service.category.id %>">
+          <%= ad.service.category.name %></span>:
+        <span class = "service" data-service = "<%= ad.service.id %>">
+          <%= ad.service.name %>
+        </span>
+      </h2>
       <p><%= ad.description %></p>
-      <span class = "price"><%= ad.price %> у.е.</span><br>
+
+      <div class = "duration">
+        <span class = "duration-ad"><%= ad.duration %></span><br/>дней
+      </div>
+
+      <div class="contact clearfix"> 
+        <div>
+          <span class = "label">Город:</span>
+          <span class = "city"><%= ad.city %></span>
+        </div>
+        <div>
+          <span class = "label">Адрес:</span>
+          <span class = 'address'><%= ad.address %></span>
+        </div>
+        <div class="date">
+          <%= ad.date.strftime("%d/%m/%Y") %>
+        </div>
+      </div><!--/contact-->
+      <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span><br>
 
       <% if ad.worker_id %>
         <% if worker = Client.find_by_id(ad.worker_id) %>
@@ -104,6 +138,7 @@
       <% end %>
     </div>
   <% end %>
+  </div><!--/ad-posts-->
 </div>
 
 <div id = "i-can-column">
@@ -114,18 +149,33 @@
     </span>
   <% end %>
 
-  <% @client.workers.each do |ad| %>
-    <div class="post">
-    <% if current_client.id == @client.id %>
-      <%= link_to(edit_worker_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
-        <i class="fa fa-pencil"></i>
+
+
+  <div id = "worker-posts">
+    <% @client.workers.order('created_at DESC').each do |ad| %>
+      <div class="post">
+      <% if current_client.id == @client.id %>
+        <%= link_to(edit_worker_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
+          <i class="fa fa-pencil"></i>
+        <% end %>
+        <%= link_to(ad, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+          <i class="fa fa-trash-o"></i>
+        <% end %>
       <% end %>
+        <h2>
+          <span class = "category" data-cat = "<%= ad.service.category.id %>">
+            <%= ad.service.category.name %></span>:
+          <span class = "service" data-service = "<%= ad.service.id %>">
+            <%= ad.service.name %>
+          </span>
+        </h2>
+        <p><%= ad.description %></p>
+        <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
+      </div>
     <% end %>
-      <h2><%= ad.service.name %></h2>
-      <p><%= ad.description %></p>
-      <span class = "price"><%= ad.price %> у.е.</span>
-    </div>
-  <% end %>
+  </div><!--/worker-posts-->
 </div>
 
 <%= render 'new_advertisement' %>
+<%= render 'new_worker' %>
+<%= render 'edit_advertisement' %>

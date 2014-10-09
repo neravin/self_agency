@@ -1,6 +1,7 @@
 # encoding: utf-8
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
+  before_action :authorize
 	def new
 		@service = Service.new
 		@category = Category.new
