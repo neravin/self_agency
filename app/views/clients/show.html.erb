@@ -147,11 +147,14 @@
 
   <div id = "worker-posts">
     <% @client.workers.order('created_at DESC').each do |ad| %>
-      <div class="post">
+      <div class="post" data-worker=<%= ad.id%>>
       <% if current_client.id == @client.id %>
-        <%= link_to(edit_worker_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
+        <span  class = "edit-worker-link edit-advertisement">
           <i class="fa fa-pencil"></i>
-        <% end %>
+        </span>
+        <%# link_to(edit_worker_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
+          <!--i class="fa fa-pencil"></i-->
+        <%# end %>
       <% end %>
         <h2>
           <span class = "category" data-cat = "<%= ad.service.category.id %>">
@@ -161,12 +164,25 @@
           </span>
         </h2>
         <p><%= ad.description %></p>
+         <div class="contact clearfix"> 
+          <div>
+            <span class = "label">Город:</span>
+            <span class = "city"><%= ad.city %></span>
+          </div>
+          <div>
+            <span class = "label">Адрес:</span>
+            <span class = 'address'><%= ad.address %></span>
+          </div>
+        </div><!--/contact-->
         <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
       </div>
     <% end %>
   </div><!--/worker-posts-->
 </div>
 
-<%= render 'new_advertisement' %>
-<%= render 'new_worker' %>
-<%= render 'edit_advertisement' %>
+<% if current_client.id == @client.id %>
+  <%= render 'new_advertisement' %>
+  <%= render 'new_worker' %>
+  <%= render 'edit_advertisement' %>
+  <%= render 'edit_worker' %>
+<% end %>

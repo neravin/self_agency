@@ -1,0 +1,60 @@
+<div id = "edit-worker-form" class = "form-shell fat-style">
+  <%= form_for(:worker, :url => { :controller => "workers", :action => "edit" }, method: "patch", remote: true, html: { id: "edit_worker" }) do |f| %>
+    <fieldset>
+    <h2>Изменить услугу</h2>
+
+    <div class="error_explanation">
+    </div>
+
+    <div class = "one-column">
+      <div class="field">
+        <%= collection_select(:category, :category_id, Category.all, :id, :name, 
+          {:prompt => "Категория"}, {:class => "category-select cs-select2 cs-skin-border"}) %>
+      </div>
+
+      <div class="field">
+        <%= collection_select(:worker, :service_id, Service.all, :id, :name, 
+          {:prompt => "Тип объявления"}, {:class => "services-select cs-select cs-skin-border"}) %>
+      </div>
+
+      <div class="field">
+        <legend class="label">Описание:</legend>
+        <%= f.text_area :description %>
+      </div>
+    </div><!--/one-column-->
+
+    <div class="two-column">
+      <div class="field">
+        <%= f.text_field :city, :placeholder => "Город" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :address, :placeholder => "Адрес"%>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :price, :placeholder => "Цена" %>
+      </div>
+
+      <div class="field actions">
+        <%= f.submit :class => "button middle_green", :value => "Сохранить" %>
+      </div>
+    </div><!--/two-column-->
+
+    </fieldset>
+  <% end %>
+</div>
+
+<script>
+  (function() {
+    [].slice.call( document.querySelectorAll( '#edit_worker select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+
+  (function() {
+    [].slice.call( document.querySelectorAll( '#edit_worker select.cs-select2' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+</script>

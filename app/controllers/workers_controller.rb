@@ -68,10 +68,12 @@ class WorkersController < ApplicationController
   def update
     respond_to do |format|
       if @worker.update(worker_params)
-        format.html { redirect_to current_client, notice: 'Объявление успешно обновлено' }
+        format.json { render json: @worker.to_json(:include => { :service => { :only => :name, :include => {:category => { :only => :name } } } } ), status: :created, location: @worker }
+        #format.html { redirect_to current_client, notice: 'Объявление успешно обновлено' }
         #format.json { render :show, status: :ok, location: @worker }
       else
-        format.html { render :edit }
+        format.json { render :json => { :error => @worker.errors.messages }, :status => 500 }
+        #format.html { render :edit }
         #format.json { render json: @worker.errors, status: :unprocessable_entity }
       end
     end

@@ -1,6 +1,4 @@
 <div id = "edit-ad-form" class = "form-shell fat-style">
-  <%# form_for @advertisement do |f| %>
-  <%# @advertisement = Advertisement.find_by_id(63) %>
   <%= form_for(:advertisement, :url => { :controller => "advertisements", :action => "edit" }, method: "patch", remote: true, html: { id: "edit_advertisement" }) do |f| %>
   <fieldset>
     <h2>Изменить тендер</h2>

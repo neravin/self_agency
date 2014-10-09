@@ -10,6 +10,7 @@ $(document).on "page:change", ->
     $("#success-message").hide()
     $("#new_advertisement").parent().hide()
     $("#edit_advertisement").parent().hide()
+    $("#edit_worker").parent().hide()
     $("#new_worker").parent().hide()
     $(this).hide()
 
@@ -74,12 +75,28 @@ $(document).on "page:change", ->
     clear_value_input("#new-worker-form")
     worker = xhr.responseJSON
     $("#worker-posts").prepend " 
-      <div class='post' data-ad='#{worker.id}'>
-        <a class='edit-advertisement' href='/workers/#{worker.id}/edit' title='Изменить'>
+      <div class='post' data-worker='#{worker.id}'>
+        <span  class = 'edit-worker-link edit-advertisement'>
           <i class='fa fa-pencil'></i>
-        </a>      
-        <h2>#{worker.service.category.name}: #{worker.service.name}</h2>
+        </span>    
+        <h2>
+          <span class = 'category' data-cat = '#{worker.service.category.id}'>
+            #{worker.service.category.name}</span>:
+          <span class = 'service' data-service = '#{worker.service.id}'>
+            #{worker.service.name}
+          </span>
+        </h2>
         <p>#{worker.description}</p>
+        <div class='contact clearfix'> 
+          <div>
+            <span class = 'label'>Город:</span>
+            <span class = 'city'>#{worker.city}</span>
+          </div>
+          <div>
+            <span class = 'label'>Адрес:</span>
+            <span class = 'address'>#{worker.address}</span>
+          </div>
+        </div><!--/contact-->
         <span class='price'>#{worker.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
       </div>"
   ).on "ajax:error", (e, xhr, status, error) ->
@@ -166,11 +183,47 @@ $(document).on "page:change", ->
         when "service_id" then      add_error_without_message("#new_advertisement .services-select")
         when "duration" then        add_error_without_message("#new_advertisement #advertisement_duration")
 
+  $("#edit_worker").on("ajax:success", (e, data, status, xhr) ->
+    $("#edit-worker-form").hide()
+    $("#fade").hide()
+    clear_value_input("#edit-worker-form")
+    worker = xhr.responseJSON
+    # change text in post
+    post = $("#worker-posts div[data-worker='#{worker.id}']")
+    post.find(".category").attr("data-cat", worker.service.category.id)
+    post.find(".category").text("#{worker.service.category.name}")
+    post.find(".service").attr("data-service", worker.service.id)
+    post.find(".service").text("#{worker.service.name}")
+    post.find(".city").text("#{worker.city}")
+    post.find(".address").text("#{worker.address}")
+    post.children("p").text("#{worker.description}")
+    post.find(".price").text("#{worker.price}").append " <i class='fa fa-rub' style = 'font-size: 0.9em;'></i>"
+  ).on "ajax:error", (e, xhr, status, error) ->
+    # clear old errors
+    clear_errors()
+    clear_vertical_errors("#edit_worker")
+    # get errors
+    errors = xhr.responseJSON.error
+    different_errors = get_different_errors(errors)
+    output_dif_errors("#edit_worker", different_errors)
+    # change height form
+    h = $("#edit_worker").parent().height()
+    $("#edit_worker").parent().css "margin-top", "#{-h/2}px"
+
+    for message of errors
+      switch message
+        when "description" then     add_error_without_message("#edit_worker #worker_description")
+        when "city" then            add_error_without_message("#edit_worker #worker_city")
+        when "address" then         add_error_without_message("#edit_worker #worker_address")
+        when "price" then           add_error_without_message("#edit_worker #worker_price")
+        when "service_id" then      add_error_without_message("#edit_worker .services-select")
+
   $("#edit_advertisement").on("ajax:success", (e, data, status, xhr) ->
     $("#edit-ad-form").hide()
     $("#fade").hide()
     clear_value_input("#edit-ad-form")
     advertisement = xhr.responseJSON
+    # change text in post
     post = $("#ad-posts div[data-ad='#{advertisement.id}']")
     post.find(".category").attr("data-cat", advertisement.service.category.id)
     post.find(".category").text("#{advertisement.service.category.name}")
@@ -182,10 +235,11 @@ $(document).on "page:change", ->
     post.find(".date").text("#{convert_date_rus(advertisement.date)}")
     post.children("p").text("#{advertisement.description}")
     post.find(".price").text("#{advertisement.price}").append " <i class='fa fa-rub' style = 'font-size: 0.9em;'></i>"
-
   ).on "ajax:error", (e, xhr, status, error) ->
+    # clear old errors
     clear_errors()
     clear_vertical_errors("#edit_advertisement")
+    # get errors
     errors = xhr.responseJSON.error
     different_errors = get_different_errors(errors)
     output_dif_errors("#edit_advertisement", different_errors)
@@ -211,7 +265,7 @@ $(document).on "page:change", ->
     h = $("#edit_advertisement").parent().height()
     $("#edit_advertisement").parent().css "margin-top", "#{-h/2}px"
     parse_ad($(this).parent())
-    output_in_form("#edit_advertisement")
+    output_in_form_ad("#edit_advertisement")
     $("#edit_advertisement").parent().show()
 
   $("#new_client").on "click", "input.error-input", ->
@@ -240,16 +294,28 @@ $(document).on "page:change", ->
     h = $("#edit_advertisement").parent().height()
     $("#edit_advertisement").parent().css "margin-top", "#{-h/2}px"
     parse_ad($(this).parent())
-    output_in_form("#edit_advertisement")
+    output_in_form_ad("#edit_advertisement")
     # clear errors
     clear_errors()
     clear_vertical_errors("#edit_advertisement")
     $("#edit_advertisement").parent().show()
 
+  $(".edit-worker-link").click ->
+    $("#fade").show()
+    h = $("#edit_worker").parent().height()
+    $("#edit_worker").parent().css "margin-top", "#{-h/2}px"
+    parse_worker($(this).parent())
+    output_in_form_worker("#edit_worker")
+    # clear errors
+    clear_errors()
+    clear_vertical_errors("#edit_worker")
+    $("#edit_worker").parent().show()
+
     
   select_category_ajax("#new_advertisement")
   select_category_ajax("#new_worker")
   select_category_ajax("#edit_advertisement")
+  select_category_ajax("#edit_worker")
 
   $("#client-add-workers").click -> 
     $("#fade").show()
@@ -347,7 +413,7 @@ parse_ad = (element) ->
   objAdvertisement.category_name = element.children("h2").children(".category").text()
   objAdvertisement.service_name = element.children("h2").children(".service").text()
   objAdvertisement.description = element.children("p").text()
-  objAdvertisement.price = parseInt(element.children("span").text())
+  objAdvertisement.price = parseInt(element.children(".price").text())
   objAdvertisement.city = element.find(".city").text()
   objAdvertisement.address = element.find(".address").text()
   objAdvertisement.duration = element.find(".duration-ad").text()
@@ -355,7 +421,7 @@ parse_ad = (element) ->
   objAdvertisement.service_id = element.find(".service").attr("data-service")
   objAdvertisement.date = convert_date_to_rails(element.find(".date").text())
 
-output_in_form = (id_form) ->
+output_in_form_ad = (id_form) ->
   $(id_form).attr("action", "/advertisements/#{objAdvertisement.id}")
   $(id_form).find("#advertisement_description").val("#{objAdvertisement.description}")
   $(id_form).find("#advertisement_price").val("#{objAdvertisement.price}")
@@ -371,11 +437,38 @@ output_in_form = (id_form) ->
   $("#{id_form} .services-select li[data-value='#{objAdvertisement.service_id}'] ").addClass("cs-selected")
   $("#{id_form} .services-select").val(objAdvertisement.service_id)
 
+parse_worker = (element) ->
+  objWorker.id = element.attr("data-worker")
+  objWorker.category_name = element.children("h2").children(".category").text()
+  objWorker.service_name = element.children("h2").children(".service").text()
+  objWorker.description = element.children("p").text()
+  objWorker.price = parseInt(element.children(".price").text())
+  objWorker.city = element.find(".city").text()
+  objWorker.address = element.find(".address").text()
+  objWorker.category_id = element.find(".category").attr("data-cat")
+  objWorker.service_id = element.find(".service").attr("data-service")
+
+output_in_form_worker = (id_form) ->
+  $(id_form).attr("action", "/workers/#{objWorker.id}")
+  $(id_form).find("#worker_description").val("#{objWorker.description}")
+  $(id_form).find("#worker_price").val("#{objWorker.price}")
+  $(id_form).find("#worker_city").val("#{objWorker.city}")
+  $(id_form).find("#worker_address").val("#{objWorker.address}")
+  $(id_form).find(".category-select").children(".cs-placeholder").text("#{objWorker.category_name}")
+  $(id_form).find(".services-select").children(".cs-placeholder").text("#{objWorker.service_name}")
+  # select category and service in change_form
+  $("#{id_form} .category-select li[data-value='#{objWorker.category_id}']").addClass("cs-selected")
+  $("#{id_form} .category-select").val(objWorker.category_id)
+  $("#{id_form} .services-select li[data-value='#{objWorker.service_id}'] ").addClass("cs-selected")
+  $("#{id_form} .services-select").val(objWorker.service_id)
+
+
 # convert yyyy-mm-dd to dd/mm/yyyy  
 convert_date_rus = (yyyy_mm_dd) ->
   dateSplit = yyyy_mm_dd.split('-')
   currentDate = dateSplit[2] + '/' + dateSplit[1] + '/' + dateSplit[0]
 
+# convert dd/mm/yyyy to yyyy-mm-dd
 convert_date_to_rails = (dd_mm_yyyy) ->
   dateSplit =dd_mm_yyyy.split('/')
   currentDate = dateSplit[2] + '-' + dateSplit[1] + '-' + dateSplit[0]
@@ -394,3 +487,14 @@ objAdvertisement =
   address: "" 
   date: "" 
   duration: 10
+
+objWorker =
+  id: 1
+  category_name: ""
+  category_id: 1
+  service_name: ""
+  service_id: ""
+  description: ""
+  price: 100
+  city: "Санкт-Петербург"
+  address: ""
