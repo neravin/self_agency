@@ -268,6 +268,14 @@ $(document).on "page:change", ->
     output_in_form_ad("#edit_advertisement")
     $("#edit_advertisement").parent().show()
 
+  $("#worker-posts").on "click", ".edit-worker-link", ->
+    $("fade").show()
+    h = $("#edit_worker").parent().height()
+    $("#edit_worker").parent().css "margin-top", "#{-h/2}px"
+    parse_worker($(this).parent())
+    output_in_form_worker("#edit_worker")
+    $("#edit_worker").parent().show()
+
   $("#new_client").on "click", "input.error-input", ->
     $(this).removeClass("error-input")
     error_message = $(this).next()
