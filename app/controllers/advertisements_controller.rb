@@ -106,6 +106,7 @@ class AdvertisementsController < ApplicationController
   def update
     respond_to do |format|
       if @advertisement.update(advertisement_params)
+        format.json { render json: @advertisement.to_json(:include => { :service => { :only => [:id, :name], :include => { :category => { :only => [:id, :name]  } } } } ), status: :created, location: @advertisement }
         #format.html { redirect_to current_client, notice: 'Объявление успешно обновлено' }
         #format.json { render :show, status: :ok, location: @advertisement }
       else

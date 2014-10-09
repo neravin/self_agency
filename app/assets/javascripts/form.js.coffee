@@ -167,7 +167,22 @@ $(document).on "page:change", ->
         when "duration" then        add_error_without_message("#new_advertisement #advertisement_duration")
 
   $("#edit_advertisement").on("ajax:success", (e, data, status, xhr) ->
-    alert xhr.responseText
+    $("#edit-ad-form").hide()
+    $("#fade").hide()
+    clear_value_input("#edit-ad-form")
+    advertisement = xhr.responseJSON
+    post = $("#ad-posts div[data-ad='#{advertisement.id}']")
+    post.find(".category").attr("data-cat", advertisement.service.category.id)
+    post.find(".category").text("#{advertisement.service.category.name}")
+    post.find(".service").attr("data-service", advertisement.service.id)
+    post.find(".service").text("#{advertisement.service.name}")
+    post.find(".duration-ad").text("#{advertisement.duration}")
+    post.find(".city").text("#{advertisement.city}")
+    post.find(".address").text("#{advertisement.address}")
+    post.find(".date").text("#{convert_date_rus(advertisement.date)}")
+    post.children("p").text("#{advertisement.description}")
+    post.find(".price").text("#{advertisement.price}").append " <i class='fa fa-rub' style = 'font-size: 0.9em;'></i>"
+
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     clear_vertical_errors("#edit_advertisement")
@@ -324,7 +339,7 @@ clear_vertical_errors = (id_form) ->
     $(id_form).find('.error_explanation').hide()
 
 clear_value_input = (id_form) ->
-  $(id_form).find("input").not(':input[type=button], :input[type=submit], :input[type=reset]').val('')
+  $(id_form).find("input").not(':input[type=button], :input[type=submit], :input[type=reset], :input[type=hidden]').val('')
   $(id_form).find("textarea").val('')
 
 parse_ad = (element) ->
@@ -339,19 +354,6 @@ parse_ad = (element) ->
   objAdvertisement.category_id = element.find(".category").attr("data-cat")
   objAdvertisement.service_id = element.find(".service").attr("data-service")
   objAdvertisement.date = convert_date_to_rails(element.find(".date").text())
-
-objAdvertisement = 
-  id: 1
-  category_name: ""
-  category_id: 1
-  service_name: ""
-  service_id: 1
-  description: ""
-  price: 100
-  city: "Санкт-Петербург"
-  address: "" 
-  date: "" 
-  duration: 10
 
 output_in_form = (id_form) ->
   $(id_form).attr("action", "/advertisements/#{objAdvertisement.id}")
@@ -377,3 +379,18 @@ convert_date_rus = (yyyy_mm_dd) ->
 convert_date_to_rails = (dd_mm_yyyy) ->
   dateSplit =dd_mm_yyyy.split('/')
   currentDate = dateSplit[2] + '-' + dateSplit[1] + '-' + dateSplit[0]
+
+
+# Global var
+objAdvertisement = 
+  id: 1
+  category_name: ""
+  category_id: 1
+  service_name: ""
+  service_id: 1
+  description: ""
+  price: 100
+  city: "Санкт-Петербург"
+  address: "" 
+  date: "" 
+  duration: 10
