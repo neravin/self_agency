@@ -367,13 +367,6 @@ $(document).on "page:change", ->
     $('#new_worker').parent().css "margin-top", "#{-h/2}px"
     $("#new_worker").parent().show()
 
-clear_select = (element) ->
-  if(element.hasClass("category-select"))
-    element.children(".cs-placeholder").text("Категория")
-  if(element.hasClass("services-select"))
-    element.children(".cs-placeholder").text("Тип объявления")
-  element.children(".cs-options").find("li[class='cs-selected']").removeClass("cs-selected")
-
 
 select_category_ajax = (form_id) ->
   $("#{form_id} .category-select").children(".cs-options").children().children().click ->
@@ -460,6 +453,13 @@ clear_value_input = (id_form) ->
   $(id_form).find("input").not(':input[type=button], :input[type=submit], :input[type=reset], :input[type=hidden]').val('')
   $(id_form).find("textarea").val('')
 
+clear_select = (element) ->
+  if(element.hasClass("category-select"))
+    element.children(".cs-placeholder").text("Категория")
+  if(element.hasClass("services-select"))
+    element.children(".cs-placeholder").text("Тип объявления")
+  element.children(".cs-options").find("li[class='cs-selected']").removeClass("cs-selected")
+
 parse_ad = (element) ->
   objAdvertisement.id = element.attr("data-ad")
   objAdvertisement.category_name = element.children("h2").children(".category").text()
@@ -483,11 +483,34 @@ output_in_form_ad = (id_form) ->
   $(id_form).find(".category-select").children(".cs-placeholder").text("#{objAdvertisement.category_name}")
   $(id_form).find(".services-select").children(".cs-placeholder").text("#{objAdvertisement.service_name}")
   $(id_form).find("#advertisement_date").val("#{objAdvertisement.date}")
+  #
   # select category and service in change_form
-  $("#{id_form} .category-select li[data-value='#{objAdvertisement.category_id}']").addClass("cs-selected")
-  $("#{id_form} .category-select").val(objAdvertisement.category_id)
-  $("#{id_form} .services-select li[data-value='#{objAdvertisement.service_id}'] ").addClass("cs-selected")
-  $("#{id_form} .services-select").val(objAdvertisement.service_id)
+  #
+  id = objAdvertisement.category_id
+  if $.isNumeric(id)
+    id = parseInt(id)
+    $.ajax({
+      type: "POST"
+      url: "/select_category"
+      data: { id: id },
+      success: (result) ->
+        $("#advertisement_service_id").children().remove()
+        $("#{id_form} .services-select").find("li").remove()
+        $("#{id_form} .services-select").find("ul").append '<li data-option="" data-value=""><span>Тип объявления</span></li>'
+        $("#advertisement_service_id").append  '<option value="">Тип объявления</option>'
+        for i in [0...result.length]
+          $("#advertisement_service_id").append "<option value='#{result[i]["id"]}'>#{result[i]["name"]}</option>"
+          $("#{id_form} .services-select").find("ul").append "<li data-option='' data-value='#{result[i]["id"]}'><span>#{result[i]["name"]}</span></li>"
+        # category select
+        $("#{id_form} .category-select li[data-value='#{objAdvertisement.category_id}']").addClass("cs-selected")
+        $("#{id_form} .category-select").val(objAdvertisement.category_id)
+        $("#{id_form} select.category-select ").val("#{objAdvertisement.category_id}")
+        # service select
+        $("#{id_form} .services-select li[data-value='#{objAdvertisement.service_id}'] ").addClass("cs-selected")
+        $("#{id_form} .services-select").val(objAdvertisement.service_id)
+        $("#{id_form} select.services-select ").val("#{objAdvertisement.service_id}")
+    })
+
 
 parse_worker = (element) ->
   objWorker.id = element.attr("data-worker")
@@ -508,11 +531,34 @@ output_in_form_worker = (id_form) ->
   $(id_form).find("#worker_address").val("#{objWorker.address}")
   $(id_form).find(".category-select").children(".cs-placeholder").text("#{objWorker.category_name}")
   $(id_form).find(".services-select").children(".cs-placeholder").text("#{objWorker.service_name}")
+  #
   # select category and service in change_form
-  $("#{id_form} .category-select li[data-value='#{objWorker.category_id}']").addClass("cs-selected")
-  $("#{id_form} .category-select").val(objWorker.category_id)
-  $("#{id_form} .services-select li[data-value='#{objWorker.service_id}'] ").addClass("cs-selected")
-  $("#{id_form} .services-select").val(objWorker.service_id)
+  #
+  id = objWorker.category_id
+  if $.isNumeric(id)
+    id = parseInt(id)
+    $.ajax({
+      type: "POST"
+      url: "/select_category"
+      data: { id: id },
+      success: (result) ->
+        $("#advertisement_service_id").children().remove()
+        $("#{id_form} .services-select").find("li").remove()
+        $("#{id_form} .services-select").find("ul").append '<li data-option="" data-value=""><span>Тип объявления</span></li>'
+        $("#advertisement_service_id").append  '<option value="">Тип объявления</option>'
+        for i in [0...result.length]
+          $("#advertisement_service_id").append "<option value='#{result[i]["id"]}'>#{result[i]["name"]}</option>"
+          $("#{id_form} .services-select").find("ul").append "<li data-option='' data-value='#{result[i]["id"]}'><span>#{result[i]["name"]}</span></li>"
+        # category select
+        $("#{id_form} .category-select li[data-value='#{objWorker.category_id}']").addClass("cs-selected")
+        $("#{id_form} .category-select").val(objWorker.category_id)
+        $("#{id_form} select.category-select ").val("#{objWorker.category_id}")
+        # service select
+        $("#{id_form} .services-select li[data-value='#{objWorker.service_id}'] ").addClass("cs-selected")
+        $("#{id_form} .services-select").val("#{objWorker.service_id}")
+        $("#{id_form} select.services-select ").val("#{objWorker.service_id}")
+        $("#{id_form} .category-select").val(id)
+    })
 
 
 # convert yyyy-mm-dd to dd/mm/yyyy  

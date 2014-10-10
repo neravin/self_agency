@@ -246,14 +246,16 @@
     if( this._isOpen() ) {
       if( this.current !== -1 ) {
         // update placeholder text
-        this.selPlaceholder.textContent = this.selOpts[ this.current ].textContent;
+        // warning !!!!!!!!!!!!!!!!!!!!!!!!! need test
+        // this.selPlaceholder.textContent = this.selOpts[ this.current ].textContent;
       }
       classie.remove( this.selEl, 'cs-active' );
     }
     else {
       if( this.hasDefaultPlaceholder && this.options.stickyPlaceholder ) {
         // everytime we open we wanna see the default placeholder text
-        this.selPlaceholder.textContent = this.selectedOpt.textContent;
+        // warning !!!!!!!!!!!!!!!!!!!!!!!!! need test
+        // this.selPlaceholder.textContent = this.selectedOpt.textContent;
       }
       classie.add( this.selEl, 'cs-active' );
     }
