@@ -669,29 +669,12 @@ div[class*="flower"] > span[class]
 #user-info{
   position: relative;
   width: 49%;
-  //float: left;
-  //border-radius: 5px;
   height: 197px;
   margin-bottom: 20px;
   float: left;
   background: $new-light-yellow;
+  border: 1px dashed $orange;
   border-radius: 5px 5px 5px 5px;
-  /*.var1{
-    .foto{
-      border-radius: 5px 0 0 0;
-    }
-    .user-description{
-      border-radius: 0 5px 0 0;
-    }
-  }
-  .var2{
-    .foto{
-      border-radius: 5px 0 0 5px;
-    }
-    .user-description{
-      border-radius: 0 5px 5px 0;
-    }
-  }*/
   .foto{
     width: 30%;
     height: 100%;
@@ -713,17 +696,13 @@ div[class*="flower"] > span[class]
     width: 70%;
     float: right;
     height: 197px;
-    //background: white;
     .pseudo{
       margin: 10px;
       margin-left: 20px;
     }
     h2{
       color: $middle-green;
-      //color: $blue;
-      //color: #fbbd54;
       margin-top: 20px;
-      //color: $light-red;
     }
     p{
       margin-bottom: 0.3em;
@@ -750,7 +729,8 @@ div[class*="flower"] > span[class]
       width: $a;
       height: $a;
       text-align: center;
-      border: 1px dashed $orange;
+      border-bottom: 1px dashed $orange;
+      border-left: 1px dashed $orange;
       margin-bottom: -1px;
       &:first-child{
         border-radius: 0 5px 0 0;
@@ -768,7 +748,7 @@ div[class*="flower"] > span[class]
       }
     }
     .border-none{
-      border: none;
+      border-left: none;
     }
   }
   /*#user-menu{
@@ -826,15 +806,16 @@ div[class*="flower"] > span[class]
     h2{
       color: $light-green-strong;
     }
-    background: rgb(65, 106, 166);
+    //background: rgb(65, 106, 166);
     border-radius: 5px 5px 0 0;
   }
   .review-text{
     p{
       color: white;
+      color: $gray;
       margin-bottom: 0.5em;
     }
-    background: rgb(103, 149, 192);
+    //background: rgb(103, 149, 192);
     padding: 20px 50px;
     //height: 150px;
     border-radius: 0 0 5px 5px;
