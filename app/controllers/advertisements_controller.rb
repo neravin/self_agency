@@ -5,8 +5,11 @@ class AdvertisementsController < ApplicationController
 	before_action :correct_advertisement, only: [:edit, :update]
 
   def index
+    @search = Advertisement.search(params[:q])
+    @advertisements = @search.result
     ad_service_id = params[:advertisement]
     worker_service_id = params[:worker]
+    @client = Client.all
 
     if worker_service_id
       if worker_service_id[:service_id] != ''
@@ -75,6 +78,7 @@ class AdvertisementsController < ApplicationController
         end
       end
     end
+    
 
 	end
 
@@ -86,6 +90,7 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.new(advertisement_params)
     #@fantom = Fantom.new()
     respond_to do |format|
+
       if (@advertisement.save)
         @fantom = Fantom.new()
         if (@fantom.save)
@@ -94,6 +99,7 @@ class AdvertisementsController < ApplicationController
           #format.json { render json: @advertisement.to_json(:include => { :service => { :only => :name } } ), status: :created, location: @advertisement }
           format.json { render json: @advertisement.to_json(:include => { :service => { :only => [:id, :name], :include => { :category => { :only => [:id, :name]  } } } } ), status: :created, location: @advertisement }
         end
+
       else
         format.json { render :json => { :error => @advertisement.errors.messages }, :status => 500 }
       end
@@ -113,6 +119,13 @@ class AdvertisementsController < ApplicationController
         format.json { render :json => { :error => @advertisement.errors.messages }, :status => 500 }
         #format.json { render json: @advertisement.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+      @advertisement.destroy
+      respond_to do |format|
+      format.html { redirect_to advertisements_path }
     end
   end
 
@@ -161,7 +174,8 @@ private
       :address, 
       :date, 
       :duration,
-      :service_id)
+      :service_id,
+      :client_id)
   end
 
 

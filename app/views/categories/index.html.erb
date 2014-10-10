@@ -29,6 +29,27 @@
   <%# end %>
 </div-->
 
+
+<% @category.each do |category| %>
+<div class = "categories">
+<div class = "category">
+    <div class="name-category"><%= category.name %></div>
+    <a href="">
+      <%= image_tag category.photo_url(:thumb).to_s %>
+    </a>
+    <% if Admin.find_by(id: session[:admin_id]) %>
+      <%= link_to(edit_category_path(category)) do %>
+         <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to(category, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+         <i class="fa fa-trash-o"></i>
+      <% end %>
+      <%= link_to 'Добавить новую категорию', new_category_path %>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
 <div class = "categories">
   <div class = "category">
     <a href="">

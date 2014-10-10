@@ -10,8 +10,8 @@
     <div class="pseudo clearfix var2">
   <% end %>
       <div class = "foto">
-        <%# image_tag @client.photo_url(:thumb).to_s %>
-        <img src = "/assets/valera.jpg" />
+        <%= image_tag @client.photo_url(:thumb).to_s %>
+        
       </div><!--/foto-->
 
       <div class = "user-description">
@@ -25,10 +25,7 @@
           <strong>Почта:</strong>
           <em><%= @client.email %></em>
         </p>
-        <p>
-          <strong>Баллы:</strong>
-          <em>1000</em>
-        </p>
+    
       </div><!--/pseudo-->
       </div><!--/user-description-->
     </div><!--/pseudo-->
@@ -75,16 +72,15 @@
   </div><!--/reviews-->
 </div><!--/clearfix-->
 
-<%# javascript_tag do %>
-  <!--window.categories_json = '<%# raw Category.all.to_json( :only => [:id, :name] ) %>';
-  #window.services_json = '<%# raw Service.all.to_json( :only => [:id, :name] ) %>';-->
-<%# end %>
-
 <div id = "i-want-column">
   <h2>Текущие объявления</h2>
+  <% if current_client.id == @client.id %>
   <span id = "client-add-advertisements", class = "add-button">
     <i class="fa fa-plus"></i> Добавить новое объявление
   </span>
+
+<% end %>
+  
 
   <div id = "ad-posts">
   <% @client.advertisements.order('created_at DESC').each do |ad| %>
@@ -96,7 +92,10 @@
       <%# link_to(edit_advertisement_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
         <!--i class="fa fa-pencil"></i-->
       <%# end %>
-    <% end %>
+        <%= link_to(ad, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+          <i class="fa fa-trash-o"></i>
+        <% end %>
+      <% end %>
       <h2>
         <span class = "category" data-cat = "<%= ad.service.category.id %>">
           <%= ad.service.category.name %></span>:
@@ -141,9 +140,13 @@
 
 <div id = "i-can-column">
   <h2>Текущие услуги</h2>
-  <span id = "client-add-workers", class = "add-button">
-    <i class="fa fa-plus"></i> Добавить новую услугу
-  </span>
+  <% if current_client.id == @client.id %>
+    <span id = "client-add-services", class = "add-button">
+      <i class="fa fa-plus"></i> Добавить новую услугу
+    </span>
+  <% end %>
+
+
 
   <div id = "worker-posts">
     <% @client.workers.order('created_at DESC').each do |ad| %>

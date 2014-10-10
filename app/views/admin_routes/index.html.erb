@@ -1,43 +1,10 @@
 <h1>Добро пожаловать</h1>
-Сейчас <%= Time.now %><br>
+Сейчас <%= Time.now %><br><br>
 
-<h2>Категории</h2>
-
-<% @category.each do |c| %>
-	<%= c.name %>
-  	<%= link_to(edit_category_path(c)) do %>
-    	<i class="fa fa-pencil"></i>
-  	<% end %>
-  	<%= link_to(c, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-    	<i class="fa fa-trash-o"></i>
-  	<% end %><br />
-<% end %>
-
-<h2>Услуги</h2>
-<% @service.each do |s| %>
-  <%= s.name %>
-  <%= link_to(edit_service_path(s)) do %>
-    <i class="fa fa-pencil"></i>
-  <% end %>
-  <%= link_to(s, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-    <i class="fa fa-trash-o"></i>
-  <% end %><br />
-<% end %></br>
-
-<h2> Пользователи </h2>
-<% @client.each do |client| %>
-  <%= client.name %>
-  <%= link_to(edit_client_path(client)) do %>
-    <i class="fa fa-pencil"></i>
-  <% end %>
-  <%= link_to(client, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-    <i class="fa fa-trash-o"></i>
-  <% end %><br />
-<% end %></br>
-
-
-<%= link_to 'Добавить новую услугу', new_service_path %><br>
-<%= link_to 'Добавить новую категорию', new_category_path %>
-
+<%= link_to 'Управление пользователями', clients_path %><br><br>
+<%= link_to  controller: "categories", type: 1 do %>
+  <%= "<i class='fa fa-bus'></i><span>Управление категориями</span>".html_safe %>
+<% end %><br><br>
+<%= link_to 'Управление услугами', services_path %><br><br>
 
 <%= button_to 'Logout', logout_path, method: :delete %>

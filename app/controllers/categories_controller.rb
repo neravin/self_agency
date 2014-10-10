@@ -7,7 +7,8 @@ class CategoriesController < ApplicationController
 		@type = params[:type]
 
 		if @type == "1" || @type == "2"
-			@categories = Category.all
+			@search = Category.search(params[:q])
+            @category = @search.result
 		else
 			redirect_to ''
 		end
@@ -17,6 +18,8 @@ class CategoriesController < ApplicationController
 		elsif @type == "2"
 			@tab_current = 3
 		end
+		@search = Category.search(params[:q])
+    	@category = @search.result
 	end
 
 	def new

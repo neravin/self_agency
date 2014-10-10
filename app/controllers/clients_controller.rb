@@ -1,6 +1,6 @@
 # encoding: utf-8
 class ClientsController < ApplicationController
-  skip_before_action :authorize
+  skip_before_action :authorize, only: [:show]
   before_action :signed_in_client, only: [:show, :edit, :update]
   before_action :correct_client,   only: [:edit, :update]
   before_action :set_client, only: [:show, :edit, :update, :destroy]
@@ -8,6 +8,11 @@ class ClientsController < ApplicationController
   # GET /clients/new
   def new
     @client = Client.new
+  end
+
+  def index
+    @search = Client.search(params[:q])
+    @client = @search.result
   end
 
   def edit
