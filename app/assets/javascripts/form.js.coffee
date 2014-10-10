@@ -262,18 +262,36 @@ $(document).on "page:change", ->
 
   $("#ad-posts").on "click", ".edit-ad-link", ->
     $("#fade").show()
+    # change height form
     h = $("#edit_advertisement").parent().height()
     $("#edit_advertisement").parent().css "margin-top", "#{-h/2}px"
+    # clear selects
+    element = $("#edit_advertisement").find(".category-select")
+    clear_select(element)
+    element = $("#edit_advertisement").find(".services-select")
+    clear_select(element)
+    # parse advertisement post
     parse_ad($(this).parent())
+    # output advertisement's info in form
     output_in_form_ad("#edit_advertisement")
+    # show form
     $("#edit_advertisement").parent().show()
 
   $("#worker-posts").on "click", ".edit-worker-link", ->
     $("fade").show()
+    # change form's height
     h = $("#edit_worker").parent().height()
     $("#edit_worker").parent().css "margin-top", "#{-h/2}px"
+    # clear selects
+    element = $("#edit_worker").find(".category-select")
+    clear_select(element)
+    element = $("#edit_worker").find(".services-select")
+    clear_select(element)
+    # parsing worker's post data
     parse_worker($(this).parent())
+    # output worker info in form
     output_in_form_worker("#edit_worker")
+    # show form
     $("#edit_worker").parent().show()
 
   $("#new_client").on "click", "input.error-input", ->
@@ -299,24 +317,42 @@ $(document).on "page:change", ->
 
   $(".edit-ad-link").click ->
     $("#fade").show()
+    # change form's heihgt
     h = $("#edit_advertisement").parent().height()
     $("#edit_advertisement").parent().css "margin-top", "#{-h/2}px"
+    # clear selects
+    element = $("#edit_advertisement").find(".category-select")
+    clear_select(element)
+    element = $("#edit_advertisement").find(".services-select")
+    clear_select(element)
+    # parsing advertisement's post data
     parse_ad($(this).parent())
+    # output advertisement's info in form
     output_in_form_ad("#edit_advertisement")
     # clear errors
     clear_errors()
     clear_vertical_errors("#edit_advertisement")
+    # show form
     $("#edit_advertisement").parent().show()
 
   $(".edit-worker-link").click ->
     $("#fade").show()
+    # change form's height
     h = $("#edit_worker").parent().height()
     $("#edit_worker").parent().css "margin-top", "#{-h/2}px"
+    # clear selects
+    element = $("#edit_worker").find(".category-select")
+    clear_select(element)
+    element = $("#edit_worker").find(".services-select")
+    clear_select(element)
+    # parse worker's post data
     parse_worker($(this).parent())
+    # output worker's info on form
     output_in_form_worker("#edit_worker")
     # clear errors
     clear_errors()
     clear_vertical_errors("#edit_worker")
+    # show form
     $("#edit_worker").parent().show()
 
     
@@ -330,6 +366,14 @@ $(document).on "page:change", ->
     h = $("#new_worker").parent().height()
     $('#new_worker').parent().css "margin-top", "#{-h/2}px"
     $("#new_worker").parent().show()
+
+clear_select = (element) ->
+  if(element.hasClass("category-select"))
+    element.children(".cs-placeholder").text("Категория")
+  if(element.hasClass("services-select"))
+    element.children(".cs-placeholder").text("Тип объявления")
+  element.children(".cs-options").find("li[class='cs-selected']").removeClass("cs-selected")
+
 
 select_category_ajax = (form_id) ->
   $("#{form_id} .category-select").children(".cs-options").children().children().click ->
