@@ -85,7 +85,16 @@ $(document).on "page:change", ->
   $("#new_worker").on("ajax:success", (e, data, status, xhr) -> 
     $("#new-worker-form").hide()
     $("#fade").hide()
+    # clear input form
     clear_value_input("#new-worker-form")
+    # clear errors message
+    clear_vertical_errors("#new-worker-form")
+    # clear select
+    element = $("#new-worker-form").find(".category-select")
+    clear_select(element)
+    element = $("#new-worker-form").find(".services-select")
+    clear_select(element)
+    # get worker
     worker = xhr.responseJSON
     $("#worker-posts").prepend " 
       <div class='post' data-worker='#{worker.id}'>
@@ -143,7 +152,16 @@ $(document).on "page:change", ->
   $("#new_advertisement").on("ajax:success", (e, data, status, xhr) ->
     $("#new-ad-form").hide()
     $("#fade").hide()
+    # clear input
     clear_value_input("#new-ad-form")
+    # clear errors message
+    clear_vertical_errors("#new-ad-form")
+    # clear select
+    element = $("#new-ad-form").find(".category-select")
+    clear_select(element)
+    element = $("#new-ad-form").find(".services-select")
+    clear_select(element)
+    # get advertisement
     advertisement = xhr.responseJSON
     #alert xhr.responseText
     $("#ad-posts").prepend " 
@@ -174,9 +192,7 @@ $(document).on "page:change", ->
             <span class = 'label'>Адрес:</span>
             <span class = 'address'>#{advertisement.address}</span>
           </div>
-          <div class = 'date'>
-            #{convert_date_rus(advertisement.date)}
-          </div>
+          <div class = 'date'>#{convert_date_rus(advertisement.date)}</div>
         </div><!--/contact-->
 
         <span class='price'>#{advertisement.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
@@ -357,6 +373,7 @@ $(document).on "page:change", ->
     clear_select(element)
     element = $("#edit_advertisement").find(".services-select")
     clear_select(element)
+
     # parsing advertisement's post data
     parse_ad($(this).parent())
     # output advertisement's info in form
@@ -488,8 +505,10 @@ clear_value_input = (id_form) ->
 clear_select = (element) ->
   if(element.hasClass("category-select"))
     element.children(".cs-placeholder").text("Категория")
+    element.children("select.category-select ").val("")
   if(element.hasClass("services-select"))
     element.children(".cs-placeholder").text("Тип объявления")
+    element.children("select.services-select ").val("")
   element.children(".cs-options").find("li[class='cs-selected']").removeClass("cs-selected")
 
 parse_ad = (element) ->
@@ -503,7 +522,7 @@ parse_ad = (element) ->
   objAdvertisement.duration = element.find(".duration-ad").text()
   objAdvertisement.category_id = element.find(".category").attr("data-cat")
   objAdvertisement.service_id = element.find(".service").attr("data-service")
-  objAdvertisement.date = convert_date_to_rails(element.find(".date").text())
+  objAdvertisement.date = element.find(".date").text()
 
 output_in_form_ad = (id_form) ->
   $(id_form).attr("action", "/announcement_update/#{objAdvertisement.id}")
@@ -514,7 +533,7 @@ output_in_form_ad = (id_form) ->
   $(id_form).find("#advertisement_duration").val("#{objAdvertisement.duration}")
   $(id_form).find(".category-select").children(".cs-placeholder").text("#{objAdvertisement.category_name}")
   $(id_form).find(".services-select").children(".cs-placeholder").text("#{objAdvertisement.service_name}")
-  $(id_form).find("#advertisement_date").val("#{objAdvertisement.date}")
+  $(id_form).find("#advertisement_date").val("#{convert_date_to_rails(objAdvertisement.date)}")
   #
   # select category and service in change_form
   #
