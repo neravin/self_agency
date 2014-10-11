@@ -103,7 +103,7 @@
       <p><%= ad.description %></p>
 
       <div class = "duration">
-        <span class = "duration-ad"><%= ad.duration %></span><br/>дней
+        <span class = "duration-ad"><%= ad.duration %></span><br/><%= Russian::pluralize(ad.duration, "день", "дня", "дней") %>
       </div>
 
       <div class="contact clearfix"> 

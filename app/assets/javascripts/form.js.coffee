@@ -180,7 +180,8 @@ $(document).on "page:change", ->
         <p>#{advertisement.description}</p>
 
         <div class = 'duration'>
-          <span class = 'duration-ad' >#{advertisement.duration}</span><br/>дней
+          <span class = 'duration-ad' >#{advertisement.duration}</span><br/>
+            #{getNumEnding(advertisement.duration, ['день', 'дня', 'дней'])}
         </div>
 
         <div class='contact clearfix'> 
@@ -277,7 +278,10 @@ $(document).on "page:change", ->
     post.find(".category").text("#{advertisement.service.category.name}")
     post.find(".service").attr("data-service", advertisement.service.id)
     post.find(".service").text("#{advertisement.service.name}")
-    post.find(".duration-ad").text("#{advertisement.duration}")
+    post.find(".duration").text("")
+    post.find(".duration").append "
+      <span class = 'duration-ad' >#{advertisement.duration}</span><br/>
+        #{getNumEnding(advertisement.duration, ['день', 'дня', 'дней'])}"
     post.find(".city").text("#{advertisement.city}")
     post.find(".address").text("#{advertisement.address}")
     post.find(".date").text("#{convert_date_rus(advertisement.date)}")
@@ -659,3 +663,27 @@ post_delete_ajax = (element, url) ->
       success: (result) ->
         element.slideUp "slow", ->
           element.remove()
+
+#
+# Функция возвращает окончание для множественного числа слова на основании числа и массива окончаний
+# @param  iNumber Integer Число на основе которого нужно сформировать окончание
+# @param  aEndings Array Массив слов или окончаний для чисел (1, 4, 5),
+# например ['яблоко', 'яблока', 'яблок']
+# @return String
+#
+getNumEnding = (iNumber, aEndings) ->
+  sEnding = undefined
+  i = undefined
+  iNumber = iNumber % 100
+  if iNumber >= 11 and iNumber <= 19
+    sEnding = aEndings[2]
+  else
+    i = iNumber % 10
+    switch i
+      when (1)
+        sEnding = aEndings[0]
+      when (2), (3), (4)
+        sEnding = aEndings[1]
+      else
+        sEnding = aEndings[2]
+  sEnding
