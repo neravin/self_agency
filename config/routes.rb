@@ -50,6 +50,9 @@ Rails.application.routes.draw do
   match '/worker_ad' => 'workers#worker_ad', via: 'get'
   match '/worker_cancel' => 'advertisements#worker_cancel', via: 'get'
 
+  match '/announcement_delete/:id', to: 'advertisements#destroy', via: 'delete'
+  match '/announcement_update/:id' => 'advertisements#update', via: 'patch'
+
   root to: 'home#index', as: ''
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -3,6 +3,19 @@ $(document).on "page:change", ->
     $("#fade").show()
     $("#signin-form").show()
 
+  # delete event
+  $(".delete-ad-link").click ->
+    id = $(this).parent().attr("data-ad")
+    element = $(this).parent()
+    url = "/announcement_delete/" + id
+    post_delete_ajax(element, url)
+
+  $(".delete-ad-link-big-boobs").click ->
+    id = $(this).parent().attr("data-worker")
+    element = $(this).parent()
+    url = "/workers/" + id
+    post_delete_ajax(element, url)
+
   $("#fade").click ->
     $("#signin-form").hide()
     $("#signup-form").hide()
@@ -99,6 +112,15 @@ $(document).on "page:change", ->
         </div><!--/contact-->
         <span class='price'>#{worker.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
       </div>"
+    element = $("#worker-posts div[data-worker='#{worker.id}']")
+    element.append "
+      <span class = 'delete-ad-link-big-boobs delete-link'>
+        <i class = 'fa fa-trash'></i>
+      </span>"
+    element.children(".delete-link").click ->
+      id = worker.id
+      url = "/workers/" + id
+      post_delete_ajax(element, url)
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     clear_vertical_errors("#new_worker")
@@ -160,6 +182,16 @@ $(document).on "page:change", ->
         <span class='price'>#{advertisement.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
         <br>
       </div>"
+    element = $("#ad-posts div[data-ad='#{advertisement.id}']")
+    element.append "
+      <span class = 'delete-ad-link delete-link'>
+        <i class = 'fa fa-trash'></i>
+      </span>"
+    element.children(".delete-link").click ->
+      id = advertisement.id
+      url = "/announcement_delete/" + id
+      post_delete_ajax(element, url)
+
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     clear_vertical_errors("#new_advertisement")
@@ -474,7 +506,7 @@ parse_ad = (element) ->
   objAdvertisement.date = convert_date_to_rails(element.find(".date").text())
 
 output_in_form_ad = (id_form) ->
-  $(id_form).attr("action", "/advertisements/#{objAdvertisement.id}")
+  $(id_form).attr("action", "/announcement_update/#{objAdvertisement.id}")
   $(id_form).find("#advertisement_description").val("#{objAdvertisement.description}")
   $(id_form).find("#advertisement_price").val("#{objAdvertisement.price}")
   $(id_form).find("#advertisement_city").val("#{objAdvertisement.city}")
@@ -596,3 +628,15 @@ objWorker =
   price: 100
   city: "Санкт-Петербург"
   address: ""
+
+post_delete_ajax = (element, url) ->
+  if confirm("Точно удалить?")
+    $.ajax
+      url: url
+      type: "POST"
+      data:
+        _method: "DELETE"
+
+      success: (result) ->
+        element.slideUp "slow", ->
+          element.remove()

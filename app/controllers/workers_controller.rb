@@ -2,7 +2,7 @@
 class WorkersController < ApplicationController
 	skip_before_action :authorize
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
-	before_action :correct_worker, only: [:edit, :update, :delete]
+	before_action :correct_worker, only: [:edit, :update, :destroy]
 
 	def index
     service_id = params[:service_id]
