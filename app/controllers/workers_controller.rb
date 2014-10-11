@@ -2,7 +2,7 @@
 class WorkersController < ApplicationController
 	skip_before_action :authorize
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
-	before_action :correct_worker, only: [:edit, :update]
+	before_action :correct_worker, only: [:edit, :update, :delete]
 
 	def index
     service_id = params[:service_id]
@@ -77,6 +77,14 @@ class WorkersController < ApplicationController
         #format.json { render json: @worker.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @worker.destroy
+    render json: { success: true }
+    #respond_to do |format|
+      #format.html { redirect_to advertisements_path }
+    #end
   end
 
 	def worker_ad
