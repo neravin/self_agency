@@ -1,52 +1,44 @@
-<%= search_form_for @search do |f| %>
-  <div class="field">
-    <%= f.label :price_gteq, "Price between" %>
-    <%= f.text_field :price_gteq %>
-    <%= f.label :price_lteq, "and" %>
-    <%= f.text_field :price_lteq %>
-  </div>
-  <div class="actions"><%= f.submit "Search" %></div>
-<% end %>
-<ul class="cbp_tmtimeline">
-<%= @service_ids %>
+<% if @advertisements %>
+  <ul class="cbp_tmtimeline">
+  <%# @service_ids %>
 
-
-
-<% @advertisements.each do |ad| %>
-
-  <li>
-    <time class="cbp_tmtime"><span><%# ad.date.strftime("%d/%m/%Y") %></span> <span><%# ad.start_hour.strftime("%H:%M") %></span></time>
-    <%= link_to(client_path(ad.client.id)) do %>
-      <div class="cbp_tmicon cbp_tmicon-phone"><%= image_tag ad.client.photo_url(:thumb).to_s %></div>
-    <% end %>
-    <div class="cbp_tmlabel">
-      <h2><%= ad.service.name %></h2>
-      <p><%= ad.description %></p>
-
-      <span class = "price"><%= ad.price %> <i class="fa fa-rub" style = "font-size: 0.9em;"></i></span>
-      <% if ad.state == 0 %>
-        <span class = "button open perform-ad"
-          data-ad_id="<%= ad.id %>">Выполнить</span>
-      <% elsif ad.state == 1 %>
-        <span class = "button not-button">Занят</span>
-      <% elsif ad.state == 2 %>
-        <span class = "button not-button white-green">Выполнен</span>
-      <% elsif ad.state == 3 %>
-        <span class = "button not-button white-green">Отменен</span>
+  <% @advertisements.each do |ad| %>
+    <li>
+      <time class="cbp_tmtime"><span><%# ad.date.strftime("%d/%m/%Y") %></span> <span><%# ad.start_hour.strftime("%H:%M") %></span></time>
+      <%= link_to(client_path(ad.client.id)) do %>
+        <div class="cbp_tmicon cbp_tmicon-phone"><%= image_tag ad.client.photo_url(:thumb).to_s %></div>
       <% end %>
-      <% if Admin.find_by(id: session[:admin_id]) %>
-        <%= link_to(ad, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-          <i class="fa fa-trash-o"></i>
+      <div class="cbp_tmlabel">
+        <h2><%= ad.service.name %></h2>
+        <p><%= ad.description %></p>
+
+        <span class = "price"><%= ad.price %> <i class="fa fa-rub" style = "font-size: 0.9em;"></i></span>
+        <% if ad.state == 0 %>
+          <span class = "button open perform-ad"
+            data-ad_id="<%= ad.id %>">Предложить</span>
+        <% elsif ad.state == 1 %>
+          <span class = "button not-button">Занят</span>
+        <% elsif ad.state == 2 %>
+          <span class = "button not-button white-green">Выполнен</span>
+        <% elsif ad.state == 3 %>
+          <span class = "button not-button white-green">Отменен</span>
         <% end %>
-      <% end %>
-    </div>
-  </li>
-<% end %>
-</ul>
+        <% if Admin.find_by(id: session[:admin_id]) %>
+          <%= link_to(ad, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+            <i class="fa fa-trash-o"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
 
-<div class="flickr_pagination">
-  <div class="page_info">
+  <div class="flickr_pagination">
+    <div class="page_info">
+    </div>
+    <%= will_paginate @advertisement, :container => false, 
+      :previous_label => '<', :next_label => '>' %>
   </div>
-  <%= will_paginate @advertisement, :container => false, 
-    :previous_label => '<', :next_label => '>' %>
-</div>
+<% else %>
+  ничего не найдено
+<% end %>

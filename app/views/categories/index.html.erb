@@ -1,91 +1,16 @@
-<!--div id = "flowers" class="with-margin">
-  <%# @categories.each do |cat| %>
-  <div class = "category-flower">
-    <%# if cat.photo_url != nil %>
-      <%# buf = "<div class = 'pseudo' style = 'background: url(#{cat.photo_url(:thumb).to_s}); background-size: cover;'>
-                </div>
-                <div class = 'head one-line green-color'>
-                  #{cat.name}
-                </div>" %>
-    <%# else %>
-      <%# buf = "<div class = 'head one-line'>#{cat.name}</div>" %>
-    <%# end %>
-    <%#= render 'home/flower', link: buf.html_safe %>
-    
-    <%# if !cat.services.empty? %>
-      <div class = "list-awesome", style = "display: none;">
-      <%# if @type == "1" %>
-        <%# cat.services.order("name").each do |service|%>
-          <%#= link_to service.name, advertisements_path + "?utf8=✓&advertisement%5Bservice_id%5D=#{service.id}" %>
-        <%# end %>
-      <%# elsif @type == "2" %>
-        <%# cat.services.order("name").each do |service|%>
-          <%#= link_to service.name, workers_path + "?service_id=#{service.id}" %>
-        <%# end %>
-      <%# end %>
-      </div>
-    <%# end %>
-    </div>
-  <%# end %>
-</div-->
-
-
+<div class = "categories">
 <% @category.each do |category| %>
-<div class = "categories">
-<div class = "category">
-    <div class="name-category"><%= category.name %></div>
-    <a href="">
-      <%= image_tag category.photo_url(:thumb).to_s %>
-    </a>
-    <% if Admin.find_by(id: session[:admin_id]) %>
-      <%= link_to(edit_category_path(category)) do %>
-         <i class="fa fa-pencil"></i>
+  <div class = "category">
+    <% if @type == 2 %>
+      <%= link_to( advertisements_path(category: category.id))  do %>
+        <%= image_tag category.photo_url(:thumb).to_s %>
       <% end %>
-      <%= link_to(category, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-         <i class="fa fa-trash-o"></i>
+    <% else %>
+      <%= link_to( workers_path(category: category.id))  do %>
+        <%= image_tag category.photo_url(:thumb).to_s %>
       <% end %>
-      <%= link_to 'Добавить новую категорию', new_category_path %>
     <% end %>
-  </div>
-</div>
+    <div class="name-category"><%= category.name %></div>
+  </div><!--/category-->
 <% end %>
-
-<div class = "categories">
-  <div class = "category">
-    <a href="">
-    <%= image_tag("remont-icon.png") %>
-    </a>
-    <div class="name-category">Ремонт</div>
-  </div><!--/category-->
-  <div class = "category">
-    <a href="">
-    <%= image_tag("electric-icon.png") %>
-    </a>
-    <div class="name-category">Электричество</div>
-  </div><!--/category-->
-  <div class = "category">
-    <a href="">
-    <%= image_tag("stroy-icon.png") %>
-    </a>
-    <div class="name-category">Строительство</div>
-  </div><!--/category-->
-  <div class = "category">
-    <a href="">
-    <%= image_tag("santech-icon.png") %>
-    </a>
-    <div class="name-category">Сантехника</div>
-  </div><!--/category-->
 </div><!--/categories-->
-
-<script>
-  $(".head").hover(
-    function() {
-      //$( this ).addClass( "hover" );
-      $( this ).parent().find(".pet").addClass("c2");
-    }, function() {
-      //$( this ).removeClass( "hover" );
-      $( this ).parent().find(".pet").removeClass("c2");
-    }
-  );
-</script>
-

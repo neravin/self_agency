@@ -4,22 +4,20 @@ class CategoriesController < ApplicationController
 	skip_before_action :authorize, only: [:index]
 
 	def index
-		@type = params[:type]
+		@type = params[:type].to_i
 
-		if @type == "1" || @type == "2"
+		if @type == 1 
+			@tab_current = 2
+		elsif @type == 2
+			@tab_current = 3
+		end
+
+		if @type == 1 || @type == 2
 			@search = Category.search(params[:q])
-            @category = @search.result
+      @category = @search.result
 		else
 			redirect_to ''
 		end
-		
-		if @type == "1" 
-			@tab_current = 2
-		elsif @type == "2"
-			@tab_current = 3
-		end
-		@search = Category.search(params[:q])
-    	@category = @search.result
 	end
 
 	def new
