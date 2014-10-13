@@ -2,7 +2,7 @@
 class AdvertisementsController < ApplicationController
   skip_before_action :authorize
 	before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
-	before_action :correct_advertisement, only: [:edit, :update]
+	before_action :correct_advertisement, only: [:edit, :update, :destroy]
 
   def index
     @search = Advertisement.search(params[:q])
@@ -123,10 +123,11 @@ class AdvertisementsController < ApplicationController
   end
 
   def destroy
-      @advertisement.destroy
-      respond_to do |format|
-      format.html { redirect_to advertisements_path }
-    end
+    @advertisement.destroy
+    render json: { success: true }
+    #respond_to do |format|
+      #format.html { redirect_to advertisements_path }
+    #end
   end
 
   def perform_ad

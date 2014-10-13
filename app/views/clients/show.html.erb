@@ -86,16 +86,13 @@
   <% @client.advertisements.order('created_at DESC').each do |ad| %>
     <div class="post" data-ad="<%= ad.id %>">
     <% if current_client.id == @client.id %>
-      <span  class = "edit-ad-link edit-advertisement">
-        <i class="fa fa-pencil"></i>
+      <span class = "edit-ad-link edit-advertisement">
+        <i class = "fa fa-pencil"></i>
       </span>
-      <%# link_to(edit_advertisement_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
-        <!--i class="fa fa-pencil"></i-->
-      <%# end %>
-        <%= link_to(ad, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-          <i class="fa fa-trash-o"></i>
-        <% end %>
-      <% end %>
+      <span class = "delete-ad-link delete-link">
+        <i class = "fa fa-trash"></i>
+      </span>
+    <% end %>
       <h2>
         <span class = "category" data-cat = "<%= ad.service.category.id %>">
           <%= ad.service.category.name %></span>:
@@ -106,7 +103,7 @@
       <p><%= ad.description %></p>
 
       <div class = "duration">
-        <span class = "duration-ad"><%= ad.duration %></span><br/>дней
+        <span class = "duration-ad"><%= ad.duration %></span><br/><%= Russian::pluralize(ad.duration, "день", "дня", "дней") %>
       </div>
 
       <div class="contact clearfix"> 
@@ -141,12 +138,10 @@
 <div id = "i-can-column">
   <h2>Текущие услуги</h2>
   <% if current_client.id == @client.id %>
-    <span id = "client-add-services", class = "add-button">
+    <span id = "client-add-workers", class = "add-button">
       <i class="fa fa-plus"></i> Добавить новую услугу
     </span>
   <% end %>
-
-
 
   <div id = "worker-posts">
     <% @client.workers.order('created_at DESC').each do |ad| %>
@@ -155,9 +150,9 @@
         <span  class = "edit-worker-link edit-advertisement">
           <i class="fa fa-pencil"></i>
         </span>
-        <%# link_to(edit_worker_path(ad.id), class: "edit-advertisement", title: "Изменить") do %>
-          <!--i class="fa fa-pencil"></i-->
-        <%# end %>
+        <span class = "delete-ad-link-big-boobs delete-link">
+          <i class = "fa fa-trash"></i>
+        </span>
       <% end %>
         <h2>
           <span class = "category" data-cat = "<%= ad.service.category.id %>">

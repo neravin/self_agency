@@ -3,6 +3,19 @@ $(document).on "page:change", ->
     $("#fade").show()
     $("#signin-form").show()
 
+  # delete event
+  $(".delete-ad-link").click ->
+    id = $(this).parent().attr("data-ad")
+    element = $(this).parent()
+    url = "/announcement_delete/" + id
+    post_delete_ajax(element, url)
+
+  $(".delete-ad-link-big-boobs").click ->
+    id = $(this).parent().attr("data-worker")
+    element = $(this).parent()
+    url = "/workers/" + id
+    post_delete_ajax(element, url)
+
   $("#fade").click ->
     $("#signin-form").hide()
     $("#signup-form").hide()
@@ -72,7 +85,16 @@ $(document).on "page:change", ->
   $("#new_worker").on("ajax:success", (e, data, status, xhr) -> 
     $("#new-worker-form").hide()
     $("#fade").hide()
+    # clear input form
     clear_value_input("#new-worker-form")
+    # clear errors message
+    clear_vertical_errors("#new-worker-form")
+    # clear select
+    element = $("#new-worker-form").find(".category-select")
+    clear_select(element)
+    element = $("#new-worker-form").find(".services-select")
+    clear_select(element)
+    # get worker
     worker = xhr.responseJSON
     $("#worker-posts").prepend " 
       <div class='post' data-worker='#{worker.id}'>
@@ -99,6 +121,15 @@ $(document).on "page:change", ->
         </div><!--/contact-->
         <span class='price'>#{worker.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
       </div>"
+    element = $("#worker-posts div[data-worker='#{worker.id}']")
+    element.append "
+      <span class = 'delete-ad-link-big-boobs delete-link'>
+        <i class = 'fa fa-trash'></i>
+      </span>"
+    element.children(".delete-link").click ->
+      id = worker.id
+      url = "/workers/" + id
+      post_delete_ajax(element, url)
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     clear_vertical_errors("#new_worker")
@@ -121,7 +152,16 @@ $(document).on "page:change", ->
   $("#new_advertisement").on("ajax:success", (e, data, status, xhr) ->
     $("#new-ad-form").hide()
     $("#fade").hide()
+    # clear input
     clear_value_input("#new-ad-form")
+    # clear errors message
+    clear_vertical_errors("#new-ad-form")
+    # clear select
+    element = $("#new-ad-form").find(".category-select")
+    clear_select(element)
+    element = $("#new-ad-form").find(".services-select")
+    clear_select(element)
+    # get advertisement
     advertisement = xhr.responseJSON
     #alert xhr.responseText
     $("#ad-posts").prepend " 
@@ -140,7 +180,8 @@ $(document).on "page:change", ->
         <p>#{advertisement.description}</p>
 
         <div class = 'duration'>
-          <span class = 'duration-ad' >#{advertisement.duration}</span><br/>дней
+          <span class = 'duration-ad' >#{advertisement.duration}</span><br/>
+            #{getNumEnding(advertisement.duration, ['день', 'дня', 'дней'])}
         </div>
 
         <div class='contact clearfix'> 
@@ -152,14 +193,22 @@ $(document).on "page:change", ->
             <span class = 'label'>Адрес:</span>
             <span class = 'address'>#{advertisement.address}</span>
           </div>
-          <div class = 'date'>
-            #{convert_date_rus(advertisement.date)}
-          </div>
+          <div class = 'date'>#{convert_date_rus(advertisement.date)}</div>
         </div><!--/contact-->
 
         <span class='price'>#{advertisement.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
         <br>
       </div>"
+    element = $("#ad-posts div[data-ad='#{advertisement.id}']")
+    element.append "
+      <span class = 'delete-ad-link delete-link'>
+        <i class = 'fa fa-trash'></i>
+      </span>"
+    element.children(".delete-link").click ->
+      id = advertisement.id
+      url = "/announcement_delete/" + id
+      post_delete_ajax(element, url)
+
   ).on "ajax:error", (e, xhr, status, error) ->
     clear_errors()
     clear_vertical_errors("#new_advertisement")
@@ -229,7 +278,10 @@ $(document).on "page:change", ->
     post.find(".category").text("#{advertisement.service.category.name}")
     post.find(".service").attr("data-service", advertisement.service.id)
     post.find(".service").text("#{advertisement.service.name}")
-    post.find(".duration-ad").text("#{advertisement.duration}")
+    post.find(".duration").text("")
+    post.find(".duration").append "
+      <span class = 'duration-ad' >#{advertisement.duration}</span><br/>
+        #{getNumEnding(advertisement.duration, ['день', 'дня', 'дней'])}"
     post.find(".city").text("#{advertisement.city}")
     post.find(".address").text("#{advertisement.address}")
     post.find(".date").text("#{convert_date_rus(advertisement.date)}")
@@ -325,6 +377,7 @@ $(document).on "page:change", ->
     clear_select(element)
     element = $("#edit_advertisement").find(".services-select")
     clear_select(element)
+
     # parsing advertisement's post data
     parse_ad($(this).parent())
     # output advertisement's info in form
@@ -456,8 +509,10 @@ clear_value_input = (id_form) ->
 clear_select = (element) ->
   if(element.hasClass("category-select"))
     element.children(".cs-placeholder").text("Категория")
+    element.children("select.category-select ").val("")
   if(element.hasClass("services-select"))
     element.children(".cs-placeholder").text("Тип объявления")
+    element.children("select.services-select ").val("")
   element.children(".cs-options").find("li[class='cs-selected']").removeClass("cs-selected")
 
 parse_ad = (element) ->
@@ -471,10 +526,10 @@ parse_ad = (element) ->
   objAdvertisement.duration = element.find(".duration-ad").text()
   objAdvertisement.category_id = element.find(".category").attr("data-cat")
   objAdvertisement.service_id = element.find(".service").attr("data-service")
-  objAdvertisement.date = convert_date_to_rails(element.find(".date").text())
+  objAdvertisement.date = element.find(".date").text()
 
 output_in_form_ad = (id_form) ->
-  $(id_form).attr("action", "/advertisements/#{objAdvertisement.id}")
+  $(id_form).attr("action", "/announcement_update/#{objAdvertisement.id}")
   $(id_form).find("#advertisement_description").val("#{objAdvertisement.description}")
   $(id_form).find("#advertisement_price").val("#{objAdvertisement.price}")
   $(id_form).find("#advertisement_city").val("#{objAdvertisement.city}")
@@ -482,7 +537,7 @@ output_in_form_ad = (id_form) ->
   $(id_form).find("#advertisement_duration").val("#{objAdvertisement.duration}")
   $(id_form).find(".category-select").children(".cs-placeholder").text("#{objAdvertisement.category_name}")
   $(id_form).find(".services-select").children(".cs-placeholder").text("#{objAdvertisement.service_name}")
-  $(id_form).find("#advertisement_date").val("#{objAdvertisement.date}")
+  $(id_form).find("#advertisement_date").val("#{convert_date_to_rails(objAdvertisement.date)}")
   #
   # select category and service in change_form
   #
@@ -596,3 +651,39 @@ objWorker =
   price: 100
   city: "Санкт-Петербург"
   address: ""
+
+post_delete_ajax = (element, url) ->
+  if confirm("Точно удалить?")
+    $.ajax
+      url: url
+      type: "POST"
+      data:
+        _method: "DELETE"
+
+      success: (result) ->
+        element.slideUp "slow", ->
+          element.remove()
+
+#
+# Функция возвращает окончание для множественного числа слова на основании числа и массива окончаний
+# @param  iNumber Integer Число на основе которого нужно сформировать окончание
+# @param  aEndings Array Массив слов или окончаний для чисел (1, 4, 5),
+# например ['яблоко', 'яблока', 'яблок']
+# @return String
+#
+getNumEnding = (iNumber, aEndings) ->
+  sEnding = undefined
+  i = undefined
+  iNumber = iNumber % 100
+  if iNumber >= 11 and iNumber <= 19
+    sEnding = aEndings[2]
+  else
+    i = iNumber % 10
+    switch i
+      when (1)
+        sEnding = aEndings[0]
+      when (2), (3), (4)
+        sEnding = aEndings[1]
+      else
+        sEnding = aEndings[2]
+  sEnding
