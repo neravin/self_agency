@@ -5,41 +5,18 @@ class WorkersController < ApplicationController
 	before_action :correct_worker, only: [:edit, :update, :destroy]
 
 	def index
-    service_id = params[:service_id]
-    if service_id
-		  @workers = Worker.
-        where("service_id == ?", service_id).
-        order("name").
-        page(params[:page]).
-        per_page(3)
-    else
-      @workers = Worker.
-        order("name").
-        page(params[:page]).
-        per_page(3)
-    end
-    
-    if params["i_want"]
-      if !params["i_want"].empty?
-        i_want = Unicode::downcase(params["i_want"])
-        service_ids = []
-
-        Service.all.each do |service|
-          if Unicode::downcase(service.name).index(i_want)
-            service_ids.push(service.id)
-          end
-        end
-        if !service_ids.empty?
-          @workers = Worker.
-            where(:service_id => service_ids).
-            page(params[:page]).
-            per_page(3)
-        else 
-          flash[:error] = "Поиск не дал результатов"
-          redirect_to ''
-          return
-        end
+    category_id = params[:category]
+    if category_id
+      category = Category.find_by_id(category_id)
+      if category
+        services_id = category.services.map(&:id)
+        buf = Worker.where(:service_id => services_id)
       end
+    else
+      buf = Worker.all
+    end
+    if buf
+      @workers = buf.page(params[:page]).per_page(3)
     end
 	end
 

@@ -1,3 +1,4 @@
+<% if @workers %>
 <ul class="cbp_tmtimeline worker-style">
 
 <% @workers.each do |ad| %>
@@ -24,3 +25,6 @@
   <%= will_paginate @worker, :container => false, 
     :previous_label => '<', :next_label => '>' %>
 </div>
+<% else %>
+Ничего не найдено
+<% end %>

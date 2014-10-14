@@ -1,8 +1,14 @@
 <div class = "categories">
 <% @category.each do |category| %>
   <div class = "category">
-    <%= link_to( advertisements_path(category: category.id))  do %>
-      <%= image_tag category.photo_url(:thumb).to_s %>
+    <% if @type == 2 %>
+      <%= link_to( advertisements_path(category: category.id))  do %>
+        <%= image_tag category.photo_url(:thumb).to_s %>
+      <% end %>
+    <% else %>
+      <%= link_to( workers_path(category: category.id))  do %>
+        <%= image_tag category.photo_url(:thumb).to_s %>
+      <% end %>
     <% end %>
     <div class="name-category"><%= category.name %></div>
   </div><!--/category-->
