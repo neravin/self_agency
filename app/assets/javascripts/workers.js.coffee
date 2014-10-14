@@ -21,5 +21,6 @@ $(document).on "page:change", ->
         parent.parent().append div
         div.addClass("opacity1")
         div.slideDown(1000)
-        div.delay( 5000 ).slideUp( 1000 )
+        div.delay( 5000 ).slideUp 1000, ->
+          $(this).remove()
     })

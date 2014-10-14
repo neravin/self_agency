@@ -9,12 +9,17 @@ $(document).on "page:change", ->
       success: (result) ->
         parent = current_el.parent()
 
-        if result == 'Объявление забронировано. Ожидайте звонок от заказчика'
-          current_el.remove()
-          span = $ "<span>"
-          span.addClass "button not-button"
-          span.html("Занят")
-          parent.append span
+        #if result == 'Объявление забронировано. Ожидайте звонок от заказчика'
+        #  current_el.remove()
+        #  span = $ "<span>"
+        #  span.addClass "button not-button"
+        #  span.html("Занят")
+        #  parent.append span
+
+        if result == 'Ожидайте звонок от заказчика'
+          num_offers = parseInt(parent.children(".num_offers").text())
+          num_offers++
+          parent.children(".num_offers").text(num_offers)
 
         div = $ "<div>"
         div.addClass "flash"
@@ -22,5 +27,6 @@ $(document).on "page:change", ->
         parent.parent().append div
         div.addClass("opacity1")
         div.slideDown(1000)
-        div.delay( 5000 ).slideUp( 1000 )
+        div.delay( 5000 ).slideUp 1000, ->
+          $(this).remove()
     })

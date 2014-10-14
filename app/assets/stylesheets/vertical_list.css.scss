@@ -222,6 +222,17 @@
 }
 
 .cbp_tmlabel{
+  .num_offers{
+    border-radius: 100px;
+    font-size: 0.85em;
+    background: none;
+    padding: 0.7em;
+    width: 47px;
+    text-align: center;
+    border: 1px dashed #fffed8;
+    color: #fffed8;
+    float: right;
+  }
   p{
     color: white;
     //color: $gray;
@@ -229,9 +240,11 @@
   }
   .price{
     color: $new-light-yellow;
+    margin-bottom: 10px;
+    display: block;
   }
   span.button{
-    float: right;
+    float: left;
     border-radius: 10px;
   }
   span.open{

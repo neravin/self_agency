@@ -2,7 +2,9 @@
 class Advertisement < ActiveRecord::Base
   belongs_to :service
   belongs_to :client
-  
+  has_one :fantom
+  #accepts_nested_attributes_for :fantom
+
   validates :description, presence: true
   validates :city, presence: true
   validates :address, presence: true
