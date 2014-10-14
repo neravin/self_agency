@@ -18,7 +18,8 @@ class AdvertisementsController < ApplicationController
     if buf
       @advertisements = buf.page(params[:page]).per_page(3)
     end
-	end
+    
+    
 
   def new
     @advertisement = Advertisement.new

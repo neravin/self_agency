@@ -1,8 +1,8 @@
 <% if @advertisements %>
   <ul class="cbp_tmtimeline">
   <%# @service_ids %>
-
   <% @advertisements.each do |ad| %>
+
     <li>
       <time class="cbp_tmtime"><span><%# ad.date.strftime("%d/%m/%Y") %></span> <span><%# ad.start_hour.strftime("%H:%M") %></span></time>
       <%= link_to(client_path(ad.client.id)) do %>
@@ -33,10 +33,12 @@
   <% end %>
   </ul>
 
+
+
   <div class="flickr_pagination">
     <div class="page_info">
     </div>
-    <%= will_paginate @advertisement, :container => false, 
+    <%= will_paginate @advertisements, :container => false, 
       :previous_label => '<', :next_label => '>' %>
   </div>
 <% else %>
