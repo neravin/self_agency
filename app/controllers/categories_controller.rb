@@ -6,6 +6,12 @@ class CategoriesController < ApplicationController
 	def index
 		@type = params[:type].to_i
 
+		if @type == 1 
+			@tab_current = 2
+		elsif @type == 2
+			@tab_current = 3
+		end
+
 		if @type == 1 || @type == 2
 			@search = Category.search(params[:q])
       @category = @search.result

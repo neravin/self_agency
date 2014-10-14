@@ -63,3 +63,7 @@ end
 
 gem 'unicode', '0.4.4.1'
 gem 'ransack'
+
+group :development, :test do
+  gem 'railroady'
+end

@@ -69,15 +69,22 @@ class AdvertisementsController < ApplicationController
   end
 
   def perform_ad
-    if p = Advertisement.find_by_id(params['id'])
+    id_ad = params['id'].to_i
+    if p = Advertisement.find_by_id(id_ad)
       if (p.state == 0) && (current_client)
-        p.update_attribute("worker_id", current_client.id)
-        p.update_attribute("state", 1)
-        render text: "Объявление забронировано. Ожидайте звонок от заказчика"
-        #redirect_back_or ''
+        fantom_ad = Fantom.find_by_advertisement_id(id_ad)
+        if fantom_ad
+          if fantom_ad.clients.exists?(current_client.id)
+            render text: "Вы уже подали заявку"
+          else
+            fantom_ad.clients << current_client
+            render text: "Ожидайте звонок от заказчика"
+          end
+        else
+          render text: "Объявление не доступно для бронирования"
+        end
       else
         render text: "Объявление не доступно для бронирования"
-        #redirect_back_or ''
       end
       #flash[:success] = "Заказ забронирован. Ожидайте звонок от заказчика.#{params[:id]}" 
       #redirect_to ''
