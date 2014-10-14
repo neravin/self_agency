@@ -5,81 +5,19 @@ class AdvertisementsController < ApplicationController
 	before_action :correct_advertisement, only: [:edit, :update, :destroy]
 
   def index
-    @search = Advertisement.search(params[:q])
-    @advertisements = @search.result
-    ad_service_id = params[:advertisement]
-    worker_service_id = params[:worker]
-    @client = Client.all
-
-    if worker_service_id
-      if worker_service_id[:service_id] != ''
-        worker_service_id = worker_service_id[:service_id]
-        redirect_to :controller => 'workers', :action => 'index', :service_id => worker_service_id
-      end
-    end
-
-    if ad_service_id
-      if ad_service_id[:service_id] != ''
-      ad_service_id = ad_service_id[:service_id]
-      @advertisements = Advertisement.
-        where("service_id == ?", ad_service_id).
-        order("date DESC").
-        order("start_hour DESC").
-        page(params[:page]).
-        per_page(3)
-      else
-        @advertisements = Advertisement.
-          order("date DESC").
-          order("start_hour DESC").
-          page(params[:page]).
-          per_page(3)
+    category_id = params[:category]
+    if category_id
+      category = Category.find_by_id(category_id)
+      if category
+        services_id = category.services.map(&:id)
+        buf = Advertisement.where(:service_id => services_id)
       end
     else
-      @advertisements = Advertisement.
-        order("date DESC").
-        order("start_hour DESC").
-        page(params[:page]).
-        per_page(3)
+      buf = Advertisement.all
     end
-
-
-    if params["i-want"] && params["i-can"]
-      if params["i-want"].empty? && params["i-can"].empty?
-        flash[:error] = "Поиск не дал результатов"
-        redirect_to ''
-        return
-      end
+    if buf
+      @advertisements = buf.page(params[:page]).per_page(3)
     end
-    if params["i-want"] 
-      if !params["i-want"].empty?
-        redirect_to :controller => 'workers', :action => 'index', :i_want => params["i-want"]
-        return
-      end
-    end
-    if params["i-can"]
-      if !params["i-can"].empty?
-        i_can = Unicode::downcase(params["i-can"])
-        service_ids = []
-
-        Service.all.each do |service|
-          if Unicode::downcase(service.name).index(i_can)
-            service_ids.push(service.id)
-          end
-        end
-        if !service_ids.empty?
-          @advertisements = Advertisement.
-            where(:service_id => service_ids).
-            page(params[:page]).
-            per_page(3)
-        else 
-          flash[:error] = "Поиск не дал результатов"
-          redirect_to ''
-          return
-        end
-      end
-    end
-    
-
 	end
 
   def new
