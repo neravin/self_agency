@@ -130,7 +130,19 @@
           </div>
         <% end %>
       <% end %>
-    </div>
+      <div class = "link-offers">
+        <span class = "arrow"><i class="fa fa-angle-double-up"></i></span>
+        <span class = "num-offers"><%= ad.fantom.clients.count %></span>
+      </div><!--/link-offers-->
+
+      <div class = "up-post">
+        <h2>Предложения от</h2>
+        <div class = "link-offers-hide">
+          <span class = "arrow"><i class="fa fa-angle-double-down"></i></span>
+          <span class = "num-offers"><%= ad.fantom.clients.count %></span>
+        </div><!--/link-offers-->
+      </div><!--/up-post-->
+    </div><!--/post-->
   <% end %>
   </div><!--/ad-posts-->
 </div>
