@@ -12,22 +12,28 @@
         <h2><%= ad.service.name %></h2>
         <p><%= ad.description %></p>
 
-        <span class = "price"><%= ad.price %> <i class="fa fa-rub" style = "font-size: 0.9em;"></i></span>
-        <% if ad.state == 0 %>
-          <span class = "button open perform-ad"
-            data-ad_id="<%= ad.id %>">Предложить</span>
-        <% elsif ad.state == 1 %>
-          <span class = "button not-button">Занят</span>
-        <% elsif ad.state == 2 %>
-          <span class = "button not-button white-green">Выполнен</span>
-        <% elsif ad.state == 3 %>
-          <span class = "button not-button white-green">Отменен</span>
-        <% end %>
-        <% if Admin.find_by(id: session[:admin_id]) %>
-          <%= link_to(ad, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-            <i class="fa fa-trash-o"></i>
+        <span class = "price">
+          <%= ad.price %> <i class="fa fa-rub" style = "font-size: 0.9em;"></i>
+        </span>
+        
+        <div class = "bottom-tmtime clearfix">
+          <span class = "num_offers"><%= ad.fantom.clients.count %></span>
+          <% if ad.state == 0 %>
+            <span class = "button open perform-ad"
+              data-ad_id="<%= ad.id %>">Предложить</span>
+          <% elsif ad.state == 1 %>
+            <span class = "button not-button">Занят</span>
+          <% elsif ad.state == 2 %>
+            <span class = "button not-button white-green">Выполнен</span>
+          <% elsif ad.state == 3 %>
+            <span class = "button not-button white-green">Отменен</span>
           <% end %>
-        <% end %>
+          <% if Admin.find_by(id: session[:admin_id]) %>
+            <%= link_to(ad, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
+              <i class="fa fa-trash-o"></i>
+            <% end %>
+          <% end %>
+        </div><!--/bottom-tmlabel-->
       </div>
     </li>
   <% end %>
@@ -36,7 +42,7 @@
   <div class="flickr_pagination">
     <div class="page_info">
     </div>
-    <%= will_paginate @advertisement, :container => false, 
+    <%= will_paginate @advertisements, :container => false, 
       :previous_label => '<', :next_label => '>' %>
   </div>
 <% else %>

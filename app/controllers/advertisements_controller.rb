@@ -26,15 +26,14 @@ class AdvertisementsController < ApplicationController
 
   def create
     @advertisement = Advertisement.new(advertisement_params)
-    #@fantom = Fantom.new()
     respond_to do |format|
-
       if (@advertisement.save)
         @fantom = Fantom.new()
         if (@fantom.save)
           @fantom.update_attribute("advertisement_id", @advertisement.id)
+          @advertisement.fantom = @fantom
+          @advertisement.save
           current_client.advertisements << @advertisement
-          #format.json { render json: @advertisement.to_json(:include => { :service => { :only => :name } } ), status: :created, location: @advertisement }
           format.json { render json: @advertisement.to_json(:include => { :service => { :only => [:id, :name], :include => { :category => { :only => [:id, :name]  } } } } ), status: :created, location: @advertisement }
         end
 
