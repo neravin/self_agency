@@ -71,16 +71,20 @@ class AdvertisementsController < ApplicationController
     id_ad = params['id'].to_i
     if p = Advertisement.find_by_id(id_ad)
       if (p.state == 0) && (current_client)
-        fantom_ad = Fantom.find_by_advertisement_id(id_ad)
-        if fantom_ad
-          if fantom_ad.clients.exists?(current_client.id)
-            render text: "Вы уже подали заявку"
+        if (p.client.id != current_client.id)
+          fantom_ad = Fantom.find_by_advertisement_id(id_ad)
+          if fantom_ad
+            if fantom_ad.clients.exists?(current_client.id)
+              render text: "Вы уже подали заявку"
+            else
+              fantom_ad.clients << current_client
+              render text: "Ожидайте звонок от заказчика"
+            end
           else
-            fantom_ad.clients << current_client
-            render text: "Ожидайте звонок от заказчика"
+            render text: "Объявление не доступно для бронирования"
           end
         else
-          render text: "Объявление не доступно для бронирования"
+          render text: "Вы не можете бронировать свое объявление"
         end
       else
         render text: "Объявление не доступно для бронирования"
