@@ -1,4 +1,4 @@
-$(document).on "page:change", ->
+ready = ->
   $("#signin-button").click -> 
     $("#fade").show()
     $("#signin-form").show()
@@ -687,3 +687,6 @@ getNumEnding = (iNumber, aEndings) ->
       else
         sEnding = aEndings[2]
   sEnding
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

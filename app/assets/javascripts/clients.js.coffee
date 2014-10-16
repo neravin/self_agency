@@ -1,4 +1,4 @@
-$(document).on "page:change", ->
+ready = ->
   $(".cancel-worker").click -> 
     id_ad = $(this).parent().parent().attr('data-ad')
     current_el = $(this)
@@ -23,7 +23,7 @@ $(document).on "page:change", ->
         div.delay( 5000 ).slideUp 1000, ->
           $(this).remove()
       })
-  
+
   $(".link-offers .arrow").click ->
     post = $(this).parent().parent()
     # change size up-post
@@ -38,3 +38,6 @@ $(document).on "page:change", ->
   $(".link-offers-hide").click ->
     up_post = $(this).parent()
     up_post.slideUp(1000)
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
