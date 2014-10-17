@@ -131,17 +131,26 @@
         <% end %>
       <% end %>
       <div class = "link-offers">
-        <span class = "arrow"><i class="fa fa-angle-double-up"></i></span>
+        <span class = "arrow open-offer"><i class="fa fa-angle-double-up"></i></span>
         <span class = "num-offers"><%= ad.fantom.clients.count %></span>
       </div><!--/link-offers-->
 
       <div class = "up-post">
-        <h2>Предложения от</h2>
+        <h2>Предложения от:</h2>
+        <div class = "offers">
+          <% ad.fantom.clients.select(:id, :name).each do |offer| %>
+            <div class = "offer clearfix">
+              <%= link_to offer.name, offer, class: "name" %>
+              <span class = "button blue-dashed">Принять</span>
+            </div><!--/offer-->
+          <% end %>
+        </div><!--/offers-->
         <div class = "link-offers-hide">
           <span class = "arrow"><i class="fa fa-angle-double-down"></i></span>
           <span class = "num-offers"><%= ad.fantom.clients.count %></span>
         </div><!--/link-offers-->
       </div><!--/up-post-->
+
     </div><!--/post-->
   <% end %>
   </div><!--/ad-posts-->
