@@ -73,7 +73,7 @@
 </div><!--/clearfix-->
 
 <div id = "i-want-column">
-  <h2>Текущие объявления</h2>
+  <h2 class = "header-h2">Текущие объявления</h2>
   <% if current_client.id == @client.id %>
   <span id = "client-add-advertisements", class = "add-button">
     <i class="fa fa-plus"></i> Добавить новое объявление
@@ -81,79 +81,11 @@
 
 <% end %>
   
-
-  <div id = "ad-posts">
-  <% @client.advertisements.order('created_at DESC').each do |ad| %>
-    <div class="post" data-ad="<%= ad.id %>">
-    <% if current_client.id == @client.id %>
-      <span class = "edit-ad-link edit-advertisement">
-        <i class = "fa fa-pencil"></i>
-      </span>
-      <span class = "delete-ad-link delete-link">
-        <i class = "fa fa-trash"></i>
-      </span>
-    <% end %>
-      <h2>
-        <span class = "category" data-cat = "<%= ad.service.category.id %>">
-          <%= ad.service.category.name %></span>:
-        <span class = "service" data-service = "<%= ad.service.id %>">
-          <%= ad.service.name %>
-        </span>
-      </h2>
-      <p><%= ad.description %></p>
-
-      <div class = "duration">
-        <span class = "duration-ad"><%= ad.duration %></span><br/><%= Russian::pluralize(ad.duration, "день", "дня", "дней") %>
-      </div>
-
-      <div class="contact clearfix"> 
-        <div>
-          <span class = "label">Город:</span>
-          <span class = "city"><%= ad.city %></span>
-        </div>
-        <div>
-          <span class = "label">Адрес:</span>
-          <span class = 'address'><%= ad.address %></span>
-        </div>
-        <div class="date"><%= ad.date.strftime("%d/%m/%Y") %></div>
-      </div><!--/contact-->
-      <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span><br>
-
-      <% if ad.worker_id %>
-        <% if worker = Client.find_by_id(ad.worker_id) %>
-          <div class="worker">
-            <%= link_to "Исполнитель - #{worker.name}", worker,
-              :class => "button light-yellow" %>
-            <span class = "cancel-worker button light-yellow">
-              Отменить исполнителя
-            </span>
-          </div>
-        <% end %>
-      <% end %>
-      <div class = "link-offers">
-        <span class = "arrow open-offer"><i class="fa fa-angle-double-up"></i></span>
-        <span class = "num-offers"><%= ad.fantom.clients.count %></span>
-      </div><!--/link-offers-->
-
-      <div class = "up-post">
-        <h2>Предложения от:</h2>
-        <div class = "offers">
-          <% ad.fantom.clients.select(:id, :name).each do |offer| %>
-            <div class = "offer clearfix">
-              <%= link_to offer.name, offer, class: "name" %>
-              <span class = "button blue-dashed">Принять</span>
-            </div><!--/offer-->
-          <% end %>
-        </div><!--/offers-->
-        <div class = "link-offers-hide">
-          <span class = "arrow"><i class="fa fa-angle-double-down"></i></span>
-          <span class = "num-offers"><%= ad.fantom.clients.count %></span>
-        </div><!--/link-offers-->
-      </div><!--/up-post-->
-
-    </div><!--/post-->
-  <% end %>
-  </div><!--/ad-posts-->
+  <%#   
+    page_type: 0 ---> advertisements#index page
+    page_type: 1 ---> clients#show page
+  %>
+  <%= render 'advertisements/advertisement_post', {advertisements: @client.advertisements, page_type: 1} %>
 </div>
 
 <div id = "i-can-column">

@@ -524,146 +524,146 @@ h1{
   }
 }
 
+.post{
+  position: relative;
+  background: $light-green;
+  //var2
+  //background: white;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 2em;
+  .up-post{
+    display: none;
+    background: white;
+    color: gray;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    border-radius: 5px;
+    padding: 2em;
+    .link-offers-hide{
+      color: $light-green;
+    }
+    h2{
+      color: $light-green;
+    }
+    .offers{
+      margin: 20px 0;
+      .offer{
+        .name{
+          float: left;
+          padding: 0.7em 0;
+          color: $blue;
+          font-size: 1.2em;
+          font-family: 'pt_sans_narrowregular'
+        }
+        .button{
+          float: right;
+        }
+      }
+    }
+    .offers::-webkit-scrollbar-track
+    {
+      //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      background-color: $green;
+      background: #f1f4f9;
+      background: $light-green;
+    }
+
+    .offers::-webkit-scrollbar
+    {
+      width: 10px;
+      background-color: #F5F5F5;
+      background-color: rgba(255, 255, 255, 0.3);
+      //background-color: $light-green;
+    }
+
+    .offers::-webkit-scrollbar-thumb
+    {
+      $c: $light-green;
+      //background-color: green;  
+      background-image: -webkit-linear-gradient(45deg,
+                                                $c 25%,
+                            transparent 25%,
+                            transparent 50%,
+                            $c 50%,
+                            $c 75%,
+                            transparent 75%,
+                            transparent);
+      background: $light-green-strong;
+    }
+
+  }
+
+  .link-offers, .link-offers-hide{
+    $a: 50px;
+    width: $a;
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -$a/2;
+    font-size: 1.2em;
+    .arrow{
+      font-size: 2em;
+      display: block;
+      cursor: pointer;
+    }
+    .num-offers{
+      display: block;
+      margin-top: -5px;
+    }
+  }
+  p{
+    color: white;
+    //var 2
+    //color: $gray;
+    margin-top: 10px;
+  }
+  h2{
+    color: white;
+    //var2
+    //color: $green;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .worker{
+    margin-top: 20px;
+  }
+  .contact{
+    //float: right;
+    margin-bottom: 20px;
+    line-height: 1.2em;
+    font-size: 0.8em;
+  }
+  .duration{
+    $a: 4.5em;
+    width: $a;
+    height: $a;
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    text-align: center;
+    font-size: 0.8em;
+    border-radius: $a;
+    border: 1px dashed white;
+    padding-top: em(7);
+    span{
+      font-size: 2em;
+      //line-height: $a/2;
+    }
+  }
+  .price{
+    color: $light2-yellow;
+    float: left;
+  }
+}
+
 #i-want-column, #i-can-column{
   display: block;
   float: left;
   width: 49%;
-  .post{
-    position: relative;
-    background: $light-green;
-    //var2
-    //background: white;
-    color: white;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    padding: 2em;
-    .up-post{
-      display: none;
-      background: white;
-      color: gray;
-      position: absolute;
-      bottom: 0px;
-      left: 0px;
-      border-radius: 5px;
-      padding: 2em;
-      .link-offers-hide{
-        color: $light-green;
-      }
-      h2{
-        color: $light-green;
-      }
-      .offers{
-        margin: 20px 0;
-        .offer{
-          .name{
-            float: left;
-            padding: 0.7em 0;
-            color: $blue;
-            font-size: 1.2em;
-            font-family: 'pt_sans_narrowregular'
-          }
-          .button{
-            float: right;
-          }
-        }
-      }
-      .offers::-webkit-scrollbar-track
-      {
-        //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        background-color: $green;
-        background: #f1f4f9;
-        background: $light-green;
-      }
-
-      .offers::-webkit-scrollbar
-      {
-        width: 10px;
-        background-color: #F5F5F5;
-        background-color: rgba(255, 255, 255, 0.3);
-        //background-color: $light-green;
-      }
-
-      .offers::-webkit-scrollbar-thumb
-      {
-        $c: $light-green;
-        //background-color: green;  
-        background-image: -webkit-linear-gradient(45deg,
-                                                  $c 25%,
-                              transparent 25%,
-                              transparent 50%,
-                              $c 50%,
-                              $c 75%,
-                              transparent 75%,
-                              transparent);
-        background: $light-green-strong;
-      }
-
-    }
-
-    .link-offers, .link-offers-hide{
-      $a: 50px;
-      width: $a;
-      text-align: center;
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      margin-left: -$a/2;
-      font-size: 1.2em;
-      .arrow{
-        font-size: 2em;
-        display: block;
-        cursor: pointer;
-      }
-      .num-offers{
-        display: block;
-        margin-top: -5px;
-      }
-    }
-    p{
-      color: white;
-      //var 2
-      //color: $gray;
-      margin-top: 10px;
-    }
-    h2{
-      color: white;
-      //var2
-      //color: $green;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    .worker{
-      margin-top: 20px;
-    }
-    .contact{
-      //float: right;
-      margin-bottom: 20px;
-      line-height: 1.2em;
-      font-size: 0.8em;
-    }
-    .duration{
-      $a: 4.5em;
-      width: $a;
-      height: $a;
-      position: absolute;
-      bottom: 32px;
-      right: 32px;
-      text-align: center;
-      font-size: 0.8em;
-      border-radius: $a;
-      border: 1px dashed white;
-      padding-top: em(7);
-      span{
-        font-size: 2em;
-        //line-height: $a/2;
-      }
-    }
-  }
-  .price{
-    color: $yellow;
-    color: $light2-yellow;
-    float: left;
-  }
-  h2{
+  h2.header-h2{
     color: $light-green;
   }
 }
@@ -903,4 +903,8 @@ span.add-button{
   border-radius: 5px;
   font-family: 'pt_sansregular';
   font-weight: normal;
+}
+
+.advertisements-posts{
+  width: 75%;
 }
