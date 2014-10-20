@@ -1,4 +1,4 @@
-$(document).on "page:change", ->
+ready = ->
   $(".perform-ad").click -> 
     id_ad = $(this).attr('data-ad_id')
     current_el = $(this)
@@ -30,3 +30,20 @@ $(document).on "page:change", ->
         div.delay( 5000 ).slideUp 1000, ->
           $(this).remove()
     })
+
+  $(".hide-filter-link").click ->
+    filters = $(this).parent()
+    form = filters.children("form")
+    $(this).hide()
+    $(".show-filter-link").show()
+    form.slideUp(1000)
+
+  $(".show-filter-link").click ->
+    filters = $(this).parent()
+    form = filters.children("form")
+    $(this).hide()
+    $(".hide-filter-link").show()
+    form.slideDown(1000)
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

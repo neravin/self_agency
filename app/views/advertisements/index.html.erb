@@ -12,6 +12,8 @@
 <div id = "ad-right-panel">
   <div class = "filters">
     <h2>Фильтр</h2>
+    <span class = "show-filter-link"><i class="fa fa-angle-double-down"></i></span>
+    <span class = "hide-filter-link"><i class="fa fa-angle-double-up"></i></span>
     <%= form_tag "/advertisements", method: :get do %>
       <div class="field clearfix">
         <label>Бюджет от (<i class="fa fa-rub" style="font-size: 0.9em;"></i>)</label>

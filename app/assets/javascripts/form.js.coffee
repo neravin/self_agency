@@ -413,6 +413,7 @@ ready = ->
   select_category_ajax("#new_worker")
   select_category_ajax("#edit_advertisement")
   select_category_ajax("#edit_worker")
+  select_category_ajax("#ad-right-panel")
 
   $("#client-add-workers").click -> 
     $("#fade").show()

@@ -944,6 +944,18 @@ span.add-button{
       background: $new-light-yellow;
       font-size: 0.9em;
     }
+    .hide-filter-link, .show-filter-link{
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      cursor: pointer;
+      display: block;
+      color: $light-green;
+      font-size: 1.5em;
+    }
+    .show-filter-link{
+      display: none;
+    }
     h2{
       color: $light-green;
     }
@@ -974,3 +986,4 @@ span.add-button{
     }
   }
 }
+
