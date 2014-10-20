@@ -9,12 +9,55 @@
   <%= render 'advertisement_post', {advertisements: @advertisements, page_type: 0} %>
 </div><!--/advertisements-posts-->
 
-  <div class="flickr_pagination">
-    <div class="page_info">
-    </div>
-    <%= will_paginate @advertisements, :container => false, 
-      :previous_label => '<', :next_label => '>' %>
+<div id = "ad-right-panel">
+  <div class = "filters">
+    <h2>Фильтр</h2>
+    <%= form_tag "/advertisements", method: :get do %>
+      <div class="field clearfix">
+        <label>Бюджет от (<i class="fa fa-rub" style="font-size: 0.9em;"></i>)</label>
+        <%= text_field_tag(:price) %>
+      </div><!--/field-->
+      <div class="field clearfix">
+        <label>Город</label>
+        <%= text_field_tag(:city) %>
+      </div><!--/field-->
+      <div class="field">
+        <%= collection_select(:category, :category_id, Category.all, :id, :name, 
+          {:prompt => "Категория"}, {:class => "category-select cs-select2 cs-skin-border"}) %>
+      </div>
+
+      <div class="field">
+        <%= collection_select(:advertisement, :service_id, Service.all, :id, :name, 
+          {:prompt => "Тип объявления"}, {:class => "services-select cs-select cs-skin-border"}) %>
+      </div>
+      <div class = "field clearfix">
+        <label></label><%= submit_tag "Применить" %>
+      </div>
+    <% end %>
+  </div><!--/filters-->
+</div><!--/ad-right-panel-->
+
+<div class="flickr_pagination">
+  <div class="page_info">
   </div>
+  <%= will_paginate @advertisements, :container => false, 
+    :previous_label => '<', :next_label => '>' %>
+</div>
+
 <% else %>
   ничего не найдено
 <% end %>
+
+<script>
+  (function() {
+    [].slice.call( document.querySelectorAll( '#ad-right-panel select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+
+  (function() {
+    [].slice.call( document.querySelectorAll( '#ad-right-panel select.cs-select2' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+</script>

@@ -541,7 +541,7 @@ h1{
   .foto{
     position: absolute;
     left: 50%;
-    margin-left: -$a/2;
+    margin-left: -$a/2-$h;
     top: -($a)/2-$h;
     border: $h solid $light-green;
     border-radius: 70px;
@@ -927,4 +927,50 @@ span.add-button{
 
 .advertisements-posts{
   width: 75%;
+  float: left;
+}
+#ad-right-panel{
+  width: 25%;
+  float: right;
+  .filters{
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 15px;
+    color: $gray;
+    position: relative;
+    font-family: 'pt_sansregular';
+    .cs-skin-border{
+      width: 100%;
+      background: $new-light-yellow;
+      font-size: 0.9em;
+    }
+    h2{
+      color: $light-green;
+    }
+    input:not([type=submit]):not([type=file]) {
+      background: $new-light-yellow;
+      border: none;
+      margin-bottom: 0;
+      width: 145px;
+      float: right;
+    }
+    input[type="submit"] {
+      background: $light-green;
+      color: white;
+      text-align: center;
+      width: 145px;
+      border: none;
+      float: right;
+      font-family: 'pt_sans_narrowbold';
+    }
+    label{
+      color: $gray;
+      font-size: 0.9em;
+      display: block;
+      float: left;
+      width: 105px;
+      line-height: 34px;
+      height: 34px;
+    }
+  }
 }
