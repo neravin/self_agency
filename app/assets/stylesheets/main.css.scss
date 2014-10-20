@@ -987,3 +987,35 @@ span.add-button{
   }
 }
 
+#silver-workers{
+  margin: 10px 15px 10px 20px;
+  h2{
+    color: $light-green;
+  }
+  .silver-worker{
+    position: relative;
+    background: white;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    .photo{
+      $a: 100px;
+      display: block;
+      width: $a;
+      height: $a;
+      margin: 0 auto;
+      border-radius: $a;
+      margin-bottom: 10px;
+    }
+    .name{
+      font-family: 'pt_sansbold';
+      color: $blue;
+      font-size: 1.2em;
+    }
+    .specialization{
+      color: gray;
+      font-family: 'pt_sansitalic'
+    }
+
+  }
+}
