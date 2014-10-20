@@ -2,21 +2,29 @@
   <% advertisements.order('created_at DESC').each do |ad| %>
     <div class="post" data-ad="<%= ad.id %>">
 
-        <%# 
-          edit and delete buttons for client's page
-        %>
-        <% if page_type == 1 %>
-          <% if current_client.id == @client.id %>
-            <span class = "edit-ad-link edit-advertisement">
-              <i class = "fa fa-pencil"></i>
-            </span>
-            <span class = "delete-ad-link delete-link">
-              <i class = "fa fa-trash"></i>
-            </span>
-          <% end %>
+      <%# 
+        edit and delete buttons for client's page
+      %>
+      <% if page_type == 1 %>
+        <% if current_client.id == @client.id %>
+          <span class = "edit-ad-link edit-advertisement">
+            <i class = "fa fa-pencil"></i>
+          </span>
+          <span class = "delete-ad-link delete-link">
+            <i class = "fa fa-trash"></i>
+          </span>
         <% end %>
+      <% end %>
+      <%#
+        photo for advertisements#index page
+       %>
+      <% if page_type == 0 %>
+        <div class = "foto">
+          <%= image_tag "ramzan.jpg" %>
+        </div><!--/foto-->
+      <% end %>
 
-        <h2>
+      <h2>
         <span class = "category" data-cat = "<%= ad.service.category.id %>">
           <%= ad.service.category.name %></span>:
         <span class = "service" data-service = "<%= ad.service.id %>">

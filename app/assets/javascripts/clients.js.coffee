@@ -33,7 +33,8 @@ ready = ->
     up_post.css "height", "#{h}px"
     up_post.css "width", "#{w}px"
     # visible  offers
-    up_post.slideDown(1000)
+    up_post.slideDown 1000, ->
+      up_post.find(".foto").show()
 
   $(".link-offers-hide").click ->
     up_post = $(this).parent()

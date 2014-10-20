@@ -525,6 +525,10 @@ h1{
 }
 
 .post{
+  // a - diameter
+  $a: 60px;
+  // h - border h
+  $h: 10px;
   position: relative;
   background: $light-green;
   //var2
@@ -533,6 +537,22 @@ h1{
   border-radius: 5px;
   margin-bottom: 15px;
   padding: 2em;
+  margin-top: $a;
+  .foto{
+    position: absolute;
+    left: 50%;
+    margin-left: -$a/2;
+    top: -($a)/2-$h;
+    border: $h solid $light-green;
+    border-radius: 70px;
+    z-index: 1;
+    img{
+      width: $a;
+      height: $a;
+      display: block;
+      border-radius: $a;
+    }
+  }
   .up-post{
     display: none;
     background: white;
