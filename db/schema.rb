@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925101110) do
+ActiveRecord::Schema.define(version: 20141021125719) do
 
   create_table "admins", force: true do |t|
     t.string "name"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20140925101110) do
 
   add_index "advertisements", ["client_id"], name: "index_advertisements_on_client_id"
   add_index "advertisements", ["service_id"], name: "index_advertisements_on_service_id"
+
+  create_table "advertisements_clients", id: false, force: true do |t|
+    t.integer "advertisement_id", null: false
+    t.integer "client_id",        null: false
+  end
+
+  add_index "advertisements_clients", ["advertisement_id"], name: "index_advertisements_clients_on_advertisement_id"
+  add_index "advertisements_clients", ["client_id"], name: "index_advertisements_clients_on_client_id"
 
   create_table "categories", force: true do |t|
     t.string "name"
@@ -68,6 +76,14 @@ ActiveRecord::Schema.define(version: 20140925101110) do
 
   add_index "clients_fantoms", ["client_id"], name: "index_clients_fantoms_on_client_id"
   add_index "clients_fantoms", ["fantom_id"], name: "index_clients_fantoms_on_fantom_id"
+
+  create_table "clients_services", id: false, force: true do |t|
+    t.integer "service_id", null: false
+    t.integer "client_id",  null: false
+  end
+
+  add_index "clients_services", ["client_id"], name: "index_clients_services_on_client_id"
+  add_index "clients_services", ["service_id"], name: "index_clients_services_on_service_id"
 
   create_table "fantoms", force: true do |t|
     t.integer "advertisement_id"
