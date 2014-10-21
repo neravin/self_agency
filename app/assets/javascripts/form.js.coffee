@@ -437,6 +437,7 @@ select_category_ajax = (form_id) ->
           # ul <li data-option="" data-value=""><span>Тип объявления</span></li>
           # <option value="25">Капитальный ремонт</option>
           $("#{form_id} .services-select").find("ul").append '<li data-option="" data-value=""><span>Тип объявления</span></li>'
+          $("#{form_id} div.services-select").show(300)
           $("#advertisement_service_id").append  '<option value="">Тип объявления</option>'
           for i in [0...result.length]
             $("#advertisement_service_id").append "<option value='#{result[i]["id"]}'>#{result[i]["name"]}</option>"

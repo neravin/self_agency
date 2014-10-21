@@ -5,15 +5,24 @@ class AdvertisementsController < ApplicationController
 	before_action :correct_advertisement, only: [:edit, :update, :destroy]
 
   def index
-    category_id = params[:category]
-    if category_id
+    buf         = Advertisement.all
+    category_id = params[:category].to_i
+    @service_id = params[:service_id].to_i
+    @price      = params[:price].to_i
+    if category_id && (category_id != 0)
       category = Category.find_by_id(category_id)
       if category
-        services_id = category.services.map(&:id)
-        buf = Advertisement.where(:service_id => services_id)
+        if @service_id && (@service_id != 0)
+          services_id = category.services.where(:id => @service_id)
+        else
+          services_id = category.services.map(&:id)
+        end
+        buf = buf.where(:service_id => services_id)
+        @category_id = category_id
       end
-    else
-      buf = Advertisement.all
+    end
+    if @price && (@price != 0)
+      buf = buf.where("price >= ?", @price)
     end
     if buf
       @advertisements = buf.page(params[:page]).per_page(3)

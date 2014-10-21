@@ -939,6 +939,9 @@ span.add-button{
     color: $gray;
     position: relative;
     font-family: 'pt_sansregular';
+    .services-select{
+      display: none;
+    }
     .cs-skin-border{
       width: 100%;
       background: $new-light-yellow;
@@ -1016,6 +1019,5 @@ span.add-button{
       color: gray;
       font-family: 'pt_sansitalic'
     }
-
   }
 }

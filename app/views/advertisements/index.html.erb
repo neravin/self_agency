@@ -1,4 +1,4 @@
-<% if @advertisements %>
+<% if @advertisements && !@advertisements.empty? %>
 
 <%#   
   page_type: 0 ---> advertisements#index page
@@ -9,34 +9,43 @@
   <%= render 'advertisement_post', {advertisements: @advertisements, page_type: 0} %>
 </div><!--/advertisements-posts-->
 
+<% else %>
+  ничего не найдено
+<% end %>
+
 <div id = "ad-right-panel">
   <div class = "filters">
     <h2>Фильтр</h2>
     <span class = "show-filter-link"><i class="fa fa-angle-double-down"></i></span>
     <span class = "hide-filter-link"><i class="fa fa-angle-double-up"></i></span>
     <%= form_tag "/advertisements", method: :get do %>
+
       <div class="field clearfix">
         <label>Бюджет от (<i class="fa fa-rub" style="font-size: 0.9em;"></i>)</label>
-        <%= text_field_tag(:price) %>
+        <%= text_field_tag(:price, @price) %>
       </div><!--/field-->
+
       <div class="field clearfix">
         <label>Город</label>
         <%= text_field_tag(:city) %>
       </div><!--/field-->
+
       <div class="field">
         <%= collection_select(:category, :category_id, Category.all, :id, :name, 
-          {:prompt => "Категория"}, {:class => "category-select cs-select2 cs-skin-border"}) %>
+          {:selected => @category_id, :include_blank => 'Категория'}, {:class => "category-select cs-select2 cs-skin-border", :name => "category"}) %>
       </div>
 
       <div class="field">
-        <%= collection_select(:advertisement, :service_id, Service.all, :id, :name, 
-          {:prompt => "Тип объявления"}, {:class => "services-select cs-select cs-skin-border"}) %>
+        <%= collection_select(:advertisement, :service_id, Service.where(category: @category_id), :id, :name, 
+          {:selected => @service_id, :include_blank => 'Тип объявления'}, {:class => "services-select cs-select cs-skin-border", :name => "service_id"}) %>
       </div>
+
       <div class = "field clearfix">
         <label></label><%= submit_tag "Применить" %>
       </div>
     <% end %>
   </div><!--/filters-->
+
   <div id = "silver-workers">
     <h2>Мастера:</h2>
     <div class = "silver-worker">
@@ -59,10 +68,6 @@
   <%= will_paginate @advertisements, :container => false, 
     :previous_label => '<', :next_label => '>' %>
 </div>
-
-<% else %>
-  ничего не найдено
-<% end %>
 
 <script>
   (function() {

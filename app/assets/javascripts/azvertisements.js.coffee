@@ -45,5 +45,12 @@ ready = ->
     $(".hide-filter-link").show()
     form.slideDown(1000)
 
+  # hide/show services select
+  if( $(".filters .category-select span.cs-placeholder").text() == "Категория" )
+    $(".filters div.services-select").hide()
+  else
+    $(".filters div.services-select").show()
+
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
