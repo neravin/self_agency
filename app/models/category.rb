@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'file_size_validator'
 class Category < ActiveRecord::Base
-  has_many :services
+  has_many :services, dependent: :destroy
   mount_uploader :photo, PhotoUploader
   validates :name, presence: true
   validates :photo,

@@ -69,6 +69,9 @@ class AdvertisementsController < ApplicationController
   end
 
   def destroy
+    fantom = @advertisement.fantom
+    fantom.clients.delete()
+
     @advertisement.destroy
     render json: { success: true }
     #respond_to do |format|

@@ -4,9 +4,9 @@ class Client < ActiveRecord::Base
   before_save {self.email = email.downcase }
   before_create :create_remember_token
 
-  has_many :advertisements
-  has_many :reviews
-  has_many :workers
+  has_many :advertisements, dependent: :destroy
+  has_many :reviews,        dependent: :destroy
+  has_many :workers,        dependent: :destroy
 
   mount_uploader :photo, ImageUploader
   validates :photo,
