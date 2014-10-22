@@ -67,7 +67,7 @@ class Client < ActiveRecord::Base
       transition all => :douchebaggish
     end
   end
-  
+
   private
 
     def bypass_validation

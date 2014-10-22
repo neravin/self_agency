@@ -1021,3 +1021,23 @@ span.add-button{
     }
   }
 }
+
+#specializations{
+  h2{
+    color: $blue;
+  }
+  h3{
+    color: $light-green;
+    margin: 20px 0 10px 0;
+  }
+  .category{
+    width: 25%;
+    float: left;
+    position: relative;
+    label {
+      display: block;
+      color: $gray;
+    }
+
+  }
+}
