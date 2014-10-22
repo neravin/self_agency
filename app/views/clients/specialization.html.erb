@@ -1,0 +1,16 @@
+<div id = "specializations" class = "clearfix">
+	<h2>Выберете специализации</h2>
+	<% @categories.each do |category| %>
+		<div class = "category clearfix">
+			<h3><%= category.name %></h3>
+			<ul>
+				<% category.services.each do |service| %>
+					<li>
+						<%= check_box_tag "sevice-checkbox-#{service.id}", service.id, false, class: "css-checkbox"%>
+						<label for="sevice-checkbox-<%= service.id %>" class="css-label cb0"><%= service.name %></label><br>
+					</li>
+				<% end %>
+			</ul>
+		</div><!--/category-->
+	<% end %>
+</div><!--/specialization-->

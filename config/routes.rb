@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :clients do
     collection do
       post 'select_category'
+      get 'specialization'
     end
   end
   resources :offer_services

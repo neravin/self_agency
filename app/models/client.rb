@@ -4,10 +4,12 @@ class Client < ActiveRecord::Base
   before_save {self.email = email.downcase }
   before_create :create_remember_token
 
+
   has_many :advertisements
   has_many :reviews
   has_many :workers
   has_and_belongs_to_many :services
+
 
   mount_uploader :photo, ImageUploader
   validates :photo,
@@ -68,7 +70,7 @@ class Client < ActiveRecord::Base
       transition all => :douchebaggish
     end
   end
-  
+
   private
 
     def bypass_validation

@@ -10,11 +10,7 @@
             <li id="signin-menu"><a href="#section-linemove-1" id = "signin-button"><i class="fa fa-sign-in"></i><span>войти</span></a></li>
           <% end %>
           <li class=""><a href="#section-linemove-2"><i class="fa fa-space-shuttle"></i><span>о нас</span></a></li>
-           <li class=<% if @tab_current == 4 %>"tab-current"<% end %>>
-            <%= link_to(:controller => "advertisements") do %>
-              <%= "<i class='fa fa-search'></i><span>Объявления</span>".html_safe %>
-            <% end %>
-          </li>
+          
           <li class=<% if @tab_current == 3 %>"tab-current"<% end %>>
             <%= link_to({:controller => "categories", :type => 2}) do %>
               <%= "<i class='fa fa-search'></i><span>Заказы</span>".html_safe %>

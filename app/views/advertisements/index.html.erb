@@ -1,57 +1,87 @@
-<% if @advertisements %>
-  <ul class="cbp_tmtimeline">
-  <%# @service_ids %>
-  <% @advertisements.each do |ad| %>
 
-    <li>
-      <time class="cbp_tmtime"><span><%# ad.date.strftime("%d/%m/%Y") %></span> <span><%# ad.start_hour.strftime("%H:%M") %></span></time>
-      <%= link_to(client_path(ad.client.id)) do %>
-        <div class="cbp_tmicon cbp_tmicon-phone"><%= image_tag ad.client.photo_url(:thumb).to_s %></div>
-      <% end %>
-      <div class="cbp_tmlabel">
-        <h2><%= ad.service.name %></h2>
-        <p><%= ad.description %></p>
+<% if @advertisements && !@advertisements.empty? %>
 
-        <span class = "price">
-          <%= ad.price %> <i class="fa fa-rub" style = "font-size: 0.9em;"></i>
-        </span>
-        
-        <div class = "bottom-tmtime clearfix">
-          <span class = "num_offers"><%= ad.fantom.clients.count %></span>
-          <% if ad.state == 0 %>
-            <span class = "button open perform-ad"
-              data-ad_id="<%= ad.id %>">Предложить</span>
-          <% elsif ad.state == 1 %>
-            <span class = "button not-button">Занят</span>
-          <% elsif ad.state == 2 %>
-            <span class = "button not-button white-green">Выполнен</span>
-          <% elsif ad.state == 3 %>
-            <span class = "button not-button white-green">Отменен</span>
-          <% end %>
-          <% if Admin.find_by(id: session[:admin_id]) %>
-            <%= link_to(ad, method: :delete, data: {confirm: 'Вы уверены?'}) do %>
-              <i class="fa fa-trash-o"></i>
-            <% end %>
-          <% end %>
-        </div><!--/bottom-tmlabel-->
+<%#   
+  page_type: 0 ---> advertisements#index page
+  page_type: 1 ---> clients#show page
+%>
 
-        <div class = "link-offers">
-          <span class = "arrow"><i class="fa fa-angle-double-up"></i></span>
-          <span class = "num-offers">10</span>
-        </div><!--/link-offers-->
-      </div><!--/cbp_tmlabel-->
-    </li>
-  <% end %>
-  </ul>
+<div class = "advertisements-posts">
+  <%= render 'advertisement_post', {advertisements: @advertisements, page_type: 0} %>
+</div><!--/advertisements-posts-->
 
 
 
-  <div class="flickr_pagination">
-    <div class="page_info">
-    </div>
-    <%= will_paginate @advertisements, :container => false, 
-      :previous_label => '<', :next_label => '>' %>
+<div id = "ad-right-panel">
+  <div class = "filters">
+    <h2>Фильтр</h2>
+    <span class = "show-filter-link"><i class="fa fa-angle-double-down"></i></span>
+    <span class = "hide-filter-link"><i class="fa fa-angle-double-up"></i></span>
+    <%= form_tag "/advertisements", method: :get do %>
+
+      <div class="field clearfix">
+        <label>Бюджет от (<i class="fa fa-rub" style="font-size: 0.9em;"></i>)</label>
+        <%= text_field_tag(:price, @price) %>
+      </div><!--/field-->
+
+      <div class="field clearfix">
+        <label>Город</label>
+        <%= text_field_tag(:city) %>
+      </div><!--/field-->
+
+      <div class="field">
+        <%= collection_select(:category, :category_id, Category.all, :id, :name, 
+          {:selected => @category_id, :include_blank => 'Категория'}, {:class => "category-select cs-select2 cs-skin-border", :name => "category"}) %>
+      </div>
+
+      <div class="field">
+        <%= collection_select(:advertisement, :service_id, Service.where(category: @category_id), :id, :name, 
+          {:selected => @service_id, :include_blank => 'Тип объявления'}, {:class => "services-select cs-select cs-skin-border", :name => "service_id"}) %>
+      </div>
+
+      <div class = "field clearfix">
+        <label></label><%= submit_tag "Применить" %>
+      </div>
+    <% end %>
+  </div><!--/filters-->
+
+  <div id = "silver-workers">
+    <h2>Мастера:</h2>
+    <div class = "silver-worker">
+      <%= image_tag "valera.jpg", class: "photo" %>
+      <div class = "name">Вилли</div>
+      <div class = "specialization">Сантехник</div>
+    </div><!--/silver-worker-->
+    
+    <div class = "silver-worker">
+      <%= image_tag "karpin.jpg", class: "photo" %>
+      <div class = "name">Валера</div>
+      <div class = "specialization">Тренер</div>
+    </div><!--/silver-worker-->
+  </div><!--/selver-workers-->
+</div><!--/ad-right-panel-->
+
+<div class="flickr_pagination">
+  <div class="page_info">
   </div>
-<% else %>
-  ничего не найдено
+  <%= will_paginate @advertisements, :container => false, 
+    :previous_label => '<', :next_label => '>' %>
+</div>
 <% end %>
+<% end %>
+
+
+<script>
+  (function() {
+    [].slice.call( document.querySelectorAll( '#ad-right-panel select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+
+  (function() {
+    [].slice.call( document.querySelectorAll( '#ad-right-panel select.cs-select2' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+</script>
+
