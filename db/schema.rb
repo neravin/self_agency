@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20141021195153) do
+=======
+ActiveRecord::Schema.define(version: 20141021125719) do
+>>>>>>> pb/master
 
   create_table "admins", force: true do |t|
     t.string "name"
@@ -77,6 +81,14 @@ ActiveRecord::Schema.define(version: 20141021195153) do
 
   add_index "clients_fantoms", ["client_id"], name: "index_clients_fantoms_on_client_id"
   add_index "clients_fantoms", ["fantom_id"], name: "index_clients_fantoms_on_fantom_id"
+
+  create_table "clients_services", id: false, force: true do |t|
+    t.integer "service_id", null: false
+    t.integer "client_id",  null: false
+  end
+
+  add_index "clients_services", ["client_id"], name: "index_clients_services_on_client_id"
+  add_index "clients_services", ["service_id"], name: "index_clients_services_on_service_id"
 
   create_table "fantoms", force: true do |t|
     t.integer "advertisement_id"

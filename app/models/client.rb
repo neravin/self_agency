@@ -7,6 +7,7 @@ class Client < ActiveRecord::Base
   has_many :advertisements, dependent: :destroy
   has_many :reviews,        dependent: :destroy
   has_many :workers,        dependent: :destroy
+  has_and_belongs_to_many :services
 
   mount_uploader :photo, ImageUploader
   validates :photo,
