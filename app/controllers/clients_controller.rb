@@ -72,6 +72,20 @@ class ClientsController < ApplicationController
     @categories = Category.all
   end
 
+  def edit_specializations
+    p = params[:client][:service_ids]
+    pams = { :client => {:service_ids => p } }
+    respond_to do |format|
+      if current_client.update_attributes(pams[:client])
+        format.json { render json: current_client, status: :created, location: current_client }
+        #render text: "Нельзя отменить"
+      else
+        Rails.logger.info(current_client.errors.messages.inspect)
+        format.json { render :json => { :error => current_client.errors.messages }, :status => 500 }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
@@ -81,6 +95,10 @@ class ClientsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
       params.require(:client).permit(:name, :email, :password, :password_confirmation, :photo, :phone)
+    end
+
+    def client_spec_params
+      params.require(:client).permit({:service_ids => []})
     end
 
     # Before filters

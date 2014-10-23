@@ -421,6 +421,13 @@ ready = ->
     $('#new_worker').parent().css "margin-top", "#{-h/2}px"
     $("#new_worker").parent().show()
 
+  $("#edit-specialization").on("ajax:success", (e, data, status, xhr) ->
+    message = $("#edit-specialization").find("#message-specialization")
+    message.text("Специализации успешно обновленны")
+  ).on "ajax:error", (e, xhr, status, error) ->
+    message = $("#edit-specialization").find("#message-specialization")
+    message.text("Произошла ошибка. Попробуйте, пожалуйста, ещё раз")
+
 
 select_category_ajax = (form_id) ->
   $("#{form_id} .category-select").children(".cs-options").children().children().click ->

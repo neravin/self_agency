@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :clients do
     collection do
       post 'select_category'
+      patch 'edit_specializations'
       get 'specialization'
     end
   end
@@ -50,6 +51,7 @@ Rails.application.routes.draw do
   match '/select_category' => 'clients#select_category', via: 'post'
   match '/worker_ad' => 'workers#worker_ad', via: 'get'
   match '/worker_cancel' => 'advertisements#worker_cancel', via: 'get'
+  match 'edit_specializations' => 'clients#edit_specializations', via: 'patch'
 
   match '/announcement_delete/:id', to: 'advertisements#destroy', via: 'delete'
   match '/announcement_update/:id' => 'advertisements#update', via: 'patch'
