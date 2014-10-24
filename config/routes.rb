@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post 'select_category'
       patch 'edit_specializations'
       get 'specialization'
+      get 'more_info'
     end
   end
   resources :offer_services
