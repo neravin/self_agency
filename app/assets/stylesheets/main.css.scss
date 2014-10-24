@@ -1040,4 +1040,13 @@ span.add-button{
     }
 
   }
+  #message-specialization{
+    background: white;
+    padding: 15px;
+    padding-left: 30px;
+    color: $light-green;
+    font-family: 'pt_sansregular';
+    border-radius: 5px;
+    display: none;
+  }
 }

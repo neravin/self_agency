@@ -424,9 +424,13 @@ ready = ->
   $("#edit-specialization").on("ajax:success", (e, data, status, xhr) ->
     message = $("#edit-specialization").find("#message-specialization")
     message.text("Специализации успешно обновленны")
+    message.slideDown(1000)
+    message.delay( 2000 ).slideUp 1000, ->
   ).on "ajax:error", (e, xhr, status, error) ->
     message = $("#edit-specialization").find("#message-specialization")
     message.text("Произошла ошибка. Попробуйте, пожалуйста, ещё раз")
+    message.slideDown(1000)
+    message.delay( 2000 ).slideUp 1000
 
 
 select_category_ajax = (form_id) ->
