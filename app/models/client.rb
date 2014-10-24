@@ -5,10 +5,12 @@ class Client < ActiveRecord::Base
   before_create :create_remember_token
 
 
+
   has_many :advertisements
   has_many :reviews
   has_many :workers
   has_and_belongs_to_many :services
+
 
 
   mount_uploader :photo, ImageUploader
@@ -33,7 +35,7 @@ class Client < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
   has_secure_password
-  validates :password, length: { minimum: 6, maximum: 50 }
+  validates :password, length: { minimum: 6, maximum: 50 }, confirmation: true, on: :create
 
   def generate_password_reset_token!
     update_attribute(:password_reset_token, SecureRandom.urlsafe_base64(48))
@@ -83,6 +85,5 @@ class Client < ActiveRecord::Base
 
     def create_remember_token
       self.remember_token = Client.encrypt(Client.new_remember_token)
-    
     end
 end

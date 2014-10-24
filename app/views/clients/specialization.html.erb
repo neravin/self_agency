@@ -1,16 +1,24 @@
-<div id = "specializations" class = "clearfix">
-	<h2>Выберете специализации</h2>
-	<% @categories.each do |category| %>
-		<div class = "category clearfix">
-			<h3><%= category.name %></h3>
-			<ul>
-				<% category.services.each do |service| %>
-					<li>
-						<%= check_box_tag "sevice-checkbox-#{service.id}", service.id, false, class: "css-checkbox"%>
-						<label for="sevice-checkbox-<%= service.id %>" class="css-label cb0"><%= service.name %></label><br>
-					</li>
-				<% end %>
-			</ul>
-		</div><!--/category-->
-	<% end %>
-</div><!--/specialization-->
+<%= form_tag edit_specializations_clients_path, :method => 'patch', :remote => true, :id => "edit-specialization" do %>
+
+	<div id = "specializations" class = "clearfix">
+		<h2>Выберете специализации</h2>
+		<div id = "message-specialization">
+		</div><!--/#message-specialization-->
+		<% @categories.each do |category| %>
+			<div class = "category clearfix">
+				<h3><%= category.name %></h3>
+				<ul>
+					<% category.services.each do |service| %>
+						<li>
+							<%# check_box_tag "sevice-checkbox-#{service.id}", service.id, false, class: "css-checkbox"%>
+							<%= check_box_tag "client[service_ids][]", service.id, current_client.service_ids.include?(service.id), id: dom_id(service), class: "css-checkbox" %>
+
+							<label for="sevice-checkbox-<%= service.id %>" class="css-label cb0"><%= service.name %></label><br>
+						</li>
+					<% end %>
+				</ul>
+			</div><!--/category-->
+		<% end %>
+	</div><!--/specialization-->
+	<%= submit_tag "Сохранить", :class => "button middle_green" %>
+<% end %>
