@@ -1,4 +1,3 @@
-
 <% if @advertisements && !@advertisements.empty? %>
 
 <%#   
@@ -10,7 +9,9 @@
   <%= render 'advertisement_post', {advertisements: @advertisements, page_type: 0} %>
 </div><!--/advertisements-posts-->
 
-
+<% else %>
+  ничего не найдено
+<% end %>
 
 <div id = "ad-right-panel">
   <div class = "filters">
@@ -67,10 +68,6 @@
   <%= will_paginate @advertisements, :container => false, 
     :previous_label => '<', :next_label => '>' %>
 </div>
-<% end %>
-<% end %>
-
-
 
 <script>
   (function() {
@@ -84,6 +81,4 @@
       new SelectFx(el);
     } );
   })();
-
 </script>
-

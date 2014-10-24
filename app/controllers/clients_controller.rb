@@ -88,6 +88,7 @@ class ClientsController < ApplicationController
   end
 
   def more_info
+    @client = current_client
   end
 
   private
