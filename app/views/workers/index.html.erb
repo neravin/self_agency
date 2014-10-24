@@ -1,23 +1,111 @@
 <% if @workers %>
-<ul class="cbp_tmtimeline worker-style">
 
-<% @workers.each do |ad| %>
-  <li>
-    <div class="cbp_tmicon cbp_tmicon-phone"><%= image_tag("valera.jpg") %></div>
-    <div class="cbp_tmlabel">
-      <h2><%= ad.service.name %></h2>
-      <p><%= ad.description %></p>
-      <span class = "price"><%= ad.price %> у.е. </span>
-      <% if ad.state == 0 %>
-        <span class = "button light-yellow open worker-ad"
-          data-ad_id="<%= ad.id %>">Заказать</span>
-      <% elsif ad.state == 1 %>
-        <span class = "button not-button white-green">Занят</span>
-      <% end %>
-    </div>
-  </li>
+<%= form_tag "", id: "worker-filter", class: "clearfix" do %>
+  <div class="field">
+    <%= collection_select(:category, :category_id, Category.all, :id, :name, 
+      {:prompt => "Категория"}, {:class => "category-select cs-select2 cs-skin-border"}) %>
+  </div>
+  <div class="field">
+    <%= text_field_tag "city", nil, placeholder: "Город" %>
+  </div>
+  <div class = "field">
+    <select class = "services-select cs-select cs-skin-border", name = "status">
+      <option value="1">Свободные</option>
+      <option value="2">Занятые</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= submit_tag "Применить", :class => "button middle_green" %>
+  </div>
 <% end %>
-</ul>
+
+<div id = "list-workers">
+  <h2>Мастера:</h2>
+  <ul id = "silver-workers" class="js-masonry" data-masonry-options='{ "itemSelector": ".pseudo" }'>
+    
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "valera.jpg", class: "photo" %>
+        <div class = "name">Вилли</div>
+        <div class = "specialization">Сантехник</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+    
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "karpin.jpg", class: "photo" %>
+        <div class = "name">Валера</div>
+        <div class = "specialization">Тренер<br>Миллионер<br>Мизантроп</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "valera.jpg", class: "photo" %>
+        <div class = "name">Вилли</div>
+        <div class = "specialization">Сантехник</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+    
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "karpin.jpg", class: "photo" %>
+        <div class = "name">Валера</div>
+        <div class = "specialization">Тренер</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "valera.jpg", class: "photo" %>
+        <div class = "name">Вилли</div>
+        <div class = "specialization">Сантехник</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+    
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "karpin.jpg", class: "photo" %>
+        <div class = "name">Валера</div>
+        <div class = "specialization">Тренер</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "valera.jpg", class: "photo" %>
+        <div class = "name">Вилли</div>
+        <div class = "specialization">Сантехник</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+    
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "karpin.jpg", class: "photo" %>
+        <div class = "name">Валера</div>
+        <div class = "specialization">Тренер<br>Судья<br>Игрок</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "valera.jpg", class: "photo" %>
+        <div class = "name">Вилли<br>Судья</div>
+        <div class = "specialization">Сантехник</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+    
+    <li class="pseudo">
+      <div class = "silver-worker">
+        <%= image_tag "karpin.jpg", class: "photo" %>
+        <div class = "name">Валера<br>Судья</div>
+        <div class = "specialization">Тренер<br>Судья<br>Судья<br>Судья</div>
+      </div><!--/silver-worker-->
+    </li><!--/pseudo-->
+
+
+  </ul><!--/selver-workers-->
+</div><!--/list-workers-->
 
 <div class="flickr_pagination">
   <div class="page_info">
@@ -28,3 +116,17 @@
 <% else %>
 Ничего не найдено
 <% end %>
+
+<script>
+  (function() {
+    [].slice.call( document.querySelectorAll( '#worker-filter select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+
+  (function() {
+    [].slice.call( document.querySelectorAll( '#worker-filter select.cs-select2' ) ).forEach( function(el) {  
+      new SelectFx(el);
+    } );
+  })();
+</script>

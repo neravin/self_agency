@@ -1,9 +1,10 @@
 # encoding: utf-8
 class ClientsController < ApplicationController
   skip_before_action :authorize
-  before_action :signed_in_client, only: [:show, :edit, :update]
+  before_action :signed_in_client, only: [:show, :edit, :update, :specialization, :edit_specializations]
   before_action :correct_client,   only: [:edit, :update]
   before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :is_worker, only: [:specialization]
   
   # GET /clients/new
   def new
@@ -80,10 +81,13 @@ class ClientsController < ApplicationController
         format.json { render json: current_client, status: :created, location: current_client }
         #render text: "Нельзя отменить"
       else
-        Rails.logger.info(current_client.errors.messages.inspect)
+        #Rails.logger.info(current_client.errors.messages.inspect)
         format.json { render :json => { :error => current_client.errors.messages }, :status => 500 }
       end
     end
+  end
+
+  def more_info
   end
 
   private
@@ -94,7 +98,7 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:name, :email, :password, :password_confirmation, :photo, :phone)
+      params.require(:client).permit(:name, :email, :password, :password_confirmation, :photo, :phone, :type_user)
     end
 
     def client_spec_params
@@ -113,5 +117,9 @@ class ClientsController < ApplicationController
     def correct_client
       @client = Client.find(params[:id])
       redirect_to('') unless current_client?(@client)
+    end
+
+    def is_worker
+      redirect_to('') unless current_client.type_user == 1
     end
 end

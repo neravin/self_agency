@@ -20,6 +20,7 @@ body.frame{
     padding-bottom: 50px;
   }
   background: #f1f4f9;
+  background: white;
 }
 
 #grid-wrap-menu{
@@ -1039,5 +1040,46 @@ span.add-button{
       color: $gray;
     }
 
+  }
+  #message-specialization{
+    background: white;
+    padding: 15px;
+    padding-left: 30px;
+    color: $light-green;
+    font-family: 'pt_sansregular';
+    border-radius: 5px;
+    display: none;
+  }
+}
+
+#worker-filter{
+  div.cs-skin-border{
+    max-width: none;
+    //width: auto;
+  }
+  .field{
+    float: left;
+    margin-right: 20px;
+  }
+  .cs-select2{
+    width: 190px;
+  }
+  .cs-select{
+    width: 160px;
+  }
+}
+
+#list-workers{
+  .pseudo{
+    width: 25%;
+    float: left;
+    padding: 0px 10px;
+  }
+  .silver-worker{
+    background: $new-light-yellow;
+    border-radius: 5px;
+    .name{
+      color: #678BC0;
+    }
   }
 }
