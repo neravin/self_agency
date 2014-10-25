@@ -20,7 +20,9 @@
        %>
       <% if page_type == 0 %>
         <div class = "foto">
-          <%= image_tag "ramzan.jpg" %>
+          <%= link_to(client_path(ad.client.id)) do %>
+            <%= image_tag ad.client.photo_url(:thumb).to_s %>
+          <% end %>
         </div><!--/foto-->
       <% end %>
 
