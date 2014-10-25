@@ -16,6 +16,9 @@
       <div class = "user-description">
       <div class = "pseudo">
         <h2><%= @client.name %></h2>
+        <p id = "about-me">
+        "СОРД" "Строительство Отделка Ремонт Дизайн" С троительство котеджий и загородных домов, внутреняя отделка, инжинерные системы, малые архитектурные формы, ланшафт, пруды, газоны, клумбы. Ремонт от эксклюзивного до косметического. Стоимомть ремонта от 1500 до 24500 рублей за м2. Работы производятся по смете и с заключением договора.
+        </p>
         <p>
           <strong>Телефон:</strong>
           <em><%= @client.phone %></em><br>
@@ -23,41 +26,25 @@
         <p>
           <strong>Почта:</strong>
           <em><%= @client.email %></em>
-        </p>
-    
+        </p> 
       </div><!--/pseudo-->
       </div><!--/user-description-->
     </div><!--/pseudo-->
 
-  <% if current_client.id == @client.id %>
-    <div id = "user-menu-horizontal">
+  <%# if current_client.id == @client.id %>
+    <!--div id = "user-menu-horizontal">
       <div class="personal-link">
-        <%= link_to(edit_client_path(@client), class: "a-personal") do %>
+        <%# link_to(edit_client_path(@client), class: "a-personal") do %>
           <i class="fa fa-pencil"></i>
-        <% end %>
+        <%# end %>
       </div><!--/personal-link-->
-      <div class="personal-link">
-        <%= link_to(more_info_clients_path, class: "a-personal") do %>
+      <!--div class="personal-link">
+        <%# link_to(more_info_clients_path, class: "a-personal") do %>
           <i class="fa fa-angellist"></i>
-        <% end %>
+        <%# end %>
       </div><!--/personal-link-->
-      <div class="personal-link">
-        <%= link_to(edit_client_path(@client), class: "a-personal") do %>
-          <i class="fa fa-pencil"></i>
-        <% end %>
-      </div><!--/personal-link-->
-      <div class="personal-link">
-        <%= link_to(edit_client_path(@client), class: "a-personal") do %>
-          <i class="fa fa-pencil"></i>
-        <% end %>
-      </div><!--/personal-link-->
-      <div class="personal-link">
-        <%= link_to(edit_client_path(@client), class: "a-personal") do %>
-          <i class="fa fa-pencil"></i>
-        <% end %>
-      </div><!--/personal-link-->
-    </div><!--/user-menu-horizontal-->
-  <% end %>
+    <!--/div><!--/user-menu-horizontal-->
+  <%# end %>
   </div><!--/user-info-->
 
   <div id = "reviews">
@@ -71,68 +58,75 @@
   </div><!--/reviews-->
 </div><!--/clearfix-->
 
-<div id = "i-want-column">
-  <h2 class = "header-h2">Текущие объявления</h2>
-  <% if current_client.id == @client.id %>
-  <span id = "client-add-advertisements", class = "add-button">
-    <i class="fa fa-plus"></i> Добавить новое объявление
-  </span>
+<%#   
+  type_user: 0 ---> user
+  type_user: 1 ---> builder
+%>
+<% if current_client.type_user == 0 %>
 
-<% end %>
-  
-  <%#   
-    page_type: 0 ---> advertisements#index page
-    page_type: 1 ---> clients#show page
-  %>
-  <%= render 'advertisements/advertisement_post', {advertisements: @client.advertisements, page_type: 1} %>
-</div>
-
-<div id = "i-can-column">
-  <h2>Текущие услуги</h2>
+  <div id = "i-want-column">
+    <h2 class = "header-h2">Текущие объявления</h2>
   <% if current_client.id == @client.id %>
-    <span id = "client-add-workers", class = "add-button">
-      <i class="fa fa-plus"></i> Добавить новую услугу
+    <span id = "client-add-advertisements", class = "add-button">
+      <i class="fa fa-plus"></i> Добавить новое объявление
     </span>
+
   <% end %>
+    
+    <%#   
+      page_type: 0 ---> advertisements#index page
+      page_type: 1 ---> clients#show page
+    %>
+    <%= render 'advertisements/advertisement_post', {advertisements: @client.advertisements, page_type: 1} %>
+  </div>
 
-  <div id = "worker-posts">
-    <% @client.workers.order('created_at DESC').each do |ad| %>
-      <div class="post" data-worker=<%= ad.id%>>
-      <% if current_client.id == @client.id %>
-        <span  class = "edit-worker-link edit-advertisement">
-          <i class="fa fa-pencil"></i>
-        </span>
-        <span class = "delete-ad-link-big-boobs delete-link">
-          <i class = "fa fa-trash"></i>
-        </span>
-      <% end %>
-        <h2>
-          <span class = "category" data-cat = "<%= ad.service.category.id %>">
-            <%= ad.service.category.name %></span>:
-          <span class = "service" data-service = "<%= ad.service.id %>">
-            <%= ad.service.name %>
-          </span>
-        </h2>
-        <p><%= ad.description %></p>
-         <div class="contact clearfix"> 
-          <div>
-            <span class = "label">Город:</span>
-            <span class = "city"><%= ad.city %></span>
-          </div>
-          <div>
-            <span class = "label">Адрес:</span>
-            <span class = 'address'><%= ad.address %></span>
-          </div>
-        </div><!--/contact-->
-        <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
-      </div>
+  <div id = "i-can-column">
+    <h2>Текущие услуги</h2>
+    <% if current_client.id == @client.id %>
+      <span id = "client-add-workers", class = "add-button">
+        <i class="fa fa-plus"></i> Добавить новую услугу
+      </span>
     <% end %>
-  </div><!--/worker-posts-->
-</div>
 
-<% if current_client.id == @client.id %>
-  <%= render 'new_advertisement' %>
-  <%= render 'new_worker' %>
-  <%= render 'edit_advertisement' %>
-  <%= render 'edit_worker' %>
-<% end %>
+    <div id = "worker-posts">
+      <% @client.workers.order('created_at DESC').each do |ad| %>
+        <div class="post" data-worker=<%= ad.id%>>
+        <% if current_client.id == @client.id %>
+          <span  class = "edit-worker-link edit-advertisement">
+            <i class="fa fa-pencil"></i>
+          </span>
+          <span class = "delete-ad-link-big-boobs delete-link">
+            <i class = "fa fa-trash"></i>
+          </span>
+        <% end %>
+          <h2>
+            <span class = "category" data-cat = "<%= ad.service.category.id %>">
+              <%= ad.service.category.name %></span>:
+            <span class = "service" data-service = "<%= ad.service.id %>">
+              <%= ad.service.name %>
+            </span>
+          </h2>
+          <p><%= ad.description %></p>
+           <div class="contact clearfix"> 
+            <div>
+              <span class = "label">Город:</span>
+              <span class = "city"><%= ad.city %></span>
+            </div>
+            <div>
+              <span class = "label">Адрес:</span>
+              <span class = 'address'><%= ad.address %></span>
+            </div>
+          </div><!--/contact-->
+          <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
+        </div>
+      <% end %>
+    </div><!--/worker-posts-->
+  </div>
+
+  <% if current_client.id == @client.id %>
+    <%= render 'new_advertisement' %>
+    <%= render 'new_worker' %>
+    <%= render 'edit_advertisement' %>
+    <%= render 'edit_worker' %>
+  <% end %>
+<% end %><%# type user %>

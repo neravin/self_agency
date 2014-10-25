@@ -408,9 +408,12 @@ h1{
   height: 197px;
   margin-bottom: 20px;
   float: left;
-  background: $new-light-yellow;
+  #about-me{
+    font-family: 'pt_sansregular';
+  }
+  /*background: $new-light-yellow;
   border: 1px dashed $orange;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;*/
   .foto{
     width: 30%;
     height: 100%;
@@ -437,7 +440,7 @@ h1{
       margin-left: 20px;
     }
     h2{
-      color: $middle-green;
+      color: #678BC0;
       margin-top: 20px;
     }
     p{
@@ -465,8 +468,8 @@ h1{
       width: $a;
       height: $a;
       text-align: center;
-      border-bottom: 1px dashed $orange;
-      border-left: 1px dashed $orange;
+      //border-bottom: 1px dashed $orange;
+      //border-left: 1px dashed $orange;
       margin-bottom: -1px;
       &:first-child{
         border-radius: 0 5px 0 0;
@@ -510,6 +513,7 @@ h1{
       color: white;
       color: $gray;
       margin-bottom: 0.5em;
+      font-family: 'pt_sansregular';
     }
     //background: rgb(103, 149, 192);
     padding: 20px 50px;
