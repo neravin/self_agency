@@ -10,6 +10,10 @@ $form-half: 252.5px;
   //padding-bottom: 45px;
 }
 
+body{
+  font-family: 'pt_sansregular';
+}
+
 body.frame{
   margin: 0 25px;
   #grid-main{
@@ -427,8 +431,16 @@ h1{
       display: block;
       width: 100px;
       height: 100px;
-      margin: 30px auto;
+      margin: 30px auto 10px auto;
       border-radius: 100px;
+    }
+    .name{
+      color: #097D66;
+      font-family: 'pt_sansbold';
+    }
+    .specialization{
+      color: gray;
+      font-family: 'pt_sansitalic';
     }
   }
   .user-description{
@@ -1084,4 +1096,9 @@ span.add-button{
       color: #678BC0;
     }
   }
+}
+
+#empty-note{
+  padding: 30px 20px 20px 0;
+  color: #DF2841;
 }

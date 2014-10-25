@@ -10,7 +10,11 @@
 </div><!--/advertisements-posts-->
 
 <% else %>
-  ничего не найдено
+  <div class = "advertisements-posts">
+    <div id = "empty-note">
+      <i class="fa fa-frown-o"></i> Ни одной записи не найдено
+    </div><!--/empty-posts-->
+  </div><!--/empty-note-->
 <% end %>
 
 <div id = "ad-right-panel">
@@ -46,6 +50,8 @@
     <% end %>
   </div><!--/filters-->
 
+
+<% if @advertisements && !@advertisements.empty? %>
   <div id = "silver-workers">
     <h2>Мастера:</h2>
     <div class = "silver-worker">
@@ -60,6 +66,7 @@
       <div class = "specialization">Тренер</div>
     </div><!--/silver-worker-->
   </div><!--/selver-workers-->
+<% end %>
 </div><!--/ad-right-panel-->
 
 <div class="flickr_pagination">
