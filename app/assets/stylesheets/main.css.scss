@@ -450,12 +450,21 @@ h1{
         display: block;
         float: left;
         font-weight: normal;
-        color: $gray;
-        color: $orange;
+        color: $light-green;
+        font-family: 'pt_sansregular';
+        font-size: 0.9em;
       }
       em{
-        color: rgb(163, 171, 185);
         color: $gray;
+        font-family: 'pt_sansitalic';
+        font-size: 0.9em;
+      }
+    }
+    .contacts{
+      margin-top: 20px;
+      p{
+        margin-bottom: -1px;
+
       }
     }
   }
@@ -494,29 +503,18 @@ h1{
 
 #reviews{
   float: right;
+  padding: 20px 50px 20px 50px;
   //height: 200px;
   width: 49%;
-  border-radius: 5px;
   margin-bottom: 20px;
   .title{
-    height: 50px;
-    padding: 0 50px;
-    padding-top: 10px;
-    h2{
-      color: $light-green-strong;
-    }
-    //background: rgb(65, 106, 166);
-    border-radius: 5px 5px 0 0;
+    color: $light-green-strong;
   }
   .review-text{
-    p{
-      color: white;
-      color: $gray;
-      margin-bottom: 0.5em;
-      font-family: 'pt_sansregular';
-    }
+    color: $gray;
+    margin-bottom: 0.5em;
+    font-family: 'pt_sansregular';
     //background: rgb(103, 149, 192);
-    padding: 20px 50px;
     //height: 150px;
     border-radius: 0 0 5px 5px;
     .author{
