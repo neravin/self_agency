@@ -13,7 +13,7 @@
 							<%# check_box_tag "sevice-checkbox-#{service.id}", service.id, false, class: "css-checkbox"%>
 							<%= check_box_tag "client[service_ids][]", service.id, current_client.service_ids.include?(service.id), id: dom_id(service), class: "css-checkbox" %>
 
-							<label for="service_<%= service.id %>" class="css-label"><%= service.name %></label><br>
+							<label for="service_<%= service.id %>" class="css-label label-checkbox"><%= service.name %></label><br>
 						</li>
 					<% end %>
 				</ul>

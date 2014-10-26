@@ -516,7 +516,7 @@ clear_vertical_errors = (id_form) ->
     $(id_form).find('.error_explanation').hide()
 
 clear_value_input = (id_form) ->
-  $(id_form).find("input").not(':input[type=button], :input[type=submit], :input[type=reset], :input[type=hidden]').val('')
+  $(id_form).find("input").not(':input[type=button], :input[type=submit], :input[type=reset], :input[type=hidden], :input[type=radio]').val('')
   $(id_form).find("textarea").val('')
 
 clear_select = (element) ->

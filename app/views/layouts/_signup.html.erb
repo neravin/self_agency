@@ -14,6 +14,15 @@
   <fieldset>
   <legend>Введите сведения о пользователе</legend>
 
+  <div class = "field radio-buttons">
+    <div class = "radio-buttons">
+      <%= radio_button 'client', 'type_user', 1, checked: true, id: "radio-builder", class: "css-checkbox" %>
+      <label for = "radio-builder" class = "css-label label-radio ">Строитель</label>
+      <%= radio_button 'client', 'type_user', 0, id: "radio-client", class: "css-checkbox" %>
+      <label for = "radio-client" class = "css-label label-radio ">Заказчик</label>
+    </div>
+  </div>
+
   <div id = "signup-name" class="field">
     <%= f.text_field :name, :placeholder => "ФИО" %>
   </div>
@@ -28,9 +37,6 @@
 
   <div id = "signup-password-conf" class="field">
     <%= f.password_field :password_confirmation, :placeholder => "Подтверждение" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :phone, :placeholder => "Телефон" %>
   </div>
 
   <div class="actions">

@@ -11,7 +11,7 @@ $button-width: 300px;
   cursor: pointer;
 }
 
-input:not([type=submit]):not([type=file]){
+input:not([type=submit]):not([type=file]):not([type=radio]){
   border: em(3) solid #1b967e; 
   padding: em(10);
   //background: rgba(255,255,255,0.5);
@@ -25,15 +25,24 @@ input[type="submit"]{
 }
 
 /*
-  Checkbox 
+  Checkbox and Radiobutton
 */
 // h - height and width checbox image
 $h: 15px;
-input[type=checkbox].css-checkbox {
-  position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+input[type=checkbox].css-checkbox, input[type=radio].css-checkbox {
+  position:absolute; 
+  z-index:-1000; 
+  left:-1000px; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height:1px; 
+  width:1px; 
+  margin:-1px; 
+  padding:0; 
+  border:0;
 }
 
-input[type=checkbox].css-checkbox + label.css-label {
+input[type=checkbox].css-checkbox + label.css-label, input[type=radio].css-checkbox + label.css-label  {
   padding-left: 25px;
   height:$h; 
   display:inline-block;
@@ -45,11 +54,10 @@ input[type=checkbox].css-checkbox + label.css-label {
   cursor:pointer;
 }
 
-input[type=checkbox].css-checkbox:checked + label.css-label {
+input[type=checkbox].css-checkbox:checked + label.css-label, input[type=radio].css-checkbox:checked + label.css-label{
   background-position: 0 0-$h;
 }
 label.css-label {
-  background-image: image-url("checkbox.png");
   background-size: $h 2*$h; 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -58,3 +66,12 @@ label.css-label {
   -ms-user-select: none;
   user-select: none;
 }
+
+label.label-checkbox {
+  background-image: image-url("checkbox.png");
+}
+
+label.label-radio{
+  background-image: url(http://csscheckbox.com/checkboxes/u/csscheckbox_4551cfcecee4b5e809236c10ddd0ae74.png);
+}
+
