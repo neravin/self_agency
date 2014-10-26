@@ -15,7 +15,7 @@ body{
 }
 
 body.frame{
-  margin: 0 25px;
+  //margin: 0 25px;
   #grid-main{
     //background: $new-light-yellow;
   }
@@ -1058,7 +1058,7 @@ span.add-button{
   #message-specialization{
     background: white;
     padding: 15px;
-    padding-left: 30px;
+    padding-left: 0px;
     color: $light-green;
     font-family: 'pt_sansregular';
     border-radius: 5px;
@@ -1101,4 +1101,35 @@ span.add-button{
 #empty-note{
   padding: 30px 20px 20px 0;
   color: #DF2841;
+}
+
+.user-right-block{
+  margin-left: 20px;
+  position: relative;
+  #user-menu{
+    float: right;
+    margin-top: 20px;
+    a{
+      display: block;
+      color: $gray;
+      padding: 10px 20px;
+      //border-bottom: 1px solid $light-green-strong;
+      margin-bottom: 1px;
+      background: $light-green-strong;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  .user-services{
+    h3{
+      color: $red;
+      margin: 5px 0;
+    }
+    float: left;
+    padding: 20px 20px;
+    padding-left: 40px;
+    color: $gray;
+    font-size: 0.9em;
+  }
 }

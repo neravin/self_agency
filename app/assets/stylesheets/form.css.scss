@@ -10,7 +10,6 @@ $form-half: 252.5px;
   border-radius: 5px;
   border: 0.1em solid $red;*/
   background: $light2-red;
-  
 }
 
 .error-input{
@@ -85,7 +84,18 @@ input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
   margin-top: 20px;*/
   text-align: center;
   border-radius: 5px;
+}
 
+.form-visible{
+  width: 2*$form-shell-width - 25px;
+  form{
+    h2, legend{
+      margin-left: 0;
+    }
+  }
+}
+
+.form-shell, .form-visible{
   h2{
     font-family: 'pt_sans_narrowregular';
     font-size: 2em;
@@ -249,6 +259,9 @@ input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
   margin-left: -$form-shell-width - 12.5px;
   width: 2*$form-shell-width - 25px;
   background: white;
+}
+
+.fat-style, .form-visible{
   .one-column, .two-column{
     width: 50%;
   }
@@ -300,4 +313,47 @@ input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
 
 #fade{
   cursor: pointer;
+}
+
+#uploadFile{
+  width: $input-width - 80px;
+}
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  height: em(44);
+  margin-top: -5px;
+}
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  text-decoration: none;
+  padding: 0.7em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'pt_sans_narrowregular';
 }

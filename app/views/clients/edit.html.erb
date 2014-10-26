@@ -1,5 +1,81 @@
-<h1>Editing user</h1>
+<div class = "form-visible">
 
-<%= render 'form', {h2: "Изменить пользователя", submit_name: "Обновить"} %>
+	<%= form_for @client, :html => {:multipart => true} do |f| %>
+	  <h2>Профиль</h2>
+	  <% if @client.errors.any? %>
+	    <div id="error_explanation">
+	      <h2>
+	        <%# pluralize(@client.errors.count, "error") %>
+	        Cведения об этом пользователе не могут быть сохранены:
+	      </h2>
+	      <ul>
+	        <% @client.errors.full_messages.each do |msg| %>
+	          <li><%= msg %></li>
+	        <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
 
-<%= link_to 'Back', client_path %>
+	  <fieldset>
+	  <legend>Введите сведения о пользователе</legend>
+
+	  <div class = "one-column">
+		  <div class="field">
+		    <%= f.text_field :name, :placeholder => "ФИО" %>
+		  </div>
+
+		  <div class="field">
+		    <%= f.text_field :email, :placeholder => "Email" %>
+		  </div>
+
+		  <div class="field">
+		    <%= f.password_field :password, :placeholder => "Пароль"%>
+		  </div>
+
+		  <div class="field">
+		    <%= f.password_field :password_confirmation, :placeholder => "Подтверждение" %>
+		  </div>
+
+		  <div class="field">
+		    <%= f.text_field :phone, :placeholder => "Телефон" %>
+		  </div>
+
+		  <div class="actions">
+		    <%= f.submit :class => "button middle_green", :value => "Обновить" %>
+		  </div>
+		</div>
+
+
+		<div class = "two-column">
+			<div class = "field">
+				<%= f.text_field :city, :placeholder => "ФИО" %>
+			</div>
+
+			<div class="field">
+        <%= f.text_field :city, :placeholder => "Город" %>
+      </div>
+
+			<div class="field">
+				<%= f.text_area :city %>
+			</div> 
+
+		  <div class="field">
+		  	<input id="uploadFile" placeholder="Выберете файл" disabled="disabled" />
+		  	<div class="fileUpload btn btn-primary">
+		  		<span>Загрузить</span>
+		    	<%= f.file_field :photo, id: "uploadBtn", class: "upload" %>
+		    </div>
+		  </div>
+		</div>
+
+	  </fieldset>
+	<% end %>
+
+	<%= link_to 'Back', client_path %>
+</div><!--/form-visible-->
+
+<script>
+	document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+	};
+</script>
