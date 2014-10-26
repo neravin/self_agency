@@ -357,3 +357,9 @@ input.error-input:-ms-input-placeholder { /* Internet Explorer 10+ */
   user-select: none;
   font-family: 'pt_sans_narrowregular';
 }
+
+.edit-password-reset{
+  .form-shell{
+    display: block;
+  }
+}

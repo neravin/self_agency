@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   resources :home, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :clients do
+  resources :password_resets, only: [:create,:edit, :update]
+  resources :clients, only: [:create, :index, :show, :edit, :destroy] do
     collection do
       post 'select_category'
       patch 'edit_specializations'
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :admin_routes
   resources :queues
   resources :activation_client, only: [:edit, :update]
-  resources :advertisements do
+  resources :advertisements, only: [:create, :index, :update] do
     collection do
       patch 'perform_ad'
       patch 'worker_cancel'
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   resources :admins
   resources :services
   resources :categories
-  resources :workers do
+  resources :workers, only: [:create, :index, :update] do
     collection do
       patch 'worker_ad'
     end

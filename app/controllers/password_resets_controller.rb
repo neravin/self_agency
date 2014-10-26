@@ -4,8 +4,6 @@ class PasswordResetsController < ApplicationController
   respond_to :html, :json
 
   skip_before_action :authorize
-  def new 
-  end
 
   def create
     @client = Client.find_by(email: params[:email])
