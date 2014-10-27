@@ -389,12 +389,18 @@ h1{
   font-size: 1.2em;
   line-height: 1.4em;
   width: 250px;
-  right: 30px;
+  right: 0px;
   top: 0px;
   padding: 20px;
   border-radius: 0 0 10px 10px;
   //opacity: 0;
   display: none;
+  background: rgba(255, 255, 255, 0.7);
+  color: #E6596A;
+}
+
+.success-message{
+  color: $light-green;
 }
 
 .flash-margin{
@@ -546,6 +552,7 @@ h1{
   $h: 10px;
   position: relative;
   background: $light-green;
+  background: #4C9396;
   //var2
   //background: white;
   color: white;
@@ -559,6 +566,7 @@ h1{
     margin-left: -$a/2-$h;
     top: -($a)/2-$h;
     border: $h solid $light-green;
+    border: $h solid #4C9396;
     border-radius: 70px;
     z-index: 1;
     img{
@@ -566,6 +574,14 @@ h1{
       height: $a;
       display: block;
       border-radius: $a;
+    }
+  }
+  .bottom-tmtime{
+    position: absolute;
+    bottom: 35px;
+    right: 32px;
+    .button{
+      border-radius: 5px;
     }
   }
   .up-post{
@@ -577,11 +593,12 @@ h1{
     left: 0px;
     border-radius: 5px;
     padding: 2em;
+    background-color: #4C9396;
     .link-offers-hide{
-      color: $light-green;
+      color: white;
     }
     h2{
-      color: $light-green;
+      color: white;
     }
     .offers{
       margin: 20px 0;
@@ -589,7 +606,7 @@ h1{
         .name{
           float: left;
           padding: 0.7em 0;
-          color: $blue;
+          color: white;
           font-size: 1.2em;
           font-family: 'pt_sans_narrowregular'
         }
@@ -628,7 +645,6 @@ h1{
                             transparent);
       background: $light-green-strong;
     }
-
   }
 
   .link-offers, .link-offers-hide{
@@ -676,12 +692,12 @@ h1{
     width: $a;
     height: $a;
     position: absolute;
-    bottom: 32px;
-    right: 32px;
+    top: 19px;
+    right: 20px;
     text-align: center;
     font-size: 0.8em;
     border-radius: $a;
-    border: 1px dashed white;
+    //border: 1px dashed white;
     padding-top: em(7);
     span{
       font-size: 2em;
@@ -932,7 +948,7 @@ span.add-button{
 }
 
 .blue-dashed{
-  $c: $blue;
+  $c: white;
   border: 1px dashed $c;
   color: $c;
   border-radius: 5px;
@@ -1109,7 +1125,7 @@ span.add-button{
   #user-menu{
     float: right;
     margin-top: 20px;
-    a{
+    a, span{
       display: block;
       color: $gray;
       padding: 10px 20px;
@@ -1118,6 +1134,12 @@ span.add-button{
       background: $light-green-strong;
       color: white;
       cursor: pointer;
+    }
+    span{
+      background: #4C9396;
+      i{
+        margin-right: 5px;
+      }
     }
   }
 

@@ -15,13 +15,14 @@ ready = ->
         #  span.addClass "button not-button"
         #  span.html("Занят")
         #  parent.append span
+        div = $ "<div>"
 
         if result == 'Ожидайте звонок от заказчика'
-          num_offers = parseInt(parent.children(".num_offers").text())
+          num_offers = parent.parent().children(".link-offers").find(".num-offers").text()
           num_offers++
-          parent.children(".num_offers").text(num_offers)
+          parent.parent().children(".link-offers").find(".num-offers").text(num_offers)
+          div.addClass "success-message"
 
-        div = $ "<div>"
         div.addClass "flash"
         div.html(result)
         parent.parent().append div

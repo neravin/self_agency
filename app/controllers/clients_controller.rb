@@ -20,6 +20,7 @@ class ClientsController < ApplicationController
   end
 
   def show
+    @type_user = @client.type_user
   end
 
   def update

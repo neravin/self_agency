@@ -4,11 +4,7 @@
 
 <div class="clearfix">
   <div id = "user-info" class="clearfix" >
-  <% if current_client.id == @client.id %>
-    <div class="pseudo clearfix var1">
-  <% else %>
-    <div class="pseudo clearfix var2">
-  <% end %>
+    <div class="pseudo">
       <div class = "foto">
         <%= image_tag @client.photo_url(:thumb).to_s %>
         <div class = "name">Фирмаe</div>
@@ -51,27 +47,7 @@
   <%# end %>
   </div><!--/user-info-->
 
-  <div class = "user-right-block">
-    <div class = "user-services">
-      <h3>Услуги</h3>
-      <ul>
-        <% @client.services.each do |service| %>
-          <li><%= service.name %></li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div id="user-menu">
-      <%= link_to(edit_client_path(@client)) do %>
-          Изменить профиль
-      <% end %>
-      <%= link_to(specialization_clients_path) do %>
-          Изменить специальности
-      <% end %>
-      <a>Отзывы</a>
-      <a>Портфолио</a>
-    </div>
-  </div><%# user-right-block %>
+  <%= render 'features_client' %>
 
 </div><!--/clearfix-->
 
@@ -81,23 +57,23 @@
 %>
 <% if current_client.type_user == 0 %>
 
-  <div id = "i-want-column">
+  <!--div id = "i-want-column">
     <h2 class = "header-h2">Текущие объявления</h2>
-  <% if current_client.id == @client.id %>
-    <span id = "client-add-advertisements", class = "add-button">
-      <i class="fa fa-plus"></i> Добавить новое объявление
-    </span>
+    <% if current_client.id == @client.id %>
+      <span id = "client-add-advertisements", class = "add-button">
+        <i class="fa fa-plus"></i> Добавить новое объявление
+      </span>
 
-  <% end %>
+    <% end %>
     
     <%#   
       page_type: 0 ---> advertisements#index page
       page_type: 1 ---> clients#show page
     %>
-    <%= render 'advertisements/advertisement_post', {advertisements: @client.advertisements, page_type: 1} %>
-  </div>
+    <%# render 'advertisements/advertisement_post', {advertisements: @client.advertisements, page_type: 1} %>
+  </div-->
 
-  <div id = "i-can-column">
+  <!--div id = "i-can-column">
     <h2>Текущие услуги</h2>
     <% if current_client.id == @client.id %>
       <span id = "client-add-workers", class = "add-button">
@@ -133,17 +109,16 @@
               <span class = "label">Адрес:</span>
               <span class = 'address'><%= ad.address %></span>
             </div>
-          </div><!--/contact-->
+          </div>
           <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
         </div>
       <% end %>
-    </div><!--/worker-posts-->
-  </div>
+    </div>
+  </div-->
 
+  <%# if current client is customer %>
   <% if current_client.id == @client.id %>
     <%= render 'new_advertisement' %>
-    <%= render 'new_worker' %>
     <%= render 'edit_advertisement' %>
-    <%= render 'edit_worker' %>
   <% end %>
 <% end %><%# type user %>

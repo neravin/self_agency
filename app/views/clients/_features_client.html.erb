@@ -1,0 +1,38 @@
+<% if current_client.id == @client.id %>
+  <div class = "user-right-block">
+    <div class = "user-services">
+      <h3>Услуги</h3>
+      <ul>
+        <% @client.services.each do |service| %>
+          <li><%= service.name %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div id="user-menu">
+      <%= link_to(edit_client_path(@client)) do %>
+        Изменить профиль
+      <% end %>
+
+      <%# for builders %>
+      <% if @type_user == 1 %>
+        <%= link_to(specialization_clients_path) do %>
+          Изменить специальности
+        <% end %>
+        <a>Портфолио</a>
+      <% end %>
+
+      <a>Отзывы</a>
+      <a>Объявления</a>
+      
+      <%# for customers %>
+      <% if @type_user == 0 %>
+        <span id = "client-add-advertisements">
+          <i class="fa fa-plus"></i>Новое объявление
+        </span>
+      <% end %>
+
+
+    </div>
+  </div><%# user-right-block %>
+<% end %>
