@@ -545,6 +545,23 @@ h1{
   }
 }
 
+#ad-posts{
+  .var2{
+    margin-top: 20px;
+    .duration{
+      $a: 4.5em;
+      width: $a;
+      height: $a;
+      position: absolute;
+      top: auto;
+      bottom: 32px;
+      right: 32px;
+      border-radius: $a;
+      border: 1px dashed white;
+  }
+  }
+}
+
 .post{
   // a - diameter
   $a: 60px;

@@ -21,6 +21,7 @@ class ClientsController < ApplicationController
 
   def show
     @type_user = @client.type_user
+    @with_categories = 1
   end
 
   def update
@@ -90,6 +91,18 @@ class ClientsController < ApplicationController
 
   def more_info
     @client = current_client
+  end
+
+  def advertisements
+    @client = current_client
+    @type_user = @client.type_user
+    @with_categories = 0
+    if @client.type_user == 0
+      # customer
+      @advertisements = @client.advertisements
+    else
+      redirect_to '/'
+    end
   end
 
   private

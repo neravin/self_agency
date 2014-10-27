@@ -1,7 +1,14 @@
 <div id = "ad-posts">
   <% advertisements.order('created_at DESC').each do |ad| %>
+    <%#   
+      page_type: 0 ---> advertisements#index page
+      page_type: 1 ---> clients#show page
+    %>
+    <% if page_type == 1 %>
+    <div class="post var2" data-ad="<%= ad.id %>">
+    <% else %>
     <div class="post" data-ad="<%= ad.id %>">
-
+    <% end %>
       <%# 
         edit and delete buttons for client's page
       %>
@@ -68,6 +75,7 @@
         <span class = "num-offers"><%= ad.fantom.clients.count %></span>
       </div><!--/link-offers-->
 
+      <% if page_type == 0 %>
       <div class = "bottom-tmtime clearfix">
         <% if ad.state == 0 %>
           <span class = "button open perform-ad"
@@ -85,6 +93,7 @@
           <% end %>
         <% end %>
       </div><!--/bottom-tmlabel-->
+      <% end %>
 
       <div class = "up-post">
         <h2>Предложения от:</h2>

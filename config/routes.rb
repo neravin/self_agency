@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       patch 'edit_specializations'
       get 'specialization'
       get 'more_info'
+      get 'advertisements'
     end
   end
   resources :offer_services

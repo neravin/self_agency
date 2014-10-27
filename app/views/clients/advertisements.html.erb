@@ -1,0 +1,24 @@
+<% if @advertisements && !@advertisements.empty? %>
+	<%#   
+	  page_type: 0 ---> advertisements#index page
+	  page_type: 1 ---> clients#show page
+	%>
+	<div class = "advertisements-posts">
+	  <%= render 'advertisements/advertisement_post', {advertisements: @advertisements, page_type: 1} %>
+	</div><!--/advertisements-posts-->
+
+<% else %>
+	<div class = "advertisements-posts">
+    <div id = "empty-note">
+      <i class="fa fa-frown-o"></i>У вас ещё нет объявлений.
+    </div><!--/empty-posts-->
+  </div><!--/empty-note-->
+<% end %>
+
+<%# if current client is customer %>
+<% if current_client.id == @client.id %>
+  <%= render 'new_advertisement' %>
+  <%# render 'edit_advertisement' %>
+<% end %>
+
+<%= render 'features_client' %>

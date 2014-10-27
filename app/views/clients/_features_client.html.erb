@@ -1,13 +1,16 @@
 <% if current_client.id == @client.id %>
   <div class = "user-right-block">
-    <div class = "user-services">
-      <h3>Услуги</h3>
-      <ul>
-        <% @client.services.each do |service| %>
-          <li><%= service.name %></li>
-        <% end %>
-      </ul>
-    </div>
+    
+    <% if @with_categories == 1 %>
+      <div class = "user-services">
+        <h3>Услуги</h3>
+        <ul>
+          <% @client.services.each do |service| %>
+            <li><%= service.name %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <div id="user-menu">
       <%= link_to(edit_client_path(@client)) do %>
@@ -23,7 +26,13 @@
       <% end %>
 
       <a>Отзывы</a>
-      <a>Объявления</a>
+
+      <%# for customer %>
+      <% if @type_user == 0 %>
+        <%= link_to(advertisements_clients_path) do %>
+          Объявления
+        <% end %>
+      <% end %>
       
       <%# for customers %>
       <% if @type_user == 0 %>
