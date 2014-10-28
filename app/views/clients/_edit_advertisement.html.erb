@@ -1,5 +1,5 @@
 <div id = "edit-ad-form" class = "form-shell fat-style">
-  <%= form_for(:advertisement, :url => { :controller => "advertisements", :action => "edit" }, method: "patch", remote: true, html: { id: "edit_advertisement" }) do |f| %>
+  <%= form_for(:advertisement, :url => { :controller => "advertisements", :action => "create" }, method: "patch", remote: true, html: { id: "edit_advertisement" }) do |f| %>
   <fieldset>
     <h2>Изменить тендер</h2>
     <div class="error_explanation">

@@ -418,8 +418,17 @@ h1{
   height: 197px;
   margin-bottom: 20px;
   float: left;
+  font-family: 'pt_sansregular';
   #about-me{
     font-family: 'pt_sansregular';
+  }
+  .in-service{
+    margin-top: 40px;
+    span{
+      color: $gray;
+      font-size: 0.85em;
+      font-family: 'pt_sansitalic';
+    }
   }
   /*background: $new-light-yellow;
   border: 1px dashed $orange;
@@ -591,7 +600,7 @@ h1{
       height: $a;
       display: block;
       border-radius: $a;
-    }
+    } 
   }
   .bottom-tmtime{
     position: absolute;

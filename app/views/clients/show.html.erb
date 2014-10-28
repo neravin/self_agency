@@ -9,6 +9,10 @@
         <%= image_tag @client.photo_url(:thumb).to_s %>
         <div class = "name">Фирмаe</div>
         <div class = "specialization">Сантехник</div>
+        <div class = "in-service">
+          <label>В сервисе:</label><br/>
+          <span><%= @duration_time %></span>
+        </div>
       </div><!--/foto-->
 
       <div class = "user-description">
@@ -117,6 +121,7 @@
   </div-->
 
   <%# if current client is customer %>
+
   <% if current_client.id == @client.id %>
     <%= render 'new_advertisement' %>
     <%= render 'edit_advertisement' %>

@@ -1,3 +1,5 @@
+include DateHelper;
+
 # encoding: utf-8
 class ClientsController < ApplicationController
   skip_before_action :authorize
@@ -22,6 +24,10 @@ class ClientsController < ApplicationController
   def show
     @type_user = @client.type_user
     @with_categories = 1
+    # duration time on site
+    tstart = Time.now           # time now
+    tend = @client.created_at   # date of registration
+    @duration_time = duration_time(tstart, tend)
   end
 
   def update

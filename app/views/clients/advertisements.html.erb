@@ -18,7 +18,7 @@
 <%# if current client is customer %>
 <% if current_client.id == @client.id %>
   <%= render 'new_advertisement' %>
-  <%# render 'edit_advertisement' %>
+  <%= render 'edit_advertisement' %>
 <% end %>
 
 <%= render 'features_client' %>
