@@ -577,16 +577,15 @@ h1{
   // h - border h
   $h: 10px;
   position: relative;
-  background: $light-green;
-  background: #4C9396;
-  //var2
-  //background: white;
-  color: white;
+  //background: #4C9396;
+  color: $gray;
   border-radius: 5px;
   margin-bottom: 15px;
+  margin-bottom: 40px;
   padding: 2em;
-  margin-top: $a;
-  .foto{
+  padding-left: 0;
+  //margin-top: $a;
+  /*.foto{
     position: absolute;
     left: 50%;
     margin-left: -$a/2-$h;
@@ -601,7 +600,7 @@ h1{
       display: block;
       border-radius: $a;
     } 
-  }
+  }*/
   .bottom-tmtime{
     position: absolute;
     bottom: 35px;
@@ -693,13 +692,13 @@ h1{
     }
   }
   p{
-    color: white;
+    color: $gray;
     //var 2
     //color: $gray;
     margin-top: 10px;
   }
   h2{
-    color: white;
+    color: #4C9396;
     //var2
     //color: $green;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -712,6 +711,9 @@ h1{
     margin-bottom: 20px;
     line-height: 1.2em;
     font-size: 0.8em;
+    div{
+      line-height: 1.4em;
+    }
   }
   .duration{
     $a: 4.5em;
@@ -723,7 +725,6 @@ h1{
     text-align: center;
     font-size: 0.8em;
     border-radius: $a;
-    //border: 1px dashed white;
     padding-top: em(7);
     span{
       font-size: 2em;
@@ -731,7 +732,8 @@ h1{
     }
   }
   .price{
-    color: $light2-yellow;
+    color: #4C9396;
+    font-family: 'pt_sansbold';
     float: left;
   }
 }
@@ -947,8 +949,8 @@ $a_foto: 110px;
   padding: 0.7em;
   width: 140px;
   text-align: center;
-  border: 1px dashed $new-light-yellow;
-  color: $new-light-yellow;
+  border: 1px dashed #4C9396;
+  color: #4C9396;
   &:hover{
     border: 1px dashed rgba(255, 255, 255, 0);
     color: white;
