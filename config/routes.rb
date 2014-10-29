@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     collection do
       patch 'perform_ad'
       patch 'worker_cancel'
+      post  'agree_order'
     end
   end
 

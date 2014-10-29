@@ -84,7 +84,7 @@ class AdvertisementsController < ApplicationController
     id_ad = params['id'].to_i
     if p = Advertisement.find_by_id(id_ad)
       if (p.state == 0) && (current_client)
-        if p.client.type_user != 1
+        if current_client.type_user != 1
           render text: "Заказчики не могут бронировать объявления"
         else
           if (p.client.id != current_client.id)
@@ -127,6 +127,26 @@ class AdvertisementsController < ApplicationController
     end
   end
 
+  def agree_order
+    if !signed_in?
+      render text: "Вы не вошли на сайт"
+    elsif !(builder = Client.find_by_id(params[:client_id]))
+      render text: "Такого строителя не существует"
+    elsif !(advertisement = Advertisement.find_by_id(params[:adv_id]))
+      render text: "Такого объявления не существует"
+    elsif !(current_client.advertisements.exists?(advertisement))
+      render text: "Это не ваше объявление"
+    elsif advertisement.worker_id
+      render text: "Исполнитель уже определен"
+    elsif !(Fantom.find_by_advertisement_id(advertisement.id).clients.exists?(builder.id))
+      render text: "Строитель не соглашался делать ваш заказ"
+    else
+      advertisement.book
+      advertisement.update_attribute("worker_id", builder.id)
+      render text: "Спасибо, исполнитель определен"
+    end
+  end
+
 private
   def set_advertisement
     @advertisement = Advertisement.find(params[:id])
@@ -143,7 +163,6 @@ private
       :service_id,
       :client_id)
   end
-
 
   def correct_advertisement
     if current_client

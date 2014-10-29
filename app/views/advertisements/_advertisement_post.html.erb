@@ -59,17 +59,17 @@
       </div><!--/contact-->
       <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span><br>
 
-      <% if ad.worker_id %>
-        <% if worker = Client.find_by_id(ad.worker_id) %>
-          <div class="worker">
-            <%= link_to "Исполнитель - #{worker.name}", worker,
+      <%# if ad.worker_id %>
+        <%# if worker = Client.find_by_id(ad.worker_id) %>
+          <!--div class="worker">
+            <%# link_to "Исполнитель - #{worker.name}", worker,
               :class => "button light-yellow" %>
             <span class = "cancel-worker button light-yellow">
               Отменить исполнителя
             </span>
           </div>
-        <% end %>
-      <% end %>
+        <%# end %>
+      <%# end %><-->
       <div class = "link-offers">
         <span class = "arrow open-offer"><i class="fa fa-angle-double-up"></i></span>
         <span class = "num-offers"><%= ad.fantom.clients.count %></span>
@@ -80,10 +80,10 @@
         <% if ad.state == 0 %>
           <% if current_client.type_user == 1 %>
             <span class = "button open perform-ad"
-              data-ad_id="<%= ad.id %>">Предложить</span>
-            <% end %>
+            data-ad_id="<%= ad.id %>">Предложить</span>
+          <% end %>
         <% elsif ad.state == 1 %>
-          <span class = "button not-button">Занят</span>
+          <span class = "button not-button white-green">Исполнитель определен</span>
         <% elsif ad.state == 2 %>
           <span class = "button not-button white-green">Выполнен</span>
         <% elsif ad.state == 3 %>
@@ -103,7 +103,13 @@
           <% ad.fantom.clients.select(:id, :name).each do |offer| %>
             <div class = "offer clearfix">
               <%= link_to offer.name, offer, class: "name" %>
-              <span class = "button blue-dashed">Принять</span>
+              <% if !ad.worker_id %>
+                <span class = "button blue-dashed link-agree">Принять</span>
+              <% else %>
+                <% if ad.worker_id == offer.id %>
+                  <span class = "button blue-dashed cancel-worker">Отменить</span>
+                <% end %>
+              <% end %>
             </div><!--/offer-->
           <% end %>
         </div><!--/offers-->
