@@ -18,20 +18,8 @@ ready = ->
         addMessage(block, result, 'Ожидайте звонок от заказчика')
     })
 
-  $(".cancel-worker").click -> 
-    id_ad = $(this).parents(".post").attr('data-ad')
-    current_el = $(this)
-
-    if confirm("Вы уверены?") 
-      $.ajax({
-      type: "POST"
-      url: "/worker_cancel?ad=" + id_ad
-      data: { _method: 'get' }
-      success: (result) ->
-        parent = current_el.parent()
-        block = parent.parent()
-        addMessage(block, result, 'Исполнитель отменен')
-      })
+  #$(".cancel-worker").click -> 
+  #  cancelWorker($(this))
 
   $(".hide-filter-link").click ->
     filters = $(this).parent()
@@ -47,19 +35,14 @@ ready = ->
     $(".hide-filter-link").show()
     form.slideDown(1000)
 
-  $(".link-agree").click ->
-    upPost     = $(this).parents(".up-post")
-    linkClient = $(this).parent().children(".name")
-    idBuilder  = linkClient.attr("href").match(/clients\/([0-9]+)/)[1]
-    idAdv      = $(this).parents(".post").attr "data-ad"
-    if confirm("Вы уверены?") 
-      $.ajax({
-        type: 'POST'
-        url: "/advertisements/agree_order"
-        data: { client_id: idBuilder, adv_id: idAdv }
-        success: (result) ->
-          addMessage(upPost, result, 'Спасибо, исполнитель определен')
-      })
+  #$(".link-agree").click ->
+  #  agreeWorker($(this))
+  
+  $(".offer").on "click", "span.cancel-worker", ->
+    cancelWorker($(this))
+
+  $(".offer").on "click", "span.link-agree", ->
+    agreeWorker($(this))
 
   #  hide/show services select
   if( $(".filters .category-select span.cs-placeholder").text() == "Категория" )
@@ -67,6 +50,45 @@ ready = ->
   else
     $(".filters div.services-select").show()
 
+cancelWorker = (el) ->
+  id_ad = el.parents(".post").attr('data-ad')
+  upPost = el.parents(".up-post")
+
+  #if confirm("Вы уверены?") 
+  $.ajax({
+    type: "POST"
+    url: "/worker_cancel?ad=" + id_ad
+    data: { _method: 'get' }
+    success: (result) ->
+      alert "cancel"
+      block = upPost
+      block.find(".cancel-worker").remove()
+      block.find(".offer").append "<span class = 'button blue-dashed link-agree'>Принять</span>"
+      #block.find(".offer").on "click", "span.link-agree", ->
+      #  agreeWorker($(this))
+      addMessage(block, result, 'Исполнитель отменен')
+  })
+
+agreeWorker = (el) ->
+  upPost     = el.parents(".up-post")
+  linkClient = el.parent().children(".name")
+  idBuilder  = linkClient.attr("href").match(/clients\/([0-9]+)/)[1]
+  idAdv      = el.parents(".post").attr "data-ad"
+  offer      = el.parent()
+  #if confirm("Вы уверены?") 
+  $.ajax({
+    type: 'POST'
+    url: "/agree_order"
+    data: { client_id: idBuilder, adv_id: idAdv }
+    success: (result) ->
+      alert "agree"
+      upPost.find(".link-agree").remove()
+
+      offer.append "<span class = 'button blue-dashed cancel-worker'>Отменить</span>"
+      #upPost.find(".offer").on "click", "span.cancel-worker", ->
+      #  cancelWorker($(this))
+      addMessage(upPost, result, 'Спасибо, исполнитель определен')
+  })
 
 addMessage = (block, message, successMessage) ->
   #  block - where to place advertisements
