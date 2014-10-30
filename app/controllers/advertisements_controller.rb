@@ -9,6 +9,7 @@ class AdvertisementsController < ApplicationController
     category_id = params[:category].to_i
     @service_id = params[:service_id].to_i
     @price      = params[:price].to_i
+
     if category_id && (category_id != 0)
       category = Category.find_by_id(category_id)
       if category
@@ -29,7 +30,6 @@ class AdvertisementsController < ApplicationController
     end
   end  
     
-
   def new
     @advertisement = Advertisement.new
   end
@@ -82,34 +82,22 @@ class AdvertisementsController < ApplicationController
 
   def perform_ad
     id_ad = params['id'].to_i
-    if p = Advertisement.find_by_id(id_ad)
-      if (p.state == 0) && (current_client)
-        if current_client.type_user != 1
-          render text: "Заказчики не могут бронировать объявления"
-        else
-          if (p.client.id != current_client.id)
-            fantom_ad = Fantom.find_by_advertisement_id(id_ad)
-            if fantom_ad
-              if fantom_ad.clients.exists?(current_client.id)
-                render text: "Вы уже подали заявку"
-              else
-                fantom_ad.clients << current_client
-                render text: "Ожидайте звонок от заказчика"
-              end
-            else
-              render text: "Объявление не доступно для бронирования"
-            end
-          else
-            render text: "Вы не можете бронировать свое объявление"
-          end
-        end
-      else
-        render text: "Объявление не доступно для бронирования"
-      end
-      #flash[:success] = "Заказ забронирован. Ожидайте звонок от заказчика.#{params[:id]}" 
-      #redirect_to ''
-    else
+
+    if p != Advertisement.find_by_id(id_ad)
       render text: "Такого объявления не существует"
+    elsif !((p.state == 0) && (current_client))
+      render text: "Объявление не доступно для бронирования"
+    elsif current_client.type_user != 1
+      render text: "Заказчики не могут бронировать объявления"
+    elsif !(p.client.id != current_client.id)
+      render text: "Вы не можете бронировать свое объявление"
+    elsif !(fantom = Fantom.find_by_advertisement_id(ud_ad))
+      render text: "Объявление не доступно для бронирования"
+    elsif fantom_ad.clients.exists?(current_client.id)
+      render text: "Вы уже подали заявку"
+    else
+      fantom_ad.clients << current_client
+      render text: "Ожидайте звонок от заказчика"
     end
   end
 
