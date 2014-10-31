@@ -59,17 +59,6 @@
       </div><!--/contact-->
       <span class = "price"><%= ad.price %> <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span><br>
 
-      <%# if ad.worker_id %>
-        <%# if worker = Client.find_by_id(ad.worker_id) %>
-          <!--div class="worker">
-            <%# link_to "Исполнитель - #{worker.name}", worker,
-              :class => "button light-yellow" %>
-            <span class = "cancel-worker button light-yellow">
-              Отменить исполнителя
-            </span>
-          </div>
-        <%# end %>
-      <%# end %><-->
       <div class = "link-offers">
         <span class = "arrow open-offer"><i class="fa fa-angle-double-up"></i></span>
         <span class = "num-offers"><%= ad.fantom.clients.count %></span>

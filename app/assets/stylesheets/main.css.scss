@@ -563,8 +563,8 @@ h1{
       height: $a;
       position: absolute;
       top: auto;
-      bottom: 32px;
-      right: 32px;
+      bottom: 22px;
+      right: 12px;
       border-radius: $a;
       border: 1px dashed white;
   }
@@ -769,8 +769,7 @@ h1{
 }
 
 .edit-advertisement, .delete-link{
-  color: $yellow;
-  color: $light2-yellow;
+  color: #4C9396;
   position: absolute;
   right: 30px;
   top: 40px;

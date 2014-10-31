@@ -165,10 +165,15 @@ ready = ->
     advertisement = xhr.responseJSON
     #alert xhr.responseText
     $("#ad-posts").prepend " 
-      <div class='post' data-ad='#{advertisement.id}'>
-        <span  class = 'edit-ad-link edit-advertisement'>
-          <i class='fa fa-pencil'></i>
+      <div class='post var2' data-ad='#{advertisement.id}'>
+        <!--/buttons edit and delete-->
+        <span class = 'edit-ad-link edit-advertisement'>
+          <i class = 'fa fa-pencil'></i>
         </span>
+        <span class = 'delete-ad-link delete-link'>
+          <i class = 'fa fa-trash'></i>
+        </span>
+
         <h2>
           <span class = 'category' data-cat = '#{advertisement.service.category.id}'>
             #{advertisement.service.category.name}</span>:
@@ -197,7 +202,10 @@ ready = ->
         </div><!--/contact-->
 
         <span class='price'>#{advertisement.price} <i class='fa fa-rub' style = 'font-size: 0.9em;'></i></span>
-        <br>
+        <div class = 'link-offers'>
+          <span class = 'arrow open-offer'><i class='fa fa-angle-double-up'></i></span>
+          <span class = 'num-offers'>0</span>
+        </div><!--/link-offers-->
       </div>"
     element = $("#ad-posts div[data-ad='#{advertisement.id}']")
     element.append "
